@@ -16,7 +16,7 @@ body{
 #titulo{
 	/*width:400px;*/
   margin:0 auto;
-  margin-top:8px;
+  margin-top:14px;
   margin-bottom:2%;
   transition:opacity 1s;
   -webkit-transition:opacity 1s;
