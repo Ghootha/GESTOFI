@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
     <![endif]-->
 </head>
-<body data-ng-controller="userController">
+<body data-ng-controller="docController">
 <div class="extra">
     <!--==============================header=================================-->
     <header>
@@ -54,9 +54,9 @@
                             <li class="active"><a href="pagina.html">Home page</a></li>
                             <li><a href="#">Repositorio</a>
                                 <ul>
-                                    <li><a title="Consultar documentos del repositorio" href="Consultar.html">Consultar</a></li>
-                                    <li><a title="Almacenar un documento nuevo en el repositorio" href="#">Almacenar</a></li>
-                                </ul>
+                                        <li><a title="Consultar documentos del repositorio" href="Consultar.html">Consultar</a></li>
+                                        <li><a title="Almacenar un documento nuevo en el repositorio" href="SubirDocumento.html">Almacenar</a></li>
+                                    </ul>
                             </li>
                             <li><a href="solicitudes.html">Solicitudes</a>
                                 <ul>
@@ -94,58 +94,13 @@
     </header>
 
     <!--==============================content================================-->
-    <!--<section id="content"><div class="ic"></div>
-
-    </section> -->
-
-
+    
         <section id="content"><div class="ic"></div>
             <div class="content-bg">
-
-
-                <div class="main">
-                    <div ng-app="myapp">
-                        <!--<div id="formBusq" class="container">
-                            <h3 data-ng-show="edit">Buscar Documento:</h3>
-                            <<form class="form-horizontal">
-                                div class="form-group">
-                                    <label class=" control-label">Fecha:</label>
-
-                                    <input type="date" data-ng-model="mfecha" data-ng-disabled="!edit">
-
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">Nombre:</label>
-
-                                    <input type="text" data-ng-model="mNombre" data-ng-disabled="!edit" >
-
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">Codigo:</label>
-
-                                    <input type="text" data-ng-model="mCodigo" data-ng-disabled="!edit">
-
-                                </div>
-                                <table class="table">
-                                    <tr>
-                                        <td><label class=" control-label">Fecha:</label></td>
-                                        <td><input type="date" data-ng-model="mfecha" data-ng-disabled="!edit"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label class="control-label">Nombre:</label></td>
-                                        <td><input type="text" data-ng-model="mNombre" data-ng-disabled="!edit" ></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label class="control-label">Codigo:</label></td>
-                                        <td><input type="text" data-ng-model="mCodigo" data-ng-disabled="!edit"></td>
-                                    </tr>
-                                </table>
-                                <button class="btn btn-success" data-ng-disabled="error || incomplete">
-                                     Buscar
-                                </button>
-                            </form>
-                        </div>-->
+                <div class="main">                   
+                    <div class="wrapper">                           
                         <div class="container">
+
                             <div class="row">
                                 <h3 data-ng-show="edit">Buscar Documento:</h3>
                                 <form role="form">
@@ -174,135 +129,53 @@
                                     </div>
                                 </form>
 
-                            </div>
-                        </div>
-                        <hr>
+                            </div> 
+                            <hr>
 
-
-                        <table class="table table-hover">
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Documento</th>
-                                <th>Codigo</th>
-                                <th>Rol</th>
-                                <th>Tipo</th>
-                                <th>Editar</th>
-                                <th>Actualizar</th>
-                                <th>Descargar</th>
-                            </tr>
-                            <tr>
-                                <td>01/02/2003</td>
-                                <td>Documento1</td>
-                                <td>00001</td>
-                                <td>Director</td>
-                                <td>Oficio</td>
-                                <td>
-                                    <button class="btn btn-danger" ng-click="editDoc(doc.id)">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr class="danger">
+                                    <th>Fecha</th>
+                                    <th>Nombre</th>
+                                    <th>Codigo</th>
+                                    <th>Rol</th>
+                                    <th>Tipo</th>
+                                    <th>Editar</th>
+                                    <th>Actualizar</th>
+                                    <th>Descargar</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr data-ng-repeat="doc in docs">
+                                    <td>{{ doc.fecha }}</td>
+                                    <td>{{ doc.nombre }}</td>
+                                    <td>{{ doc.codigo }}</td>
+                                    <td>{{ doc.rol }}</td>
+                                    <td>{{ doc.tipo }}</td>                                                                   
+                                    <td>
+                                        <button class="btn btn-danger" ng-click="editDoc(doc.id)">
                                         <span class="glyphicon glyphicon-pencil"></span>
-                                    </button>
-                                </td>
-
-                                <td>
-                                    <button class="btn btn-danger" ng-click="actDoc(doc.id)">
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger" ng-click="actDoc(doc.id)">
                                         <span class="glyphicon glyphicon-refresh"></span>
-                                    </button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-danger" ng-click="descDoc(doc.id)">
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger" ng-click="descDoc(doc.id)">
                                         <span class="glyphicon glyphicon-floppy-save"></span>
-                                    </button>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>04/05/2006</td>
-                                <td>Documento2</td>
-                                <td>00002</td>
-                                <td>Profesor</td>
-                                <td>Carta</td>
-                                <td>
-                                    <button class="btn btn-danger" ng-click="editDoc(doc.id)">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-danger" ng-click="editDoc(doc.id)">
-                                        <span class="glyphicon glyphicon-refresh"></span>
-                                    </button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-danger" ng-click="editDoc(doc.id)">
-                                        <span class="glyphicon glyphicon-floppy-save"></span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>07/08/2009</td>
-                                <td>Documento3</td>
-                                <td>00003</td>
-                                <td>Secretaria</td>
-                                <td>Correspondencia</td>
-                                <td>
-                                    <button class="btn btn-danger" ng-click="editDoc(doc.id)">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-danger" ng-click="editDoc(doc.id)">
-                                        <span class="glyphicon glyphicon-refresh"></span>
-                                    </button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-danger" ng-click="editDoc(doc.id)">
-                                        <span class="glyphicon glyphicon-floppy-save"></span>
-                                    </button>
-                                </td>
-                            </tr>
+                                        </button>
+                                    </td>
+                                </tr>
+                              </tbody>
+                                                            <!--Finaliza Tabla-->                            
                         </table>
                     </div>
-                </div>
+                </div>                
                 <div class="block"></div>
             </div>
         </section>
-
-
-
-<!--
-    <aside style="font-style:italic;
-			float:left;width:20%;
-			border:1px solid">
-        <div class="content-bg">
-            <div class="main">
-                <div ng-app="myapp">
-                    <form  name="myform" class="form form-horizontal" ng-controller="myappCtrl" novalidate>
-                        <legend>Ingresar Documento</legend>
-
-                        <label for="inputUsername" class="control-label"> Seguridad: </label>
-                        <div class="controls">
-                            <input type="text" id="inputUsername2" name="username" ng-model="username" valid-username />
-                        </div>
-
-                        <label for="inputPassword" class="control-label"> Tipo: </label>
-                        <div class="controls">
-                            <input type="text" id="inputPassword2" name="password" ng-model="password" valid-password />
-                        </div>
-
-                        <label for="password_c" class="control-label">Documento:</label>
-                        <div class="controls">
-                            <input type="file" id="password_c2" name="password_c" ng-model="password_c" valid-password-c />
-                        </div>
-                        <br>
-                        <div class="form-actions" ng-show="formAllGood()">
-                            <input type="submit" class="btn btn-primary" value="Submit" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="block"></div>
-        </div>
-
-    </aside>
-    -->
 </div>
 
 <!--==============================footer=================================-->
@@ -314,7 +187,7 @@
 <script type="text/javascript"> Cufon.now(); </script>
 <!--Angular script-->
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
-<script src= "js/myUsers.js"></script>
+<script src= "js/myDocs.js"></script>
 
 </body>
 </html>
