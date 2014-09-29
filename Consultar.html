@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html data-ng-app="" >
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
+    <script src="js/jquery-1.6.3.min.js" type="text/javascript"></script>
+    <script src="js/cufon-yui.js" type="text/javascript"></script>
+    <script src="js/cufon-replace.js" type="text/javascript"></script>
+    <script src="js/NewsGoth_400.font.js" type="text/javascript"></script>
+    <script src="js/NewsGoth_700.font.js" type="text/javascript"></script>
+    <script src="js/NewsGoth_Lt_BT_italic_400.font.js" type="text/javascript"></script>
+    <script src="js/Vegur_400.font.js" type="text/javascript"></script>
+    <script src="js/FF-cash.js" type="text/javascript"></script>
+
+    <div style=' clear: both; text-align:center; position: relative;'>
+        <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+            <!--<img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+        --></a>
+    </div>
+    <![endif]-->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="js/html5.js"></script>
+    <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
+    <![endif]-->
+</head>
+<body data-ng-controller="userController">
+<div class="extra">
+    <!--==============================header=================================-->
+    <header>
+        <div class="row-top">
+            <div class="main">
+                <div class="wrapper">
+                    <h1><a href="pagina.html">Consulting</a></h1>
+                    <form id="search-form" method="post" enctype="multipart/form-data">
+                        <fieldset>
+                            <div class="search-field">
+                                <input name="search" type="text" value="Search..." onBlur="if(this.value=='') this.value='Search...'" onFocus="if(this.value =='Search...' ) this.value=''" />
+                                <a class="search-button" href="#" onClick="document.getElementById('search-form').submit()"></a>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="menu-row">
+            <div class="menu-bg">
+                <div class="main">
+                    <nav class="indent-left">
+                        <ul class="menu wrapper">
+                            <li class="active"><a href="pagina.html">Home page</a></li>
+                            <li><a href="#">Repositorio</a>
+                                <ul>
+                                    <li><a title="Consultar documentos del repositorio" href="Consultar.html">Consultar</a></li>
+                                    <li><a title="Almacenar un documento nuevo en el repositorio" href="#">Almacenar</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="solicitudes.html">Solicitudes</a>
+                                <ul>
+                                    <li><a title="Solicitar un equipo Audio-Visual" href="#">Equipo</a></li>
+                                    <li><a title="Solicitar el apartado de un Aula" href="#">Aula</a></li>
+                                    <li><a title="Realizar una solicitud para una gira" href="#">Giras</a></li>
+                                    <li class="ultimo"><a title="Realizar una solicitud de vacaciones" href="#">Vacaciones</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Calendario</a>
+                                <ul>
+                                    <li><a title="Crear una actividad nueva" href="#">Crear actividad</a></li>
+                                    <li><a title="Editar una actividad ya creada" href="#">editar actividad</a></li>
+                                    <li class="ultimo"><a title="Eliminar una actividad del calendario"href="#">Eliminar actividad</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Configuracion</a>
+                                <ul>
+                                    <li><a title="Configurar los roles del sistema"href="#">Roles</a></li>
+                                    <li><a title="Configurar los usuarios del sistema"href="Usuarios.html">Usuarios</a></li>
+                                    <li class="ultimo"><a title="Configuración del sistema" href="#">sistema</a></li>
+                                </ul>
+                            </li>
+                            <li><a title="Sección informativa del sistema" href="acerca.html">Acerca de</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="row-bot">
+            <div class="center-shadow">
+            </div>
+        </div>
+    </header>
+
+    <!--==============================content================================-->
+    <!--<section id="content"><div class="ic"></div>
+
+    </section> -->
+
+
+        <section id="content"><div class="ic"></div>
+            <div class="content-bg">
+
+
+                <div class="main">
+                    <div ng-app="myapp">
+                        <!--<div id="formBusq" class="container">
+                            <h3 data-ng-show="edit">Buscar Documento:</h3>
+                            <<form class="form-horizontal">
+                                div class="form-group">
+                                    <label class=" control-label">Fecha:</label>
+
+                                    <input type="date" data-ng-model="mfecha" data-ng-disabled="!edit">
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Nombre:</label>
+
+                                    <input type="text" data-ng-model="mNombre" data-ng-disabled="!edit" >
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Codigo:</label>
+
+                                    <input type="text" data-ng-model="mCodigo" data-ng-disabled="!edit">
+
+                                </div>
+                                <table class="table">
+                                    <tr>
+                                        <td><label class=" control-label">Fecha:</label></td>
+                                        <td><input type="date" data-ng-model="mfecha" data-ng-disabled="!edit"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="control-label">Nombre:</label></td>
+                                        <td><input type="text" data-ng-model="mNombre" data-ng-disabled="!edit" ></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="control-label">Codigo:</label></td>
+                                        <td><input type="text" data-ng-model="mCodigo" data-ng-disabled="!edit"></td>
+                                    </tr>
+                                </table>
+                                <button class="btn btn-success" data-ng-disabled="error || incomplete">
+                                     Buscar
+                                </button>
+                            </form>
+                        </div>-->
+                        <div class="container">
+                            <div class="row">
+                                <h3 data-ng-show="edit">Buscar Documento:</h3>
+                                <form role="form">
+                                    <div class="col-lg-6">
+
+                                        <div class="form-group">
+                                            <label for="busqFecha">Fecha</label>
+                                            <div class="input-group">
+                                                <input type="date" class="form-control" name="busqFecha" id="busqFecha">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="busqNombre">Nombre</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="busqNombre" name="busqNombre">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="busqCod">Codigo</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="busqCod" name="busqCod">
+                                            </div>
+                                        </div>
+
+                                        <input type="submit" name="submit" id="submit" value="Buscar" class="btn btn-info pull-left">
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                        <hr>
+
+
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Documento</th>
+                                <th>Codigo</th>
+                                <th>Rol</th>
+                                <th>Tipo</th>
+                                <th>Editar</th>
+                                <th>Actualizar</th>
+                                <th>Descargar</th>
+                            </tr>
+                            <tr>
+                                <td>01/02/2003</td>
+                                <td>Documento1</td>
+                                <td>00001</td>
+                                <td>Director</td>
+                                <td>Oficio</td>
+                                <td>
+                                    <button class="btn btn-danger" ng-click="editDoc(doc.id)">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                </td>
+
+                                <td>
+                                    <button class="btn btn-danger" ng-click="actDoc(doc.id)">
+                                        <span class="glyphicon glyphicon-refresh"></span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" ng-click="descDoc(doc.id)">
+                                        <span class="glyphicon glyphicon-floppy-save"></span>
+                                    </button>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>04/05/2006</td>
+                                <td>Documento2</td>
+                                <td>00002</td>
+                                <td>Profesor</td>
+                                <td>Carta</td>
+                                <td>
+                                    <button class="btn btn-danger" ng-click="editDoc(doc.id)">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" ng-click="editDoc(doc.id)">
+                                        <span class="glyphicon glyphicon-refresh"></span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" ng-click="editDoc(doc.id)">
+                                        <span class="glyphicon glyphicon-floppy-save"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>07/08/2009</td>
+                                <td>Documento3</td>
+                                <td>00003</td>
+                                <td>Secretaria</td>
+                                <td>Correspondencia</td>
+                                <td>
+                                    <button class="btn btn-danger" ng-click="editDoc(doc.id)">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" ng-click="editDoc(doc.id)">
+                                        <span class="glyphicon glyphicon-refresh"></span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" ng-click="editDoc(doc.id)">
+                                        <span class="glyphicon glyphicon-floppy-save"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="block"></div>
+            </div>
+        </section>
+
+
+
+<!--
+    <aside style="font-style:italic;
+			float:left;width:20%;
+			border:1px solid">
+        <div class="content-bg">
+            <div class="main">
+                <div ng-app="myapp">
+                    <form  name="myform" class="form form-horizontal" ng-controller="myappCtrl" novalidate>
+                        <legend>Ingresar Documento</legend>
+
+                        <label for="inputUsername" class="control-label"> Seguridad: </label>
+                        <div class="controls">
+                            <input type="text" id="inputUsername2" name="username" ng-model="username" valid-username />
+                        </div>
+
+                        <label for="inputPassword" class="control-label"> Tipo: </label>
+                        <div class="controls">
+                            <input type="text" id="inputPassword2" name="password" ng-model="password" valid-password />
+                        </div>
+
+                        <label for="password_c" class="control-label">Documento:</label>
+                        <div class="controls">
+                            <input type="file" id="password_c2" name="password_c" ng-model="password_c" valid-password-c />
+                        </div>
+                        <br>
+                        <div class="form-actions" ng-show="formAllGood()">
+                            <input type="submit" class="btn btn-primary" value="Submit" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="block"></div>
+        </div>
+
+    </aside>
+    -->
+</div>
+
+<!--==============================footer=================================-->
+<footer>
+    <div class="padding">
+
+    </div>
+</footer>
+<script type="text/javascript"> Cufon.now(); </script>
+<!--Angular script-->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+<script src= "js/myUsers.js"></script>
+
+</body>
+</html>
