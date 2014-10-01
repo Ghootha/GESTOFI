@@ -34,7 +34,7 @@
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
   <![endif]-->
 </head>
-<body data-ng-controller="equipoController">
+<body data-ng-controller="aulaController">
   <div class="extra">
 <!--==============================header=================================-->
     <header>
@@ -118,13 +118,7 @@
 										
 									    
 										
-										<script type="text/javascript">
-										  $(function() {
-										    $('#datetimepicker4').datetimepicker({
-										      pickTime: false
-										    });
-										  });
-										</script>
+										
 									</td>
 									
 									
@@ -139,14 +133,7 @@
 									       </span>
 									     </div>
 									   </div>
-									   <script type="text/javascript">
-									     $(function() {
-									       $('#datetimepicker3').datetimepicker({
-									         pickDate: false
-									       });
-									     });
-									   </script>
-									   
+									  
 									  
 									</td>
 									
@@ -162,13 +149,7 @@
  									       </span>
  									     </div>
  									   </div>
-									   <script type="text/javascript">
-									     $(function() {
-									       $('#datetimepicker31').datetimepicker({
-									         pickDate: false
-									       });
-									     });
-									   </script>
+									   
  									 
   									   
 									</td>
@@ -186,19 +167,19 @@
 		                                <tr class="danger">
 		                                  <th>Seleccion</th>
 		                                  <th>Nombre</th>
-		                                  <th>Codigo</th>
+		                                 
 		                                </tr>
 		                              </thead>
 		                              <tbody>
-		                                <tr data-ng-repeat="equipo in equipos">
+		                                <tr data-ng-repeat="aula in aulas">
 		                                  <td >
 											<span >
 											  <input type="checkbox" class="checkbox">
 											 
 											</span>
 		                                  </td>
-		                                  <td >{{ equipo.nombre }}</td>
-		                                  <td>{{ equipo.codigo }}</td>
+		                                  <td >{{ aula.nombre }}</td>
+		                                  
 		                                </tr>
 									  </tbody>
 		                            </table>
@@ -222,10 +203,36 @@
             
         </div>
     </footer>
+	
+   <script type="text/javascript">
+     $(function() {
+       $('#datetimepicker31').datetimepicker({
+         pickDate: false
+       });
+     });
+   </script>
+   
+   <script type="text/javascript">
+     $(function() {
+       $('#datetimepicker3').datetimepicker({
+         pickDate: false
+       });
+     });
+   </script>
+   
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker4').datetimepicker({
+      pickTime: false
+    });
+  });
+</script>
+   
+	
   <script type="text/javascript"> Cufon.now(); </script>
   <!--Angular script-->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
-  <script src= "js/misEquipos.js"></script>
+  <script src= "js/misAulas.js"></script>
   <script type="text/javascript"
    src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
   </script> 
