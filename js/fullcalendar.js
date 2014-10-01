@@ -70,10 +70,10 @@ var defaults = {
 		next: '&nbsp;&#9658;&nbsp;',
 		prevYear: '&nbsp;&lt;&lt;&nbsp;',
 		nextYear: '&nbsp;&gt;&gt;&nbsp;',
-		today: 'today',
-		month: 'month',
-		week: 'week',
-		day: 'day'
+		today: 'hoy',
+		month: 'mes',
+		week: 'semana',
+		day: 'dia'
 	},
 	
 	// jquery-ui theming
@@ -401,9 +401,9 @@ function Calendar(element, options, eventSources) {
 			header.updateTitle(currentView.title);
 			var today = new Date();
 			if (today >= currentView.start && today < currentView.end) {
-				header.disableButton('today');
+				header.disableButton('hoy');
 			}else{
-				header.enableButton('today');
+				header.enableButton('hoy');
 			}
 			
 			ignoreWindowResize--;
@@ -1241,7 +1241,7 @@ fc.formatDates = formatDates;
 /* Date Math
 -----------------------------------------------------------------------------*/
 
-var dayIDs = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
+var dayIDs = ['dom', 'lun', 'mar', 'mier', 'jue', 'vie', 'sab'],
 	DAY_MS = 86400000,
 	HOUR_MS = 3600000,
 	MINUTE_MS = 60000;

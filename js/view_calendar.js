@@ -116,7 +116,7 @@ function initialise_calendar(){
 			center: 'title',
 			right: 'month,agendaWeek,agendaDay'
 		},
-		defaultView: 'agendaWeek',
+		defaultView: 'month',
 		minTime: '6:00am',
 		maxTime: '6:00pm',
 		allDaySlot: false,
@@ -127,8 +127,8 @@ function initialise_calendar(){
 		},
 		eventSources: [
 			{
-				url: 'calendar_events.json',
-				editable: false
+				url: 'json/calendar_events.json',
+				editable: true
 			}
 		],
 		droppable: true,
