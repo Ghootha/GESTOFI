@@ -40,62 +40,75 @@
 <body data-ng-controller="userController">
   <div class="extra">
 <!--==============================header=================================-->
-        <header>
-          <div class="row-top">
-              <div class="main">
-                  <div class="wrapper">
-                      <h1><a href="pagina.html">Consulting</a></h1>
-                        <form id="search-form" method="post" enctype="multipart/form-data">
-                        <fieldset>  
-                            <div class="search-field">
-                                <input name="search" type="text" value="Search..." onBlur="if(this.value=='') this.value='Search...'" onFocus="if(this.value =='Search...' ) this.value=''" />
-                                <a class="search-button" href="#" onClick="document.getElementById('search-form').submit()"></a>  
-                            </div>            
-                        </fieldset>
-                    </form>
-                    </div>
-                </div>
-            </div>
-            <div class="menu-row">
-                <div class="menu-bg">
-                    <div class="main">
-                        <nav class="indent-left">
-                            <ul class="menu wrapper">
-                                <li class="active"><a href="pagina.html">Home page</a></li>
-                                <li><a href="#">Repositorio</a>
-                                    <ul>
-                                        <li><a title="Consultar documentos del repositorio" href="Consultar.html">Consultar</a></li>
-                                        <li class="ultimo"><a title="Almacenar un documento nuevo en el repositorio" href="#">Almacenar</a></li>      
-                                    </ul>
-                                </li>
-                                <li><a href="solicitudes.html">Solicitudes</a>
-                                    <ul>
-                                        <li><a title="Solicitar un equipo Audio-Visual" href="Equipo.html">Equipo</a></li>
-                                        <li><a title="Solicitar el apartado de un Aula" href="#">Aula</a></li>
-                                        <li><a title="Realizar una solicitud para una gira" href="#">Giras</a></li>
-                                        <li class="ultimo"><a title="Realizar una solicitud de vacaciones" href="#">Vacaciones</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="agenda.html">Calendario</a></li>
-                                <li><a href="#">Configuracion</a>
-                                    <ul>
-                                        <li><a title="Configurar los roles del sistema"href="#">Roles</a></li>                                      
-                                        <li><a title="Configurar los usuarios del sistema"href="Usuarios.html">Usuarios</a></li>                                        
-                                        <li class="ultimo"><a title="Configuración del sistema" href="#">sistema</a></li>
-                                    </ul>
-                                </li>
-                                <li><a title="Sección informativa del sistema" href="acerca.html">Acerca de</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <div class="row-bot">
-              <div class="center-shadow">
-                </div>
-            </div>
-        </header>
+       <header>
+       	<div class="row-top">
+           	<div class="main">
+               	<div class="wrapper">
+                   	<h1><a href="pagina.html">GESTOFI</a></h1>
+                       <form id="search-form" method="post" enctype="multipart/form-data">
+                       <fieldset>	
+                           <div class="search-field">
+                               <input name="search" type="text" value="Search..." onBlur="if(this.value=='') this.value='Search...'" onFocus="if(this.value =='Search...' ) this.value=''" />
+                               <a class="search-button" href="#" onClick="document.getElementById('search-form').submit()"></a>	
+                           </div>						
+                       </fieldset>
+                   </form>
+                   </div>
+               </div>			
+           </div>
+           <div class="menu-row">
+               <div class="menu-bg">
+                   <div class="main">
+                       <nav class="indent-left">
+                           <ul class="menu wrapper">
+                               <li class="active"><a href="pagina.html">Home page</a></li>
+                               <li><a href="#">Repositorio</a>
+                                   <ul>
+                                       <li><a title="Consultar documentos del repositorio" href="Consultar.html">Consultar</a></li>
+                                       <li><a title="Almacenar un documento nuevo en el repositorio" href="SubirDocumento.html">Almacenar</a></li>
+                                   </ul>
+                               </li>
+                               <li><a href="solicitudes.html">Solicitudes</a>
+                                   <ul>
+                                       <li><a title="Solicitar un equipo Audio-Visual" href="Equipo.html">Equipo</a></li>
+                                       <li><a title="Solicitar el apartado de un Aula" href="#">Aula</a></li>
+                                       <li><a title="Realizar una solicitud para una gira" href="#">Giras</a></li>
+                                       <li class="ultimo"><a title="Realizar una solicitud de vacaciones" href="#">Vacaciones</a></li>
+                                   </ul>
+                               </li>
+                               <li><a href="agenda.html">Calendario</a></li>
+                               <li><a href="#">Configuracion</a>
+                                   <ul>
+                                       <li><a title="Configurar los roles del sistema"href="#">Roles</a></li>										
+                                       <li><a title="Configurar los usuarios del sistema"href="Usuarios.html">Usuarios</a></li>										
+                                       <li class="ultimo"><a title="Configuración del sistema" href="#">sistema</a></li>
+                                   </ul>
+                               </li>
+                               <li><a title="Sección informativa del sistema" href="acerca.html">Acerca de</a>
+                               </li>
+                           </ul>
+                       </nav>
+                   </div>
+               </div>
+           </div>
+         <div class="row-bot">
+           	<div class="center-shadow">
+               	<div class="carousel-container">
+                     <div id="carousel">
+                       <div class="carousel-feature">
+                         <a href="#"><img class="carousel-image" alt="" src="images/gallery-img1.png"></a>
+                       </div>
+                       <div class="carousel-feature">
+                         <a href="#"><img class="carousel-image" alt="" src="images/gallery-img3.png"></a>
+                       </div>
+                       <div class="carousel-feature">
+                         <a href="#"><img class="carousel-image" alt="" src="images/gallery-img2.png"></a>
+                       </div>
+                     </div>
+   				</div>
+               </div>
+           </div>
+       </header>
 <!--==============================content================================-->
         <section id="content"><div class="ic"></div>
             <div class="content-bg">
