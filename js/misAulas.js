@@ -2,7 +2,7 @@ function aulaController($scope) {
 $scope.nombre= '';
 
 
-$scope.equipos = [
+$scope.aulas = [
 {id:1, nombre:'Aula 1'},
 {id:2, nombre:'Aula 2'},
 {id:3, nombre:'Aula 3'}
