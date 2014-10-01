@@ -12,16 +12,8 @@ $scope.error = false;
 $scope.incomplete = false; 
 
 
-$scope.editDoc = function(id) {
-  if (id == 'new') {
-    $scope.edit = true;    
-    $scope.nombre = '';
-    $scope.codigo = '';    
-    } else {
-    $scope.edit = false;    
-    $scope.nombre = $scope.docs[id-1].nombre; 
-    $scope.codigo = $scope.docs[id-1].codigo;     
-  }
+$scope.apartarEquipo = function(id) {
+ 
 };
 
 $scope.$watch('nombre',function() {$scope.test();});
