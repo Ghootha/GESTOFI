@@ -61,10 +61,10 @@ var defaults = {
 	// locale
 	isRTL: false,
 	firstDay: 0,
-	monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
-	monthNamesShort: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-	dayNames: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-	dayNamesShort: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+	monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre'],
+	monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Set','Oct','Nov','Dic'],
+	dayNames: ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'],
+	dayNamesShort: ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'],
 	buttonText: {
 		prev: '&nbsp;&#9668;&nbsp;',
 		next: '&nbsp;&#9658;&nbsp;',
@@ -2372,7 +2372,7 @@ function BasicView(element, calendar, viewName) {
 	
 	function dayClick(ev) {
 		if (!opt('selectable')) { // if selectable, SelectionManager will worry about dayClick
-			var index = parseInt(this.className.match(/fc\-day(\d+)/)[1]); // TODO: maybe use .data
+			var index = parseInt(this.className.match(/fc\-day(\d+)/)[1]); // TODO: Mayobe use .data
 			var date = indexDate(index);
 			trigger('dayClick', this, date, true, ev);
 		}
@@ -3234,7 +3234,7 @@ function AgendaView(element, calendar, viewName) {
 		if (!opt('selectable')) { // if selectable, SelectionManager will worry about dayClick
 			var col = Math.min(colCnt-1, Math.floor((ev.pageX - dayTable.offset().left - axisWidth) / colWidth));
 			var date = colDate(col);
-			var rowMatch = this.parentNode.className.match(/fc-slot(\d+)/); // TODO: maybe use data
+			var rowMatch = this.parentNode.className.match(/fc-slot(\d+)/); // TODO: Mayobe use data
 			if (rowMatch) {
 				var mins = parseInt(rowMatch[1]) * opt('slotMinutes');
 				var hours = Math.floor(mins/60);
@@ -5025,7 +5025,7 @@ function SelectionManager() {
 			unselect(ev);
 			var _mousedownElement = this;
 			var dates;
-			hoverListener.start(function(cell, origCell) { // TODO: maybe put cellDate/cellIsAllDay info in cell
+			hoverListener.start(function(cell, origCell) { // TODO: Mayobe put cellDate/cellIsAllDay info in cell
 				clearSelection();
 				if (cell && cellIsAllDay(cell)) {
 					dates = [ cellDate(origCell), cellDate(cell) ].sort(cmp);
@@ -5182,7 +5182,7 @@ function HoverListener(coordinateGrid) {
 // this fix was only necessary for jQuery UI 1.8.16 (and jQuery 1.7 or 1.7.1)
 // upgrading to jQuery UI 1.8.17 (and using either jQuery 1.7 or 1.7.1) fixed the problem
 // but keep this in here for 1.8.16 users
-// and maybe remove it down the line
+// and Mayobe remove it down the line
 
 function _fixUIEvent(event) { // for issue 1168
 	if (event.pageX === undefined) {

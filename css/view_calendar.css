@@ -4,14 +4,17 @@ body{
 }
 
 #content_wrapper{
-	width: 820px;
-	margin-left: auto;
+	width: 1150px;
+	margin-left: 20.5%;
 	margin-right: auto;
 }
 
 #calendar{
-	width: 650px;
+	margin-top: 5%;
+	width: 950px;
 	float: left;
+	padding-bottom: 5%;
+
 }
 
 .btn{
@@ -20,11 +23,11 @@ body{
 }
 
 #event_generation_wrapper{
-	float: left;
+	float: right;
 	width: 120px;
 	background-color: #DDD;
-	margin-left: 20px;
-	margin-top: 40px;
+	margin-left: 5px;
+	margin-top: 93px;
 	border: 1px solid #4297D7;
 	background-color: #FCFDFD;	
 	-moz-border-radius: 3px;
@@ -65,16 +68,18 @@ body{
 
 
 #external_events{
-	float: left;
+	float: right;
 	width: 130px;
 	background-color: #DDD;
 	margin-left: 20px;
 	margin-top: 40px;
+	margin-bottom: 40px;
 	border: 1px solid #4297D7;
 	background-color: #FCFDFD;	
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	border-radius: 3px;
+	border-radius: 3px;	
+
 }
 
 #external_events .external-event{
