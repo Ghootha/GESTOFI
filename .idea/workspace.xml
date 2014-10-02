@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29bd8dab-d445-4cc1-9562-84397af6da0e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Rol.html" afterPath="$PROJECT_DIR$/Rol.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Usuarios.html" afterPath="$PROJECT_DIR$/Usuarios.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/myUsers.js" afterPath="$PROJECT_DIR$/js/myUsers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="GESTOFI.iws" />
@@ -50,12 +50,12 @@
       <file leaf-file-name="Usuarios.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Usuarios.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.95163584" vertical-offset="1592" max-vertical-offset="3706">
-              <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5092461" vertical-offset="1461" max-vertical-offset="3706">
+              <caret line="107" column="34" selection-start-line="107" selection-start-column="34" selection-end-line="107" selection-end-column="34" />
               <folding>
-                <marker date="1412275231215" expanded="true" signature="1063:1115" placeholder="..." />
-                <marker date="1412275231215" expanded="true" signature="1116:1506" placeholder="..." />
-                <marker date="1412275231215" expanded="true" signature="1235:1495" placeholder="..." />
+                <marker date="1412277885090" expanded="true" signature="1063:1115" placeholder="..." />
+                <marker date="1412277885090" expanded="true" signature="1116:1506" placeholder="..." />
+                <marker date="1412277885090" expanded="true" signature="1235:1495" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -64,12 +64,12 @@
       <file leaf-file-name="Rol.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Rol.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.653846" vertical-offset="242" max-vertical-offset="3213">
-              <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+            <state vertical-scroll-proportion="-73.15385" vertical-offset="495" max-vertical-offset="3213">
+              <caret line="141" column="65" selection-start-line="141" selection-start-column="65" selection-end-line="141" selection-end-column="65" />
               <folding>
-                <marker date="1412276043576" expanded="false" signature="1063:1115" placeholder="..." />
-                <marker date="1412276043576" expanded="true" signature="1116:1508" placeholder="..." />
-                <marker date="1412276043576" expanded="true" signature="1235:1497" placeholder="..." />
+                <marker date="1412276958178" expanded="false" signature="1063:1115" placeholder="..." />
+                <marker date="1412276958178" expanded="true" signature="1116:1508" placeholder="..." />
+                <marker date="1412276958178" expanded="true" signature="1235:1497" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -95,6 +95,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="147.96" vertical-offset="8459" max-vertical-offset="9163">
+              <caret line="280" column="19" selection-start-line="280" selection-start-column="10" selection-end-line="280" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -111,7 +121,6 @@
         <option value="$PROJECT_DIR$/css/stylelogin.css" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/consultar.js" />
-        <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/Almacenar.html" />
         <option value="$PROJECT_DIR$/pagina.html" />
         <option value="$PROJECT_DIR$/acerca.html" />
@@ -120,9 +129,10 @@
         <option value="$PROJECT_DIR$/Consultar.html" />
         <option value="$PROJECT_DIR$/js/myDocs.js" />
         <option value="$PROJECT_DIR$/js/myUsers.js" />
-        <option value="$PROJECT_DIR$/Usuarios.html" />
         <option value="$PROJECT_DIR$/js/myRoles.js" />
         <option value="$PROJECT_DIR$/Rol.html" />
+        <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/Usuarios.html" />
       </list>
     </option>
   </component>
@@ -186,7 +196,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -685,14 +695,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8755" max-vertical-offset="9163">
-          <caret line="515" column="0" selection-start-line="515" selection-start-column="0" selection-end-line="515" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Equipo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.31863442" vertical-offset="411" max-vertical-offset="4097">
@@ -741,18 +743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Rol.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.653846" vertical-offset="242" max-vertical-offset="3213">
-          <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
-          <folding>
-            <marker date="1412276043576" expanded="false" signature="1063:1115" placeholder="..." />
-            <marker date="1412276043576" expanded="true" signature="1116:1508" placeholder="..." />
-            <marker date="1412276043576" expanded="true" signature="1235:1497" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/myRoles.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
@@ -761,14 +751,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Rol.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-73.15385" vertical-offset="495" max-vertical-offset="3213">
+          <caret line="141" column="65" selection-start-line="141" selection-start-column="65" selection-end-line="141" selection-end-column="65" />
+          <folding>
+            <marker date="1412276958178" expanded="false" signature="1063:1115" placeholder="..." />
+            <marker date="1412276958178" expanded="true" signature="1116:1508" placeholder="..." />
+            <marker date="1412276958178" expanded="true" signature="1235:1497" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="147.96" vertical-offset="8459" max-vertical-offset="9163">
+          <caret line="280" column="19" selection-start-line="280" selection-start-column="10" selection-end-line="280" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Usuarios.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.95163584" vertical-offset="1592" max-vertical-offset="3706">
-          <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5092461" vertical-offset="1461" max-vertical-offset="3706">
+          <caret line="107" column="34" selection-start-line="107" selection-start-column="34" selection-end-line="107" selection-end-column="34" />
           <folding>
-            <marker date="1412275231215" expanded="true" signature="1063:1115" placeholder="..." />
-            <marker date="1412275231215" expanded="true" signature="1116:1506" placeholder="..." />
-            <marker date="1412275231215" expanded="true" signature="1235:1495" placeholder="..." />
+            <marker date="1412277885090" expanded="true" signature="1063:1115" placeholder="..." />
+            <marker date="1412277885090" expanded="true" signature="1116:1506" placeholder="..." />
+            <marker date="1412277885090" expanded="true" signature="1235:1495" placeholder="..." />
           </folding>
         </state>
       </provider>
