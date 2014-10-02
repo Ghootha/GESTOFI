@@ -96,9 +96,7 @@
                 <div class="main">                   
                     <div class="wrapper">                           
                         <div class="container">
-
                             <div class="row">
-
                                 <form role="form">
                                     <div class="col-lg-6">
                                         <div class ="form-group">
@@ -130,51 +128,52 @@
                             </div> 
                             <hr>
 
-                        <table class="table table-striped">
-                            <thead>
-                                <tr class="danger">
-                                    <th>Fecha</th>
-                                    <th>Nombre</th>
-                                    <th>Codigo</th>
-                                    <th>Rol</th>
-                                    <th>Tipo</th>
-                                    <th>Editar</th>
-                                    <th>Actualizar</th>
-                                    <th>Descargar</th>
-									<th>Eliminar</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr data-ng-repeat="doc in docs">
-                                    <td>{{ doc.fecha }}</td>
-                                    <td>{{ doc.nombre }}</td>
-                                    <td>{{ doc.codigo }}</td>
-                                    <td>{{ doc.rol }}</td>
-                                    <td>{{ doc.tipo }}</td>                                                                   
-                                    <td>
-                                        <button class="btn btn-danger" ng-click="editDoc(doc.id)">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger" ng-click="actDoc(doc.id)">
-                                        <span class="glyphicon glyphicon-refresh"></span>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger" ng-click="descDoc(doc.id)">
-                                        <span class="glyphicon glyphicon-floppy-save"></span>
-                                        </button>
-                                    </td>
-									<td>
-                                        <button class="btn btn-danger" ng-click="elimDoc(doc.id)">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                        </button>
-                                    </td>
-                                </tr>
-                              </tbody>
-                                                            <!--Finaliza Tabla-->                            
-                        </table>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr class="danger">
+                                        <th>Fecha</th>
+                                        <th>Nombre</th>
+                                        <th>Codigo</th>
+                                        <th>Rol</th>
+                                        <th>Tipo</th>
+                                        <th>Editar</th>
+                                        <th>Actualizar</th>
+                                        <th>Descargar</th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr data-ng-repeat="doc in docs">
+                                        <td>{{ doc.fecha }}</td>
+                                        <td>{{ doc.nombre }}</td>
+                                        <td>{{ doc.codigo }}</td>
+                                        <td>{{ doc.rol }}</td>
+                                        <td>{{ doc.tipo }}</td>
+                                        <td>
+                                            <button class="btn btn-danger" ng-click="editDoc(doc.id)">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger" ng-click="actDoc(doc.id)">
+                                            <span class="glyphicon glyphicon-refresh"></span>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger" ng-click="descDoc(doc.id)">
+                                            <span class="glyphicon glyphicon-floppy-save"></span>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger" ng-click="elimDoc(doc.id)">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                  </tbody>
+                                                                <!--Finaliza Tabla-->
+                            </table>
+                        </div>
                     </div>
                 </div>                
                 <div class="block"></div>
