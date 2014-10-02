@@ -531,3 +531,18 @@ footer h4 {color:#fff; margin-bottom:18px}
 	overflow:hidden;
 } 
 html, body {height:100%}
+
+
+/*************MAP CANVAS *********************/
+/*mapa*/
+#map-canvas {
+    text-align: center;
+    color: #333;
+    /*border: 1px solid #ccc;*/
+    background: #52AC11;
+    margin: 0px 0px 0px 0px;
+    padding: 10px;
+    height: 250px;
+    width: 300px;
+
+}
