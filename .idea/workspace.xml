@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29bd8dab-d445-4cc1-9562-84397af6da0e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Consultar.html" afterPath="$PROJECT_DIR$/Consultar.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Usuarios.html" afterPath="$PROJECT_DIR$/Usuarios.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/myDocs.js" afterPath="$PROJECT_DIR$/js/myDocs.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/myUsers.js" afterPath="$PROJECT_DIR$/js/myUsers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -32,7 +30,7 @@
       <file leaf-file-name="Consultar.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Consultar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-41.884617" vertical-offset="1529" max-vertical-offset="3468">
+            <state vertical-scroll-proportion="-28.692308" vertical-offset="1872" max-vertical-offset="3468">
               <caret line="154" column="85" selection-start-line="154" selection-start-column="85" selection-end-line="154" selection-end-column="85" />
               <folding />
             </state>
@@ -52,13 +50,37 @@
       <file leaf-file-name="Usuarios.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Usuarios.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.95163584" vertical-offset="2935" max-vertical-offset="3706">
-              <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.95163584" vertical-offset="1592" max-vertical-offset="3706">
+              <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
               <folding>
-                <marker date="1412273805339" expanded="true" signature="1063:1115" placeholder="..." />
-                <marker date="1412273805339" expanded="true" signature="1116:1506" placeholder="..." />
-                <marker date="1412273805339" expanded="true" signature="1235:1495" placeholder="..." />
+                <marker date="1412275231215" expanded="true" signature="1063:1115" placeholder="..." />
+                <marker date="1412275231215" expanded="true" signature="1116:1506" placeholder="..." />
+                <marker date="1412275231215" expanded="true" signature="1235:1495" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Rol.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Rol.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.653846" vertical-offset="242" max-vertical-offset="3213">
+              <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+              <folding>
+                <marker date="1412276043576" expanded="false" signature="1063:1115" placeholder="..." />
+                <marker date="1412276043576" expanded="true" signature="1116:1508" placeholder="..." />
+                <marker date="1412276043576" expanded="true" signature="1235:1497" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="myRoles.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/myRoles.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
+              <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -99,6 +121,8 @@
         <option value="$PROJECT_DIR$/js/myDocs.js" />
         <option value="$PROJECT_DIR$/js/myUsers.js" />
         <option value="$PROJECT_DIR$/Usuarios.html" />
+        <option value="$PROJECT_DIR$/js/myRoles.js" />
+        <option value="$PROJECT_DIR$/Rol.html" />
       </list>
     </option>
   </component>
@@ -703,7 +727,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Consultar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-41.884617" vertical-offset="1529" max-vertical-offset="3468">
+        <state vertical-scroll-proportion="-28.692308" vertical-offset="1872" max-vertical-offset="3468">
           <caret line="154" column="85" selection-start-line="154" selection-start-column="85" selection-end-line="154" selection-end-column="85" />
           <folding />
         </state>
@@ -717,14 +741,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Rol.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.653846" vertical-offset="242" max-vertical-offset="3213">
+          <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+          <folding>
+            <marker date="1412276043576" expanded="false" signature="1063:1115" placeholder="..." />
+            <marker date="1412276043576" expanded="true" signature="1116:1508" placeholder="..." />
+            <marker date="1412276043576" expanded="true" signature="1235:1497" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/myRoles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
+          <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Usuarios.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.95163584" vertical-offset="2935" max-vertical-offset="3706">
-          <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.95163584" vertical-offset="1592" max-vertical-offset="3706">
+          <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
           <folding>
-            <marker date="1412273805339" expanded="true" signature="1063:1115" placeholder="..." />
-            <marker date="1412273805339" expanded="true" signature="1116:1506" placeholder="..." />
-            <marker date="1412273805339" expanded="true" signature="1235:1495" placeholder="..." />
+            <marker date="1412275231215" expanded="true" signature="1063:1115" placeholder="..." />
+            <marker date="1412275231215" expanded="true" signature="1116:1506" placeholder="..." />
+            <marker date="1412275231215" expanded="true" signature="1235:1495" placeholder="..." />
           </folding>
         </state>
       </provider>

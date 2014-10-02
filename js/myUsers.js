@@ -5,7 +5,7 @@ $scope.pApellido = '';
 $scope.sApellido = '';
 $scope.passw1 = '';
 $scope.passw2 = '';
-    $scope.elrol = '';
+$scope.elrol = '';
 $scope.users = [
 {id:1, ced:'2-0596-0618', fName:'Michael',   pApellido:"González", sApellido:"Murillo", elrol:"profesor"  },
 {id:2, ced:'1-1553-0965', fName:'Andres',   pApellido:"Rodríguez", sApellido:"Morales", elrol:"director" },
