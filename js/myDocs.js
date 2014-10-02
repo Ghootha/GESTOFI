@@ -14,7 +14,7 @@ $scope.edit = true;
 $scope.error = false;
 $scope.incomplete = false; 
 
-
+/*
 $scope.editDoc = function(id) {
   if (id == 'new') {
     $scope.edit = true;
@@ -32,7 +32,7 @@ $scope.editDoc = function(id) {
     $scope.rol = $scope.docs[id-1].rol;
     $scope.tipo = $scope.docs[id-1].tipo; 
   }
-};
+};*/
 
 $scope.$watch('fecha',function() {$scope.test();});
 $scope.$watch('nombre',function() {$scope.test();});
