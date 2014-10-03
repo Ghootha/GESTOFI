@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">   
     <link rel="stylesheet" href="css/Combo.css" type="text/css" media="screen">    
     
-   <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
    
+
    <script src="js/jquery-1.6.3.min.js" type="text/javascript"></script>
     <script src="js/cufon-yui.js" type="text/javascript"></script>
     <script src="js/cufon-replace.js" type="text/javascript"></script>
@@ -19,6 +19,7 @@
     <script src="js/NewsGoth_Lt_BT_italic_400.font.js" type="text/javascript"></script>
     <script src="js/Vegur_400.font.js" type="text/javascript"></script> 
     <script src="js/FF-cash.js" type="text/javascript"></script>
+	
 	
   <!--[if lt IE 7]>
     <div style=' clear: both; text-align:center; position: relative;'>
@@ -98,81 +99,39 @@
                     <div class="container_12">
                         <div class="wrapper">
                            <div class="container">
-							   	<h3>Solicitud de Aula</h3>
-							   	<form>
-		                            
-										<div class="form-group">
-							                <label for="dtp_input2" class="col-md-2 control-label">Fecha:</label>
-							                <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-							                    <input class="form-control" size="16" type="text" value="" readonly>
-							                    
-												<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-							                </div>
-											<input type="hidden" id="dtp_input2" value="" /><br/>
-							            </div>
-										
-									</td>
-									
-									
-									<td>
-								
-						   			<div class="form-group">
-						                   <label for="dtp_input3" class="col-md-2 control-label">Hora Inicio:</label>
-						                   <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-						                       <input class="form-control" size="16" type="text" value="" readonly>
-						                       
-						   					<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-						                   </div>
-						   				<input type="hidden" id="dtp_input3" value="" /><br/>
-						               </div>
-									  
-									</td>
-									
-									<td>
-										
-											
-						   			<div class="form-group">
-						                   <label for="dtp_input4" class="col-md-2 control-label">Hora Final:</label>
-						                   <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-						                       <input class="form-control" size="16" type="text" value="" readonly>
-						                       
-						   					<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-						                   </div>
-						   				<input type="hidden" id="dtp_input3" value="" /><br/>
-						               </div>
-								</form>
-							   
-								<hr>
-	                            <button class="btn btn-success" >
-	                            <span class="glyphicon glyphicon-search"></span>  Consultar
-	                            </button>
-	                            <hr>
-								<h3>Resultados</h3>
-		                         <form>
+							   	<h3>Respuesta Solicitud</h3>
+							   	
+		                        <h3>Lista de solicitudes</h3>
+		                        
 									<table class="table table-striped">
 		                              <thead>
 		                                <tr class="danger">
-		                                  <th>Seleccion</th>
-		                                  <th>Nombre</th>
-		                                 
-		                                </tr>
+		                                  <th>Documento</th>
+		                                  <th>Solicitud</th>
+										  <th>Nombre</th>
+										  <th>Comentar</th>
+										</tr>
 		                              </thead>
+									  
 		                              <tbody>
 		                                <tr data-ng-repeat="aula in aulas">
 		                                  <td >
 											<button class="btn btn-success" ng-click="apartarAula(aula.id)">
-                                          <span class="glyphicon glyphicon-ok"></span>
+                                          <span class="glyphicon glyphicon-file"></span>
                                         </button>
 		                                  </td>
 		                                  <td >{{ aula.nombre }}</td>
-		                                  
+										  <td >{{ aula.nombre }}</td>
+  		                                  <td>
+  											<button class="btn btn-success" ng-click="apartarAula(aula.id)">
+                                            <span class="glyphicon glyphicon-comment"></span>
+                                          	</button>
+  		                                  </td>
 		                                </tr>
 									  </tbody>
 		                            </table>
-								 </form>
-		                         <hr>		                         
+								 <hr>		                         
 		                         <hr>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -192,59 +151,15 @@
   <script type="text/javascript"> Cufon.now(); </script>
   <!--Angular script-->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
-   <!-- CARGA PICKERS-->
-   <script src= "js/dateTimePicker.js"></script>
+   
   <!-- -->
   <script src= "js/misAulas.js"></script>
   <script type="text/javascript"
    src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
   </script> 
-  <script type="text/javascript"
-   src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
-  </script>
-  <script type="text/javascript"
-   src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
-  </script>
-  <script type="text/javascript"
-   src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
-  </script>
   
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
   
-  <script type="text/javascript">
-      $('.form_datetime').datetimepicker({
-          //language:  'fr',
-          weekStart: 1,
-          todayBtn:  1,
-  		autoclose: 1,
-  		todayHighlight: 1,
-  		startView: 2,
-  		forceParse: 0,
-          showMeridian: 1
-      });
-  	$('.form_date').datetimepicker({
-          language:  'fr',
-          weekStart: 1,
-          todayBtn:  1,
-  		autoclose: 1,
-  		todayHighlight: 1,
-  		startView: 2,
-  		minView: 2,
-  		forceParse: 0
-      });
-  	$('.form_time').datetimepicker({
-          language:  'fr',
-          weekStart: 1,
-          todayBtn:  1,
-  		autoclose: 1,
-  		todayHighlight: 1,
-  		startView: 1,
-  		minView: 0,
-  		maxView: 1,
-  		forceParse: 0
-      });
-  </script>
+  
   
 
 </body>
