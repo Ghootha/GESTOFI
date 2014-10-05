@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html >
 <head>
-    <title>Almacenar</title>
+    <title>Correspondencia</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
@@ -89,10 +89,10 @@
                                         <li><a title="Configurar los roles del sistema"href="ConfigRol.html">Roles</a></li>
                                         <li><a title="Configurar los usuarios del sistema"href="ConfigUsuarios.html">Usuarios</a></li>
 										<li><a title="Aceptar o Rechazar solicitud"href="RespuestaSolicitud.html">Solicitudes</a></li>                                        
-                                        <li class="ultimo"><a title="Configuraci贸n del sistema" href="#">sistema</a></li>
+                                        <li class="ultimo"><a title="Configuraci髇 del sistema" href="#">sistema</a></li>
                                     </ul>
                                 </li>
-                                <li><a title="Secci贸n informativa del sistema" href="acerca.html">Acerca de</a>
+                                <li><a title="Secci髇 informativa del sistema" href="acerca.html">Acerca de</a>
                                 </li>
                             </ul>
                         </nav>
@@ -113,102 +113,31 @@
                         <div class="wrapper">
                           <div class="container">
                             <div class="row clearfix">
+                                     <h3>
+                                      Enviar correspondencia
+                                      </h3>                               
                                   <div class="col-md-6 column">
-                                      <h3>
-                                      Seguridad
-                                      </h3>
-                                      <div class="sideBySide">
-                                        <div class="left">
-                                          <ul class="source connected">
-                                            <li>Alta</li>
-                                            <li>Media</li>
-                                            <li>baja</li>
-                                            <li>Ninguna</li>       
-                                          </ul>
-                                        </div>                                        
-                                      </div>                                      
-                                  </div>
-                                  
-                                  <div class="col-md-6 column">
-                                      <h3>
-                                      Clasificaciones
-                                      </h3>
-                                      <div class="sideBySide">
-                                        <div class="left">
-                                          <ul class="source2 connected2">
-                                            <li>Investigaci贸n</li>
-                                            <li>Actas</li>
-                                            <li>Plan de Estudio</li>
-                                            <li>Otros</li>      
-                                          </ul>
-                                        </div>                                        
-                                      </div>                                      
+                                      <li>Destinatario:</li>
+                                       <input type="text" size="129" placeholder="Destinatario" autofocus/>  
+									  </div>
+									  <div class="col-md-7 column">
+                                      <br><li>Asunto:</li>
+                                       <textarea cols="130" rows="1" name="AgregarDestinatario"></textarea>  									  
+									  </div>
+                                  	<div class="col-md-8 column">						  
+								      <BR><li>Mensaje:</li><br>
+									  <textarea cols="130" rows="18" name="AgregarDestinatario"></textarea>                                   
                                   </div>
                             </div>                                  
                                 <div class="row clearfix">
-                                  <div class="col-md-12 column">
-                                    <h3>Informaci贸n Del Documento a Subir</h3>
-                                    <h3>Seguridad</h3>    
-                                     <div>
-                                       <div class="right">
-                                          <ul class="target connected"></ul>
-                                        </div>
-                                     </div> 
-                                     <h3>Clasificaci贸n</h3> 
-                                     <div>
-                                       <div class="right">
-                                            <ul class="target2 connected2"></ul>
-                                       </div> 
-                                     </div>
-                                     <h3>Rol</h3>
-                                      <!-- INICIA boton replegable-->                                     
-                                    <span class="css3-metro-dropdown">
-                                    <select name="dropdown-1">
-                                        <option value="0">Director</option>
-                                        <option value="1">SubDirector</option>        
-                                        <option value="2">Asistente</option>
-                                        <option value="3">Profesor</option>
-                                    </select>
-                                </span>                                  
-                                    <!-- TERMINA boton replegable--> 
-                                    <h3>Subir Archivos</h3>
-                                    <!-- Empieza seccion de subida de archivo--> 
-                                    <div class="subeArchivo">                                 
-                                        <form id="upload" action="index.html" method="POST" enctype="multipart/form-data">
-                                          <fieldset>                                            
-                                            <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
-                                            <div>
-                                              <label for="fileselect">Archivos a subir:</label>
-                                              <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
-                                              <div id="filedrag">o Arrastre los Archivos Aqu铆.</div>
-                                            </div>
+                                  </div>
 
-                                            <div id="submitbutton">
-                                              <button type="submit">Subir Archivos</button>
-                                            </div>
-                                          </fieldset>
-
-                                        </form>
-                                        <div id="messages">
-                                        <p>Mensajes de Estado</p>
-                                        </div>
-                                        <!--BARRA DE CARGA-->
-                                        <div class="progress">
-                                          <div class="progress-bar progress-bar-success progress-bar-striped active"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                                            <span class="sr-only">45% Complete</span>
-                                          </div>
-                                        </div>
-                                      </div> 
-                                      <!--TERMIN BARRA DE CARGA-->
-                                      <!-- Termina subida de archivo --> 
-                                      <button class="btn btn-success" data-ng-disabled="error || incomplete">
-                                      <span class="glyphicon glyphicon-save"></span>聽聽Guardar
-                                      </button>                                    
-                                  </div>                            
-                          </div>
-                        </div>
+                                        <input type="submit" name="submit" id="submit" value="Enviar" class="btn btn-info pull-left">
+                                    </div>
+                                </div>
+                           </div>
+						</div>
                     </div>
-                </div>
                 <div class="block"></div>
             </div>
         </section>
