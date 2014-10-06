@@ -1,3 +1,9 @@
+.source{
+
+  min-height: 50px;
+
+}
+
 ul.source, ul.target, ul.source2, ul.target2 {
   min-height: 50px;
   max-width: 250px;
@@ -13,6 +19,8 @@ ul.source, ul.target, ul.source2, ul.target2 {
 }
 ul.source, ul.source2  {
   border-color: #FF7171;
+  min-height: 155px;
+  max-width: 250px;
 }
 ul.target, ul.target2 {
   border-color: #add38d;
