@@ -1,4 +1,7 @@
-function solicitudController($scope) {
+var app = angular.module("myAppSolicitudes", []);
+
+app.controller("solicitudController", function($scope) {
+
 $scope.nombre='';
 $scope.solicitante = '';
 
@@ -39,4 +42,4 @@ $scope.test = function() {
   }
 };
 
-}
+});

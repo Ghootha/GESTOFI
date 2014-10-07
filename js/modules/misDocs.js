@@ -1,4 +1,8 @@
-function docController($scope) {
+
+var app = angular.module("myAppDocs", []);
+
+app.controller("docController", function($scope) {
+    
 $scope.fecha=''; 
 $scope.nombre= '';
 $scope.codigo = '';
@@ -54,4 +58,5 @@ $scope.test = function() {
   }
 };
 
-}
+});
+

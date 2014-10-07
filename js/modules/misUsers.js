@@ -1,4 +1,7 @@
-function userController($scope) {
+var app = angular.module("myAppUsers", []);
+
+app.controller("userController", function($scope) {
+
     $scope.ced='';
     $scope.fName = '';
     $scope.pApellido = '';
@@ -59,4 +62,4 @@ function userController($scope) {
         }
     };
 
-}
+});

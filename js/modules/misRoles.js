@@ -1,4 +1,7 @@
-function rolController($scope) {
+var app = angular.module("myAppRoles", []);
+
+app.controller("rolController", function($scope) {
+
     $scope.name='';
     $scope.seg = '';
     $scope.desc = '';
@@ -45,5 +48,4 @@ function rolController($scope) {
             $scope.incomplete = true;
         }
     };*/
-
-}
+});
