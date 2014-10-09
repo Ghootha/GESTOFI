@@ -3,9 +3,14 @@
 *{margin:0;padding:0;}
 
 body{
-	background:#9A2B2B;
-	/*background:#357;*/
-  /*background:#DDDDFF;*/
+background: rgb(218,219,220); /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover, rgb(218,219,220) 0%, rgb(188,189,190) 46%, rgb(133,139,143) 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgb(218,219,220)), color-stop(46%,rgb(188,189,190)), color-stop(100%,rgb(133,139,143))); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover, rgb(218,219,220) 0%,rgb(188,189,190) 46%,rgb(133,139,143) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover, rgb(218,219,220) 0%,rgb(188,189,190) 46%,rgb(133,139,143) 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover, rgb(218,219,220) 0%,rgb(188,189,190) 46%,rgb(133,139,143) 100%); /* IE10+ */
+background: radial-gradient(ellipse at center, rgb(218,219,220) 0%,rgb(188,189,190) 46%,rgb(133,139,143) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dadbdc', endColorstr='#858b8f',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   
   font-family:'Open Sans',sans-serif;
 }
@@ -56,7 +61,7 @@ body{
   width:0;
   border-top:12x solid transparent;
   border-right:12px solid transparent;
-  border-bottom:12px solid #FF3333;
+  border-bottom:12px solid #337DC6;
   border-left:12px solid transparent;
   margin:0 auto;
 }
@@ -88,7 +93,7 @@ input[type="text"],input[type="password"]{
 
 input[type="submit"]{
   width:100%;
-  background:#FF3333;
+  background:#337DC6;
   border:0;
   padding:4%;
   font-family:'Open Sans',sans-serif;
@@ -100,5 +105,5 @@ input[type="submit"]{
 }
 
 input[type="submit"]:hover{
-  background:#DF0101;
+  background:#005CB8;
 }
