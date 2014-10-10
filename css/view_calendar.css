@@ -5,8 +5,10 @@ body{
 
 #content_wrapper{
 	width: 1150px;
-	margin-left: 20.5%;
+	margin-left: 25.5%;
 	margin-right: auto;
+	margin-top: 2%;
+	margin-bottom: 2%;
 }
 
 #calendar{
