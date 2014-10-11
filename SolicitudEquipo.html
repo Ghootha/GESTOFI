@@ -12,6 +12,11 @@
 	
    
     <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
+    <!-- CSS de BARRA LOGIN -->
+    <link href="css/BarraLogin/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/BarraLogin/main.min.css" rel="stylesheet" type="text/css">   
+    <!-- Termina CSS de BARRA LOGIN -->
    
    <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="js/cufon-yui.js" type="text/javascript"></script>
@@ -39,6 +44,177 @@
 </head>
 <body data-ng-app="myAppEquipos" data-ng-controller="equipoController">
   <div class="extra">
+                <!-- TOP BAR -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="row">
+                    <!-- logo -->
+                    <div class="col-md-2 logo">
+                        <a href="index-2.html">                         
+                        </a>
+                        <h1 class="sr-only">Pagina de Administracion</h1>
+                    </div>
+                    <!-- end logo -->
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <!-- search box -->
+                                <div id="tour-searchbox" class="input-group searchbox">
+                                    
+                                </div>
+                                <!-- end search box -->
+                            </div>
+                            <div class="col-md-9">
+                                <div class="top-bar-right">
+                                    <!-- responsive menu bar icon -->
+                                    <a href="#" class="hidden-md hidden-lg main-nav-toggle"><i class="fa fa-bars"></i></a>
+                                    <!-- end responsive menu bar icon -->
+                                    
+                                    <div class="notifications">
+                                        <ul>
+                                            <!-- notification: inbox -->
+                                            <li class="notification-item inbox">
+                                                <div class="btn-group">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                        <i class="fa fa-envelope"></i>
+                                                        <span class="count">2</span>
+                                                        <span class="circle"></span>
+                                                    </a>
+
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li class="notification-header">
+                                                            <em>Tiene 2 mensajes Sin leer</em>
+                                                        </li>
+                                                        <li class="inbox-item unread clearfix">
+                                                            <a href="#">
+                                                                <div class="media">
+                                                                    <div class="pull-left" href="#">
+                                                                        <img class="media-object" src="images/imgLogin/user1.png" alt="Antonio">
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h5 class="media-heading name">Marco</h5>
+                                                                        <p class="text">Server caido y afeta todos los servicios de...</p>
+                                                                        <span class="timestamp">4 minutes atras</span>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li class="inbox-item unread clearfix">
+                                                            <a href="#">
+                                                                <div class="media">
+                                                                    <div class="pull-left" href="#">
+                                                                        <img class="media-object" src="images/imgLogin/user2.png" alt="Antonio">
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h5 class="media-heading name">Allan</h5>
+                                                                        <p class="text">Ocupo Acceso como para ayer</p>
+                                                                        <span class="timestamp">2 horas atras</span>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li class="inbox-item clearfix">
+                                                            <a href="#">
+                                                                <div class="media">
+                                                                    <div class="pull-left" href="#">
+                                                                        <img class="media-object" src="images/imgLogin/user3.png" alt="Antonio">
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h5 class="media-heading name">Allan</h5>
+                                                                        <p class="text">Instalar software en el servidor</p>
+                                                                        <span class="timestamp">Junio 4</span>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        
+                                                        <li class="notification-footer">
+                                                            <a href="#">Ver todos los mensajes</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <!-- end notification: inbox -->
+
+                                            <!-- notification: general -->
+                                            <li class="notification-item general">
+                                                <div class="btn-group">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                        <i class="fa fa-bell"></i>
+                                                        <span class="count">2</span>
+                                                        <span class="circle"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li class="notification-header">
+                                                            <em>Tiene 2 Notificaciones</em>
+                                                        </li>
+                                                    
+                                                        <li>
+                                                            <a href="#">
+                                                                <i class="fa fa-user green-font"></i>
+                                                                <span class="text">Registraron un nuevo usuario</span>
+                                                                <span class="timestamp">12 minutos atras</span>
+                                                            </a>
+                                                        </li>
+                                                        
+                                                        <li>
+                                                            <a href="#">
+                                                                <i class="fa fa-warning red-font"></i>
+                                                                <span class="text red-font">Disco Duro Con Poco espacio!</span>
+                                                                <span class="timestamp">13 minutos atras</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="notification-footer">
+                                                            <a href="#">Ver todas las notificaciones</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <!-- end notification: general -->
+                                        </ul>
+                                    </div>
+
+                                    <!-- logged user and the menu -->
+                                    <div class="logged-user">
+                                        <div class="btn-group">
+                                            <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+                                                <span class="name">Hugo Vindas</span>
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-user"></i>
+                                                        <span class="text">Perfil</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-cog"></i>
+                                                        <span class="text">Settings</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-power-off"></i>
+                                                        <span class="text">Logout</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- end logged user and the menu -->
+                                </div>
+                                <!-- /top-bar-right -->
+                            </div>
+                        </div>
+                        <!-- /row -->
+                    </div>
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
 <!--==============================header=================================-->
     <header>
             <div class="row-top">
@@ -217,14 +393,18 @@
    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
   <!-- -->  
   <script src= "js/modules/misEquipos.js"></script>
-  <script src= "js/bootstrap-checkbox.js"></script>
-  <script type="text/javascript"src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>  
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> 
   
+
   
   <!--DATEPICKER-->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-  <script type="text/javascript" src="js/bootstrap-datepicker2.js" charset="UTF-8"></script>
+  <script type="text/javascript" src="js/bootstrap-datepicker2.js" charset="UTF-8"></script>  
+
+   <!-- Javascript BARRA LOGIN-->
+   <script type="text/javascript"src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>  
+  <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+
   
 </body>
 </html>

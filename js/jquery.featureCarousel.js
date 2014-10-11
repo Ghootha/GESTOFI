@@ -747,4 +747,4 @@
     clickedCenter:        $.noop
   };
   
-})(jQuery);
+})(jQuery_1_6_3);
