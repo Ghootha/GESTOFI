@@ -6,7 +6,7 @@ $scope.nombre='';
 $scope.solicitante = '';
 
 $scope.solicitudes = [
-{id:1, nombre:'Nombre 1', solicitante:'Michael'},
+{id:1, nombre:'Nombre 1', solicitante:'Michael' },
 {id:2, nombre:'Nombre 2', solicitante:'Andres' },
 {id:3, nombre:'Nombre 3', solicitante:'Natasha'},
 {id:4, nombre:'Nombre 4', solicitante:'José'   },

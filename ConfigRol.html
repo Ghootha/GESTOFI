@@ -294,9 +294,9 @@
                                 <tbody>
                                 <tr data-ng-repeat="rol in roles">
                                     <td >
-                                        <button class="btn btn-danger" ng-click="editRol(rol.id)">
-                                            <span class="glyphicon glyphicon-pencil"></span>  Editar
-                                        </button>
+	                                    <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-danger" ng-click="editUser(user.id)">
+	                                      <span class="glyphicon glyphicon-pencil"></span>  Editar
+	                                    </button>
                                     </td>
                                     <td>{{ rol.name }}</td>
                                     <td>{{ rol.seg }}</td>
@@ -306,43 +306,113 @@
                             </table>
 
                             <hr>
-                            <button class="btn btn-success" data-ng-click="editRol('new')">
-                                <span class="glyphicon glyphicon-user"></span>  Crear Nuevo Rol
+                            <button data-backdrop="false" data-target="#Modal" data-toggle="modal" class="btn btn-success" data-ng-click="editUser('new')">
+                            <span class="glyphicon glyphicon-user"></span>  Crear Nuevo Usuario
                             </button>
                             <hr>
 
-                            <h3 data-ng-show="edit">Editar Rol:</h3>
+                            
+							
+						 <div id="Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						     <div class="modal-dialog">
+						       <div class="modal-content">
 
-                            <form class="form-horizontal">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Nombre:</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" data-ng-model="name" data-ng-disabled="!edit">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Seguridad:</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control" data-ng-model="seg">
-                                            <option>Alta</option>
-                                            <option>Media</option>
-                                            <option>Baja</option>
-                                            <option>Ninguna</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Descripcion:</label>
-                                    <div class="col-sm-3">
-                                        <textarea class="form-control" rows="3"></textarea>
-                                    </div>
-                                </div>
-                            </form>
+						         <div class="modal-header">
+						           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						           <h4 class="modal-title" id="myModalLabel"></h4>
+						         </div>
+						         <div class="modal-body">
+						         
+	                             <h3 data-ng-show="edit">Agregar Rol:</h3>
 
-                            <hr>
-                            <button class="btn btn-success" data-ng-disabled="error || incomplete">
-                                <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
-                            </button>
+	                             <form class="form-horizontal">
+	                                 <div class="form-group">
+	                                     <label class="col-sm-2 control-label">Nombre:</label>
+	                                     <div class="col-sm-3">
+	                                         <input type="text" class="form-control" data-ng-model="name" data-ng-disabled="!edit">
+	                                     </div>
+	                                 </div>
+	                                 <div class="form-group">
+	                                     <label class="col-sm-2 control-label">Seguridad:</label>
+	                                     <div class="col-sm-3">
+	                                         <select class="form-control" data-ng-model="seg">
+	                                             <option>Alta</option>
+	                                             <option>Media</option>
+	                                             <option>Baja</option>
+	                                             <option>Ninguna</option>
+	                                         </select>
+	                                     </div>
+	                                 </div>
+	                                 <div class="form-group">
+	                                     <label class="col-sm-2 control-label">Descripcion:</label>
+	                                     <div class="col-sm-3">
+	                                         <textarea rows="3" cols="20"></textarea>
+	                                     </div>
+	                                 </div>
+	                             </form>
+								 
+						         </div>
+						         <div class="modal-footer">
+						           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	                               <button class="btn btn-success" data-ng-disabled="error || incomplete">
+	                                   <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
+	                               </button>
+						         </div>
+
+						       </div>
+						     </div>
+						   </div>
+						   
+						   
+						 <div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						     <div class="modal-dialog">
+						       <div class="modal-content">
+
+						         <div class="modal-header">
+						           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						           <h4 class="modal-title" id="myModalLabel"></h4>
+						         </div>
+						         <div class="modal-body">
+						          
+	                              <h3 data-ng-show="edit">Editar Rol:</h3>
+
+	                              <form class="form-horizontal">
+	                                  <div class="form-group">
+	                                      <label class="col-sm-2 control-label">Nombre:</label>
+	                                      <div class="col-sm-3">
+	                                          <input type="text" class="form-control" data-ng-model="name" data-ng-disabled="!edit">
+	                                      </div>
+	                                  </div>
+	                                  <div class="form-group">
+	                                      <label class="col-sm-2 control-label">Seguridad:</label>
+	                                      <div class="col-sm-3">
+	                                          <select class="form-control" data-ng-model="seg">
+	                                              <option>Alta</option>
+	                                              <option>Media</option>
+	                                              <option>Baja</option>
+	                                              <option>Ninguna</option>
+	                                          </select>
+	                                      </div>
+	                                  </div>
+	                                  <div class="form-group">
+	                                      <label class="col-sm-2 control-label">Descripcion:</label>
+	                                      <div class="col-sm-3">
+	                                          <textarea rows="3" cols="20"></textarea>
+	                                      </div>
+	                                  </div>
+	                              </form>
+								  
+						         </div>
+						         <div class="modal-footer">
+						           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	                               <button class="btn btn-success" data-ng-disabled="error || incomplete">
+	                                   <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
+	                               </button>
+						         </div>
+
+						       </div>
+						     </div>
+						   </div>
 
                         </div>
                     </div>
@@ -360,9 +430,13 @@
     </div>
 </footer>
 <script type="text/javascript"> Cufon.now(); </script>
+  <script src="js/jqueryModal.min.js"></script>
+  <script src="js/transition.js"></script>
+  <script src="js/modal.js"></script>
 <!--Angular script-->
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
 <script src= "js/modules/misRoles.js"></script>
+
 
   <!-- Javascript BARRA LOGIN-->
    <script type="text/javascript"src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>  
