@@ -323,18 +323,15 @@
                                             <input type="submit" name="submit" id="submit" value="Buscar" class="btn btn-info pull-left">-->
                                             <div class="form-group">
                                                 <div class="col-md-3">
-                                                    <input id="dp2" name="busqFecha" type="text" placeholder="fecha" class="form-control" value="" data-date-format="mm/dd/yy">
+                                                    <input id="dp2" name="busqFecha" type="text" placeholder="fecha" class="form-control" value="" data-date-format="mm/dd/yy" ng-model="search.fecha">
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <input id="busqNombre" name="busqNombre" type="text" placeholder="nombre" class="form-control ">
+                                                    <input id="busqNombre" name="busqNombre" type="text" placeholder="nombre" class="form-control " ng-model="search.nombre">
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <input id="busqCod" name="busqCod" type="text" placeholder="Codigo" class="form-control ">
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <input type="submit" name="submit" id="submit" value="Buscar" class="btn btn-info">
-                                                </div>
+                                                    <input id="busqCod" name="busqCod" type="text" placeholder="Codigo" class="form-control " ng-model="search.codigo">
+                                                </div>                                               
                                             </div>
                                         </div>
                                     </form>
@@ -357,10 +354,10 @@
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr data-ng-repeat="doc in docs">
-                                            <td>{{ doc.fecha }}</td>
+                                        <tr data-ng-repeat="doc in docs | filter:search">
+                                            <td>{{ doc.fecha  }}</td>
                                             <td>{{ doc.nombre }}</td>
-                                            <td>{{ doc.codigo }}</td>
+                                            <td>{{ doc.codigo  }}</td>
                                             <td>{{ doc.rol }}</td>
                                             <td>{{ doc.tipo }}</td>
                                             <td>
@@ -406,7 +403,7 @@
 <!--Angular script-->
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
 <script src= "js/modules/misDocs.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
+
 <script src="js/datePicker.js"></script>
 
  <!-- Javascript BARRA LOGIN-->
