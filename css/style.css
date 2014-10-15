@@ -4,6 +4,8 @@ mark, rp, rt, ruby, summary, time {display:inline}
 
 #Modal { position: absolute; }
 #Modal2 { position: absolute; }
+.textAreaSolicitud{width:570px; height:350px; max-width:570px; max-height:350px; }
+.textAreaRol{width:350px; height:350px; max-width:350px; max-height:90px; }
 /* Global properties ======================================================== */
 html {width:100%}
 
