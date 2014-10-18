@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">   
-    <script src="js/jquery-1.6.3.min.js" type="text/javascript"></script>
+    
 
     <!-- CSS de BARRA LOGIN -->
     <link href="css/barralogin/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -33,7 +33,7 @@
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
   <![endif]-->
 </head>
-<body  data-ng-app="myAppUsers" data-ng-controller="userController">
+<body  data-ng-app="myAppUsers" >
   <div class="extra">
                     <!-- TOP BAR -->
         <div class="top-bar">
@@ -212,14 +212,14 @@
                 <div class="main">
                     <div class="wrapper">
                         <h1><a href="paginaPrincipal.html">Consulting</a></h1>
-                        <form id="search-form" method="post" enctype="multipart/form-data">
+                        <!-- <form id="search-form" method="post" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="search-field">
                                     <input name="search" type="text" value="Search..." onBlur="if(this.value=='') this.value='Search...'" onFocus="if(this.value =='Search...' ) this.value=''" />
                                     <a class="search-button" href="#" onClick="document.getElementById('search-form').submit()"></a>
                                 </div>
                             </fieldset>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
             </div>
@@ -277,38 +277,35 @@
                     <div class="content-bg">
                     <div class="main">
                     <div class="container_12">
-                    <div class="wrapper">
+                    <div data-ng-controller="userController" class="wrapper" >
                     <!-- <div class="container">-->
-                    <div class="row">
-                        <!------------------ FORM BUSQUEDA USUARIO----------------------->
-                        <form role="form">
-                            <div class="col-lg-12">
-                                <div class ="form-group">
-                                    <h3 data-ng-show="edit">Buscar Usuario:</h3>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-3">
-                                        <input id="busqNombre" name="busqNombre" type="text" placeholder="nombre" class="form-control ">
-                                    </div>
+                    <!-- FORM BUSQUEDA USUARIO --> 
+                     <div class="row">
+                                    <form role="form">
+                                        <div class="col-lg-12">
 
-                                    <div class="col-md-3">
-                                        <input id="busqCed" name="busqCed" type="text" placeholder="cedula" class="form-control ">
-                                    </div>
-                                    <div class="col-md-3">
-                                        <input id="busqRol" name="busqRol" type="text" placeholder="rol" class="form-control ">
-                                    </div>
-                                    <div class="col-md-3">
-                                        <input type="submit" name="submit" id="submit" value="Buscar" class="btn btn-info">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                        <!------------------END FORM BUSQUEDA USUARIO----------------------->
-                    </div>
+                                            <div class ="form-group">
+                                                <h3>      Busca usuario:</h3>
+                                            </div>                                                                                       
+                                            <div class="form-group">
+
+                                                <div class="col-md-3">
+                                                    <input id="busqNombre" name="busqNombre" type="text" placeholder="nombre" class="form-control " ng-model="search.nombre">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input id="busqRol" name="busqRol" type="text" placeholder="role" class="form-control " ng-model="search.role">
+                                                </div>                                               
+                                            </div>
+                                        </div>
+                                    </form>
+
+                    </div> 
+                    
+                    <!-- END FORM BUSQUEDA USUARIO -->
                     <br>
                     <br>
                     <h3>Usuarios</h3>
-                    <!-----------------TABLA---------------------->
+                    <!-- -TABLA -->
                     <table class="table table-striped">
                         <thead>
                         <tr class="info">
@@ -320,33 +317,31 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr data-ng-repeat="user in users">
+                        <tr data-ng-repeat="user in users | filter:search">
                             <td >
-
-                                <button data-backdrop="false" data-target="#Modal" data-toggle="modal" class="btn btn-warning" data-ng-click="editUser(user.id)">
-
+                               <button data-backdrop="false" data-target="#Modal" data-toggle="modal" class="btn btn-warning" data-ng-click="editUser(user.id)">
                                     <span class="glyphicon glyphicon-pencil"></span>  Editar
-                                </button>
+                                </button> 
                             </td>
                             <td>{{ user.ced }}</td>
-                            <td>{{ user.fName+" "+user.pApellido+" "+user.sApellido }}</td>
-                            <td>{{ user.elrol }}</td>
-                            <td >                               
-
-                                <button data-backdrop="false" data-target="#Modal3" data-toggle="modal" class="btn btn-danger" ng-click="deleteUser(user.id)">                               
-
+                            <td>{{ user.nombre+" "+user.pApellido+" "+user.sApellido }}</td>
+                            <td>{{ user.role }}</td>
+                            <td > 
+                                <button data-backdrop="false" data-target="#Modal3" data-toggle="modal" class="btn btn-danger" >      
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </button>
                             </td>
                         </tr>
                         </tbody>
                     </table>
-                    <!-----------------END TABLA---------------------->
+                    <!-- -END TABLA -->
 
                     <hr>
                     <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-success" data-ng-click="editUser('new')">
                         <span class="glyphicon glyphicon-user"></span>  Crear Nuevo Usuario
-                    </button>
+                    </button> 
+                    <hr>
+                    <hr>
                     <hr>
                     <!-- MODAL 1 -->
                     <div id="Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -371,7 +366,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Primer Nombre:</label>
                                             <div class="col-sm-10">
-                                                <input type="text" data-ng-model="fName" data-ng-disabled="!edit" placeholder="Primer Nombre">
+                                                <input type="text" data-ng-model="nombre" data-ng-disabled="!edit" placeholder="Primer Nombre">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -401,7 +396,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Rol:</label>
                                             <div class="col-sm-2">
-                                                <select class="form-control" data-ng-model="elrol">
+                                                <select class="form-control" data-ng-model="role">
                                                     <option>Rol 1</option>
                                                     <option>Rol 2</option>
                                                     <option>Rol 3</option>
@@ -423,10 +418,10 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div> 
                     <!-- FINALIZA MODAL 1 -->
                     <!-- MODAL 2 -->
-                    <div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                     <div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
 
@@ -448,7 +443,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Primer Nombre:</label>
                                             <div class="col-sm-10">
-                                                <input type="text" data-ng-model="fName" data-ng-disabled="!edit" placeholder="Primer Nombre">
+                                                <input type="text" data-ng-model="nombre" data-ng-disabled="!edit" placeholder="Primer Nombre">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -478,7 +473,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Rol:</label>
                                             <div class="col-sm-2">
-                                                <select class="form-control" data-ng-model="elrol">
+                                                <select class="form-control" data-ng-model="role">
                                                     <option>Rol 1</option>
                                                     <option>Rol 2</option>
                                                     <option>Rol 3</option>
@@ -524,7 +519,7 @@
                                                     <span class="glyphicon glyphicon-remove"></span>
                                     </button>
 
-                                    <button data-dismiss="modal" class="btn btn-success">
+                                    <button data-dismiss="modal" class="btn btn-success" ng-click="deleteUser(user.id)" >
                                                     <span class="glyphicon glyphicon-ok"></span>
                                     </button>
                                    
@@ -532,9 +527,8 @@
 
                                </div>
                              </div>
-                           </div>
-                           <!-- FINALIZA MODAL 3 -->
-
+                    </div>
+                    <!-- FINALIZA MODAL 3 -->
 
                     <!-- </div>-->
                     </div>
