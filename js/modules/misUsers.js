@@ -40,9 +40,13 @@ app.controller("userController", function($scope) {
         }
     };
 
-    $scope.$watch('ced', function() {$scope.test();});
+     $scope.deleteUser = function(id) {
+      
+    };
+
     $scope.$watch('passw1',function() {$scope.test();});
     $scope.$watch('passw2',function() {$scope.test();});
+    $scope.$watch('ced', function() {$scope.test();});
     $scope.$watch('fName', function() {$scope.test();});
     $scope.$watch('pApellido', function() {$scope.test();});
     $scope.$watch('sApellido', function() {$scope.test();});
@@ -55,9 +59,9 @@ app.controller("userController", function($scope) {
             $scope.error = false;
         }
         $scope.incomplete = false;
-        if ($scope.edit && (!$scope.fName.length ||
+        if ($scope.edit && (!$scope.ced.length || !$scope.fName.length ||
             !$scope.pApellido.length || !$scope.sApellido.length ||
-            !$scope.passw1.length || !$scope.passw2.length)) {
+            !$scope.passw1.length || !$scope.passw2.length || !$scope.elrol.length)) {
             $scope.incomplete = true;
         }
     };
