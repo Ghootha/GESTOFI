@@ -322,7 +322,11 @@
                         <tbody>
                         <tr data-ng-repeat="user in users">
                             <td >
+<<<<<<< HEAD
                                 <button data-backdrop="false" data-target="#Modal" data-toggle="modal" class="btn btn-danger" data-ng-click="editUser(user.id)">
+=======
+                                <button data-backdrop="false" data-target="#Modal" data-toggle="modal" class="btn btn-warning" ng-click="editUser(user.id)">
+>>>>>>> origin/master
                                     <span class="glyphicon glyphicon-pencil"></span>  Editar
                                 </button>
                             </td>
@@ -330,7 +334,11 @@
                             <td>{{ user.fName+" "+user.pApellido+" "+user.sApellido }}</td>
                             <td>{{ user.elrol }}</td>
                             <td >
+<<<<<<< HEAD
                                 <button class="btn btn-danger" data-ng-click="deleteUser(user.id)">
+=======
+                                <button data-backdrop="false" data-target="#Modal3" data-toggle="modal" class="btn btn-danger" ng-click="deleteUser(user.id)">
+>>>>>>> origin/master
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </button>
                             </td>
@@ -344,7 +352,7 @@
                         <span class="glyphicon glyphicon-user"></span>  Crear Nuevo Usuario
                     </button>
                     <hr>
-
+                    <!-- MODAL 1 -->
                     <div id="Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -420,7 +428,8 @@
                             </div>
                         </div>
                     </div>
-
+                    <!-- FINALIZA MODAL 1 -->
+                    <!-- MODAL 2 -->
                     <div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -496,7 +505,39 @@
                             </div>
                         </div>
                     </div>
+                    <!-- FINALIZA MODAL 2 -->
+                    <!-- MODAL 3 -->
+                    <div id="Modal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                             <div class="modal-dialog">
+                               <div class="modal-content">
 
+                                 <div class="modal-header">
+                                    
+                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                   <h4 class="modal-title" id="myModalLabel"> Eliminar usuario</h4>
+                                 </div>
+                                 <div class="modal-body">
+                                 
+                                 Confirme que desea eliminar este usuario del sistema
+
+                                 
+                                 
+                                 </div>
+                                 <div class="modal-footer">
+                                   <button data-dismiss="modal" class="btn btn-danger">
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+
+                                    <button data-dismiss="modal" class="btn btn-success">
+                                                    <span class="glyphicon glyphicon-ok"></span>
+                                    </button>
+                                   
+                                 </div>
+
+                               </div>
+                             </div>
+                           </div>
+                           <!-- FINALIZA MODAL 3 -->
 
 
                     <!-- </div>-->

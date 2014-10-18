@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
 	<link href="css/datepicker.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="css/StyleDragAndDrop.css" type="text/css" media="screen">    
+    <link rel="stylesheet" href="css/dragFile.css" type="text/css" media="screen">  
 <!-- CSS de BARRA LOGIN -->
     <link href="css/barralogin/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/barralogin/main.min.css" rel="stylesheet" type="text/css">   
@@ -330,12 +331,12 @@
                                             <td>{{ doc.Role }}</td>
                                             <td>{{ doc.tipo }}</td>
                                             <td>
-                                                <button class="btn btn-warning" ng-click="editDoc(doc.id)">
+                                                <button data-backdrop="false" data-target="#Modal" data-toggle="modal" class="btn btn-warning" ng-click="editDoc(doc.id)">
                                                     <span class="glyphicon glyphicon-pencil"></span>
                                                 </button>
                                             </td>
                                             <td>
-                                                <button class="btn btn-success" ng-click="actDoc(doc.id)">
+                                                <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-success" ng-click="actDoc(doc.id)">
                                                     <span class="glyphicon glyphicon-refresh"></span>
                                                 </button>
                                             </td>
@@ -345,7 +346,7 @@
                                                 </button>
                                             </td>
                                             <td>
-                                                <button class="btn btn-danger" ng-click="elimDoc(doc.id)">
+                                                <button data-backdrop="false" data-target="#Modal3" data-toggle="modal" class="btn btn-danger" ng-click="elimDoc(doc.id)">
                                                     <span class="glyphicon glyphicon-remove"></span>
                                                 </button>
                                             </td>
@@ -354,6 +355,172 @@
                                                                     <!--Finaliza Tabla-->
                                 </table>
                             <!--</div>-->
+                        <!-- MODAL EDITAR-->
+                            <div id="Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                             <div class="modal-dialog">
+                               <div class="modal-content">
+
+                                 <div class="modal-header">
+                                    
+                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                   <h4 class="modal-title" id="myModalLabel"> Editar informacion de documento</h4>
+                                 </div>
+                                 <div class="modal-body">
+                                 
+                                 
+
+                                 <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Nombre:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" data-ng-model="nom" placeholder="Nombre">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Tipo:</label>
+                                            <div class="col-sm-5">
+                                               <select class="form-control" data-ng-model="elTipo">
+                                                    <option>T1</option>
+                                                    <option>T2</option>
+                                                    <option>T3</option>
+                                                    <option>T4</option>
+                                                    <option>T5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Seguridad:</label>
+                                            <div class="col-sm-5">
+                                                <select class="form-control" data-ng-model="laSeguridad">
+                                                    <option>S1</option>
+                                                    <option>S2</option>
+                                                    <option>S3</option>
+                                                    <option>S4</option>
+                                                    <option>S5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Rol:</label>
+                                            <div class="col-sm-5">
+                                                <select class="form-control" data-ng-model="elrol">
+                                                    <option>Rol 1</option>
+                                                    <option>Rol 2</option>
+                                                    <option>Rol 3</option>
+                                                    <option>Rol 4</option>
+                                                    <option>Rol 5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </form>
+                                 
+                                 </div>
+                                 <div class="modal-footer">
+                                   <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                   <button class="btn btn-success" data-ng-disabled="error || incomplete">
+                                       <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
+                                   </button>
+                                 </div>
+
+                               </div>
+                             </div>
+                           </div>
+
+
+                        <!-- FINALIZA MODAL EDITAR-->
+
+
+                        <!-- MODAL ACTUALIZAR-->
+                            <div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                             <div class="modal-dialog">
+                               <div class="modal-content">
+
+                                 <div class="modal-header">
+                                    
+                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                   <h4 class="modal-title" id="myModalLabel"> Actualizar version documento</h4>
+                                 </div>
+                                 <div class="modal-body">
+                                 
+                                 <form id="upload" action="index.html" method="POST" enctype="multipart/form-data">
+                                          <fieldset>                                            
+                                            <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
+                                            <div>
+                                              <label for="fileselect">Archivos a subir:</label>
+                                              <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
+                                              <div id="filedrag">o Arrastre los Archivos Aquí.</div>
+                                            </div>
+
+                                            <div id="submitbutton">
+                                              <button type="submit">Subir Archivos</button>
+                                            </div>
+                                          </fieldset>
+
+                                </form>
+                                <div id="messages">
+                                        <p>Mensajes de Estado</p>
+                                        </div>
+                                        <!--BARRA DE CARGA-->
+                                        <div class="progress">
+                                          <div class="progress-bar progress-bar-info progress-bar-striped active"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                                            <span class="sr-only">45% Complete</span>
+                                          </div>
+                                        </div>
+                                      </div> 
+
+                                 
+                                 
+                                 </div>
+                                 <div class="modal-footer">
+                                   <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                   <button class="btn btn-success" data-ng-disabled="error || incomplete">
+                                       <span class="glyphicon glyphicon-save"></span>  Actualizar
+                                   </button>
+                                 </div>
+
+                               </div>
+                             </div>
+                           </div>
+
+
+                        <!-- FINALIZA MODAL ACTUALIZAR-->
+
+                        <!-- MODAL ELIMINAR-->
+                        <div id="Modal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                             <div class="modal-dialog">
+                               <div class="modal-content">
+
+                                 <div class="modal-header">
+                                    
+                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                   <h4 class="modal-title" id="myModalLabel"> Eliminar documento</h4>
+                                 </div>
+                                 <div class="modal-body">
+                                 
+                                 Confirme que desea eliminar este documento del repositorio
+
+                                 
+                                 
+                                 </div>
+                                 <div class="modal-footer">
+                                   <button data-dismiss="modal" class="btn btn-danger">
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+
+                                    <button data-dismiss="modal" class="btn btn-success">
+                                                    <span class="glyphicon glyphicon-ok"></span>
+                                    </button>
+                                   
+                                 </div>
+
+                               </div>
+                             </div>
+                           </div>
+
+                        <!-- FINALIZA MODAL ELIMINAR -->
                         </div>
                     </div>
                 </div>                
@@ -372,7 +539,7 @@
 <!--Angular script-->
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
 <script src= "js/modules/misDocs.js"></script>
-
+<script src="js/filedrag.js"></script> 
 <script src="js/datePicker.js"></script>
 
  <!-- Javascript BARRA LOGIN-->
