@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html >
 <head>
-    <title>Giras/Vacaciones</title>
+    <title>Perfil</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
-  	<link rel="stylesheet" href="css/StyleDragAndDrop.css" type="text/css" media="screen">    
-  	<link rel="stylesheet" href="css/dragFile.css" type="text/css" media="screen">
     
-
-<!-- CSS de BARRA LOGIN -->
+    <link rel="stylesheet" href="css/Combo.css" type="text/css" media="screen">    
+    
+    <!-- CSS de BARRA LOGIN -->
     <link href="css/barralogin/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/barralogin/main.min.css" rel="stylesheet" type="text/css">   
     <!-- Termina CSS de BARRA LOGIN -->
 
-	<script src="js/dragAndDrop.js"></script>
+
+
     <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/jquery-ui.min.js"></script>
     <script src="js/cufon-yui.js" type="text/javascript"></script>
@@ -26,7 +26,7 @@
     <script src="js/NewsGoth_Lt_BT_italic_400.font.js" type="text/javascript"></script>
     <script src="js/Vegur_400.font.js" type="text/javascript"></script> 
     <script src="js/FF-cash.js" type="text/javascript"></script>
-   
+    
   <!--[if lt IE 7]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -174,7 +174,7 @@
                                     <!-- logged user and the menu -->
                                     <div class="logged-user">
                                         <div class="btn-group">
-                                            <a  class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+                                            <a class="btn btn-link dropdown-toggle" data-toggle="dropdown">
                                                 <span class="name">Carlos Cascante</span>
                                                 <span class="caret"></span>
                                             </a>
@@ -243,25 +243,25 @@
                                 </li>
                                <li><a href="#">Solicitudes</a>
                                     <ul>
-										<li><a title="Solicitar un equipo Audio-Visual" href="SolicitudEquipo.html">Equipo</a></li>
-                                    	<li><a title="Solicitar el apartado de un Aula" href="SolicitudAula.html">Aula</a></li>
+                                        <li><a title="Solicitar un equipo Audio-Visual" href="SolicitudEquipo.html">Equipo</a></li>
+                                        <li><a title="Solicitar el apartado de un Aula" href="SolicitudAula.html">Aula</a></li>
                                         <li class="ultimo"><a title="Realizar una solicitud para una gira o vacaciones" href="SolicitudGiras_Vacaciones.html">Giras/Vacaciones</a></li>
                                         
                                     </ul>
                                 </li>
                                 <li><a href="agenda.html">Calendario</a></li>
-								<li><a href="#">Correspondencia</a>
+                                <li><a href="#">Correspondencia</a>
                                     <ul>
                                         <li><a title="Enviar Correspondencia"href="EnviarCorrespondencia.html">Enviar</a></li>
                                         <li><a title="Consultar Correspondencia"href="correspondencia.html">Consultar</a></li>
-										 										
+                                                                                
                                      </ul>
                                 </li>
                                 <li><a href="#">Configuracion</a>
                                     <ul>
                                         <li><a title="Configurar los roles del sistema"href="ConfigRol.html">Roles</a></li>
                                         <li><a title="Configurar los usuarios del sistema"href="ConfigUsuarios.html">Usuarios</a></li>
-										<li><a title="Aceptar o Rechazar solicitud"href="RespuestaSolicitud.html">Solicitudes</a></li>                                        
+                                        <li><a title="Aceptar o Rechazar solicitud"href="RespuestaSolicitud.html">Solicitudes</a></li>                                        
                                         <li class="ultimo"><a title="Configuración del sistema" href="#">sistema</a></li>
                                     </ul>
                                 </li>
@@ -285,74 +285,116 @@
                     <div class="container_12">
                         <div class="wrapper">
                           <div class="container">
-                           <h3>Solicitud de Giras y Vacaciones</h3>
-						   <!--<h6>Descargue el documento deseado</h6>                                
-                            <button class="btn btn-success" >
-                            <span class="glyphicon glyphicon-download"></span>  Giras
-                            </button>
-                            <button class="btn btn-success" >
-                            <span class="glyphicon glyphicon-download"></span>  Vacaciones
-                            </button>-->
-							<div class="row">
-								<form role="form">
-									<div class="col-lg-5">
-										<div class="form-group">
-											<div class="col-md-3">
-												<button class="btn btn-info" >
-												<span class="glyphicon glyphicon-download"></span>  Giras
-												</button>
-											</div>
-											<div class="col-md-3">
-												<button class="btn btn-info" >
-												<span class="glyphicon glyphicon-download"></span>  Vacaciones
-												</button>
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-							
-                            <h3>Subir Archivos</h3>
-                            <!-- Empieza seccion de subida de archivo--> 
-                            <div class="subeArchivo">                                 
-                                <form id="upload" action="index.html" method="POST" enctype="multipart/form-data">
-                                  <fieldset>                                            
-                                    <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
-                                    <div>
-                                      <label for="fileselect">Archivos a subir:</label>
-                                      <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
-                                      <div id="filedrag">o Arrastre los Archivos Aquí.</div>
-                                    </div>
+                            <div class="row clearfix">
+                               <h3>Mi Perfil</h3>
+                                <!-- perfil -->
+                                <div class="well">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#home" data-toggle="tab">Perfil</a></li>
+      <li><a href="#profile" data-toggle="tab">Contraseña</a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane active in" id="home">
+        <center>
+            
+            <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Carlos Cascante</h3>
+            </div>
 
-                                    <div id="submitbutton">
-                                      <button type="submit">Subir Archivos</button>
-                                    </div>
-                                  </fieldset>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" class="img-circle"> </div>
+                
+                
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Rol</td>
+                        <td>Subdirector</td>
+                      </tr>
+                      <tr>
+                        <td>Fecha de contrato</td>
+                        <td>06/23/2013</td>
+                      </tr>
+                      <tr>
+                        <td>Fecha de nacimiento</td>
+                        <td>01/24/1988</td>
+                      </tr>
+                   
+                    
+                      <tr>
+                        <td>Genero</td>
+                        <td>Male</td>
+                      </tr>
+                        <tr>
+                        <td>Domicilio</td>
+                        <td>San Francisco, Heredia</td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td><a href="mailto:info@support.com">info@support.com</a></td>
+                      </tr>
+                        <td>Teléfono</td>
+                        <td>2222-2222(Oficina)<br><br>8888-8888(Celular)
+                        </td>
+                           
+                      
+                    </tbody>
+                  </table>
+                  
+                 
+                </div>
+              </div>
 
-                                </form>
-                                <div id="messages">
-                                <p>Mensajes de Estado</p>
-                                </div>
-                                <!--BARRA DE CARGA-->
-                                <div class="progress">
-                                  <div class="progress-bar progress-bar-success progress-bar-striped active"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                                    <span class="sr-only">45% Complete</span>
-                                  </div>
-                                </div>
-                              </div> 
-                              <!--TERMIN BARRA DE CARGA-->
-                              <!-- Termina subida de archivo --> 
-                              <button class="btn btn-success" data-ng-disabled="error || incomplete">
-                              <span class="glyphicon glyphicon-upload"></span>  Subir
-                              </button>
+              <div class="panel-footer">
+                        
+                        <span class="pull-right">
+                            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                            
+                        </span>
+                    </div>
+
+        </center>
+      </div>
+      
+      <div  class="tab-pane fade" id="profile">
+        <form align="center" id="tab2">
+                <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Contraseña actual</td>
+                        <td><input type="text" /></td>
+                      </tr>
+                      <tr>
+                        <td>Contraseña nueva</td>
+                        <td><input type="text" /></td>
+                      </tr>
+                      <tr>
+                        <td>Confirme la nueva contraseña</td>
+                        <td><input type="text" /></td>
+                      </tr>
+                      
+                    </tbody>
+                </table>
+            <div >
+                <button class="btn btn-primary">Actualizar</button>
+            </div>
+        </form>
+      </div>
+  </div>
+
+                                <!-- cierra perfil -->
+                            </div>                                  
+                                
                         </div>
                     </div>
                 </div>
                 <div class="block"></div>
             </div>
-        	</div>
-		</section>
-    
+        </section>
+    </div>
   
   <!--==============================footer=================================-->
     <footer>
@@ -365,11 +407,10 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
   <script src="js/filedrag.js"></script> 
 
-    <!-- Javascript BARRA LOGIN-->
+   <!-- Javascript BARRA LOGIN-->
    <script type="text/javascript"src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>  
-  <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+ <!-- <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>-->
 
-  
 
 </body>
 </html>
