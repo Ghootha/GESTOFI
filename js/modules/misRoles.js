@@ -2,50 +2,54 @@ var app = angular.module("myAppRoles", []);
 
 app.controller("rolController", function($scope) {
 
-    $scope.name='';
-    $scope.seg = '';
-    $scope.desc = '';
+    $scope.nombre='';
+    $scope.seguridad = '';
+    $scope.descripcion = '';
     $scope.roles = [
-        {id:1, name:'director', seg:'Alta',   desc:"es el director(?)"},
-        {id:2, name:'asistente', seg:'Alta',   desc:"es el asistente del director(?)"},
-        {id:3, name:'secretario', seg:'medio',   desc:"es el secretario(?)"},
-        {id:4, name:'profesor', seg:'Baja',   desc:"es un profesor(?)" },
-        {id:5, name:'sub-director', seg:'Alta',   desc:"es el sub-director(?)" }
+        {id:1, nombre:'director', seguridad:'Alta',   descripcion:"es el director(?)"},
+        {id:2, nombre:'asistente', seguridad:'Alta',   descripcion:"es el asistente del director(?)"},
+        {id:3, nombre:'secretario', seguridad:'medio',   descripcion:"es el secretario(?)"},
+        {id:4, nombre:'profesor', seguridad:'Baja',   descripcion:"es un profesor(?)" },
+        {id:5, nombre:'sub-director', seguridad:'Alta',   descripcion:"es el sub-director(?)" }
     ];
     $scope.edit = true;
     $scope.error = false;
     $scope.incomplete = false;
 
-    $scope.editRol = function(id) {
+    $scope.editRole = function(id) {
         if (id == 'new') {
             $scope.edit = true;
             $scope.incomplete = true;
-            $scope.name='';
-            $scope.seg = '';
-            $scope.desc = '';
+            $scope.nombre='';
+            $scope.seguridad = '';
+            $scope.descripcion = '';
         } else {
-            $scope.edit = false;
-            $scope.name = $scope.roles[id-1].name;
-            $scope.seg = $scope.roles[id-1].seg;
-            $scope.desc = $scope.roles[id-1].desc;
+            
+            $scope.nombre = $scope.roles[id-1].nombre;
+            $scope.seguridad = $scope.roles[id-1].seguridad;
+            $scope.descripcion = $scope.roles[id-1].descripcion;
         }
     };
 
-    $scope.$watch('name', function() {$scope.test();});
-    $scope.$watch('seg',function() {$scope.test();});
-    $scope.$watch('desc',function() {$scope.test();});
+    $scope.deleteRole = function(id) {
+        alert('se borro');
+        
+    };
 
-    /*$scope.test = function() {
-        if ($scope.passw1 !== $scope.passw2) {
+    $scope.$watch('nombre', function() {$scope.test();});
+    $scope.$watch('seguridad',function() {$scope.test();});
+    $scope.$watch('descripcion',function() {$scope.test();});
+
+    $scope.test = function() {
+        if ($scope.nombre !== null) {
             $scope.error = true;
         } else {
             $scope.error = false;
         }
         $scope.incomplete = false;
-        if ($scope.edit && (!$scope.fName.length ||
-            !$scope.pApellido.length || !$scope.sApellido.length ||
-            !$scope.passw1.length || !$scope.passw2.length)) {
+        if ($scope.edit && (!$scope.nombre.length ||
+            !$scope.seguridad.length || !$scope.descripcion.length )) {
             $scope.incomplete = true;
         }
-    };*/
+    };
 });
