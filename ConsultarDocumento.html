@@ -144,7 +144,7 @@
                                                         </li>
 
                                                         <li>
-                                                            <a href="#">
+                                                            <a href="Perfil.html">
                                                                 <i class="fa fa-user green-font"></i>
                                                                 <span class="text">Te invitaron a un evento</span>
                                                                 <span class="timestamp">12 minutos atras</span>
@@ -171,13 +171,13 @@
                                     <!-- logged user and the menu -->
                                     <div class="logged-user">
                                         <div class="btn-group">
-                                            <a class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+                                            <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
                                                 <span class="name">Carlos Cascante</span>
                                                 <span class="caret"></span>
                                             </a>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>
-                                                    <a href="Perfil.html">
+                                                    <a href="#">
                                                         <i class="fa fa-user"></i>
                                                         <span class="text">Perfil</span>
                                                     </a>
@@ -334,6 +334,82 @@
                                                 <button data-backdrop="false" data-target="#Modal" data-toggle="modal" class="btn btn-warning" ng-click="editDoc(doc.id)">
                                                     <span class="glyphicon glyphicon-pencil"></span>
                                                 </button>
+
+                                                <!-- MODAL EDITAR-->
+                                                    <div id="Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                     <div class="modal-dialog">
+                                                       <div class="modal-content">
+
+                                                         <div class="modal-header">
+                                                            
+                                                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                           <h4 class="modal-title" id="myModalLabel"> Editar informacion de documento</h4>
+                                                         </div>
+                                                         <div class="modal-body">
+                                                         
+                                                         
+
+                                                         <form class="form-horizontal">
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-2 control-label">Nombre:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" data-ng-model="nombre" placeholder="Nombre">
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-2 control-label">Tipo:</label>
+                                                                    <div class="col-sm-5">
+                                                                       <select class="form-control" data-ng-model="tipo">
+                                                                            <option>Acta</option>
+                                                                            <option>Tipo 2</option>
+                                                                            <option>Tipo 3</option>
+                                                                            <option>Tipo 4</option>
+                                                                            <option>Tipo 5</option>
+                                                                        </select>
+                                                                    </div>                                            
+                                                                </div>
+                                                                
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-2 control-label">Seguridad:</label>
+                                                                    <div class="col-sm-5">
+                                                                        <select class="form-control" data-ng-model="seguridad">
+                                                                            <option>Muy Alta</option>
+                                                                            <option>Alta</option>
+                                                                            <option>Media</option>
+                                                                            <option>Baja</option>
+                                                                            <option>Ninguna</option>
+                                                                        </select>                                                 
+                                                                    </div>                                            
+                                                                </div>
+                                                                
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-2 control-label">Rol:</label>
+                                                                    <div class="col-sm-5">
+                                                                        <select class="form-control" data-ng-model="Role">
+                                                                            <option>Director</option>
+                                                                            <option>Rol 2</option>
+                                                                            <option>Rol 3</option>
+                                                                            <option>Rol 4</option>
+                                                                            <option>Rol 5</option>
+                                                                        </select>
+                                                                    </div>                                            
+                                                                </div>
+                                                            </form>
+                                                         
+                                                         </div>
+                                                         <div class="modal-footer">
+                                                           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                           <button class="btn btn-success" data-ng-disabled="incomplete" data-dismiss="modal">
+                                                               <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
+                                                           </button>
+                                                         </div>
+
+                                                       </div>
+                                                     </div>
+                                                   </div>
+                        <!-- FINALIZA MODAL EDITAR-->
+
                                             </td>
                                             <td>
                                                 <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-success" ng-click="actDoc(doc.id)">
@@ -346,93 +422,44 @@
                                                 </button>
                                             </td>
                                             <td>
-                                                <button data-backdrop="false" data-target="#Modal3" data-toggle="modal" class="btn btn-danger" ng-click="elimDoc(doc.id)">
-                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                <button data-backdrop="false" data-target="#Modal3" data-toggle="modal" class="btn btn-danger">
+                                                    <span class="glyphicon glyphicon-remove" ng-click="eliminaDoc(doc.id)"></span>
                                                 </button>
+                                                <!-- MODAL ELIMINAR-->
+                                                <!-- Esta comentado para hacer pruebas -->
+                                                <!-- <div id="Modal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                     <div class="modal-dialog">
+                                                       <div class="modal-content">
+
+                                                         <div class="modal-header">
+                                                            
+                                                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                           <h4 class="modal-title" id="myModalLabel"> Eliminar documento</h4>
+                                                         </div>
+                                                         <div class="modal-body">                                                         
+                                                         Confirme que desea eliminar este documento del repositorio
+                                                         </div>
+                                                         <div class="modal-footer">
+                                                           <button data-dismiss="modal" class="btn btn-danger">
+                                                                            <span class="glyphicon glyphicon-remove"></span>
+                                                            </button>
+
+                                                            <button data-dismiss="modal" class="btn btn-success" ng-click="eliminaDoc(doc.id)">
+                                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                            </button>
+                                                           
+                                                         </div>
+
+                                                       </div>
+                                                     </div>
+                                                   </div> -->
+                                                <!-- FINALIZA MODAL ELIMINAR -->
                                             </td>
                                         </tr>
                                       </tbody>
                                                                     <!--Finaliza Tabla-->
                                 </table>
-                            <!--</div>-->
-                        <!-- MODAL EDITAR-->
-                            <div id="Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                             <div class="modal-dialog">
-                               <div class="modal-content">
-
-                                 <div class="modal-header">
-                                    
-                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                   <h4 class="modal-title" id="myModalLabel"> Editar informacion de documento</h4>
-                                 </div>
-                                 <div class="modal-body">
-                                 
-                                 
-
-                                 <form class="form-horizontal">
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Nombre:</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" data-ng-model="nom" placeholder="Nombre">
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Tipo:</label>
-                                            <div class="col-sm-5">
-                                               <select class="form-control" data-ng-model="elTipo">
-                                                    <option>T1</option>
-                                                    <option>T2</option>
-                                                    <option>T3</option>
-                                                    <option>T4</option>
-                                                    <option>T5</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Seguridad:</label>
-                                            <div class="col-sm-5">
-                                                <select class="form-control" data-ng-model="laSeguridad">
-                                                    <option>S1</option>
-                                                    <option>S2</option>
-                                                    <option>S3</option>
-                                                    <option>S4</option>
-                                                    <option>S5</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Rol:</label>
-                                            <div class="col-sm-5">
-                                                <select class="form-control" data-ng-model="elrol">
-                                                    <option>Rol 1</option>
-                                                    <option>Rol 2</option>
-                                                    <option>Rol 3</option>
-                                                    <option>Rol 4</option>
-                                                    <option>Rol 5</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </form>
-                                 
-                                 </div>
-                                 <div class="modal-footer">
-                                   <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                   <button class="btn btn-success" data-ng-disabled="error || incomplete">
-                                       <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
-                                   </button>
-                                 </div>
-
-                               </div>
-                             </div>
-                           </div>
-
-
-                        <!-- FINALIZA MODAL EDITAR-->
-
-
+                            <!--</div>--> 
                         <!-- MODAL ACTUALIZAR-->
                             <div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                              <div class="modal-dialog">
@@ -488,39 +515,7 @@
 
                         <!-- FINALIZA MODAL ACTUALIZAR-->
 
-                        <!-- MODAL ELIMINAR-->
-                        <div id="Modal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                             <div class="modal-dialog">
-                               <div class="modal-content">
-
-                                 <div class="modal-header">
-                                    
-                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                   <h4 class="modal-title" id="myModalLabel"> Eliminar documento</h4>
-                                 </div>
-                                 <div class="modal-body">
-                                 
-                                 Confirme que desea eliminar este documento del repositorio
-
-                                 
-                                 
-                                 </div>
-                                 <div class="modal-footer">
-                                   <button data-dismiss="modal" class="btn btn-danger">
-                                                    <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
-
-                                    <button data-dismiss="modal" class="btn btn-success">
-                                                    <span class="glyphicon glyphicon-ok"></span>
-                                    </button>
-                                   
-                                 </div>
-
-                               </div>
-                             </div>
-                           </div>
-
-                        <!-- FINALIZA MODAL ELIMINAR -->
+                        
                         </div>
                     </div>
                 </div>                

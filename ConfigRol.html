@@ -168,13 +168,13 @@
                                     <!-- logged user and the menu -->
                                     <div class="logged-user">
                                         <div class="btn-group">
-<<<<<<< HEAD
+
                                             <a class="btn btn-link dropdown-toggle" data-toggle="dropdown">
                                                 <span class="name">Carlos Cascante</span>
-=======
+
                                             <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
                                                 <span class="nombre">Carlos Cascante</span>
->>>>>>> FETCH_HEAD
+
                                                 <span class="caret"></span>
                                             </a>
                                             <ul class="dropdown-menu" role="menu">
@@ -321,7 +321,7 @@
                                 <tbody>
                                 <tr data-ng-repeat="rol in roles | filter:search">
                                     <td >
-	                                    <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-warning" ng-click="editRole(user.id)">
+	                                    <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-warning" ng-click="editRole(rol.id)">
 	                                      <span class="glyphicon glyphicon-pencil"></span>  Editar
 	                                    </button>
                                     </td>
@@ -361,7 +361,7 @@
 	                                 <div class="form-group">
 	                                     <label class="col-sm-2 control-label">Nombre:</label>
 	                                     <div class="col-sm-3">
-	                                         <input type="text" class="form-control" data-ng-model="nombre" data-ng-disabled="!edit">
+	                                         <input type="text" class="form-control" data-ng-disabled="!edit">
 	                                     </div>
 	                                 </div>
 	                                 <div class="form-group">
@@ -429,7 +429,7 @@
 	                                  <div class="form-group">
 	                                      <label class="col-sm-2 control-label">Descripcion:</label>
 	                                      <div class="col-sm-3">
-	                                          <textarea class="textAreaRol"></textarea>
+	                                          <textarea class="textAreaRol" data-ng-model="descripcion"></textarea>
 	                                      </div>
 	                                  </div>
 	                              </form>
