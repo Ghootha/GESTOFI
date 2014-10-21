@@ -57,7 +57,11 @@ app.controller("docController", function($scope, $http, $window) {
      $scope.eliminaDoc = function(id) {
          $http.delete("webservice/Documento/"+id).success( 
             function(){
-                $http.get("webservice/Documento").success(function(response) {$scope.docs = response;});
+                for(var i = 0; i<$scope.docs.length; i++) {           
+                    if($scope.docs[i].id === id) {
+                       $scope.docs.splice(i, 1);
+                    }
+                }
          });
      };
 
