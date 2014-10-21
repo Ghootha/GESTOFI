@@ -9,37 +9,50 @@ app.controller("docController", function($scope, $http, $window) {
 
 
      $scope.abrirDoc = function(id) {
-         var ruta= $scope.docs[id-1].ruta;
-         $window.open('http://gestofi.com/'+ruta);
+        for(var i = 0; i<$scope.roles.length; i++) {
+                if($scope.roles[i].id === id) {
+                    var ruta= $scope.docs[i].ruta;
+                    $window.open('http://gestofi.com/'+ruta);
+                }
+         }  
      };
 
      $scope.incomplete = false;
     
-     $scope.editDoc = function(id) {    
-     $scope.edit = true;
-     $scope.fecha = $scope.docs[id-1].fecha;
-     $scope.nombre = $scope.docs[id-1].nombre;
-     $scope.codigo = $scope.docs[id-1].codigo;
-     $scope.Role = $scope.docs[id-1].Role;
-     $scope.seguridad = $scope.docs[id-1].seguridad;     
-     $scope.tipo = $scope.docs[id-1].tipo;     
+     $scope.editDoc = function(id) { 
+         $scope.edit = true;
+         for(var i = 0; i<$scope.roles.length; i++) {
+                if($scope.roles[i].id === id) {
+                    $scope.fecha = $scope.docs[i].fecha;
+                    $scope.nombre = $scope.docs[i].nombre;
+                    $scope.codigo = $scope.docs[i].codigo;
+                    $scope.Role = $scope.docs[i].Role;
+                    $scope.seguridad = $scope.docs[i].seguridad;     
+                    $scope.tipo = $scope.docs[i].tipo;     
+                }
+         }     
      };
 
      $scope.actualizaDoc = function(id) {
         
-        var objetoJSON = {
-            "nombre": $scope.docs[id-1].nombre,            
-            "Role": $scope.docs[id-1].Role,
-            "tipo": $scope.docs[id-1].tipo,
-            "seguridad": $scope.docs[id-1].seguridad
-        };
-
+        var objetoJSON;
+        for(var i = 0; i<$scope.roles.length; i++) {
+                if($scope.roles[i].id === id) {
+                    objetoJSON = {
+                        "nombre": $scope.docs[i].nombre,            
+                        "Role": $scope.docs[i].Role,
+                        "tipo": $scope.docs[i].tipo,
+                        "seguridad": $scope.docs[i].seguridad
+                    };                    
+                }
+            }   
          $http.put("webservice/Documento/update/"+id, objetoJSON).success(
                 function(){
                     $http.get("webservice/Documento")
                         .success(function(response) {$scope.docs = null; $scope.docs = response;});
-                });
+         });
      };
+     
 
      $scope.eliminaDoc = function(id) {
          $http.delete("webservice/Documento/"+id).success( 

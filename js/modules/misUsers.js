@@ -30,18 +30,36 @@ app.controller("userController", function($scope) {
             $scope.sApellido = '';
             $scope.role='';
         } else {
-            $scope.edit = false;
-            $scope.ced = $scope.users[id-1].ced;
-            $scope.nombre = $scope.users[id-1].nombre;
-            $scope.pApellido = $scope.users[id-1].pApellido;
-            $scope.sApellido = $scope.users[id-1].sApellido;
-            $scope.role = $scope.users[id-1].role;
+
+            for(var i = 0; i<$scope.users.length; i++) {           
+                if($scope.users[i].id === id) {
+                    $scope.edit = false;
+                    $scope.ced = $scope.users[i].ced;
+                    $scope.nombre = $scope.users[i].nombre;
+                    $scope.pApellido = $scope.users[i].pApellido;
+                    $scope.sApellido = $scope.users[i].sApellido;
+                    $scope.role = $scope.users[i].role;
+                }
+            } 
+            
         }
     };
 
     $scope.deleteUser = function(id) {
-        alert('se borro');
-     
+       for(var i = 0; i<$scope.users.length; i++) {           
+            if($scope.users[i].id === id) {
+               $scope.users.splice(i, 1);
+            }
+        }     
+    };
+
+    $scope.actualizarUser = function(id) {
+        for(var i = 0; i<$scope.users.length; i++) {           
+            if($scope.users[i].id === id) {
+               //llamado: http.put(webservice/update/+"id"+)
+            }
+        }
+        
     };
 
     $scope.$watch('passw1',function() {$scope.test();});

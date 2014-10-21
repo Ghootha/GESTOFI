@@ -24,15 +24,31 @@ app.controller("rolController", function($scope) {
             $scope.seguridad = '';
             $scope.descripcion = '';
         } else {
+            for(var i = 0; i<$scope.roles.length; i++) {
+                if($scope.roles[i].id === id) {
+                    $scope.nombre = $scope.roles[i].nombre;
+                    $scope.seguridad = $scope.roles[i].seguridad;
+                    $scope.descripcion = $scope.roles[i].descripcion;
+                }
+            }
             
-            $scope.nombre = $scope.roles[id-1].nombre;
-            $scope.seguridad = $scope.roles[id-1].seguridad;
-            $scope.descripcion = $scope.roles[id-1].descripcion;
         }
     };
 
     $scope.deleteRole = function(id) {
-        alert('se borro');
+        for(var i = 0; i<$scope.roles.length; i++) {           
+            if($scope.roles[i].id === id) {
+               $scope.roles.splice(i, 1);
+            }
+        }        
+    };
+
+    $scope.actualizarRole = function(id) {
+        for(var i = 0; i<$scope.roles.length; i++) {           
+            if($scope.roles[i].id === id) {
+               //llamado: http.put(webservice/update/+"id"+)
+            }
+        }
         
     };
 
