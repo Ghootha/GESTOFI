@@ -319,8 +319,30 @@
                                     <td >
 	                                    <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-warning" ng-click="editRole(rol.id)">
 	                                      <span class="glyphicon glyphicon-pencil"></span>  Editar
-	                                    </button>
-                                        <!--MODAL-->
+	                                    </button>                                        
+                                    </td>
+                                    <td>{{ rol.nombre }}</td>
+                                    <td>{{ rol.seguridad }}</td>
+                                    <td>{{ rol.descripcion }}</td>
+                                    <td > 
+                                        <button data-backdrop="false" data-toggle="modal" class="btn btn-danger" ng-click="deleteRole(rol.id)">      
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <hr>
+                            <button data-backdrop="false" data-target="#Modal" data-toggle="modal" class="btn btn-success" data-ng-click="editRole('new')">
+                            <span class="glyphicon glyphicon-user"></span>  Crear Nuevo Usuario
+                            </button>
+                            <hr>  
+
+						       </div>
+						     </div>
+						   </div>
+						   <!--MODAL EDITAR-->
                                           <div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                              <div class="modal-dialog">
                                                <div class="modal-content">
@@ -329,10 +351,7 @@
                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                    <h4 class="modal-title" id="myModalLabel">Editar Informacion del Role</h4>
                                                  </div>
-                                                 <div class="modal-body">
-                                                  
-                                                  <h3 data-ng-show="edit">Editar Rol:</h3>
-
+                                                 <div class="modal-body">   
                                                   <form class="form-horizontal">
                                                       <div class="form-group">
                                                           <label class="col-sm-2 control-label">Nombre:</label>
@@ -372,79 +391,51 @@
                                            </div>
 
                            <!--TERMINA MODAL-->
-                                    </td>
-                                    <td>{{ rol.nombre }}</td>
-                                    <td>{{ rol.seguridad }}</td>
-                                    <td>{{ rol.descripcion }}</td>
-                                    <td > 
-                                        <button data-backdrop="false" data-toggle="modal" class="btn btn-danger" ng-click="deleteRole(rol.id)">      
-                                            <span class="glyphicon glyphicon-remove"></span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-                            <hr>
-                            <button data-backdrop="false" data-target="#Modal" data-toggle="modal" class="btn btn-success" data-ng-click="editRole('new')">
-                            <span class="glyphicon glyphicon-user"></span>  Crear Nuevo Usuario
-                            </button>
-                            <hr>
-
-                            
-							
-						 <div id="Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						     <div class="modal-dialog">
-						       <div class="modal-content">
-
-						         <div class="modal-header">
-						           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						           <h4 class="modal-title" id="myModalLabel"></h4>
-						         </div>
-						         <div class="modal-body">
-						         
-	                             <h3 data-ng-show="edit">Agregar Rol:</h3>
-
-	                             <form class="form-horizontal">
-	                                 <div class="form-group">
-	                                     <label class="col-sm-2 control-label">Nombre:</label>
-	                                     <div class="col-sm-3">
-	                                         <input type="text" class="form-control" data-ng-disabled="!edit">
-	                                     </div>
-	                                 </div>
-	                                 <div class="form-group">
-	                                     <label class="col-sm-2 control-label">Seguridad:</label>
-	                                     <div class="col-sm-3">
-	                                         <select class="form-control" data-ng-model="seguridad">
-	                                             <option>Alta</option>
-	                                             <option>Media</option>
-	                                             <option>Baja</option>
-	                                             <option>Ninguna</option>
-	                                         </select>
-	                                     </div>
-	                                 </div>
-	                                 <div class="form-group">
-	                                     <label class="col-sm-2 control-label">Descripcion:</label>
-	                                     <div class="col-sm-3">
-	                                         <textarea class="textAreaRol" data-ng-model="descripcion" data-ng-disabled="!edit"></textarea>
-	                                     </div>
-	                                 </div>
-	                             </form>
-								 
-						         </div>
-						         <div class="modal-footer">
-						           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-	                               <button class="btn btn-success" data-ng-disabled="error || incomplete">
-	                                   <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
-	                               </button>
-						         </div>
-
-						       </div>
-						     </div>
-						   </div>
 						   
-						   
-						 
+						 <!-- INICIA MODAL-->
+                         <div id="Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                             <div class="modal-dialog">
+                               <div class="modal-content">
+
+                                 <div class="modal-header">
+                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Informacion del Nuevo Role</h4>
+                                 </div>
+                                 <div class="modal-body">
+                                 <form class="form-horizontal">
+                                     <div class="form-group">
+                                         <label class="col-sm-2 control-label">Nombre:</label>
+                                         <div class="col-sm-3">
+                                             <input type="text" class="form-control" data-ng-disabled="!edit">
+                                         </div>
+                                     </div>
+                                     <div class="form-group">
+                                         <label class="col-sm-2 control-label">Seguridad:</label>
+                                         <div class="col-sm-3">
+                                             <select class="form-control" data-ng-model="seguridad">
+                                                 <option>Alta</option>
+                                                 <option>Media</option>
+                                                 <option>Baja</option>
+                                                 <option>Ninguna</option>
+                                             </select>
+                                         </div>
+                                     </div>
+                                     <div class="form-group">
+                                         <label class="col-sm-2 control-label">Descripcion:</label>
+                                         <div class="col-sm-3">
+                                             <textarea class="textAreaRol" data-ng-model="descripcion" data-ng-disabled="!edit"></textarea>
+                                         </div>
+                                     </div>
+                                 </form>
+                                 
+                                 </div>
+                                 <div class="modal-footer">
+                                   <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                   <button class="btn btn-success" data-ng-disabled="error || incomplete">
+                                       <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
+                                   </button>
+                                 </div>
+                                 <!--TERMINA AGREGA ROLE-->>
 
                            <!-- MODAL 3 -->
                     <div id="Modal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
