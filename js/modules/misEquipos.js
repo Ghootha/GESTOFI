@@ -5,10 +5,12 @@ $scope.nombre= '';
 $scope.codigo = '';
 
 $scope.equipos = [
-{id:1, nombre:'Equipo 1', codigo:'A1245'},
-{id:2, nombre:'Equipo 2', codigo:'B678' },
-{id:3, nombre:'Equipo 3', codigo:'C789' }
+{id:1, nombre:'Computadora 01',tipo:'Computadora', codigo:'B678', estado:'Excelente',descripcion: 'es una computadora(?)'},
+{id:2, nombre:'Proyector 01',tipo:'Proyector', codigo:'C147', estado:'Bueno',descripcion: 'es un Proyector(?)'},
+{id:3, nombre:'Computadora 02',tipo:'Computadora', codigo:'BR47', estado:'Regular',descripcion: 'es una computadora(?)'},
+{id:4, nombre:'Proyector 02',tipo:'Proyector', codigo:'C789', estado:'Bueno',descripcion: 'es un Proyector(?)'}
 ];
+
 $scope.edit = true;
 $scope.error = false;
 $scope.incomplete = false; 

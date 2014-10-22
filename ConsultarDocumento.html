@@ -333,9 +333,30 @@
                                             <td>
                                                 <button data-backdrop="false" data-target="#Modal" data-toggle="modal" class="btn btn-warning" ng-click="editDoc(doc.id)">
                                                     <span class="glyphicon glyphicon-pencil"></span>
+                                                </button> 
+                                            </td>
+                                            <td>
+                                                <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-success" ng-click="actDoc(doc.id)">
+                                                    <span class="glyphicon glyphicon-refresh"></span>
                                                 </button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-success" ng-click="abrirDoc(doc.id)">
+                                                    <span class="glyphicon glyphicon-floppy-save"></span>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button data-backdrop="false" class="btn btn-danger" ng-click="eliminaDoc(doc.id)">
+                                                    <span class="glyphicon glyphicon-remove" ></span>
+                                                </button>  
 
-                                                <!-- MODAL EDITAR-->
+                                            </td>
+                                        </tr>
+                                      </tbody>
+                                                                    <!--Finaliza Tabla-->
+                                </table>
+                            <!--</div>--> 
+                        <!-- MODAL EDITAR-->
                                                     <div id="Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                      <div class="modal-dialog">
                                                        <div class="modal-content">
@@ -408,58 +429,7 @@
                                                        </div>
                                                      </div>
                                                    </div>
-                        <!-- FINALIZA MODAL EDITAR-->
-
-                                            </td>
-                                            <td>
-                                                <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-success" ng-click="actDoc(doc.id)">
-                                                    <span class="glyphicon glyphicon-refresh"></span>
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-success" ng-click="abrirDoc(doc.id)">
-                                                    <span class="glyphicon glyphicon-floppy-save"></span>
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <button data-backdrop="false" data-target="#Modal3" data-toggle="modal" class="btn btn-danger" ng-click="eliminaDoc(doc.id)">
-                                                    <span class="glyphicon glyphicon-remove" ></span>
-                                                </button>
-                                                <!-- MODAL ELIMINAR-->
-                                                <!-- Esta comentado para hacer pruebas -->
-                                                <!-- <div id="Modal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                     <div class="modal-dialog">
-                                                       <div class="modal-content">
-
-                                                         <div class="modal-header">
-                                                            
-                                                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                           <h4 class="modal-title" id="myModalLabel"> Eliminar documento</h4>
-                                                         </div>
-                                                         <div class="modal-body">                                                         
-                                                         Confirme que desea eliminar este documento del repositorio
-                                                         </div>
-                                                         <div class="modal-footer">
-                                                           <button data-dismiss="modal" class="btn btn-danger">
-                                                                            <span class="glyphicon glyphicon-remove"></span>
-                                                            </button>
-
-                                                            <button data-dismiss="modal" class="btn btn-success" ng-click="eliminaDoc(doc.id)">
-                                                                            <span class="glyphicon glyphicon-ok"></span>
-                                                            </button>
-                                                           
-                                                         </div>
-
-                                                       </div>
-                                                     </div>
-                                                   </div> -->
-                                                <!-- FINALIZA MODAL ELIMINAR -->
-                                            </td>
-                                        </tr>
-                                      </tbody>
-                                                                    <!--Finaliza Tabla-->
-                                </table>
-                            <!--</div>--> 
+                        <!-- FINALIZA MODAL EDITAR-->   
                         <!-- MODAL ACTUALIZAR-->
                             <div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                              <div class="modal-dialog">
@@ -511,11 +481,36 @@
                                </div>
                              </div>
                            </div>
-
-
                         <!-- FINALIZA MODAL ACTUALIZAR-->
+                        <!-- MODAL ELIMINAR-->
+                            <!-- Esta comentado para hacer pruebas -->
+                            <div id="Modal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                 <div class="modal-dialog">
+                                   <div class="modal-content">
 
-                        
+                                     <div class="modal-header">
+                                        
+                                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                       <h4 class="modal-title" id="myModalLabel"> Eliminar documento</h4>
+                                     </div>
+                                     <div class="modal-body">                                                         
+                                     Confirme que desea eliminar este documento del repositorio
+                                     </div>
+                                     <div class="modal-footer">
+                                       <button data-dismiss="modal" class="btn btn-danger">
+                                                        <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+
+                                        <button data-dismiss="modal" class="btn btn-success" id="btnYes">
+                                                        <span class="glyphicon glyphicon-ok"></span>
+                                        </button>
+                                       
+                                     </div>
+
+                                   </div>
+                                 </div>
+                               </div>
+                        <!-- FINALIZA MODAL ELIMINAR -->
                         </div>
                     </div>
                 </div>                

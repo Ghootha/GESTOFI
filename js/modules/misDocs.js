@@ -9,8 +9,8 @@ app.controller("docController", function($scope, $http, $window) {
 
 
      $scope.abrirDoc = function(id) {
-        for(var i = 0; i<$scope.roles.length; i++) {
-                if($scope.roles[i].id === id) {
+        for(var i = 0; i<$scope.docs.length; i++) {
+                if($scope.docs[i].id === id) {
                     var ruta= $scope.docs[i].ruta;
                     $window.open('http://gestofi.com/'+ruta);
                 }
@@ -21,8 +21,8 @@ app.controller("docController", function($scope, $http, $window) {
     
      $scope.editDoc = function(id) { 
          $scope.edit = true;
-         for(var i = 0; i<$scope.roles.length; i++) {
-                if($scope.roles[i].id === id) {
+         for(var i = 0; i<$scope.docs.length; i++) {
+                if($scope.docs[i].id === id) {
                     $scope.fecha = $scope.docs[i].fecha;
                     $scope.nombre = $scope.docs[i].nombre;
                     $scope.codigo = $scope.docs[i].codigo;
@@ -36,8 +36,8 @@ app.controller("docController", function($scope, $http, $window) {
      $scope.actualizaDoc = function(id) {
         
         var objetoJSON;
-        for(var i = 0; i<$scope.roles.length; i++) {
-                if($scope.roles[i].id === id) {
+        for(var i = 0; i<$scope.docs.length; i++) {
+                if($scope.docs[i].id === id) {
                     objetoJSON = {
                         "nombre": $scope.docs[i].nombre,            
                         "Role": $scope.docs[i].Role,

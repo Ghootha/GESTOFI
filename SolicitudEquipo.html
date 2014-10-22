@@ -291,9 +291,9 @@
 							   	<form>
 		                            <td>
 		                                 <span class="css3-metro-dropdown">
-		                                    <select name="dropdown-1">
-		                                        <option value="0">Computadora</option>
-		                                        <option value="1">Proyector</option>        
+		                                    <select name="dropdown-1" ng-model="search.tipo">
+		                                        <option >Computadora</option>
+		                                        <option >Proyector</option>        
 		                                    </select>
 		                                </span>
                                     <hr>
@@ -351,23 +351,29 @@
 	                            <hr>
 								<h3>Resultados</h3>
 		                         <form>
-									<table class="table table-striped">
+									<table class="table table-striped ">
 		                              <thead>
 		                                <tr class="info">
-		                                  <th>Seleccion</th>
+		                                  <th>Selección</th>
 		                                  <th>Nombre</th>
-		                                  <th>Codigo</th>
+		                                  <th>Tipo</th>
+                                          <th>Código</th>
+                                          <th>Estado</th>
+                                          <th>Descripción</th>
 		                                </tr>
 		                              </thead>
 		                              <tbody>
-		                                <tr data-ng-repeat="equipo in equipos">
+		                                <tr data-ng-repeat="equipo in equipos | filter:search">
 		                                  <td >
 											<button class="btn btn-success" ng-click="apartarEquipo(equipo.id)">
 		                                      <span class="glyphicon glyphicon-ok"></span>
 		                                    </button>
 		                                  </td>
 		                                  <td >{{ equipo.nombre }}</td>
-		                                  <td>{{ equipo.codigo }}</td>
+		                                  <td>{{ equipo.tipo }}</td>
+                                          <td>{{ equipo.codigo }}</td>
+                                          <td>{{ equipo.estado }}</td>
+                                          <td>{{ equipo.descripcion }}</td>
 		                                </tr>
 									  </tbody>
 		                            </table>
