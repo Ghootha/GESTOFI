@@ -36,16 +36,20 @@ app.controller("rolController", function($scope) {
     };
 
     $scope.deleteRole = function(id) {
-        //confirm-delete
-        $('#Modal3').on('show.bs.modal', function (e) {
-            for(var i = 0; i<$scope.roles.length; i++) {           
-                if($scope.roles[i].id === id) {
-                   $scope.roles.splice(i, 1);
-                }
-            }            
+       
+
+         $('#Modal3').modal({ backdrop: 'static', keyboard: false })
+        .one('click', '#confirm', function (e) {
+                for(var i = 0; i<$scope.roles.length; i++) {           
+                    if($scope.roles[i].id === id) {
+                       $scope.roles.splice(i, 1);
+                    }
+                } 
         });
-                
+
+               
     };
+
 
     $scope.actualizarRole = function(id) {
         for(var i = 0; i<$scope.roles.length; i++) {           

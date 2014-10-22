@@ -13,14 +13,13 @@
     <link href="css/barralogin/main.min.css" rel="stylesheet" type="text/css">   
     <!-- Termina CSS de BARRA LOGIN -->
 
-    <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
     <script src="js/cufon-yui.js" type="text/javascript"></script>
     <script src="js/cufon-replace.js" type="text/javascript"></script>
     <script src="js/NewsGoth_400.font.js" type="text/javascript"></script>
     <script src="js/NewsGoth_700.font.js" type="text/javascript"></script>
     <script src="js/NewsGoth_Lt_BT_italic_400.font.js" type="text/javascript"></script>
-    <script src="js/Vegur_400.font.js" type="text/javascript"></script>
-    
+    <script src="js/Vegur_400.font.js" type="text/javascript"></script>    
     <!--[if lt IE 7]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -325,7 +324,7 @@
                                     <td>{{ rol.seguridad }}</td>
                                     <td>{{ rol.descripcion }}</td>
                                     <td > 
-                                        <button data-target="#modal" class="btn btn-danger" ng-click="deleteRole(rol.id)" >      
+                                        <button class="btn btn-danger" ng-click="deleteRole(rol.id)">      
                                             <span class="glyphicon glyphicon-remove"></span>
                                         </button>
                                     </td>
@@ -435,21 +434,24 @@
                                        <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
                                    </button>
                                  </div>
-                                 <!--TERMINA AGREGA ROLE-->>
+                             </div>
+                             </div>
+                             </div>
+                                 <!--TERMINA AGREGA ROLE-->
 
                            <!-- MODAL 3 -->
-                    <div id="Modal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div id="Modal3" class="modal fade" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                              <div class="modal-dialog">
                                <div class="modal-content">
 
                                  <div class="modal-header">
                                     
                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                   <h4 class="modal-title" id="myModalLabel"> Eliminar usuario</h4>
+                                   <h4 class="modal-title" id="myModalLabel"> Eliminar Role</h4>
                                  </div>
                                  <div class="modal-body">
                                  
-                                 Confirme que desea eliminar este usuario del sistema
+                                 Confirme que desea eliminar este Role del sistema
 
                                  
                                  
@@ -459,7 +461,7 @@
                                                     <span class="glyphicon glyphicon-remove"></span>
                                     </button>
 
-                                    <button data-dismiss="modal" class="btn btn-success" id="delete">
+                                    <button data-dismiss="modal" class="btn btn-success" id="confirm" >
                                                     <span class="glyphicon glyphicon-ok"></span>
                                     </button>
                                    
@@ -469,7 +471,6 @@
                              </div>
                     </div>
                     <!-- FINALIZA MODAL 3 -->
-
                         </div>
                     </div>
                 </div>
@@ -486,17 +487,16 @@
     </div>
 </footer>
 <script type="text/javascript"> Cufon.now(); </script>
-
 <!--Angular script-->
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
 <script src= "js/modules/misRoles.js"></script>
 
 
-  <!-- Javascript BARRA LOGIN-->
 
+
+  <!-- Javascript BARRA LOGIN-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>    
-   
+ 
 
 </body>
 </html>
