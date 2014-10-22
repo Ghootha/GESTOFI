@@ -35,21 +35,18 @@ app.controller("rolController", function($scope) {
         }
     };
 
-    $scope.deleteRole = function(id) {
-       
-
-         $('#Modal3').modal({ backdrop: 'static', keyboard: false })
-        .one('click', '#confirm', function (e) {
+    $scope.deleteRole = function(id) { 
+    debugger; 
+         $('#Modal3').modal({ backdrop: false})
+        .one('click', '#confirm', function () {
+             debugger; 
                 for(var i = 0; i<$scope.roles.length; i++) {           
                     if($scope.roles[i].id === id) {
                        $scope.roles.splice(i, 1);
                     }
                 } 
-        });
-
-               
+        });    
     };
-
 
     $scope.actualizarRole = function(id) {
         for(var i = 0; i<$scope.roles.length; i++) {           
