@@ -42,7 +42,10 @@ app.controller("rolController", function($scope) {
         .one('click', '#confirm', function () { 
                 for(var i = 0; i<$scope.roles.length; i++) {           
                     if($scope.roles[i].id === id) {
-                       $scope.roles.splice(i, 1);
+                        $scope.$apply(
+                        $scope.roles.splice(i, 1)
+                        );
+                       
                     }
                 } 
         });    

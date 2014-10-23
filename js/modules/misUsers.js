@@ -51,7 +51,7 @@ app.controller("userController", function($scope) {
         .one('click', '#confirm', function () {
             for(var i = 0; i<$scope.users.length; i++) {           
                 if($scope.users[i].id === id) {
-                   $scope.users.splice(i, 1);
+                    $scope.$apply($scope.users.splice(i, 1));
                 }
             }    
         });

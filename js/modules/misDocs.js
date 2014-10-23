@@ -63,7 +63,7 @@ app.controller("docController", function($scope, $http, $window) {
         .one('click', '#confirm', function () {
             for(var i = 0; i<$scope.docs.length; i++) {           
                 if($scope.docs[i].id === id) {
-                   $scope.docs.splice(i, 1);
+                   $scope.$apply($scope.docs.splice(i, 1));
                 }
             }    
         });
