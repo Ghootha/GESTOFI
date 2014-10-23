@@ -64,14 +64,14 @@ app.controller("userController", function($scope) {
                 for(var i = 0; i<$scope.users.length; i++) {           
                     if($scope.users[i].id === id) {
                            objetoJSON = {
-                            "cedula": $scope.users[i].ced,            
-                            "nombre": $scope.users[i].nombre,
-                            "pApellido": $scope.users[i].pApellido,
-                            "sApellido": $scope.users[i].sApellido,
-                            "role": $scope.users[i].role,
+                            "cedula": $scope.ced,            
+                            "nombre": $scope.nombre,
+                            "pApellido": $scope.pApellido,
+                            "sApellido": $scope.sApellido,
+                            "role": $scope.role,
 
                         };
-                        alert("manda put al servidor el user: "+$scope.users[i].nombre+$scope.users[i].pApellido+$scope.users[i].sApellido+" con ced: "+$scope.users[i].ced+" y Role "+$scope.users[i].role );
+                        alert("manda put al servidor el user: "+$scope.nombre+$scope.pApellido+$scope.sApellido+" con ced: "+$scope.ced+" y Role "+$scope.role );
                         // $http.put("webservice/Documento/update/"+id, objetoJSON).success(
                         //         function(){
                         //             $http.get("webservice/Documento")

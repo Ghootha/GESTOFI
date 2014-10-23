@@ -29,7 +29,7 @@ app.controller("docController", function($scope, $http, $window) {
                     $scope.Role = $scope.docs[i].Role;
                     $scope.seguridad = $scope.docs[i].seguridad;     
                     $scope.tipo = $scope.docs[i].tipo; 
-                    $scope.actualizarDoc(id);    
+                    $scope.actualizaDoc(id);    
                 }
          }     
      };
@@ -41,17 +41,18 @@ app.controller("docController", function($scope, $http, $window) {
         for(var i = 0; i<$scope.docs.length; i++) {
                 if($scope.docs[i].id === id) {
                     objetoJSON = {
-                        "nombre": $scope.docs[i].nombre,            
-                        "Role": $scope.docs[i].Role,
-                        "tipo": $scope.docs[i].tipo,
-                        "seguridad": $scope.docs[i].seguridad
+                        "nombre": $scope.nombre,            
+                        "Role": $scope.Role,
+                        "tipo": $scope.tipo,
+                        "seguridad": $scope.seguridad
                     };
-                    alert("llamdo al server put: nombre "+$scope.docs[i].nombre +"Role"+$scope.docs[i].Role+" tipo "+$scope.docs[i].tipo+"seguridad "+$scope.docs[i].seguridad);
-                    // $http.put("webservice/Documento/update/"+id, objetoJSON).success(
-                    //         function(){
-                    //             $http.get("webservice/Documento")
-                    //                 .success(function(response) {$scope.docs = response;});
-                    //  });                    
+                    //alert("llamdo al server put: nombre "+$scope.nombre +"Role"+$scope.Role+" tipo "+$scope.tipo+"seguridad "+$scope.seguridad);
+                    $http.put("webservice/Documento/update/"+id, objetoJSON).success(
+                     
+                            function(){
+                                $http.get("webservice/Documento")
+                                    .success(function(response) {$scope.docs = response;});
+                     });                    
                 }
             }
         }); 
@@ -61,11 +62,15 @@ app.controller("docController", function($scope, $http, $window) {
      $scope.eliminaDoc = function(id) {
           $('#Modal3').modal({ backdrop: false})
         .one('click', '#confirm', function () {
-            for(var i = 0; i<$scope.docs.length; i++) {           
-                if($scope.docs[i].id === id) {
-                   $scope.$apply($scope.docs.splice(i, 1));
-                }
-            }    
+
+          $http.get("webservice/Documento/destroy/"+id).success(
+                    function(){
+                    for(var i = 0; i<$scope.docs.length; i++) {           
+                        if($scope.docs[i].id === id) {
+                           $scope.$apply($scope.docs.splice(i, 1));
+                        }
+                    }  
+                   });
         });
      };
 

@@ -58,11 +58,11 @@ app.controller("rolController", function($scope) {
                 for(var i = 0; i<$scope.roles.length; i++) {           
                     if($scope.roles[i].id === id) {
                            objetoJSON = {
-                            "nombre": $scope.roles[i].nombre,            
-                            "seguridad": $scope.roles[i].seguridad,
-                            "descripcion": $scope.roles[i].descripcion
+                            "nombre": $scope.nombre,            
+                            "seguridad": $scope.seguridad,
+                            "descripcion": $scope.descripcion
                         };
-                        alert("manda put al servidor el role:"+$scope.roles[i].nombre+" Seguridad: "+$scope.roles[i].seguridad+" descripcion: "+$scope.roles[i].descripcion);
+                        alert("manda put al servidor el role:"+$scope.nombre+" Seguridad: "+$scope.seguridad+" descripcion: "+$scope.descripcion);
                         // $http.put("webservice/Documento/update/"+id, objetoJSON).success(
                         //         function(){
                         //             $http.get("webservice/Documento")
