@@ -28,13 +28,15 @@ app.controller("docController", function($scope, $http, $window) {
                     $scope.codigo = $scope.docs[i].codigo;
                     $scope.Role = $scope.docs[i].Role;
                     $scope.seguridad = $scope.docs[i].seguridad;     
-                    $scope.tipo = $scope.docs[i].tipo;     
+                    $scope.tipo = $scope.docs[i].tipo; 
+                    $scope.actualizarDoc(id);    
                 }
          }     
      };
 
-     $scope.actualizaDoc = function(id) {
-        
+     $scope.actualizaDoc = function(id) {  
+     $('#Modal').modal({ backdrop: false})
+        .one('click', '#confirm', function () {       
         var objetoJSON;
         for(var i = 0; i<$scope.docs.length; i++) {
                 if($scope.docs[i].id === id) {
@@ -43,26 +45,28 @@ app.controller("docController", function($scope, $http, $window) {
                         "Role": $scope.docs[i].Role,
                         "tipo": $scope.docs[i].tipo,
                         "seguridad": $scope.docs[i].seguridad
-                    };                    
+                    };
+                    alert("llamdo al server put: nombre "+$scope.docs[i].nombre +"Role"+$scope.docs[i].Role+" tipo "+$scope.docs[i].tipo+"seguridad "+$scope.docs[i].seguridad);
+                    // $http.put("webservice/Documento/update/"+id, objetoJSON).success(
+                    //         function(){
+                    //             $http.get("webservice/Documento")
+                    //                 .success(function(response) {$scope.docs = response;});
+                    //  });                    
                 }
-            }   
-         $http.put("webservice/Documento/update/"+id, objetoJSON).success(
-                function(){
-                    $http.get("webservice/Documento")
-                        .success(function(response) {$scope.docs = null; $scope.docs = response;});
-         });
-     };
-     
+            }
+        }); 
+        
+    };
 
      $scope.eliminaDoc = function(id) {
-         $http.delete("webservice/Documento/"+id).success( 
-            function(){
-                for(var i = 0; i<$scope.docs.length; i++) {           
-                    if($scope.docs[i].id === id) {
-                       $scope.docs.splice(i, 1);
-                    }
+          $('#Modal3').modal({ backdrop: false})
+        .one('click', '#confirm', function () {
+            for(var i = 0; i<$scope.docs.length; i++) {           
+                if($scope.docs[i].id === id) {
+                   $scope.docs.splice(i, 1);
                 }
-         });
+            }    
+        });
      };
 
 

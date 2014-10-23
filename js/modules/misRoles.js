@@ -29,17 +29,17 @@ app.controller("rolController", function($scope) {
                     $scope.nombre = $scope.roles[i].nombre;
                     $scope.seguridad = $scope.roles[i].seguridad;
                     $scope.descripcion = $scope.roles[i].descripcion;
+                    $scope.actualizarRole(id);
                 }
+
             }
             
         }
     };
 
     $scope.deleteRole = function(id) { 
-    debugger; 
          $('#Modal3').modal({ backdrop: false})
-        .one('click', '#confirm', function () {
-             debugger; 
+        .one('click', '#confirm', function () { 
                 for(var i = 0; i<$scope.roles.length; i++) {           
                     if($scope.roles[i].id === id) {
                        $scope.roles.splice(i, 1);
@@ -49,12 +49,28 @@ app.controller("rolController", function($scope) {
     };
 
     $scope.actualizarRole = function(id) {
-        for(var i = 0; i<$scope.roles.length; i++) {           
-            if($scope.roles[i].id === id) {
-               //llamado: http.put(webservice/update/+"id"+)
-            }
-        }
+        $('#Modal2').modal({ backdrop: false})
+        .one('click', '#confirm', function () { 
+             var objetoJSON;
+                for(var i = 0; i<$scope.roles.length; i++) {           
+                    if($scope.roles[i].id === id) {
+                           objetoJSON = {
+                            "nombre": $scope.roles[i].nombre,            
+                            "seguridad": $scope.roles[i].seguridad,
+                            "descripcion": $scope.roles[i].descripcion
+                        };
+                        alert("manda put al servidor el role:"+$scope.roles[i].nombre+" Seguridad: "+$scope.roles[i].seguridad+" descripcion: "+$scope.roles[i].descripcion);
+                        // $http.put("webservice/Documento/update/"+id, objetoJSON).success(
+                        //         function(){
+                        //             $http.get("webservice/Documento")
+                        //                 .success(function(response) {$scope.roles = response;});
+                        //          });
+                    }
+                }
+        }); 
         
+      
+         
     };
 
     $scope.$watch('nombre', function() {$scope.test();});

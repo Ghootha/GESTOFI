@@ -14,7 +14,7 @@
     <link href="css/barralogin/main.min.css" rel="stylesheet" type="text/css">   
     <!-- Termina CSS de BARRA LOGIN -->
 
-    <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
     <script src="js/cufon-yui.js" type="text/javascript"></script>
     <script src="js/cufon-replace.js" type="text/javascript"></script>
     <script src="js/NewsGoth_400.font.js" type="text/javascript"></script>
@@ -319,7 +319,7 @@
                         <tbody>
                         <tr data-ng-repeat="user in users | filter:search">
                             <td >
-                               <button data-backdrop="false" data-target="#Modal" data-toggle="modal" class="btn btn-warning" data-ng-click="editUser(user.id)">
+                               <button class="btn btn-warning" data-ng-click="editUser(user.id)">
                                     <span class="glyphicon glyphicon-pencil"></span>  Editar
                                 </button> 
                             </td>
@@ -327,7 +327,7 @@
                             <td>{{ user.nombre+" "+user.pApellido+" "+user.sApellido }}</td>
                             <td>{{ user.role }}</td>
                             <td > 
-                                <button data-backdrop="false" data-target="#Modal3" data-toggle="modal" class="btn btn-danger" data-ng-click="deleteUser(user.id)" >      
+                                <button class="btn btn-danger" data-ng-click="deleteUser(user.id)" >      
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </button>
                             </td>
@@ -411,7 +411,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                    <button class="btn btn-success" data-ng-disabled="error || incomplete">
+                                    <button class="btn btn-success" data-ng-disabled="error || incomplete" id="confirm" data-dismiss="modal">
                                         <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
                                     </button>
                                 </div>
@@ -507,19 +507,15 @@
                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                    <h4 class="modal-title" id="myModalLabel"> Eliminar usuario</h4>
                                  </div>
-                                 <div class="modal-body">
-                                 
-                                 Confirme que desea eliminar este usuario del sistema
-
-                                 
-                                 
+                                 <div class="modal-body">                                 
+                                 Confirme que desea eliminar este usuario del sistema 
                                  </div>
                                  <div class="modal-footer">
                                    <button data-dismiss="modal" class="btn btn-danger">
                                                     <span class="glyphicon glyphicon-remove"></span>
                                     </button>
 
-                                    <button data-dismiss="modal" class="btn btn-success" ng-click="deleteUser(user.id)" >
+                                    <button data-dismiss="modal" class="btn btn-success" id="confirm"  >
                                                     <span class="glyphicon glyphicon-ok"></span>
                                     </button>
                                    
@@ -552,7 +548,7 @@
 
    <!-- Javascript BARRA LOGIN-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+ 
 
 </body>
 </html>

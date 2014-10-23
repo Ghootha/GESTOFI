@@ -316,7 +316,7 @@
                                 <tbody>
                                 <tr data-ng-repeat="rol in roles | filter:search">
                                     <td >
-	                                    <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-warning" ng-click="editRole(rol.id)">
+	                                    <button class="btn btn-warning" ng-click="editRole(rol.id)">
 	                                      <span class="glyphicon glyphicon-pencil"></span>  Editar
 	                                    </button>                                        
                                     </td>
@@ -380,7 +380,7 @@
                                                  </div>
                                                  <div class="modal-footer">
                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                                   <button class="btn btn-success" data-ng-disabled="incomplete" data-ng-click"actualizarRole(rol.id)" >
+                                                   <button class="btn btn-success" data-ng-disabled="incomplete" id="confirm" data-dismiss="modal" >
                                                        <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
                                                    </button>
                                                  </div>

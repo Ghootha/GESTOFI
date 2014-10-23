@@ -39,6 +39,7 @@ app.controller("userController", function($scope) {
                     $scope.pApellido = $scope.users[i].pApellido;
                     $scope.sApellido = $scope.users[i].sApellido;
                     $scope.role = $scope.users[i].role;
+                    $scope.actualizarUser(id);
                 }
             } 
             
@@ -46,19 +47,39 @@ app.controller("userController", function($scope) {
     };
 
     $scope.deleteUser = function(id) {
-       for(var i = 0; i<$scope.users.length; i++) {           
-            if($scope.users[i].id === id) {
-               $scope.users.splice(i, 1);
-            }
-        }     
+        $('#Modal3').modal({ backdrop: false})
+        .one('click', '#confirm', function () {
+            for(var i = 0; i<$scope.users.length; i++) {           
+                if($scope.users[i].id === id) {
+                   $scope.users.splice(i, 1);
+                }
+            }    
+        });
     };
 
     $scope.actualizarUser = function(id) {
-        for(var i = 0; i<$scope.users.length; i++) {           
-            if($scope.users[i].id === id) {
-               //llamado: http.put(webservice/update/+"id"+)
-            }
-        }
+       $('#Modal').modal({ backdrop: false})
+        .one('click', '#confirm', function () { 
+             var objetoJSON;
+                for(var i = 0; i<$scope.users.length; i++) {           
+                    if($scope.users[i].id === id) {
+                           objetoJSON = {
+                            "cedula": $scope.users[i].ced,            
+                            "nombre": $scope.users[i].nombre,
+                            "pApellido": $scope.users[i].pApellido,
+                            "sApellido": $scope.users[i].sApellido,
+                            "role": $scope.users[i].role,
+
+                        };
+                        alert("manda put al servidor el user: "+$scope.users[i].nombre+$scope.users[i].pApellido+$scope.users[i].sApellido+" con ced: "+$scope.users[i].ced+" y Role "+$scope.users[i].role );
+                        // $http.put("webservice/Documento/update/"+id, objetoJSON).success(
+                        //         function(){
+                        //             $http.get("webservice/Documento")
+                        //                 .success(function(response) {$scope.users = response;});
+                        //          });
+                    }
+                }
+        }); 
         
     };
 
