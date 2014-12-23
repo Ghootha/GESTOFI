@@ -352,37 +352,8 @@
                                       <!--TERMIN BARRA DE CARGA-->
                                       <!-- Termina subida de archivo --> 
                                       <h3>Información Del Documento a Subir</h3>
-                                  <!--<div class="col-md-6 column">
-                                      <h3>
-                                      Seguridades Disponibles
-                                      </h3>
-                                      <div class="sideBySide">
-                                        <div class="left">
-                                          <ul class="source connected">
-                                            <li>Alta</li>
-                                            <li>Media</li>
-                                            <li>baja</li>
-                                            <li>Ninguna</li>       
-                                          </ul>
-                                        </div>                                        
-                                      </div>                                      
-                                  </div>
                                   
-                                  <div class="col-md-6 column">
-                                      <h3>
-                                      Clasificaciones Disponibles
-                                      </h3>
-                                      <div class="sideBySide">
-                                        <div class="left">
-                                          <ul class="source2 connected2">
-                                            <li>Investigación</li>
-                                            <li>Actas</li>
-                                            <li>Plan de Estudio</li>
-                                            <li>Otros</li>      
-                                          </ul>
-                                        </div>                                        
-                                      </div>                                      
-                                  </div>-->
+                            
                             </div>                                  
                                 <div class="row clearfix">
                                   <div class="col-md-6 column">
@@ -409,7 +380,7 @@
                                       </div>                                      
                                   </div>
 								  <div class="col-md-6 column">
-                                     <h3>Clasificación</h3> 
+                                     <h3>Tipo</h3> 
                                      <div>
                                        <div class="right">
                                             <ul class="target2 connected2"></ul>
@@ -418,7 +389,7 @@
 								 </div>
 								 <div class="col-md-6 column">
                                       <h3>
-                                      Clasificaciones Disponibles
+                                      Tipos Disponibles
                                       </h3>
                                       <div class="sideBySide">
                                         <div class="left">
@@ -426,30 +397,88 @@
                                             <li>Investigación</li>
                                             <li>Actas</li>
                                             <li>Plan de Estudio</li>
-                                            <li>Otros</li>      
+                                            <li>Otros</li>
+                                            <li>Formulacion De Proyecto</li>
+                                            <li>Minutas Anañisis de Oficios</li>
+                                            <li>Plan De Estudio</li>
+                                            <li>Descriptores De Programas</li>
+                                            <li>Malla Curricular</li>
+                                            <li>Oficios</li>
+                                            <li>Constancias</li>
+                                            <li>Memorandos</li>
+                                            <li>Circulares</li>
+                                            <li>Correos Electronicos</li>      
                                           </ul>
                                         </div>                                        
                                       </div>                                      
                                   </div>
-								 <div class="col-md-12 column">
+								 <div class="col-md-6 column">
                                      <h3>Rol</h3>
                                       <!-- INICIA boton replegable-->                                     
                                     <span class="css3-metro-dropdown">
                                     <select name="dropdown-1">
                                         <option value="0">Director</option>
                                         <option value="1">SubDirector</option>        
-                                        <option value="2">Asistente</option>
-                                        <option value="3">Profesor</option>
+                                        <option value="2">Asistente Administrativa</option>
+                                        <option value="3">Encargado de Maestría</option>
+                                        <option value="4">Secretaria</option>
+                                        <option value="5">Personal Academico</option>    
                                     </select>
                                 </span> 
                                 <hr>                                 
                                     <!-- TERMINA boton replegable-->
 
-                                      <button class="btn btn-" data-ng-disabled="error || incomplete">
-                                      <span class="glyphicon glyphicon-save"></span>  Guardar
-                                      </button>                                    
-                                  </div>                            
+                                      <button class="btn btn-success" ng-click="SubirDoc(doc.id)">
+                                                    <span class="glyphicon glyphicon-save"></span>  Guardar
+                                      </button>                                      
+                                  </div>   
+
+                                  <div class="col-md-6 column">
+                                     <h3>Clasificación</h3>
+                                      <!-- INICIA boton replegable-->                                     
+                                    <span class="css3-metro-dropdown">
+                                    <select name="dropdown-1">
+                                        <option value="0">Investigacion</option>
+                                        <option value="1">Estudiante</option>        
+                                        <option value="2">Papeleria</option>
+                                        <option value="3">Correos</option>                                         
+                                    </select>
+                                </span> 
+                                <hr>                                 
+                                    <!-- TERMINA boton replegable-->                                
+                                  </div>                           
                           </div>
+
+                           <div id="ModalSubir" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                 <div class="modal-dialog">
+                                   <div class="modal-content">
+
+                                     <div class="modal-header">
+                                        
+                                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                       <h4 class="modal-title" id="myModalLabel"> Subir documento</h4>
+                                     </div>
+                                     <div class="modal-body">                                                         
+                                     Confirme Que Desea Subir El/Los documento/s Al Repositorio
+                                     </div>
+                                     <div class="modal-footer">
+                                       <button data-dismiss="modal" class="btn btn-danger">
+                                                        <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+
+                                        <button data-dismiss="modal" class="btn btn-success" id="confirmSubir">
+                                                        <span class="glyphicon glyphicon-ok"></span>
+                                        </button>
+                                       
+                                     </div>
+
+                                   </div>
+                                 </div>
+                               </div>
+
+
+
+
                         </div>
                     </div>
                 </div>

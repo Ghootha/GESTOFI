@@ -29,6 +29,7 @@ app.controller("docController", function($scope, $http, $window) {
                     $scope.Role = $scope.docs[i].Role;
                     $scope.seguridad = $scope.docs[i].seguridad;     
                     $scope.tipo = $scope.docs[i].tipo; 
+                    $scope.clasificacion = $scope.docs[i].clasificacion; 
                     $scope.actualizaDoc(id);    
                 }
          }     
@@ -74,6 +75,34 @@ app.controller("docController", function($scope, $http, $window) {
         });
      };
 
+
+     $scope.SubirDoc = function(){
+        debugger;  
+     $('#Modal4').modal({ backdrop: false})
+        .one('click', '#confirm', function () {       
+        
+            var objetoJSON;    
+                   
+            objetoJSON = {
+                "nombre": "tes5",            
+                "Role": "Director",
+                "tipo": "asdasd",
+                "clasificacion": "Correo",
+                "fecha": "1//14/2014",
+                "codigo": "asdasd"
+            };
+            
+            $http.put("webservice/Documento/create", objetoJSON).success(
+             
+                    function(){
+                        $http.get("webservice/Documento")
+                            .success(function(response) {$scope.docs = response;});
+             });                    
+               
+           
+        }); 
+        
+    };
 
 
     $scope.$watch('fecha',function() {$scope.test();});

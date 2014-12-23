@@ -282,8 +282,26 @@
                 <div class="main">
                     <div class="container_12">
                         <div class="wrapper">
-                            <!--<div class="container">-->
-                                <div class="row">
+                            <!--<div class="container">-->                               
+                                <ul class="nav nav-tabs">
+                                      <li class="active"><a href="#home" data-toggle="tab">Investigaciones</a></li>
+                                      <li><a href="#estudiante" data-toggle="tab">Estudiantes</a> </li>
+                                      <li><a href="#papeleria" data-toggle="tab">Papeleria</a></li>
+                                      <li><a href="#correos" data-toggle="tab">Correos</a></li>
+                                </ul>
+    
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane active in" id="home">
+         <center>
+            
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Documentos De Investigaciones</h3>
+                </div>
+
+                <div class="panel-body">
+                <div class="row">
+                         <div class="row">
                                     <form role="form">
                                         <div class="col-lg-12">
 
@@ -293,14 +311,14 @@
                                                                                        
                                             <div class="form-group">
                                                 <div class="col-md-3">
-                                                    <input id="dp2" name="busqFecha" type="text" placeholder="fecha" class="form-control" value="" data-date-format="mm/dd/yy" ng-model="search.fecha">
+                                                    <input id="dp2" name="busqFecha" type="text" placeholder="Fecha" class="form-control" value="" data-date-format="mm/dd/yy" ng-model="search.fecha">
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <input id="busqNombre" name="busqNombre" type="text" placeholder="nombre" class="form-control " ng-model="search.nombre">
+                                                    <input id="busqNombre" name="busqNombre" type="text" placeholder="Nombre" class="form-control " ng-model="search.nombre">
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <input id="busqCod" name="busqCod" type="text" placeholder="código" class="form-control " ng-model="search.codigo">
+                                                    <input id="busqCod" name="busqCod" type="text" placeholder="Código" class="form-control " ng-model="search.codigo">
                                                 </div>                                               
                                             </div>
                                         </div>
@@ -316,7 +334,7 @@
                                             <th>Nombre</th>
                                             <th>Código</th>
                                             <th>Rol</th>
-                                            <th>Clasificación</th>
+                                            <th>Tipo</th>
                                             <th>Editar</th>
                                             <th>Actualizar</th>
                                             <th>Descargar</th>
@@ -324,7 +342,7 @@
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr data-ng-repeat="doc in docs | filter:search">
+                                        <tr data-ng-repeat="doc in docs | filter:search | filter:{clasificacion : 'Investigacion'}">
                                             <td>{{ doc.fecha  }}</td>
                                             <td>{{ doc.nombre }}</td>
                                             <td>{{ doc.codigo  }}</td>
@@ -355,6 +373,273 @@
                                       </tbody>
                                                                     <!--Finaliza Tabla-->
                                 </table>
+
+                </div>           
+
+          </center>
+        </div>
+<!-- Termina primer pestaña-->
+        <div class="tab-pane fade" id="estudiante">
+            <center>
+            
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Documentos De Estudiantes</h3>
+                </div>
+
+                <div class="panel-body">
+                <div class="row">
+                    <form role="form">
+                                        <div class="col-lg-12">
+
+                                            <div class ="form-group">
+                                                <h3 data-ng-show="edit">Buscar Documento:</h3>
+                                            </div>
+                                                                                       
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <input id="dp2" name="busqFecha" type="text" placeholder="Fecha" class="form-control" value="" data-date-format="mm/dd/yy" ng-model="search.fecha">
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <input id="busqNombre" name="busqNombre" type="text" placeholder="Nombre" class="form-control " ng-model="search.nombre">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input id="busqCod" name="busqCod" type="text" placeholder="Código" class="form-control " ng-model="search.codigo">
+                                                </div>                                               
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <hr>
+
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr class="info">
+                                            <th>Fecha</th>
+                                            <th>Nombre</th>
+                                            <th>Código</th>
+                                            <th>Rol</th>
+                                            <th>Tipo</th>
+                                            <th>Editar</th>
+                                            <th>Actualizar</th>
+                                            <th>Descargar</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr data-ng-repeat="doc in docs | filter:search | filter:{clasificacion : 'Estudiante'}">
+                                            <td>{{ doc.fecha  }}</td>
+                                            <td>{{ doc.nombre }}</td>
+                                            <td>{{ doc.codigo  }}</td>
+                                            <td>{{ doc.Role }}</td>
+                                            <td>{{ doc.tipo }}</td>
+                                            <td>
+                                                <button class="btn btn-warning" ng-click="editDoc(doc.id)">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                </button> 
+                                            </td>
+                                            <td>
+                                                <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-success" ng-click="actDoc(doc.id)">
+                                                    <span class="glyphicon glyphicon-refresh"></span>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-primary" ng-click="abrirDoc(doc.id)">
+                                                    <span class="glyphicon glyphicon-floppy-save"></span>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger" ng-click="eliminaDoc(doc.id)">
+                                                    <span class="glyphicon glyphicon-remove" ></span>
+                                                </button>  
+
+                                            </td>
+                                        </tr>
+                                      </tbody>
+                                                                    <!--Finaliza Tabla-->
+                                </table>
+                </div>           
+
+            </center>
+        </div>
+<!-- Termina segunda pestaña-->
+        <div class="tab-pane fade" id="papeleria">
+            <center>
+            
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Documentos De Papelería</h3>
+                </div>
+
+                <div class="panel-body">
+                <div class="row">
+                    <form role="form">
+                                        <div class="col-lg-12">
+
+                                            <div class ="form-group">
+                                                <h3 data-ng-show="edit">Buscar Documento:</h3>
+                                            </div>
+                                                                                       
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <input id="dp2" name="busqFecha" type="text" placeholder="Fecha" class="form-control" value="" data-date-format="mm/dd/yy" ng-model="search.fecha">
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <input id="busqNombre" name="busqNombre" type="text" placeholder="Nombre" class="form-control " ng-model="search.nombre">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input id="busqCod" name="busqCod" type="text" placeholder="Código" class="form-control " ng-model="search.codigo">
+                                                </div>                                               
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <hr>
+
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr class="info">
+                                            <th>Fecha</th>
+                                            <th>Nombre</th>
+                                            <th>Código</th>
+                                            <th>Rol</th>
+                                            <th>Tipo</th>
+                                            <th>Editar</th>
+                                            <th>Actualizar</th>
+                                            <th>Descargar</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr data-ng-repeat="doc in docs | filter:search | filter:{clasificacion : 'Papeleria'}">
+                                            <td>{{ doc.fecha  }}</td>
+                                            <td>{{ doc.nombre }}</td>
+                                            <td>{{ doc.codigo  }}</td>
+                                            <td>{{ doc.Role }}</td>
+                                            <td>{{ doc.tipo }}</td>
+                                            <td>
+                                                <button class="btn btn-warning" ng-click="editDoc(doc.id)">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                </button> 
+                                            </td>
+                                            <td>
+                                                <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-success" ng-click="actDoc(doc.id)">
+                                                    <span class="glyphicon glyphicon-refresh"></span>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-primary" ng-click="abrirDoc(doc.id)">
+                                                    <span class="glyphicon glyphicon-floppy-save"></span>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger" ng-click="eliminaDoc(doc.id)">
+                                                    <span class="glyphicon glyphicon-remove" ></span>
+                                                </button>  
+
+                                            </td>
+                                        </tr>
+                                      </tbody>
+                                                                    <!--Finaliza Tabla-->
+                                </table>
+                </div>           
+
+            </center>
+        </div>
+<!-- Termina tercer pestaña-->
+        <div class="tab-pane fade" id="correos">
+            <center>
+            
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Correos Electrónicos</h3>
+                </div>
+
+                <div class="panel-body">
+                <div class="row">
+                    <form role="form">
+                                        <div class="col-lg-12">
+
+                                            <div class ="form-group">
+                                                <h3 data-ng-show="edit">Buscar Documento:</h3>
+                                            </div>
+                                                                                       
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <input id="dp2" name="busqFecha" type="text" placeholder="Fecha" class="form-control" value="" data-date-format="mm/dd/yy" ng-model="search.fecha">
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <input id="busqNombre" name="busqNombre" type="text" placeholder="Nombre" class="form-control " ng-model="search.nombre">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input id="busqCod" name="busqCod" type="text" placeholder="Código" class="form-control " ng-model="search.codigo">
+                                                </div>                                               
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <hr>
+
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr class="info">
+                                            <th>Fecha</th>
+                                            <th>Nombre</th>
+                                            <th>Código</th>
+                                            <th>Rol</th>
+                                            <th>Tipo</th>
+                                            <th>Editar</th>
+                                            <th>Actualizar</th>
+                                            <th>Descargar</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr data-ng-repeat="doc in docs | filter:search | filter:{clasificacion : 'Correo'}">
+                                            <td>{{ doc.fecha  }}</td>
+                                            <td>{{ doc.nombre }}</td>
+                                            <td>{{ doc.codigo  }}</td>
+                                            <td>{{ doc.Role }}</td>
+                                            <td>{{ doc.tipo }}</td>
+                                            <td>
+                                                <button class="btn btn-warning" ng-click="editDoc(doc.id)">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                </button> 
+                                            </td>
+                                            <td>
+                                                <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-success" ng-click="actDoc(doc.id)">
+                                                    <span class="glyphicon glyphicon-refresh"></span>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-primary" ng-click="abrirDoc(doc.id)">
+                                                    <span class="glyphicon glyphicon-floppy-save"></span>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger" ng-click="eliminaDoc(doc.id)">
+                                                    <span class="glyphicon glyphicon-remove" ></span>
+                                                </button>  
+
+                                            </td>
+                                        </tr>
+                                      </tbody>
+                                                                    <!--Finaliza Tabla-->
+                                </table>
+                </div>           
+
+            </center>
+        </div>
+<!-- Termina cuarta pestaña-->
+
+</div><!-- Terminan los tabs-->
+
                             <!--</div>--> 
                         <!-- MODAL EDITAR-->
                                                     <div id="Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -382,11 +667,16 @@
                                                                     <label class="col-sm-2 control-label">Tipo:</label>
                                                                     <div class="col-sm-5">
                                                                        <select class="form-control" data-ng-model="tipo">
-                                                                            <option>Acta</option>
-                                                                            <option>Tipo 2</option>
-                                                                            <option>Tipo 3</option>
-                                                                            <option>Tipo 4</option>
-                                                                            <option>Tipo 5</option>
+                                                                            <option>Formulacion De Proyecto</option>
+                                                                            <option>Minutas Anañisis de Oficios</option>
+                                                                            <option>Plan De Estudio</option>
+                                                                            <option>Descriptores De Programas</option>
+                                                                            <option>Malla Curricular</option>
+                                                                            <option>Oficios</option>
+                                                                            <option>Constancias</option>
+                                                                            <option>Memorandos</option>
+                                                                            <option>Circulares</option>
+                                                                            <option>Correos Electronicos</option>
                                                                         </select>
                                                                     </div>                                            
                                                                 </div>
@@ -394,8 +684,7 @@
                                                                 <div class="form-group">
                                                                     <label class="col-sm-2 control-label">Seguridad:</label>
                                                                     <div class="col-sm-5">
-                                                                        <select class="form-control" data-ng-model="seguridad">
-                                                                            <option>Muy Alta</option>
+                                                                        <select class="form-control" data-ng-model="seguridad">    
                                                                             <option>Alta</option>
                                                                             <option>Media</option>
                                                                             <option>Baja</option>
@@ -409,10 +698,11 @@
                                                                     <div class="col-sm-5">
                                                                         <select class="form-control" data-ng-model="Role">
                                                                             <option>Director</option>
-                                                                            <option>Rol 2</option>
-                                                                            <option>Rol 3</option>
-                                                                            <option>Rol 4</option>
-                                                                            <option>Rol 5</option>
+                                                                            <option>Subdirector</option>
+                                                                            <option>Asistente Administrativa</option>
+                                                                            <option>Encargado de Maestría</option>
+                                                                            <option>Secretaria</option>
+                                                                            <option>Personal Academico</option>
                                                                         </select>
                                                                     </div>                                            
                                                                 </div>
