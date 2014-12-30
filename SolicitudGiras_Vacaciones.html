@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="app" >
 <head>
     <title>Giras/Vacaciones</title>
     <meta charset="utf-8">
@@ -15,8 +15,7 @@
     <link href="css/barralogin/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/barralogin/main.min.css" rel="stylesheet" type="text/css">   
     <!-- Termina CSS de BARRA LOGIN -->
-
-	<script src="js/dragAndDrop.js"></script>
+	
     <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/jquery-ui.min.js"></script>
     <script src="js/cufon-yui.js" type="text/javascript"></script>
@@ -24,7 +23,16 @@
     <script src="js/NewsGoth_400.font.js" type="text/javascript"></script>
     <script src="js/NewsGoth_700.font.js" type="text/javascript"></script>
     <script src="js/NewsGoth_Lt_BT_italic_400.font.js" type="text/javascript"></script>
-    <script src="js/Vegur_400.font.js" type="text/javascript"></script>    
+    <script src="js/Vegur_400.font.js" type="text/javascript"></script> 
+
+
+    <script src="js/dragAndDrop.js"></script>
+    <script src="js/uploader/angular.js"></script>
+    <script src="js/uploader/flow.js"></script>
+    <script src="js/uploader/fusty-flow.js"></script>
+    <script src="js/uploader/fusty-flow-factory.js"></script>
+    <script src="js/uploader/ng-flow.js"></script>
+    <script src="js/uploader/app.js"></script>   
   <!--[if lt IE 7]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -37,7 +45,7 @@
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
   <![endif]-->
 </head>
-<body >
+<body flow-prevent-drop flow-drag-enter="dropClass='drag-over'" flow-drag-leave="dropClass=''" >
   <div class="extra">
                     <!-- TOP BAR -->
         <div class="top-bar">
@@ -190,7 +198,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">
+                                                    <a href="webservice/logout">
                                                         <i class="fa fa-power-off"></i>
                                                         <span class="text">Cerrar sesión</span>
                                                     </a>
@@ -313,30 +321,55 @@
                             <h3>Subir Archivos</h3>
                             <!-- Empieza seccion de subida de archivo--> 
                             <div class="subeArchivo">                                 
-                                <form id="upload" action="index.html" method="POST" enctype="multipart/form-data">
-                                  <fieldset>                                            
-                                    <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
-                                    <div>
-                                      <label for="fileselect">Archivos a subir:</label>
-                                      <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
-                                      <div id="filedrag">o Arrastre los Archivos Aquí.</div>
-                                    </div>
+                                <section>
+                                    <div flow-init     flow-files-submitted="$flow.upload()">
+                                      <div class="drop" flow-drop ng-class="dropClass">
+                                        <span class="btn btn-default" flow-btn>Subir Archivo</span>
+                                        <span class="btn btn-default" flow-btn flow-directory ng-show="$flow.supportDirectory">Subir Folder</span>
+                                        <b> O </b>    
+                                        Arrastre Y Suelte Su Archivo Aquí
+                                      </div>
 
-                                    <div id="submitbutton">
-                                      <button type="submit">Subir Archivos</button>
-                                    </div>
-                                  </fieldset>
+                                      <br/>
 
-                                </form>
-                                <div id="messages">
-                                <p>Mensajes de Estado</p>
-                                </div>
-                                <!--BARRA DE CARGA-->
-                                <div class="progress">
-                                  <div class="progress-bar progress-bar-success progress-bar-striped active"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                                    <span class="sr-only">45% Complete</span>
-                                  </div>
-                                </div>
+                                      <div class="well">
+                                        <a class="btn btn-small btn-success" ng-click="$flow.resume()">Resumir Todo</a>
+                                        <a class="btn btn-small btn-warning" ng-click="$flow.pause()">Pausar Todo</a>
+                                        <a class="btn btn-small btn-danger" ng-click="$flow.cancel()">Cancelar Todo</a>
+                                        <span class="btn btn-primary active ">Tamaño Total: {{$flow.getSize()}}bytes</span>
+                                      </div>
+
+                                      <div>
+                                        <div ng-repeat="file in $flow.files" class="transfer-box">
+                                          {{file.relativePath}} ({{file.size}}bytes)
+                                          <div class="progress progress-striped" ng-class="{active: file.isUploading()}">
+                                            <div class="progress-bar" role="progressbar"
+                                                 aria-valuenow="{{file.progress() * 100}}"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100"
+                                                 ng-style="{width: (file.progress() * 100) + '%'}">
+                                              <span class="sr-only">{{file.progress()}}% Completado</span>
+                                            </div>
+                                          </div>
+                                          <div class="btn-group">
+                                            <a class="btn btn-xs btn-warning" ng-click="file.pause()" ng-show="!file.paused && file.isUploading()">
+                                              Pausar
+                                            </a>
+                                            <a class="btn btn-xs btn-warning" ng-click="file.resume()" ng-show="file.paused">
+                                              Resume
+                                            </a>
+                                            <a class="btn btn-xs btn-danger" ng-click="file.cancel()">
+                                              Cancel
+                                            </a>
+                                            <a class="btn btn-xs btn-info" ng-click="file.retry()" ng-show="file.error">
+                                              Retry
+                                            </a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                          </section>      
+                                        </div>
                               </div> 
                               <!--TERMIN BARRA DE CARGA-->
                               <!-- Termina subida de archivo --> 
@@ -360,12 +393,9 @@
     </footer>
   <script type="text/javascript"> Cufon.now(); </script>
   <!--Angular script-->
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
-  <script src="js/filedrag.js"></script> 
-
+  
     <!-- Javascript BARRA LOGIN-->
    <script type="text/javascript"src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>  
-  <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
 
   
 

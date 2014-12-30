@@ -52,7 +52,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dadbdc', end
   width:400px;
   margin:0 auto;
   margin-top:8px;
-  margin-bottom:2%;
+  margin-bottom:3%;
   transition:opacity 1s;
   -webkit-transition:opacity 1s;
 }
@@ -78,6 +78,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dadbdc', end
 form{
   background:#f0f0f0;
   padding:6% 4%;
+  margin-bottom: 2%;
 }
 
 input[type="text"],input[type="password"]{
@@ -106,4 +107,10 @@ input[type="submit"]{
 
 input[type="submit"]:hover{
   background:#005CB8;
+
+}
+
+h4{
+
+  color: #F80000 ;
 }
