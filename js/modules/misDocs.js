@@ -45,7 +45,8 @@ app.controller("docController", function($scope, $http, $window) {
                         "nombre": $scope.nombre,            
                         "Role": $scope.Role,
                         "tipo": $scope.tipo,
-                        "seguridad": $scope.seguridad
+                        "seguridad": $scope.seguridad,
+                        "clasificacion" : $scope.clasificacion
                     };
                     //alert("llamdo al server put: nombre "+$scope.nombre +"Role"+$scope.Role+" tipo "+$scope.tipo+"seguridad "+$scope.seguridad);
                     $http.put("webservice/Documento/update/"+id, objetoJSON).success(
@@ -77,17 +78,18 @@ app.controller("docController", function($scope, $http, $window) {
 
 
      $scope.SubirDoc = function(){
-        debugger;  
-     $('#Modal4').modal({ backdrop: false})
-        .one('click', '#confirm', function () {       
+       // debugger;  
+     $('#ModalSubir').modal({ backdrop: false})
+        .one('click', '#confirmSubir', function () {       
         
             var objetoJSON;    
                    
             objetoJSON = {
-                "nombre": "tes5",            
-                "Role": "Director",
-                "tipo": "asdasd",
-                "clasificacion": "Correo",
+                "nombre": "Doc de Prueba",            
+                "Role": $scope.Role,
+                "tipo": $scope.tipo,
+                "clasificacion": $scope.clasificacion,
+                "seguridad": $scope.seguridad,
                 "fecha": "1//14/2014",
                 "codigo": "asdasd"
             };

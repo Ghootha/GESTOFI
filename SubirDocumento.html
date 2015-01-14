@@ -1,39 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="app" >
+<html >
 <head>
     <title>Almacenar</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="css/StyleDragAndDrop.css" type="text/css" media="screen">    
-    <link rel="stylesheet" href="css/dragFile.css" type="text/css" media="screen">    
+    <link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">       
     <link rel="stylesheet" href="css/Combo.css" type="text/css" media="screen">    
     
     <!-- CSS de BARRA LOGIN -->
     <link href="css/barralogin/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="css/barralogin/main.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="css/uploader.css">   
+    <link href="css/barralogin/main.min.css" rel="stylesheet" type="text/css">      
     <!-- Termina CSS de BARRA LOGIN -->
 
     
-    <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
     <script src="js/cufon-yui.js" type="text/javascript"></script>
     <script src="js/cufon-replace.js" type="text/javascript"></script>
     <script src="js/NewsGoth_400.font.js" type="text/javascript"></script>
     <script src="js/NewsGoth_700.font.js" type="text/javascript"></script>
     <script src="js/NewsGoth_Lt_BT_italic_400.font.js" type="text/javascript"></script>
-    <script src="js/Vegur_400.font.js" type="text/javascript"></script> 
-    
-    <script src="js/dragAndDrop.js"></script>
-    <script src="js/uploader/angular.js"></script>
-    <script src="js/uploader/flow.js"></script>
-    <script src="js/uploader/fusty-flow.js"></script>
-    <script src="js/uploader/fusty-flow-factory.js"></script>
-    <script src="js/uploader/ng-flow.js"></script>
-    <script src="js/uploader/app.js"></script>
+    <script src="js/Vegur_400.font.js" type="text/javascript"></script>     
+     
 
   <!--[if lt IE 7]>
     <div style=' clear: both; text-align:center; position: relative;'>
@@ -47,7 +36,7 @@
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
   <![endif]-->
 </head>
-<body flow-prevent-drop flow-drag-enter="dropClass='drag-over'" flow-drag-leave="dropClass=''">
+<body data-ng-app="myAppDocs" data-ng-controller="docController">
   <div class="extra">
                     <!-- TOP BAR -->
         <div class="top-bar">
@@ -297,58 +286,14 @@
                                <h3>Subir Archivos</h3>
                                     <!-- Empieza seccion de subida de archivo--> 
                                    <div class="wrapper">
-      
-      <section>
 
+                                <form action="webservice/file/upload" enctype="multipart/form-data" method="post">
+                                <input type="text" name="title"><br>
+                                <input type="file" name="avatar" multiple="multiple"><br>
+                                <input type="submit" value="Upload">
+                                </form>        
 
-<div flow-init     flow-files-submitted="$flow.upload()">
-  <div class="drop" flow-drop ng-class="dropClass">
-    <span class="btn btn-default" flow-btn>Subir Archivo</span>
-    <span class="btn btn-default" flow-btn flow-directory ng-show="$flow.supportDirectory">Subir Folder</span>
-    <b> O </b>    
-    Arrastre Y Suelte Su Archivo Aquí
-  </div>
-
-  <br/>
-
-  <div class="well">
-    <a class="btn btn-small btn-success" ng-click="$flow.resume()">Resumir Todo</a>
-    <a class="btn btn-small btn-warning" ng-click="$flow.pause()">Pausar Todo</a>
-    <a class="btn btn-small btn-danger" ng-click="$flow.cancel()">Cancelar Todo</a>
-    <span class="btn btn-primary active ">Tamaño Total: {{$flow.getSize()}}bytes</span>
-  </div>
-
-  <div>
-    <div ng-repeat="file in $flow.files" class="transfer-box">
-      {{file.relativePath}} ({{file.size}}bytes)
-      <div class="progress progress-striped" ng-class="{active: file.isUploading()}">
-        <div class="progress-bar" role="progressbar"
-             aria-valuenow="{{file.progress() * 100}}"
-             aria-valuemin="0"
-             aria-valuemax="100"
-             ng-style="{width: (file.progress() * 100) + '%'}">
-          <span class="sr-only">{{file.progress()}}% Completado</span>
-        </div>
-      </div>
-      <div class="btn-group">
-        <a class="btn btn-xs btn-warning" ng-click="file.pause()" ng-show="!file.paused && file.isUploading()">
-          Pausar
-        </a>
-        <a class="btn btn-xs btn-warning" ng-click="file.resume()" ng-show="file.paused">
-          Resume
-        </a>
-        <a class="btn btn-xs btn-danger" ng-click="file.cancel()">
-          Cancel
-        </a>
-        <a class="btn btn-xs btn-info" ng-click="file.retry()" ng-show="file.error">
-          Retry
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-      </section>      
-    </div>
+                                    </div>
                                       <!--TERMIN BARRA DE CARGA-->
                                       <!-- Termina subida de archivo --> 
                                       <h3>Información Del Documento a Subir</h3>
@@ -356,92 +301,84 @@
                             
                             </div>                                  
                                 <div class="row clearfix">
-                                  <div class="col-md-6 column">
-                                    <h3>Seguridad</h3>    
-                                     <div>
-                                       <div class="right">
-                                          <ul class="target connected"></ul>
-                                        </div>
-                                     </div>
-								 </div>
+                                  
 								 <div class="col-md-6 column">
                                       <h3>
                                       Seguridades Disponibles
                                       </h3>
                                       <div class="sideBySide">
-                                        <div class="left">
-                                          <ul class="source connected">
-                                            <li>Alta</li>
-                                            <li>Media</li>
-                                            <li>baja</li>
-                                            <li>Ninguna</li>       
-                                          </ul>
+                                        <div class="left">  
+                                          <span class="css3-metro-dropdown">
+                                            <select class="form-control" data-ng-model="seguridad">
+                                                <option>Alta</option>
+                                                <option>Media</option>        
+                                                <option>Baja</option>
+                                                <option>Ninguna</option>                                                  
+                                            </select>
+                                        </span> 
                                         </div>                                        
                                       </div>                                      
                                   </div>
-								  <div class="col-md-6 column">
-                                     <h3>Tipo</h3> 
-                                     <div>
-                                       <div class="right">
-                                            <ul class="target2 connected2"></ul>
-                                       </div> 
-                                     </div>
-								 </div>
+								 
 								 <div class="col-md-6 column">
                                       <h3>
                                       Tipos Disponibles
                                       </h3>
                                       <div class="sideBySide">
-                                        <div class="left">
-                                          <ul class="source2 connected2">
-                                            <li>Investigación</li>
-                                            <li>Actas</li>
-                                            <li>Plan de Estudio</li>
-                                            <li>Otros</li>
-                                            <li>Formulacion De Proyecto</li>
-                                            <li>Minutas Anañisis de Oficios</li>
-                                            <li>Plan De Estudio</li>
-                                            <li>Descriptores De Programas</li>
-                                            <li>Malla Curricular</li>
-                                            <li>Oficios</li>
-                                            <li>Constancias</li>
-                                            <li>Memorandos</li>
-                                            <li>Circulares</li>
-                                            <li>Correos Electronicos</li>      
-                                          </ul>
+                                        <div class="left"> 
+                                          <span class="css3-metro-dropdown">
+                                                <select class="form-control" data-ng-model="tipo">
+                                                    <option>Investigación</option>
+                                                    <option>Actas</option>        
+                                                    <option>Plan de Estudio</option>
+                                                    <option>Formulacion De Proyecto</option>
+                                                    <option>Minutas Anañisis de Oficios</option>
+                                                    <option>Plan De Estudio</option>    
+                                                    <option>Descriptores De Programas</option> 
+                                                    <option>Malla Curricular</option>
+                                                    <option>Oficios</option>
+                                                    <option>Constancias</option>
+                                                    <option>Memorandos</option>
+                                                    <option>Circulares</option>
+                                                    <option>Correos Electronicos</option>
+                                                    <option>Otros</option>                                                    
+                                                </select>
+                                        </span> 
+
+
                                         </div>                                        
                                       </div>                                      
                                   </div>
 								 <div class="col-md-6 column">
-                                     <h3>Rol</h3>
+                                     <h3>Roles Disponibles</h3>
                                       <!-- INICIA boton replegable-->                                     
-                                    <span class="css3-metro-dropdown">
-                                    <select name="dropdown-1">
-                                        <option value="0">Director</option>
-                                        <option value="1">SubDirector</option>        
-                                        <option value="2">Asistente Administrativa</option>
-                                        <option value="3">Encargado de Maestría</option>
-                                        <option value="4">Secretaria</option>
-                                        <option value="5">Personal Academico</option>    
+                                <span class="css3-metro-dropdown">
+                                    <select class="form-control" data-ng-model="Role">
+                                        <option>Director</option>
+                                        <option>SubDirector</option>        
+                                        <option>Asistente Administrativa</option>
+                                        <option>Encargado de Maestría</option>
+                                        <option>Secretaria</option>
+                                        <option>Personal Academico</option>    
                                     </select>
                                 </span> 
                                 <hr>                                 
                                     <!-- TERMINA boton replegable-->
 
-                                      <button class="btn btn-success" ng-click="SubirDoc(doc.id)">
+                                      <button class="btn btn-success" ng-click="SubirDoc()">
                                                     <span class="glyphicon glyphicon-save"></span>  Guardar
                                       </button>                                      
                                   </div>   
 
                                   <div class="col-md-6 column">
-                                     <h3>Clasificación</h3>
+                                     <h3>Clasificaciones Disponibles</h3>
                                       <!-- INICIA boton replegable-->                                     
                                     <span class="css3-metro-dropdown">
-                                    <select name="dropdown-1">
-                                        <option value="0">Investigacion</option>
-                                        <option value="1">Estudiante</option>        
-                                        <option value="2">Papeleria</option>
-                                        <option value="3">Correos</option>                                         
+                                    <select class="form-control" data-ng-model="clasificacion">
+                                        <option>Investigacion</option>
+                                        <option>Estudiante</option>        
+                                        <option>Papeleria</option>
+                                        <option>Correo</option>                                         
                                     </select>
                                 </span> 
                                 <hr>                                 
@@ -495,7 +432,8 @@
     </footer>
   <script type="text/javascript"> Cufon.now(); </script>
   <!--Angular script-->
-   
+   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+   <script src= "js/modules/misDocs.js"></script>
   
    <!-- Javascript BARRA LOGIN-->
    <script type="text/javascript"src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>  
