@@ -287,11 +287,17 @@
                                     <!-- Empieza seccion de subida de archivo--> 
                                    <div class="wrapper">
 
-                                <form action="webservice/file/upload" enctype="multipart/form-data" method="post">
-                                <input type="text" name="title"><br>
-                                <input type="file" name="avatar" multiple="multiple"><br>
-                                <input type="submit" value="Upload">
-                                </form>        
+                                <form action="webservice/file/upload" enctype="multipart/form-data" method="POST">
+                                    <input type="text" name="title"><br>
+                                    <input type="file" name="avatar" multiple="multiple"><br>
+                                    <input type="submit" value="Upload">
+                                </form> 
+
+                                <!-- <div class="upLoader">
+                                    <input type="text" name="title" data-ng-model="title"><br>
+                                    <input type="file" name="avatar" multiple="multiple" ><br>
+                                    <input type="button" value="Upload" ng-click="SubirDocFisico()">
+                                </div>  -->    
 
                                     </div>
                                       <!--TERMIN BARRA DE CARGA-->

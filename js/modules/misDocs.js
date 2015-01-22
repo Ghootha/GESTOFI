@@ -79,32 +79,44 @@ app.controller("docController", function($scope, $http, $window) {
 
      $scope.SubirDoc = function(){
        // debugger;  
-     $('#ModalSubir').modal({ backdrop: false})
-        .one('click', '#confirmSubir', function () {       
-        
-            var objetoJSON;    
-                   
-            objetoJSON = {
-                "nombre": "Doc de Prueba",            
-                "Role": $scope.Role,
-                "tipo": $scope.tipo,
-                "clasificacion": $scope.clasificacion,
-                "seguridad": $scope.seguridad,
-                "fecha": "1//14/2014",
-                "codigo": "asdasd"
-            };
+         $('#ModalSubir').modal({ backdrop: false})
+            .one('click', '#confirmSubir', function () {       
             
-            $http.put("webservice/Documento/create", objetoJSON).success(
-             
-                    function(){
-                        $http.get("webservice/Documento")
-                            .success(function(response) {$scope.docs = response;});
-             });                    
-               
-           
-        }); 
-        
+                var objetoJSON;    
+                       
+                objetoJSON = {
+                    "nombre": "Doc de Prueba",            
+                    "Role": $scope.Role,
+                    "tipo": $scope.tipo,
+                    "clasificacion": $scope.clasificacion,
+                    "seguridad": $scope.seguridad,
+                    "fecha": "1//14/2014",
+                    "codigo": "asdasd"
+                };
+                
+                $http.put("webservice/Documento/create", objetoJSON).success(              
+                        function(){
+                            $http.get("webservice/Documento")
+                                .success(function(response) {$scope.docs = response;});
+                 });
+            
+        });
     };
+
+    /*$scope.SubirDocFisico = function(){
+            var objeto_JSON;    
+                       
+            objeto_JSON = {
+                "title": $scope.title,            
+                "avatar": $scope.avatar
+            };
+
+            $http({  method: 'POST', url: 'webservice/file/upload', headers: {enctype:'multipart/form-data'}  }, objeto_JSON).success(function(response){
+                alert("se subio doc: " + $scope.title +" " + $scope.avatar);
+
+            }); 
+
+    }*/
 
 
     $scope.$watch('fecha',function() {$scope.test();});
