@@ -11,36 +11,35 @@
 
 </head>
 
-<body>
+<body data-ng-app="myAppAutentificacion" data-ng-controller="autentificacionController">
 
-<div id="titulo"> 
-	<center> <img src="images/re4.png"> </center>
-	<center> <img src="images/gestofi.PNG"> </center>
-</div>
-
-
-
-<div id="login">
-  <div id="triangle"></div>
-  <h1>Ingrese la Siguiente Información</h1>
- <!-- <form action="paginaPrincipal.html">
-    <input type="text" placeholder="username" autofocus/>
-    <input type="password" placeholder="Password" />
-    <input type="submit" value="Log in" />
-  </form>
-</div> -->
-
-<form role="form" action="webservice/auth/local/register" method="post">
-  <input type="text" name="username" placeholder="Usuario">
-  <input type="text" name="email" placeholder="Correo Electrónico">
-  <input type="password" name="password" placeholder="Contraseña">
-  <input type="submit" value="Confirmar" />  
-</form>
+        <div id="titulo"> 
+        	<center> <img src="images/re4.png"> </center>
+        	<center> <img src="images/gestofi.PNG"> </center>
+        </div>
 
 
+        <div id="login">
+          <div id="triangle"></div>
+          <h1>Ingrese la Siguiente Información</h1>
+         
 
-  <!--Angular script-->
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+        <div class="cuadroDatos">
+          <input type="text" name="username" data-ng-model="username" placeholder="Usuario">
+          <input type="text" name="email" data-ng-model="email" placeholder="Correo Electrónico">
+          <input type="password" name="password" data-ng-model="password" placeholder="Contraseña">
+          <input type="button" value="Confirmar" ng-click="registrar()"/>  
+        </div>
+
+
+        <h4 ng-show="mensajeErrorRegistro">Error! Usuario o Correo en Uso</h4> 
+
+
+        <!--Angular script-->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+        <script src= "js/modules/miAutentificador.js"></script>
+
+        <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
 
 </body>
 

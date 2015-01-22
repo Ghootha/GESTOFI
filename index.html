@@ -11,36 +11,37 @@
 
 </head>
 
-<body>
+<body data-ng-app="myAppAutentificacion" data-ng-controller="autentificacionController">
 
-<div id="titulo"> 
-	<center> <img src="images/re4.png"> </center>
-	<center> <img src="images/gestofi.png"> </center>
-</div>
+        <div id="titulo"> 
+        	<center> <img src="images/re4.png"> </center>
+        	<center> <img src="images/gestofi.png"> </center>
+        </div>
 
 
 
-<div id="login">
-  <div id="triangle"></div>
-  <h1>Loguearse</h1>
- <!-- <form action="paginaPrincipal.html">
-    <input type="text" placeholder="usuario" autofocus/>
-    <input type="password" placeholder="constraseña" />
-    <input type="submit" value="Ingresar" />
-  </form>
-</div> -->
+        <div id="login">
+        <div id="triangle"></div>
+        <h1>Autentificación</h1>
 
-<form role="form" action="webservice/auth/local" method="post">
-  <input type="text" name="identifier" placeholder="Usuario o Correo Electrónico">
-  <input type="password" name="password" placeholder="Password">
-  <input type="submit" value="Ingresar" />  
-</form>
-<a href="Registrar.html" class="" >¿No tiene Cuenta? Desea Registrarse</a>
 
-  
-  <!--Angular script-->
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
 
+        <div class="cuadroDatos">
+          <input type="text" name="identifier" data-ng-model="identifier" placeholder="Usuario o Correo Electrónico">
+          <input type="password" name="password" data-ng-model="password" placeholder="Password"> 
+          <input type="button" value="Ingresar" ng-click="loguear()" /> 
+        </div> 
+
+        <h4 ng-show="mensajeError">Error! Usuario o Contraseña Incorrecta</h4>
+        <a href="Registrar.html" class="" >¿No tiene Cuenta? Desea Registrarse</a>
+
+          
+          <!--Angular script-->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+        <script src= "js/modules/miAutentificador.js"></script>
+
+        <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+        
 </body>
 
 </html>
