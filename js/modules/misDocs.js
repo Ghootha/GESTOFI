@@ -1,7 +1,7 @@
 
-var app = angular.module("myAppDocs", []);
+var app = angular.module("myAppDocs", ['ngRoute', 'angularFileUpload']);
 
-app.controller("docController", function($scope, $http, $window) {
+app.controller("docController", function($scope, $upload, $http, $window) {
 
 
     $http.get("webservice/Documento")
@@ -117,6 +117,30 @@ app.controller("docController", function($scope, $http, $window) {
             }); 
 
     }*/
+
+    $scope.onFileSelect = function($files) {   
+    var file = $files[0];             
+                $scope.upload = $upload.upload({
+                    url: 'webservice/file/upload',
+                    data: {title: 'prueba', documento: file},                   
+                    file: file
+                }).progress( this.progress)
+                .success(this.onSuccessLoadFile)
+                .error(function(argResponse){
+                    ErrorManagerService.displayError(argResponse);
+                });
+                //.then(success, error, progress);
+    };
+  
+    $scope.onSuccessLoadFile = function(argResponse, status, headers, config){
+            //$location.path('/review/' + argResponse.content.id);
+            alert("archivo subido con exito");
+            //this.subirDoc;
+        };
+
+    $scope.progress = function(evt){
+        console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+    };
 
 
     $scope.$watch('fecha',function() {$scope.test();});

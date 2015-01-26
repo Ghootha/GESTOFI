@@ -33,5 +33,12 @@ app.controller("CorrespondenciaController", function($scope) {
     $scope.$watch('asunto',function() {$scope.test();});
     $scope.$watch('fecha', function() {$scope.test();});
 
+     $scope.test = function() {        
+        if ($scope.edit && (!$scope.nombre.length || !$scope.asunto.length ||
+            !$scope.fecha.length)) {
+            $scope.incomplete = true;
+        }else{ $scope.incomplete = false; }
+    };
+
 });
 
