@@ -2,7 +2,7 @@
 article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {display:block}
 mark, rp, rt, ruby, summary, time {display:inline}
 
-#Modal, #Modal2, #Modal3, #Modal4 { position: absolute; }
+#Modal, #Modal2, #Modal3, #Modal4, #ModalSubir { position: absolute; }
 
 .textAreaSolicitud{width:570px; height:350px; max-width:570px; max-height:350px; }
 .textAreaRol{width:350px; height:350px; max-width:350px; max-height:90px; }

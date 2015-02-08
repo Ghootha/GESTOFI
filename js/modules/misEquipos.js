@@ -16,9 +16,27 @@ $scope.error = false;
 $scope.incomplete = false; 
 
 
-$scope.apartarEquipo = function(id) {
- 
+$scope.apartarEquipo = function(idEquipo) {
+ if(validacionInputs()){
+    a=idEquipo+'usuarioID'+document.getElementById("i-Fecha").value+document.getElementById("i-HI").value+document.getElementById("i-HF").value;
+    
+    //aqui envio datos a la base a tabla "reserva"
+    window.alert(a);
+    document.getElementById("i-Fecha").value="";
+    document.getElementById("i-HI").value="";
+    document.getElementById("i-HF").value="";
+  }
+  else 
+    window.alert("Existen espacios vacios");
 };
+
+function validacionInputs(){
+    if(document.getElementById("i-Fecha").value === "" || document.getElementById("i-HI").value === "" || document.getElementById("i-HF").value === "")
+      return false;
+    else
+      return true;
+    
+}
 
 $scope.$watch('nombre',function() {$scope.test();});
 $scope.$watch('codigo', function() {$scope.test();});
