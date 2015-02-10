@@ -6,6 +6,7 @@ app.controller("docController", function($scope, $upload, $http, $window) {
 
     $http.get("webservice/Documento")
         .success(function(response) {$scope.docs = response;});
+     
 
 
      $scope.abrirDoc = function(id) {
@@ -80,7 +81,17 @@ app.controller("docController", function($scope, $upload, $http, $window) {
      $scope.SubirDoc = function(){
        // debugger;  
          $('#ModalSubir').modal({ backdrop: false})
-            .one('click', '#confirmSubir', function () {       
+            .one('click', '#confirmSubir', function () { 
+
+         
+
+            /*$http.get("webservice/get_user")
+            .success(function(response) { $scope.$apply($scope.user= response.user);
+                alert("dueño: "+ $scope.user);
+
+            });*/
+            
+            
             
                 var objetoJSON;    
                        
@@ -90,7 +101,7 @@ app.controller("docController", function($scope, $upload, $http, $window) {
                     "tipo": $scope.tipo,
                     "clasificacion": $scope.clasificacion,
                     "seguridad": $scope.seguridad,
-                    "fecha": "1//14/2014",
+                    "duenno" : $scope.user,
                     "codigo": "asdasd"
                 };
                 
@@ -103,20 +114,7 @@ app.controller("docController", function($scope, $upload, $http, $window) {
         });
     };
 
-    /*$scope.SubirDocFisico = function(){
-            var objeto_JSON;    
-                       
-            objeto_JSON = {
-                "title": $scope.title,            
-                "avatar": $scope.avatar
-            };
-
-            $http({  method: 'POST', url: 'webservice/file/upload', headers: {enctype:'multipart/form-data'}  }, objeto_JSON).success(function(response){
-                alert("se subio doc: " + $scope.title +" " + $scope.avatar);
-
-            }); 
-
-    }*/
+    
 
     $scope.onFileSelect = function($files) {   
     var file = $files[0];             
@@ -142,7 +140,7 @@ app.controller("docController", function($scope, $upload, $http, $window) {
         console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
     };
 
-
+    
     $scope.$watch('fecha',function() {$scope.test();});
     $scope.$watch('nombre',function() {$scope.test();});
     $scope.$watch('codigo', function() {$scope.test();});    
@@ -163,3 +161,19 @@ app.controller("docController", function($scope, $upload, $http, $window) {
 
 });
 
+
+
+/*$scope.SubirDocFisico = function(){
+            var objeto_JSON;    
+                       
+            objeto_JSON = {
+                "title": $scope.title,            
+                "avatar": $scope.avatar
+            };
+
+            $http({  method: 'POST', url: 'webservice/file/upload', headers: {enctype:'multipart/form-data'}  }, objeto_JSON).success(function(response){
+                alert("se subio doc: " + $scope.title +" " + $scope.avatar);
+
+            }); 
+
+    }*/

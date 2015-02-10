@@ -1,0 +1,2 @@
+Voy a subir el app sails aqui, para estar constanmente actualizandola, luego nada mas copian 
+y pegan los archivos .js para que no se les joda la que ya tienen montada.

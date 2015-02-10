@@ -46,10 +46,25 @@ $scope.mensajeErrorRegistro=false;
                 
                 if(response.status == 200){ //comprobacion de estatus, devuelve 200 si se realizo el registro/logueo
                     $scope = $scope || angular.element(document).scope();
-                    if(forceReload || $scope.$$phase) {
-                        window.location = "paginaPrincipal.html";
+                    if(forceReload || $scope.$$phase) {                         
+                         window.location = "paginaPrincipal.html";
+                       
                     }
                 }
+
+            }).error(function(response, status, header, config){  
+                if(response.status == 300){ //estatus de error para usuario en uso
+                    $scope.mensajeErrorRegistro=true;
+                }                 
+                    
+            });
+    };
+
+    $scope.getUserLogged = function(){                 
+
+            $http.post("webservice/auth/local/get_user").success(function(response, forceReload){                    
+                
+              alert("USUARIO CONECTADO: " + response.user);
 
             }).error(function(response, status, header, config){  
                 if(response.status == 300){ //estatus de error para usuario en uso
