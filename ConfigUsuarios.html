@@ -337,9 +337,14 @@
                     <!-- -END TABLA -->
 
                     <hr>
-                    <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-success" data-ng-click="editUser('new')">
+                    <button class="btn btn-success" ng-click="registrar()">
                         <span class="glyphicon glyphicon-user"></span>  Crear Nuevo Usuario
                     </button> 
+                    <br>                    
+                    <h4 ng-show="mensajeErrorRegistro">Error! Usuario o Correo en Uso</h4>
+                    <br> 
+                    <h4 ng-show="mensajeExitoRegistro">Usuario registrado con exito</h4> 
+
                     <hr>
                     <hr>
                     <hr>
@@ -411,7 +416,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                    <button class="btn btn-success" data-ng-disabled="error || incomplete" id="confirm" data-dismiss="modal">
+                                    <button class="btn btn-success" data-ng-disabled="error || incomplete" id="confirm" ng-click="actualizarUser(user.id)" data-dismiss="modal">
                                         <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
                                     </button>
                                 </div>
@@ -488,8 +493,8 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                    <button class="btn btn-success" data-ng-disabled="error || incomplete">
-                                        <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
+                                    <button class="btn btn-success" data-ng-disabled="error || incomplete" id="confirmUser" data-dismiss="modal">
+                                        <span class="glyphicon glyphicon-save" ></span>  Registrar Usuario
                                     </button>
                                 </div>
 

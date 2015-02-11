@@ -19,6 +19,8 @@ app.controller("userController", function($scope) {
     $scope.edit = true;
     $scope.error = false;
     $scope.incomplete = false;
+    $scope.mensajeErrorRegistro=false;
+    $scope.mensajeExitoRegistro=false;
 
     $scope.editUser = function(id) {
         if (id == 'new') {
@@ -81,6 +83,41 @@ app.controller("userController", function($scope) {
                 }
         }); 
         
+    };
+
+    $scope.registrar = function(){
+        
+         $('#Modal2').modal({ backdrop: false})
+        .one('click', '#confirmUser', function () {
+
+            var objetoJSON;    
+                                    
+            objetoJSON = {
+                "username"  : $scope.username,    
+                "email"     : $scope.email,        
+                "password"  : $scope.passw1,
+                "cedula"    : $scope.ced,
+                "pApellido" : $scope.pApellido,
+                "sApellido" : $scope.sApellido,
+                "role"      : $scope.role
+            };    
+            
+
+            $http.post("webservice/auth/local/register", objetoJSON).success(function(response, forceReload){                    
+                
+                if(response.status == 200){ //comprobacion de estatus, devuelve 200 si se realizo el registro/logueo
+                     $scope.$apply($scope.mensajeExitoRegistro=true);
+                }
+
+            }).error(function(response, status, header, config){  
+                if(response.status == 300){ //estatus de error para usuario en uso
+                    $scope.$apply($scope.mensajeErrorRegistro=true);
+                }                 
+                    
+            });
+        });
+            
+            
     };
 
     $scope.$watch('passw1',function() {$scope.test();});
