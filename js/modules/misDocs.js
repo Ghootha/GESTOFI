@@ -100,7 +100,7 @@ app.controller("docController", function($scope, $upload, $http, $window) {
                     "Role": $scope.Role,
                     "tipo": $scope.tipo,
                     "clasificacion": $scope.clasificacion,
-                    "seguridad": $scope.seguridad,
+                    "seguridad": $scope.seguridad,  //hay que asignarla cuando se selecciona el tipo
                     "duenno" : $scope.user,
                     "codigo": "asdasd"
                 };
