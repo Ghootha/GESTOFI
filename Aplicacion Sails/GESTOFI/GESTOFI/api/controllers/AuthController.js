@@ -208,7 +208,7 @@ var AuthController = {
   },
 
   get_user: function(req, res) {
-    res.json({user:req.user.username});
+    res.json({user:req.user});
   }
 };
 

@@ -10,7 +10,7 @@ $scope.mensajeErrorRegistro=false;
             var objetoJSON;    
             
             objetoJSON = {
-                "identifier": $scope.identifier,            
+                "identifier": $scope.identifier,          
                 "password": $scope.password
             };          
             
@@ -34,13 +34,16 @@ $scope.mensajeErrorRegistro=false;
 
     $scope.registrar = function(){
             var objetoJSON;    
-            
+            debugger;
             objetoJSON = {
-                "username": $scope.username,    
-                "email": $scope.email,        
-                "password": $scope.password
+                "username"  : $scope.username,                
+                "fullname"  : $scope.fullname,    
+                "email"     : $scope.email,     
+                "role"      : $scope.role,    
+                "password"  : $scope.password
             };          
             
+            alert(objetoJSON.fullname + " " + objetoJSON.role);
 
             $http.post("webservice/auth/local/register", objetoJSON).success(function(response, forceReload){                    
                 
@@ -48,6 +51,7 @@ $scope.mensajeErrorRegistro=false;
                     $scope = $scope || angular.element(document).scope();
                     if(forceReload || $scope.$$phase) {                         
                          window.location = "paginaPrincipal.html";
+                         //getUserLogged();
                        
                     }
                 }

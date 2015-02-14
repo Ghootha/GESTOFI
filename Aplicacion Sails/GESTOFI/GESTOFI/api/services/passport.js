@@ -89,6 +89,14 @@ passport.connect = function (req, query, profile, next) {
     user.username = profile.username;
   }
 
+  if (profile.hasOwnProperty('fullname')) {
+    user.fullname = profile.fullname;
+  }
+
+  if (profile.hasOwnProperty('role')) {
+    user.role = profile.role;
+  }
+
   // If neither an email or a username was available in the profile, we don't
   // have a way of identifying the user in the future. Throw an error and let
   // whoever's next in the line take care of it.

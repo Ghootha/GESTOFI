@@ -170,7 +170,7 @@
                                     <div class="logged-user">
                                         <div class="btn-group">
                                             <a class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-                                                <span class="name">Carlos Cascante</span>
+                                                <span class="name" data-ng-model="userLogged">{{ userLogged }}</span>
                                                 <span class="caret"></span>
                                             </a>
                                             <ul class="dropdown-menu" role="menu">
@@ -387,6 +387,11 @@
                                     <!-- TERMINA boton replegable-->                                
                                   </div>                           
                           </div>
+                          <br>
+                          <br>
+                          <h4 ng-show="mensajeExitoSubidaDoc">Documento Subido con exito</h4>
+                          <h4 ng-show="mensajeFallidoSubidaDoc">Subida Fallida del Documento</h4>
+
 
                             <!-- MODAL-SUBIR  -->
                            <div id="ModalSubir" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

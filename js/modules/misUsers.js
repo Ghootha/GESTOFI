@@ -93,15 +93,12 @@ app.controller("userController", function($scope) {
             var objetoJSON;    
                                     
             objetoJSON = {
-                "username"  : $scope.username,    
-                "email"     : $scope.email,        
-                "password"  : $scope.passw1,
-                "cedula"    : $scope.ced,
-                "pApellido" : $scope.pApellido,
-                "sApellido" : $scope.sApellido,
-                "role"      : $scope.role
+                "username"  : $scope.username,   
+                "fullname"  : $scope.fullname,
+                "email"     : $scope.email,
+                "role"      : $scope.role,   
+                "password"  : $scope.passw1
             };    
-            
 
             $http.post("webservice/auth/local/register", objetoJSON).success(function(response, forceReload){                    
                 

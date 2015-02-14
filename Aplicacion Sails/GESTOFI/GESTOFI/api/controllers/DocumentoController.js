@@ -39,7 +39,7 @@ module.exports = {
 		        });
 		  }
 
-    }
+    
 
     if( roleLogged  == 'Secretaria' || roleLogged  == 'Recepcionista' || roleLogged  == 'Concerje' ){  
 

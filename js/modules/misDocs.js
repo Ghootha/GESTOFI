@@ -1,13 +1,24 @@
 
 var app = angular.module("myAppDocs", ['ngRoute', 'angularFileUpload']);
 
-app.controller("docController", function($scope, $upload, $http, $window) {
+app.controller("docController", function($scope, $upload, $http, $timeout, $window) {
 
 
-    $http.get("webservice/Documento")
+    $http.get("webservice/findDocByRole")
         .success(function(response) {$scope.docs = response;});
+
+    $http.get("webservice/get_user").success(function(response){
+            $scope.user= response.user;
+            $scope.userLogged=  $scope.user.fullname;            
+            }).error(function(response, status, header, config){  
+                if(response.status == 300){ //estatus de error para usuario en uso
+                    $scope.mensajeErrorRegistro=true;
+                }   
+            });
      
 
+    $scope.mensajeExitoSubidaDoc=false;
+    $scope.mensajeFallidoSubidaDoc=false;
 
      $scope.abrirDoc = function(id) {
         for(var i = 0; i<$scope.docs.length; i++) {
@@ -81,16 +92,7 @@ app.controller("docController", function($scope, $upload, $http, $window) {
      $scope.SubirDoc = function(){
        // debugger;  
          $('#ModalSubir').modal({ backdrop: false})
-            .one('click', '#confirmSubir', function () { 
-
-         
-
-            /*$http.get("webservice/get_user")
-            .success(function(response) { $scope.$apply($scope.user= response.user);
-                alert("dueño: "+ $scope.user);
-
-            });*/
-            
+            .one('click', '#confirmSubir', function () {            
             
             
                 var objetoJSON;    
@@ -101,14 +103,18 @@ app.controller("docController", function($scope, $upload, $http, $window) {
                     "tipo": $scope.tipo,
                     "clasificacion": $scope.clasificacion,
                     "seguridad": $scope.seguridad,  //hay que asignarla cuando se selecciona el tipo
-                    "duenno" : $scope.user,
+                    "duenno" : $scope.user.username,
                     "codigo": "asdasd"
                 };
                 
-                $http.put("webservice/Documento/create", objetoJSON).success(              
-                        function(){
-                            $http.get("webservice/Documento")
-                                .success(function(response) {$scope.docs = response;});
+                $http.put("webservice/Documento/create", objetoJSON).success(function(response){
+                        $timeout(function(){
+                            $scope.mensajeExitoSubidaDoc=true;
+                        });                        
+                 }).error(function(response, status, header, config){  
+                        $timeout(function(){
+                            $scope.mensajeFallidoSubidaDoc=true; 
+                        });                          
                  });
             
         });
@@ -117,11 +123,11 @@ app.controller("docController", function($scope, $upload, $http, $window) {
     
 
     $scope.onFileSelect = function($files) {   
-    var file = $files[0];             
+   //var file = $files[];             
                 $scope.upload = $upload.upload({
                     url: 'webservice/file/upload',
-                    data: {title: 'prueba', documento: file},                   
-                    file: file
+                    data: {title: 'prueba', documento: $files[0]},                   
+                    file: $files
                 }).progress( this.progress)
                 .success(this.onSuccessLoadFile)
                 .error(function(argResponse){
@@ -140,7 +146,8 @@ app.controller("docController", function($scope, $upload, $http, $window) {
         console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
     };
 
-    
+
+
     $scope.$watch('fecha',function() {$scope.test();});
     $scope.$watch('nombre',function() {$scope.test();});
     $scope.$watch('codigo', function() {$scope.test();});    
