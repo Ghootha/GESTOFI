@@ -1,7 +1,7 @@
 
 var app = angular.module("myAppDocs", ['ngRoute', 'angularFileUpload']);
 
-app.controller("docController", function($scope, $upload, $http, $timeout, $window) {
+app.controller("docController", function($scope, $upload, $http, $timeout, $location, $window) {
 
 
     $http.get("webservice/findDocByRole")
@@ -136,10 +136,9 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $wind
                 //.then(success, error, progress);
     };
   
-    $scope.onSuccessLoadFile = function(argResponse, status, headers, config){
-            //$location.path('/review/' + argResponse.content.id);
-            alert("archivo subido con exito");
-            //this.subirDoc;
+    $scope.onSuccessLoadFile = function(response){           
+            alert("json" + response.files[0].fd); 
+            
         };
 
     $scope.progress = function(evt){
