@@ -33,6 +33,10 @@ module.exports = {
       descripcion:{
           type:'string',
           required:true
+      },
+      codigo:{
+          type:'string',
+          required:true
       }
 
   }

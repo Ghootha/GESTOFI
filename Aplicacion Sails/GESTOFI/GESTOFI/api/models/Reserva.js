@@ -8,7 +8,7 @@
 module.exports = {
     autoCreatedAt: false,
     autoUpdatedAt: false,
-    autoPK:false,
+    
 
   attributes: {
       id: {
@@ -27,11 +27,11 @@ module.exports = {
           on: 'id'
       },
       horaInicio:{
-          type:'datetime',
+          type:'string',
           required:true
       },
       horaEntrega:{
-          type:'datetime',
+          type:'string',
           required:true
       },
       fecha:{

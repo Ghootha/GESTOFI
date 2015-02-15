@@ -1,14 +1,12 @@
 var app = angular.module("myAppAulas", []);
 
-app.controller("aulaController", function($scope) {
+app.controller("aulaController", function($scope, $http) {
 
 $scope.nombre= '';
 
-$scope.aulas = [
-{id:1, nombre:'Aula 1'},
-{id:2, nombre:'Aula 2'},
-{id:3, nombre:'Aula 3'}
-];
+$http.get("webservice/findReservablebyAula")
+        .success(function(response) {$scope.aulas = response;});
+
 $scope.edit = true;
 $scope.error = false;
 $scope.incomplete = false; 
@@ -17,13 +15,13 @@ $scope.incomplete = false;
 $scope.apartarAula = function(idAula) {
   
   if(validacionInputs()){
-    a=idAula+'usuarioID'+document.getElementById("i-Fecha").value+document.getElementById("i-HI").value+document.getElementById("i-HF").value;
+    a=idAula+'usuarioID'+$scope.fecha+$scope.horaInicio+$scope.horaFinal;
     
     //aqui envio datos a la base a tabla "reserva"
     window.alert(a);
-    document.getElementById("i-Fecha").value="";
-    document.getElementById("i-HI").value="";
-    document.getElementById("i-HF").value="";
+    $scope.horaInicio="";
+    $scope.horaFinal="";
+    $scope.fecha="";
   }
   else 
     window.alert("Existen espacios vacios");
@@ -40,17 +38,7 @@ function validacionInputs(){
 $scope.$watch('nombre',function() {$scope.test();});
 
 $scope.test = function() {
-  // if ($scope.passw1 !== $scope.passw2) {
-  //   $scope.error = true;
-  //   } else {
-  //   $scope.error = false;
-  // }
-  // $scope.incomplete = false;
-  // if ($scope.edit && (!$scope.fecha.length ||
-  // !$scope.codigo.length || !$scope.rol.length ||
-  // !$scope.passw1.length || !$scope.passw2.length)) {
-  //      $scope.incomplete = true;
-  // }
+  
 };
 
 });
