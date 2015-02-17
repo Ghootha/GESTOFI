@@ -46,6 +46,7 @@ module.exports.routes = {
   'get /register': 'AuthController.register',
   'get /get_user': 'AuthController.get_user',
   'get /findDocByRole': 'DocumentoController.findDocByRole',
+  'get /findTipoDocByRole': 'TipoDocumentoController.findTipoDocByRole',
   'get /findReservablebyAula' : 'ReservableController.findReservablebyAula',
   'get /findReservablebyEquipo' : 'ReservableController.findReservablebyEquipo',
 

@@ -5,7 +5,11 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
 
 
     $http.get("webservice/findDocByRole")
-        .success(function(response) {$scope.docs = response;});
+        .success(function(response) {$scope.docs = response;}); //Filtra documentos por role, solo muestra los documentos uqe tienen una seguirdad que el role puede manejar
+
+    $http.get("webservice/findTipoDocByRole") //SE usa para cargar el combobox de tipso de documentos, dependiendo del role no muestra tipos que no puede crear
+        .success(function(response) {$scope.tiposDocumento = response;});
+
 
     $http.get("webservice/get_user").success(function(response){
             $scope.user= response.user;
@@ -89,22 +93,25 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
      };
 
 
-     $scope.SubirDoc = function(){
+     $scope.SubirDoc = function(dir, filename){
        // debugger;  
          $('#ModalSubir').modal({ backdrop: false})
             .one('click', '#confirmSubir', function () {            
             
+                $scope.getClasificacionDoc();
+                $scope.getSeguridadDoc();
             
                 var objetoJSON;    
                        
                 objetoJSON = {
-                    "nombre": "Doc de Prueba",            
-                    "Role": $scope.Role,
-                    "tipo": $scope.tipo,
+                    "nombre": filename,            
+                    "Role": $scope.user.role,
+                    "tipo": $scope.tipo.nombre,
                     "clasificacion": $scope.clasificacion,
                     "seguridad": $scope.seguridad,  //hay que asignarla cuando se selecciona el tipo
                     "duenno" : $scope.user.username,
-                    "codigo": "asdasd"
+                    "ruta" : dir, 
+                    "codigo": $scope.codigo
                 };
                 
                 $http.put("webservice/Documento/create", objetoJSON).success(function(response){
@@ -131,13 +138,19 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
                 }).progress( this.progress)
                 .success(this.onSuccessLoadFile)
                 .error(function(argResponse){
-                    ErrorManagerService.displayError(argResponse);
+                    $scope.mensajeFallidoSubidaDoc=true;
                 });
                 //.then(success, error, progress);
     };
   
-    $scope.onSuccessLoadFile = function(response){           
-            alert("json" + response.files[0].fd); 
+    $scope.onSuccessLoadFile = function(response){
+            var ruta = response.files[0].fd;
+            var nombre = response.files[0].filename;
+
+            var rutaSliced = "documentos/"+ruta.slice(40); 
+            var nombreSliced = nombre.slice(0,-4); 
+
+           $scope.SubirDoc(rutaSliced , nombreSliced);
             
         };
 
@@ -146,6 +159,42 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
     };
 
 
+    $scope.getClasificacionDoc = function(){         
+
+            var tipo = $scope.tipo.nombre;
+
+            if(tipo== 'Formulacion De Proyecto' || tipo== 'Investigación' ){
+                $scope.clasificacion='Investigacion';
+            }
+            if (tipo== 'Malla Curricular' || tipo== 'Plan de Estudio' || tipo== 'Descriptores De Programas' ) {
+                $scope.clasificacion='Estudiante ';
+            }
+            if (tipo== 'Oficios' || tipo== 'Constancias' || tipo== 'Memorandos' || tipo== 'Circulares' || tipo== 'Minutas Análisis de Oficios') {
+                $scope.clasificacion='Papeleria';
+            }
+            if (tipo== 'Correos Electronicos') {
+                $scope.clasificacion='Correo';
+            }
+    };
+
+    $scope.getSeguridadDoc = function(){
+
+            var tipo = $scope.tipo.nombre;
+
+            if(tipo== 'Formulacion De Proyecto' || tipo== 'Investigación' || tipo== 'Minutas Análisis de Oficios' ){
+                $scope.seguridad='Alta'
+            }
+
+            if (tipo== 'Oficios' || tipo== 'Constancias' || tipo== 'Memorandos' || tipo== 'Circulares') {
+                $scope.seguridad='Media'
+            }
+            /*if (tipo== '') {  //especificaron seguridad, pero no le dan este grado a ningun documento
+                $scope.seguridad='Baja' 
+            }*/
+            if (tipo== 'Malla Curricular' || tipo== 'Plan de Estudio' || tipo== 'Descriptores De Programas' || tipo== 'Correos Electronicos') {
+                $scope.seguridad='Ninguna'
+            }
+    };
 
     $scope.$watch('fecha',function() {$scope.test();});
     $scope.$watch('nombre',function() {$scope.test();});

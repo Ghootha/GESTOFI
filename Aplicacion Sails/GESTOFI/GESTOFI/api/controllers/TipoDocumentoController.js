@@ -1,18 +1,18 @@
 /**
- * DocumentoController
+ * TipoDocumentoController
  *
- * @description :: Server-side logic for managing documentoes
+ * @description :: Server-side logic for managing tipodocumentoes
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
 module.exports = {
 
-	findDocByRole:function(req,res){
+	findTipoDocByRole:function(req,res){
     
     var roleLogged = req.user.role;
 
     if(roleLogged  == 'Director' || roleLogged  == 'Subdirector' || roleLogged  == 'Asistente Administrativa' ){
-		Documento.find({})
+		TipoDocumento.find({})
 		        .exec(function(err,user){
 
 		          if(err)
@@ -27,7 +27,7 @@ module.exports = {
 
     if( roleLogged  == 'Encargado de Maestría' || roleLogged  == 'Personal Académico' ){  
 
-    	Documento.find( { seguridad: { '!': 'Alta' }} )
+    	TipoDocumento.find( { nombre: { '!': ['Investigación','Formulacion De Proyecto', 'Minutas Análisis de Oficios'] }} )
 		        .exec(function(err,user){
 
 		          if(err)
@@ -43,7 +43,7 @@ module.exports = {
 
     if( roleLogged  == 'Secretaria' || roleLogged  == 'Recepcionista' || roleLogged  == 'Concerje' || roleLogged  == 'Estudiante' ){  
 
-    	Documento.find( { seguridad: { '!' : ['Alta', 'Media'] } } )
+    	TipoDocumento.find( { seguridad: ['Plan de Estudio', 'Malla Curricular', 'Descriptores De Programas', 'Correos Electronicos']  } )
 		        .exec(function(err,user){
 
 		          if(err)
@@ -56,7 +56,6 @@ module.exports = {
 		  }
 
     }
-
-    
 	
 };
+

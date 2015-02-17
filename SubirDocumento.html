@@ -280,113 +280,50 @@
                     <div class="container_12">
                         <div class="wrapper">
                           <div class="container">
-                            <div class="row clearfix">
-                               <h3>Subir Archivos</h3>
-                                    <!-- Empieza seccion de subida de archivo--> 
-                                   <div class="wrapper">
 
-                                <div class="upload-panel">
-                                     <input class="upload-component" type="file" ng-file-select="onFileSelect($files)" ng-multiple="true" >
+                            <h3>Información Del Documento a Subir</h3>                                  
+                                <div class="row clearfix">                                 
+								 	
+                                    <div class="col-md-6 column">
+                                        <h3>Código del Documento</h3>
+                                        <div class="sideBySide">                                        
+                                            <input type="text" ng-model="codigo"> 
+                                        </div>                                      
+                                    </div>	
+
+                                    <div class="col-md-6 column">
+                                        <h3>Tipos Disponibles</h3>
+                                        <div class="sideBySide">
+                                            <div class="left"> 
+                                                <span class="css3-metro-dropdown">
+                                                    <select ng-model="tipo" ng-options="tipo.nombre for tipo in tiposDocumento"></select>
+                                                </span>
+                                            </div>                                        
+                                        </div>                                      
+                                    </div>              
                                 </div>
+                          <br>
+                          <br>
 
-                                <!-- <div class="upLoader">
-                                    <input type="text" name="title" data-ng-model="title"><br>
-                                    <input type="file" name="avatar" multiple="multiple" ><br>
-                                    <input type="button" value="Upload" ng-click="SubirDocFisico()">
-                                </div>  -->    
-
+                          <h3>Subir Archivo</h3>
+                                    <!-- Empieza seccion de subida de archivo--> 
+                                <div class="wrapper">
+                                    <div class="upload-panel">
+                                         <input class="upload-component" type="file" ng-file-select="onFileSelect($files)" ng-multiple="true" >
                                     </div>
-                                      <!--TERMIN BARRA DE CARGA-->
-                                      <!-- Termina subida de archivo --> 
-                                      <h3>Información Del Documento a Subir</h3>
-                                  
-                            
-                            </div>                                  
-                                <div class="row clearfix">
-                                  
-								 <div class="col-md-6 column">
-                                      <h3>
-                                      Seguridades Disponibles
-                                      </h3>
-                                      <div class="sideBySide">
-                                        <div class="left">  
-                                          <span class="css3-metro-dropdown">
-                                            <select class="form-control" data-ng-model="seguridad">
-                                                <option>Alta</option>
-                                                <option>Media</option>        
-                                                <option>Baja</option>
-                                                <option>Ninguna</option>                                                  
-                                            </select>
-                                        </span> 
-                                        </div>                                        
-                                      </div>                                      
-                                  </div>
-								 
-								 <div class="col-md-6 column">
-                                      <h3>
-                                      Tipos Disponibles
-                                      </h3>
-                                      <div class="sideBySide">
-                                        <div class="left"> 
-                                          <span class="css3-metro-dropdown">
-                                                <select class="form-control" data-ng-model="tipo">
-                                                    <option>Investigación</option>
-                                                    <option>Actas</option>        
-                                                    <option>Plan de Estudio</option>
-                                                    <option>Formulacion De Proyecto</option>
-                                                    <option>Minutas Análisis de Oficios</option>
-                                                    <option>Plan De Estudio</option>    
-                                                    <option>Descriptores De Programas</option> 
-                                                    <option>Malla Curricular</option>
-                                                    <option>Oficios</option>
-                                                    <option>Constancias</option>
-                                                    <option>Memorandos</option>
-                                                    <option>Circulares</option>
-                                                    <option>Correos Electronicos</option>
-                                                    <option>Otros</option>                                                    
-                                                </select>
-                                        </span> 
 
+                                    <!-- <div class="upLoader">
+                                        <input type="text" name="title" data-ng-model="title"><br>
+                                        <input type="file" name="avatar" multiple="multiple" ><br>
+                                        <input type="button" value="Upload" ng-click="SubirDocFisico()">
+                                    </div>  -->    
 
-                                        </div>                                        
-                                      </div>                                      
-                                  </div>
-								 <div class="col-md-6 column">
-                                     <h3>Roles Disponibles</h3>
-                                      <!-- INICIA boton replegable-->                                     
-                                <span class="css3-metro-dropdown">
-                                    <select class="form-control" data-ng-model="Role">
-                                        <option>Director</option>
-                                        <option>SubDirector</option>        
-                                        <option>Asistente Administrativa</option>
-                                        <option>Encargado de Maestría</option>
-                                        <option>Secretaria</option>
-                                        <option>Personal Academico</option>    
-                                    </select>
-                                </span> 
-                                <hr>                                 
-                                    <!-- TERMINA boton replegable-->
-
-                                      <button class="btn btn-success" ng-click="SubirDoc()">
-                                                    <span class="glyphicon glyphicon-save"></span>  Guardar
-                                      </button>                                      
-                                  </div>   
-
-                                  <div class="col-md-6 column">
-                                     <h3>Clasificaciones Disponibles</h3>
-                                      <!-- INICIA boton replegable-->                                     
-                                    <span class="css3-metro-dropdown">
-                                    <select class="form-control" data-ng-model="clasificacion">
-                                        <option>Investigacion</option>
-                                        <option>Estudiante</option>        
-                                        <option>Papeleria</option>
-                                        <option>Correo</option>                                         
-                                    </select>
-                                </span> 
-                                <hr>                                 
-                                    <!-- TERMINA boton replegable-->                                
-                                  </div>                           
-                          </div>
+                                </div>
+                          <br>
+                          <br>
+                          <button class="btn btn-success" ng-click="SubirDoc()">
+                                        <span class="glyphicon glyphicon-save"></span>  Guardar
+                          </button> 
                           <br>
                           <br>
                           <h4 ng-show="mensajeExitoSubidaDoc">Documento Subido con exito</h4>

@@ -43,7 +43,7 @@ $scope.mensajeErrorRegistro=false;
                 "password"  : $scope.password
             };          
             
-            alert(objetoJSON.fullname + " " + objetoJSON.role);
+          
 
             $http.post("webservice/auth/local/register", objetoJSON).success(function(response, forceReload){                    
                 
