@@ -23,6 +23,10 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
 
     $scope.mensajeExitoSubidaDoc=false;
     $scope.mensajeFallidoSubidaDoc=false;
+    $scope.error = false;
+    $scope.incomplete = true;
+    $scope.incomplete2 = true;
+    $scope.botonSubir = false;
 
      $scope.abrirDoc = function(id) {
         for(var i = 0; i<$scope.docs.length; i++) {
@@ -95,8 +99,8 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
 
      $scope.SubirDoc = function(dir, filename){
        // debugger;  
-         $('#ModalSubir').modal({ backdrop: false})
-            .one('click', '#confirmSubir', function () {            
+         /*$('#ModalSubir').modal({ backdrop: false})
+            .one('click', '#confirmSubir', function () {  */          
             
                 $scope.getClasificacionDoc();
                 $scope.getSeguridadDoc();
@@ -124,7 +128,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
                         });                          
                  });
             
-        });
+        //});
     };
 
     //EMPIEZA CODIGO NECESARIO PARA QUE FUNCIONE EL UPLOADER
@@ -280,6 +284,19 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
         }else{ $scope.incomplete = false; }
     };
 
+
+
+$scope.$watch('tipo',function() {$scope.test2();});
+   
+
+    $scope.test2 = function() {       
+        $scope.incomplete2 = false;
+        $scope.botonSubir = true;
+        if ( $scope.tipo == null ) {
+            $scope.incomplete2 = true;
+            $scope.botonSubir = false;
+        }
+    };
 
 
 
