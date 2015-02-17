@@ -127,9 +127,78 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
         });
     };
 
+    //EMPIEZA CODIGO NECESARIO PARA QUE FUNCIONE EL UPLOADER
+    //-------------------------------------------------------------------------------------------------------------------------------------//
+
+    $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
+    
+    $scope.$watch('files', function(files) {        
+        if (files != null) {
+            for (var i = 0; i < files.length; i++) {
+                $scope.errorMsg = null;
+                (function(file) {
+                    uploadUsing$upload(file);
+                })(files[i]);
+            }
+        }
+    });
+    
+    
+    $scope.generateThumb = function(file) {
+        if (file != null) {
+            if ($scope.fileReaderSupported && file.type.indexOf('image') > -1) {
+                $timeout(function() {
+                    var fileReader = new FileReader();
+                    fileReader.readAsDataURL(file);
+                    fileReader.onload = function(e) {
+                        $timeout(function() {
+                            file.dataUrl = e.target.result;
+                        });
+                    }
+                });
+            }
+        }
+    }
+
+    function uploadUsing$upload(file) {
+        $scope.errorMsg = null;
+        $scope.generateThumb(file);     
+        file.upload = $upload.upload({
+                    url: 'webservice/file/upload',
+                    data: {title: 'prueba', documento: file},                   
+                    file: file
+                });
+
+        file.upload.then(function(response) {
+            $timeout(function() {
+                file.result = response.data;
+                $scope.onSuccessLoadFile(file.result);
+            });
+        }, function(response) {
+            if (response.status > 0)
+                $scope.errorMsg = response.status + ': ' + response.data;
+        });
+
+        file.upload.progress(function(evt) {
+            // Math.min is to fix IE which reports 200% sometimes
+            file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+        });
+
+        file.upload.xhr(function(xhr) {
+            // xhr.upload.addEventListener('abort', function(){console.log('abort complete')}, false);
+        });
+    }
+    
+    
+    angular.element(window).bind("dragover", function(e) {
+        e.preventDefault();
+    });
+    angular.element(window).bind("drop", function(e) {
+        e.preventDefault();
+    });
     
 
-    $scope.onFileSelect = function($files) {   
+    /*$scope.onFileSelect = function($files) {   
    //var file = $files[];             
                 $scope.upload = $upload.upload({
                     url: 'webservice/file/upload',
@@ -141,7 +210,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
                     $scope.mensajeFallidoSubidaDoc=true;
                 });
                 //.then(success, error, progress);
-    };
+    };*/
   
     $scope.onSuccessLoadFile = function(response){
             var ruta = response.files[0].fd;
@@ -154,9 +223,9 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
             
         };
 
-    $scope.progress = function(evt){
+   /* $scope.progress = function(evt){
         console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-    };
+    };*/
 
 
     $scope.getClasificacionDoc = function(){         
