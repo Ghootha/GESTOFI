@@ -14,26 +14,25 @@ $scope.incomplete = false;
 
 $scope.apartarAula = function(idAula) {
   
-  if(validacionInputs()){
-    a=idAula+'usuarioID'+$scope.fecha+$scope.horaInicio+$scope.horaFinal;
+   var horaI=new Date("January 01, 2015 "+document.getElementById("horaInicio").value+":00");
+        var horaF=new Date("January 01, 2015 "+document.getElementById("horaEntrega").value+":00");
+        var fech=new Date(document.getElementById("fecha").value);
+
+        var objetoReserva = {
+          //"usuario" : $scope.userLogged,
+          "horaInicio" : horaI.toTimeString(),
+          "horaEntrega" : horaF.toTimeString(),
+          "fecha" : fech.toDateString()
+        }
     
-    //aqui envio datos a la base a tabla "reserva"
-    window.alert(a);
+    $http.put("webservice/Reserva/create",objetoReserva).success(function(response){alert("entro a la base :D!! ");});
+
     $scope.horaInicio="";
-    $scope.horaFinal="";
+    $scope.horaEntrega="";
     $scope.fecha="";
-  }
-  else 
-    window.alert("Existen espacios vacios");
 };
 
-function validacionInputs(){
-    if(document.getElementById("i-Fecha").value === "" || document.getElementById("i-HI").value === "" || document.getElementById("i-HF").value === "")
-      return false;
-    else
-      return true;
-    
-}
+
 
 $scope.$watch('nombre',function() {$scope.test();});
 

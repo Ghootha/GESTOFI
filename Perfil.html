@@ -39,7 +39,7 @@
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
   <![endif]-->
 </head>
-<body >
+<body data-ng-app="myAppPerfil" data-ng-controller="perfilController">
   <div class="extra">
                     <!-- TOP BAR -->
         <div class="top-bar">
@@ -299,7 +299,7 @@
             
             <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">Carlos Cascante</h3>
+              <h3 class="panel-title" >Carlos Cascante</h3>
             </div>
 
             <div class="panel-body">
@@ -314,19 +314,9 @@
                         <td>Rol</td>
                         <td>Subdirector</td>
                       </tr>
-                      <tr>
-                        <td>Fecha de contrato</td>
-                        <td>06/23/2013</td>
-                      </tr>
-                      <tr>
+                       <tr>
                         <td>Fecha de nacimiento</td>
                         <td>01/24/1988</td>
-                      </tr>
-                   
-                    
-                      <tr>
-                        <td>Genero</td>
-                        <td>Male</td>
                       </tr>
                         <tr>
                         <td>Domicilio</td>
@@ -405,8 +395,7 @@
   <script type="text/javascript"> Cufon.now(); </script>
   <!--Angular script-->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
-  <script src="js/filedrag.js"></script> 
-
+  <script src= "js/modules/miPerfil.js"></script>
    <!-- Javascript BARRA LOGIN-->
    <script type="text/javascript"src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>  
  <!-- <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>-->

@@ -290,15 +290,17 @@
 							   	<h3>Solicitud Equipo</h3>
                                 <li><a  href="ControlReservas.html">Control reservas</a></li>
 							   	<form>
-		                            <td>
+		                            
+                                    <td >
 		                                 <span class="css3-metro-dropdown">
-		                                    <select name="dropdown-1" ng-model="search.nombre">
-		                                        <option >Computadora</option>
-		                                        <option >Proyector</option>        
+		                                    <select  name="dropdown-1" ng-model="search.nombre">
+		                                        <option data-ng-repeat="equipo in equipos">{{equipo.tipo}}</option>
+		                                                
 		                                    </select>
 		                                </span>
                                     <hr>
 		                            </td>
+                                
 									
 									
 									<td>
