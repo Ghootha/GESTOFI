@@ -11,14 +11,14 @@ module.exports = {
     
 
   attributes: {
-      id: {
+      /*id: {
 
           type: 'integer',
           autoIncrement: true,
           unique: true,
           primaryKey: true,
           required: true
-      },
+      },*/
       idUsuario: {
           columnName: 'usuario_id',
           type: 'string',

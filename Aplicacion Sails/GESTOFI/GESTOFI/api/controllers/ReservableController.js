@@ -25,7 +25,7 @@ module.exports = {
 	findReservablebyEquipo:function(req,res){
     
     
-		Reservable.find(  { tipo : 'Equipo' })
+		Reservable.find(  { tipo:{ '!': 'Aula'}})
 		        .exec(function(err,reservable){
 
 		          if(err)
