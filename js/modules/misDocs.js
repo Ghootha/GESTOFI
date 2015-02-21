@@ -31,8 +31,13 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
      $scope.abrirDoc = function(id) {
         for(var i = 0; i<$scope.docs.length; i++) {
                 if($scope.docs[i].id === id) {
-                    var ruta= $scope.docs[i].ruta;
-                    $window.open('http://gestofi.com/'+ruta);
+                    //var ruta= $scope.docs[i].ruta;
+                   // $window.open('http://gestofi.com/'+ruta);
+
+                    $http.get('webservice/file/download/'+id).success(function(response){ 
+                        
+                    });
+
                 }
          }  
      };
@@ -219,10 +224,10 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
             var ruta = response.files[0].fd;
             var nombre = response.files[0].filename;
 
-            var rutaSliced = "documentos/"+ruta.slice(40); 
+            //var rutaSliced = "documentos/"+ruta.slice(40); 
             var nombreSliced = nombre.slice(0,-4);
 
-           $scope.SubirDoc(rutaSliced , nombreSliced);
+           $scope.SubirDoc(ruta, nombreSliced);
             
         };
 
