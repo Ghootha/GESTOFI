@@ -169,14 +169,13 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
         $scope.generateThumb(file);     
         file.upload = $upload.upload({
                     url: 'webservice/file/upload',
-                    data: {title: 'prueba', documento: file},                   
-                    file: file
+                    data: {title: 'prueba', documento: file}
                 });
 
         file.upload.then(function(response) {
             $timeout(function() {
-                file.result = response.data;
-                $scope.onSuccessLoadFile(file.result);
+               file.result = response.data;
+               $scope.onSuccessLoadFile(file.result);
             });
         }, function(response) {
             if (response.status > 0)
@@ -221,7 +220,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
             var nombre = response.files[0].filename;
 
             var rutaSliced = "documentos/"+ruta.slice(40); 
-            var nombreSliced = nombre.slice(0,-4); 
+            var nombreSliced = nombre.slice(0,-4);
 
            $scope.SubirDoc(rutaSliced , nombreSliced);
             
