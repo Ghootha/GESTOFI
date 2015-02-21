@@ -223,16 +223,9 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
     $scope.onSuccessLoadFile = function(response){
             var ruta = response.files[0].fd;
             var nombre = response.files[0].filename;
-<<<<<<< Updated upstream
 
             //var rutaSliced = "documentos/"+ruta.slice(40); 
             var nombreSliced = nombre.slice(0,-4);
-=======
-            //alert(ruta);
-            //var rutaSliced = "documentos/"+ruta.slice(40); //para salsa
-            var rutaSliced =ruta.slice(9);// para jose
-            var nombreSliced = nombre.slice(0,-4); 
->>>>>>> Stashed changes
 
            $scope.SubirDoc(ruta, nombreSliced);
             

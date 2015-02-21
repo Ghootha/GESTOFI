@@ -21,18 +21,39 @@ module.exports = {
     )
   },
   upload: function  (req, res) {
-    console.log("en upload");
-    console.log(req.file('avatar'));
-    var uploadPath = './documentos';
+    console.log("en upload");    
+    //var uploadPath = 'D:/Documentos/vhosts/GESTOFI/documentos';
+    var uploadPath = '../../assets/documents';  
     
     req.file('documento').upload({ dirname: uploadPath},function (err, files) {
       if (err)
-        return res.serverError(err);
+        return res.send(500, err);
 
       return res.json({
         message: files.length + ' file(s) uploaded successfully!',
         files: files
       });
+    });
+  },
+  download: function (req, res){
+       console.log("en download"); 
+    req.validate({
+      id: 'string'
+    });
+
+    Documento.findOne(req.param('id')).exec(function (err, documento){
+      if (err) return res.negotiate(err);
+      if (!documento) return res.notFound();
+
+      var SkipperDisk = require('skipper-disk');
+      var fileAdapter = SkipperDisk();
+
+      // Stream the file down
+      fileAdapter.read(documento.ruta)
+      .on('error', function (err){
+        return res.serverError(err);
+      })
+      .pipe(res);
     });
   }
 
