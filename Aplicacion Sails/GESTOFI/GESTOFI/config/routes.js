@@ -34,19 +34,11 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  },
-  '/salida': {
-    view: 'pagina'
-  }, 
-  '/index': {
-    view: 'index'
   },  
   'get /login': 'AuthController.login',
   'get /logout': 'AuthController.logout',
   'get /register': 'AuthController.register',
-  'get /get_user': 'AuthController.get_user',
-  'get /findDocByRole': 'DocumentoController.findDocByRole',
-  'get /findTipoDocByRole': 'TipoDocumentoController.findTipoDocByRole',
+  'get /get_user': 'AuthController.get_user',  
   'get /findReservablebyAula' : 'ReservableController.findReservablebyAula',
   'get /findReservablebyEquipo' : 'ReservableController.findReservablebyEquipo',
 

@@ -4,10 +4,10 @@ var app = angular.module("myAppDocs", ['ngRoute', 'angularFileUpload']);
 app.controller("docController", function($scope, $upload, $http, $timeout, $location, $window) {
 
 
-    $http.get("webservice/findDocByRole")
-        .success(function(response) {$scope.docs = response;}); //Filtra documentos por role, solo muestra los documentos uqe tienen una seguirdad que el role puede manejar
+    $http.get("webservice/Documento/findDocByRole")
+        .success(function(response) {$scope.docs = response; }); //Filtra documentos por role, solo muestra los documentos uqe tienen una seguirdad que el role puede manejar
 
-    $http.get("webservice/findTipoDocByRole") //SE usa para cargar el combobox de tipso de documentos, dependiendo del role no muestra tipos que no puede crear
+    $http.get("webservice/TipoDocumento/findTipoDocByRole") //SE usa para cargar el combobox de tipso de documentos, dependiendo del role no muestra tipos que no puede crear
         .success(function(response) {$scope.tiposDocumento = response;});
 
 
@@ -19,7 +19,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
                     $scope.mensajeErrorRegistro=true;
                 }   
             });
-     
+ 
 
     $scope.mensajeExitoSubidaDoc=false;
     $scope.mensajeFallidoSubidaDoc=false;

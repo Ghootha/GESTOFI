@@ -65,7 +65,7 @@
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
 	<![endif]-->
 </head>
-<body id="page1">
+<body id="page1" data-ng-app="miApp" data-ng-controller="miAppController">
 	<div class="extra">
             <!-- TOP BAR -->
         <div class="top-bar">
@@ -201,7 +201,7 @@
                                     <div class="logged-user">
                                         <div class="btn-group">
                                             <a class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-                                                <span class="name">Carlos Cascante</span>
+                                                <span class="name" data-ng-model="userLogged">{{ userLogged }}</span>
                                                 <span class="caret"></span>
                                             </a>
                                             <ul class="dropdown-menu" role="menu">
@@ -265,28 +265,28 @@
                         <nav class="indent-left">
                             <ul class="menu wrapper">
                                 <li class="active"><a href="paginaPrincipal.html">Principal</a></li>
-                                <li><a href="#">Repositorio</a>
+                                <li ><a href="#">Repositorio</a>
                                     <ul>
                                         <li><a title="Consultar documentos del repositorio" href="ConsultarDocumento.html">Consultar</a></li>
-                                        <li><a title="Almacenar un documento nuevo en el repositorio" href="SubirDocumento.html">Almacenar</a></li>
+                                        <li data-ng-hide="hideAlmacenar"><a title="Almacenar un documento nuevo en el repositorio" href="SubirDocumento.html">Almacenar</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">Solicitudes</a>
+                                <li data-ng-hide="hideSolicitudes"><a href="#">Solicitudes</a>
                                     <ul>
-                                        <li><a title="Solicitar un equipo Audio-Visual" href="SolicitudEquipo.html">Equipo</a></li>
-                                        <li><a title="Solicitar el apartado de un Aula" href="SolicitudAula.html">Aula</a></li>
-                                        <li class="ultimo"><a title="Realizar una solicitud para una gira o vacaciones" href="SolicitudGiras_Vacaciones.html">Giras/Vacaciones</a></li>
+                                        <li data-ng-hide="hideSolicitudEquipo"><a title="Solicitar un equipo Audio-Visual" href="SolicitudEquipo.html">Equipo</a></li>
+                                        <li data-ng-hide="hideSolicitudAula"><a title="Solicitar el apartado de un Aula" href="SolicitudAula.html">Aula</a></li>
+                                        <li class="ultimo" data-ng-hide="hideSolicitudVacaciones"><a title="Realizar una solicitud para una gira o vacaciones" href="SolicitudGiras_Vacaciones.html">Giras/Vacaciones</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="agenda.html">Calendario</a></li>
-								<li><a href="#">Correspondencia</a>
+                                <li data-ng-hide="hideAgenda"><a href="agenda.html">Calendario</a></li>
+								<li data-ng-hide="hideCorrespondencia"><a href="#">Correspondencia</a>
                                     <ul>
                                         <li><a title="Enviar Correspondencia"href="EnviarCorrespondencia.html">Enviar</a></li>
                                         <li><a title="Consultar Correspondencia"href="correspondencia.html">Consultar</a></li>
 										 										
                                      </ul>
                                 </li>
-                                <li><a href="#">Configuracion</a>
+                                <li data-ng-hide="hideConfiguracion"><a href="#">Configuracion</a>
                                     <ul>
                                         <li><a title="Configurar los roles del sistema"href="ConfigRol.html">Roles</a></li>
                                         <li><a title="Configurar los usuarios del sistema"href="ConfigUsuarios.html">Usuarios</a></li>
@@ -438,7 +438,7 @@
                                 </fieldset>           
                             </form>
                         </article>
-                        <article class="grid_4">
+                        <article class="grid_4">                            
                             <h4 class="indent-bot">Contáctanos:</h4>
                             <ul class="list-services border-bot img-indent-bot">
                                 <li><a href="https://www.facebook.com/rriiuna?fref=ts">Facebook</a></li>
@@ -461,6 +461,7 @@
 	
     <!--Angular script-->
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    <script src="js/modules/miApp.js"></script>
 
     <!-- Javascript BARRA LOGIN-->
     <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
