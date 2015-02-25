@@ -1,0 +1,59 @@
+<!--==============================content================================-->
+<div class="content-bg">
+    <div class="main">                  
+        <div class="container_12">
+            <div class="wrapper">                
+				<h3>Reservas del dia</h3>
+                                        
+                <div class="input-group date form_date col-md-4" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input id="i-Fecha" class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+
+                <form id="search-form" method="post" enctype="multipart/form-data">
+                    <fieldset>
+                        <div class="search-field">
+                            <input name="search" type="text" value="Nombre solicitante" onBlur="if(this.value=='') this.value='Search...'" onFocus="if(this.value =='Search...' ) this.value=''" />
+                                <a class="search-button" href="#" onClick="document.getElementById('search-form').submit()"></a>
+                        </div>
+                    </fieldset>
+                </form>                 
+                                    
+		   	     <table class="table table-striped">
+                  <thead>
+                    <tr class="info">
+                      <th>Estado</th>
+                      <th>Solicitante</th>
+					  <th>Tipo Reserva</th>
+					  <th>Codigo Reserva</th>
+                      <th>Hora Reserva</th>
+					</tr>
+                  </thead>
+				  
+                  <tbody>
+                    <tr data-ng-repeat="reserva in reservas">
+                      <td>
+                     <span class="css3-metro-dropdown">
+                        <select name="dropdown-1" >
+                            <option >Por Entregar</option>
+                            <option >En uso</option> 
+                            <option >Recibido</option>         
+                        </select>
+                    </span>
+                    </td>
+                      <td >{{reserva .nombre}}</td>
+					  <td >{{reserva .tipoReserva}}</td>
+                          <td>{{reserva .codigoReserva}}</td>
+                      <td>{{reserva .HoraReserva}}</td>
+					</tr>
+				</tbody>
+                </table>
+				<hr>		                         
+                <hr>							 
+			</div>
+		</div>
+	</div>         
+</div>
+     
+
+		

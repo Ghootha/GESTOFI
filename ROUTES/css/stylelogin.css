@@ -1,0 +1,116 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+*{margin:0;padding:0;}
+
+body{
+background: rgb(218,219,220); /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover, rgb(218,219,220) 0%, rgb(188,189,190) 46%, rgb(133,139,143) 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgb(218,219,220)), color-stop(46%,rgb(188,189,190)), color-stop(100%,rgb(133,139,143))); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover, rgb(218,219,220) 0%,rgb(188,189,190) 46%,rgb(133,139,143) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover, rgb(218,219,220) 0%,rgb(188,189,190) 46%,rgb(133,139,143) 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover, rgb(218,219,220) 0%,rgb(188,189,190) 46%,rgb(133,139,143) 100%); /* IE10+ */
+background: radial-gradient(ellipse at center, rgb(218,219,220) 0%,rgb(188,189,190) 46%,rgb(133,139,143) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dadbdc', endColorstr='#858b8f',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  
+  font-family:'Open Sans',sans-serif;
+}
+
+
+
+
+#titulo{
+	/*width:400px;*/
+  margin:0 auto;
+  margin-top:14px;
+  margin-bottom:2%;
+  transition:opacity 1s;
+  -webkit-transition:opacity 1s;
+  
+}
+
+#titulo h1{
+  /*background:#3399cc;*/
+  /*padding:20px 0;*/
+   
+  font-size:80px;
+  font-weight:400;
+  text-align:center;
+  color:#FFF;
+}
+
+#titulo h2{
+  /*background:#3399cc;*/
+  /*padding:20px 0;*/
+  /*font-size:90px;*/
+  font-weight:400;
+  text-align:center;
+  /*color:#FF3333;*/
+  color:#FFF;
+}
+
+#login{
+  width:400px;
+  margin:0 auto;
+  margin-top:8px;
+  margin-bottom:3%;
+  transition:opacity 1s;
+  -webkit-transition:opacity 1s;
+}
+
+#triangle{
+  width:0;
+  border-top:12x solid transparent;
+  border-right:12px solid transparent;
+  border-bottom:12px solid #337DC6;
+  border-left:12px solid transparent;
+  margin:0 auto;
+}
+
+#login h1{
+  background:url(../images/menu-row-tail.jpg) center top repeat-x #000000;
+  padding:20px 0;
+  font-size:140%;
+  font-weight:300;
+  text-align:center;
+  color:#fff;
+}
+
+.cuadroDatos{
+  background:#f0f0f0;
+  padding:6% 4%;
+  margin-bottom: 2%;
+}
+
+input[type="text"],input[type="password"]{
+  width:92%;
+  background:#fff;
+  margin-bottom:4%;
+  border:1px solid #ccc;
+  padding:4%;
+  font-family:'Open Sans',sans-serif;
+  font-size:95%;
+  color:#555;
+}
+
+input[type="button"]{
+  width:100%;
+  background:#337DC6;
+  border:0;
+  padding:4%;
+  font-family:'Open Sans',sans-serif;
+  font-size:100%;
+  color:#fff;
+  cursor:pointer;
+  transition:background .3s;
+  -webkit-transition:background .3s;
+}
+
+input[type="button"]:hover{
+  background:#005CB8;
+
+}
+
+h4{
+
+  color: #F80000 ;
+}

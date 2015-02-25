@@ -1,0 +1,60 @@
+:root .css3-metro-dropdown option,
+:root .css3-metro-dropdown:after,
+:root .css3-metro-dropdown::after,
+:root .css3-metro-dropdown select
+{
+    color: #fff;
+}
+ 
+:root .css3-metro-dropdown select,
+:root .css3-metro-dropdown:after,
+:root .css3-metro-dropdown::after
+{
+    display: block;
+    background: #3366CC;
+}
+ 
+:root .css3-metro-dropdown select,
+:root .css3-metro-dropdown option
+{
+    padding: 8px;
+}
+ 
+:root .css3-metro-dropdown
+{
+    position: relative;
+    display: inline-block;
+    border: 0;
+}
+ 
+:root .css3-metro-dropdown::after
+{
+    content: "\25bc";
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 32px;
+    font-size: 12px;
+    line-height: 34px;
+    text-align: center;
+     
+    -webkit-pointer-events: none;
+    -moz-pointer-events: none;
+    pointer-events: none;
+}
+ 
+:root .css3-metro-dropdown select
+{
+   height: 34px;
+   border: 0;
+   vertical-align: middle;
+   font: normal 12px/14px "Segoe UI", Arial, Helvetica, Sans-serif;
+   outline: 0 none;
+}
+ 
+:root .css3-metro-dropdown option
+{
+    background: #fff;
+    color: #333;
+} 

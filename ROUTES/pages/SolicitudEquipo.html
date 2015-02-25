@@ -1,0 +1,108 @@
+<!--==============================content================================-->
+<div class="content-bg">
+    <div class="main">
+        <div class="container_12">
+            <div class="wrapper">
+               <div class="container">
+				   	<h3>Solicitud Equipo</h3>
+                    <li><a  href="ControlReservas.html">Control reservas</a></li>
+				   	<form>
+                        
+                        <td >
+                             <span class="css3-metro-dropdown">
+                                <select  name="dropdown-1" ng-model="search.nombre">
+                                    <option data-ng-repeat="equipo in equipos">{{equipo.tipo}}</option>
+                                            
+                                </select>
+                            </span>
+                        <hr>
+                        </td>
+                    
+						
+						
+						<td>
+
+							<div class="form-group">
+				                <label for="dtp_input2" class="col-md-2 control-label">Fecha:</label>
+				                <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+				                    <input id="fecha" data-ng-model="fecha" class="form-control" size="16" type="text" value="" readonly>
+				                    
+									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				                </div>
+								<input type="hidden" id="dtp_input2" value="" /><br/>
+				            </div>
+							
+						</td>
+						
+						
+						<td>
+					
+			   			<div class="form-group">
+			                   <label for="dtp_input3" class="col-md-2 control-label">Hora Inicio:</label>
+			                   <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+			                       <input id="horaInicio" data-ng-model="horaInicio" class="form-control" size="16" type="text" value="" readonly>
+			                       
+			   					<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+			                   </div>
+			   				<input type="hidden" id="dtp_input3" value="" /><br/>
+			               </div>
+						  
+						</td>
+						
+						<td>
+							
+								
+			   			<div class="form-group">
+			                   <label for="dtp_input4" class="col-md-2 control-label">Hora Entrega:</label>
+			                   <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+			                       <input  id="horaEntrega" data-ng-model="horaEntrega" class="form-control" size="16" type="text" value="" readonly>
+			                       
+			   					<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+			                   </div>
+			   				<input type="hidden" id="dtp_input3" value="" /><br/>
+			               </div>
+
+
+						   
+					</form>
+				   
+					<hr>
+                    <button class="btn btn-success" ng-click="consultarEquipo()">
+                    <span class="glyphicon glyphicon-search"></span>  Consultar
+                    </button>
+                    <hr>
+					<h3>Resultados</h3>
+                     <form>
+						<table class="table table-striped ">
+                          <thead>
+                            <tr class="info">
+                              <th>Selección</th>
+                              <th>Nombre</th>
+                              <th>Tipo</th>
+                              <th>Código</th>
+                              <th>Estado</th>
+                              <th>Descripción</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr data-ng-repeat="equipo in equipos | filter:search">
+                              <td >
+								<button class="btn btn-success" ng-click="apartarEquipo(equipo.id)">
+                                  <span class="glyphicon glyphicon-ok"></span>
+                                </button>
+                              </td>
+                              <td >{{ equipo.nombre }}</td>
+                              <td>{{ equipo.tipo }}</td>
+                              <td>{{ equipo.codigo }}</td>
+                              <td>{{ equipo.estado }}</td>
+                              <td>{{ equipo.descripcion }}</td>
+                            </tr>
+						  </tbody>
+                        </table>
+					 </form>
+                     <hr>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

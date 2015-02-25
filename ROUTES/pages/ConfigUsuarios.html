@@ -1,0 +1,264 @@
+<!--==============================content================================-->
+<div class="content-bg">
+    <div class="main">
+        <div class="container_12">
+            <div class="wrapper" >
+<!-- FORM BUSQUEDA USUARIO --> 
+                <div class="row">
+                    <form role="form">
+                        <div class="col-lg-12">
+
+                            <div class ="form-group">
+                                <h3>      Busca usuario:</h3>
+                            </div>                                                                                       
+                            <div class="form-group">
+
+                                <div class="col-md-3">
+                                    <input id="busqNombre" name="busqNombre" type="text" placeholder="nombre" class="form-control " ng-model="search.nombre">
+                                </div>
+                                <div class="col-md-3">
+                                    <input id="busqRol" name="busqRol" type="text" placeholder="rol" class="form-control " ng-model="search.role">
+                                </div>                                               
+                            </div>
+                        </div>
+                    </form>
+                </div> 
+
+<!-- END FORM BUSQUEDA USUARIO -->
+                <br>
+                <br>
+                <h3>Usuarios</h3>
+                <!-- -TABLA -->
+                <table class="table table-striped">
+                <thead>
+                <tr class="info">
+                    <th>Editar</th>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Rol</th>
+                    <th>Eliminar</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="user in users | filter:search">
+                    <td >
+                       <button class="btn btn-warning" data-ng-click="editUser(user.id)">
+                            <span class="glyphicon glyphicon-pencil"></span>  Editar
+                        </button> 
+                    </td>
+                    <td>{{ user.ced }}</td>
+                    <td>{{ user.nombre+" "+user.pApellido+" "+user.sApellido }}</td>
+                    <td>{{ user.role }}</td>
+                    <td > 
+                        <button class="btn btn-danger" data-ng-click="deleteUser(user.id)" >      
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+                </table>
+                <!-- -END TABLA -->
+
+                <hr>
+                <button class="btn btn-success" ng-click="registrar()">
+                <span class="glyphicon glyphicon-user"></span>  Crear Nuevo Usuario
+                </button> 
+                <br>                    
+                <h4 ng-show="mensajeErrorRegistro">Error! Usuario o Correo en Uso</h4>
+                <br> 
+                <h4 ng-show="mensajeExitoRegistro">Usuario registrado con exito</h4> 
+
+                <hr>
+                <hr>
+                <hr>
+<!-- MODAL 1 -->
+                <div id="Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel"></h4>
+                            </div>
+
+                            <div class="modal-body">
+                                <h3 data-ng-show="edit">Editar Usuario:</h3>
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Cedula:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" data-ng-model="ced" data-ng-disabled="!edit" placeholder="Cedula">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Primer Nombre:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" data-ng-model="nombre" data-ng-disabled="!edit" placeholder="Primer Nombre">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Primer Apellido:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" data-ng-model="pApellido" data-ng-disabled="!edit" placeholder="Primer Apellido">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Segundo Apellido:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" data-ng-model="sApellido" data-ng-disabled="!edit" placeholder="Segundo Apellido">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Contraseña:</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" data-ng-model="passw1" placeholder="Contraseña">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Repetir:</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" data-ng-model="passw2" placeholder="Repetir Contraseña">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Rol:</label>
+                                        <div class="col-sm-2">
+                                            <select class="form-control" data-ng-model="role">
+                                                <option>Director</option>
+                                                <option>Encargado de Maestría</option>
+                                                <option>Personal Académico</option>
+                                                <option>Secretaria</option>
+                                                <option>Recepcionista</option>
+                                                <option>Concerje</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <button class="btn btn-success" data-ng-disabled="error || incomplete" id="confirm" ng-click="actualizarUser(user.id)" data-dismiss="modal">
+                                    <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+<!-- FINALIZA MODAL 1 -->
+
+<!-- MODAL 2 -->
+                <div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel"></h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <h3 data-ng-show="edit">Agregar Usuario:</h3>
+
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Cedula:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" data-ng-model="ced" data-ng-disabled="!edit" placeholder="Cedula">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Primer Nombre:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" data-ng-model="nombre" data-ng-disabled="!edit" placeholder="Primer Nombre">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Primer Apellido:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" data-ng-model="pApellido" data-ng-disabled="!edit" placeholder="Primer Apellido">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Segundo Apellido:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" data-ng-model="sApellido" data-ng-disabled="!edit" placeholder="Segundo Apellido">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Contraseña:</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" data-ng-model="passw1" placeholder="Contraseña">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Repetir:</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" data-ng-model="passw2" placeholder="Repetir Contraseña">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Rol:</label>
+                                        <div class="col-sm-2">
+                                            <select class="form-control" data-ng-model="role">
+                                                <option>Rol 1</option>
+                                                <option>Rol 2</option>
+                                                <option>Rol 3</option>
+                                                <option>Rol 4</option>
+                                                <option>Rol 5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <button class="btn btn-success" data-ng-disabled="error || incomplete" id="confirmUser" data-dismiss="modal">
+                                    <span class="glyphicon glyphicon-save" ></span>  Registrar Usuario
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+<!-- FINALIZA MODAL 2 -->
+
+<!-- MODAL 3 -->
+                <div id="Modal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                       <div class="modal-content">
+
+                         <div class="modal-header">
+                            
+                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                           <h4 class="modal-title" id="myModalLabel"> Eliminar usuario</h4>
+                         </div>
+                         <div class="modal-body">                                 
+                         Confirme que desea eliminar este usuario del sistema 
+                         </div>
+                         <div class="modal-footer">
+                           <button data-dismiss="modal" class="btn btn-danger">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+
+                            <button data-dismiss="modal" class="btn btn-success" id="confirm"  >
+                                            <span class="glyphicon glyphicon-ok"></span>
+                            </button>
+                           
+                         </div>
+
+                       </div>
+                     </div>
+                </div>
+<!-- FINALIZA MODAL 3 -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+   

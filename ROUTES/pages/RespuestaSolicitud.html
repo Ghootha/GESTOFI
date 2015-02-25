@@ -1,0 +1,67 @@
+<!--==============================content================================-->
+<div class="content-bg">
+    <div class="main">                  
+        <div class="container_12">
+            <div class="wrapper">
+                <div class="container">
+                    <h3>Respuesta Solicitud</h3>
+
+                    <h3>Lista de solicitudes</h3>
+
+                    <div id="Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel"></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <textarea class="textAreaSolicitud" name="comentarioSolicitud"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary">Enviar Respuesta</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class="info">
+                                <th>Documento</th>
+                                <th>Solicitud</th>
+                                <th>Solicitante</th>
+                                <th>Responder</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr data-ng-repeat="solicitud in solicitudes">
+                                <td >
+
+                                    <button class="btn btn-success" ng-click="descargarSolicitud(solicitud.id)">
+                                    	<span class="glyphicon glyphicon-file"></span>
+                                    </button>
+                                </td>
+                                <td >{{ solicitud .nombre }}</td>
+                                <td >{{ solicitud .solicitante}}</td>
+                                <td>
+                                <button data-backdrop="false" data-target="#Modal" class="btn btn-success" data-toggle="modal"> <span class="glyphicon glyphicon-comment"></span> </button>
+                                  
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr>		                         
+                    <hr>
+
+
+
+                </div>
+			</div>
+        </div>
+    </div>
+</div>
