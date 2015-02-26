@@ -11,17 +11,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="description" content="Our Dashboard">
     <meta name="author" content="The Develovers">
-
+    
+    <link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/grid.css" type="text/css" media="screen"> 
+    
+    <!-- CSS DE UPLOADER-->   
+    <link type="text/css" rel="stylesheet" href="css/uploader/common.css">    
+    <!-- CSS DE UPLOADER--> 
+      
+    
     <!-- CSS de BARRA LOGIN -->
-    <link href="css/barralogin/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/barralogin/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/barralogin/main.min.css" rel="stylesheet" type="text/css">   
     <!-- Termina CSS de BARRA LOGIN -->
-
-    <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">   
-    
 
     <script src="js/jquery-1.6.3.min.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -247,7 +251,7 @@
 
 
 
-                    	<h1><a href="paginaPrincipal.html">GESTOFI</a></h1>
+                    	<h1><a href="#paginaPrincipal">GESTOFI</a></h1>
                         <form id="search-form" method="post" enctype="multipart/form-data">
                         <fieldset>	
                             <div class="search-field">
@@ -264,33 +268,33 @@
                     <div class="main">
                         <nav class="indent-left">
                             <ul class="menu wrapper">
-                                <li class="active"><a href="paginaPrincipal.html">Principal</a></li>
-                                <li ><a href="#">Repositorio</a>
+                                <li class="active"><a href="#paginaPrincipal">Principal</a></li>
+                                <li ><a href="">Repositorio</a>
                                     <ul>
                                         <li><a title="Consultar documentos del repositorio" href="template.html#/consultarDocumento">Consultar</a></li>
-                                        <li data-ng-hide="hideAlmacenar"><a title="Almacenar un documento nuevo en el repositorio" href="#subirDocumento">Almacenar</a></li>
+                                        <li data-ng-hide="hideAlmacenar"><a title="Almacenar un documento nuevo en el repositorio" href="template.html#/subirDocumento">Almacenar</a></li>
                                     </ul>
                                 </li>
-                                <li data-ng-hide="hideSolicitudes"><a href="#">Solicitudes</a>
+                                <li data-ng-hide="hideSolicitudes"><a href="">Solicitudes</a>
                                     <ul>
-                                        <li data-ng-hide="hideSolicitudEquipo"><a title="Solicitar un equipo Audio-Visual" href="SolicitudEquipo.html">Equipo</a></li>
-                                        <li data-ng-hide="hideSolicitudAula"><a title="Solicitar el apartado de un Aula" href="SolicitudAula.html">Aula</a></li>
-                                        <li class="ultimo" data-ng-hide="hideSolicitudVacaciones"><a title="Realizar una solicitud para una gira o vacaciones" href="SolicitudGiras_Vacaciones.html">Giras/Vacaciones</a></li>
+                                        <li data-ng-hide="hideSolicitudEquipo"><a title="Solicitar un equipo Audio-Visual" href="template.html#/SolicitudEquipo">Equipo</a></li>
+                                        <li data-ng-hide="hideSolicitudAula"><a title="Solicitar el apartado de un Aula" href="template.html#/SolicitudAula">Aula</a></li>
+                                        <li class="ultimo" data-ng-hide="hideSolicitudVacaciones"><a title="Realizar una solicitud para una gira o vacaciones" href="template.html#/SolicitudGiras_Vacaciones">Giras/Vacaciones</a></li>
                                     </ul>
                                 </li>
-                                <li data-ng-hide="hideAgenda"><a href="agenda.html">Calendario</a></li>
-								<li data-ng-hide="hideCorrespondencia"><a href="#">Correspondencia</a>
+                                <li data-ng-hide="hideAgenda"><a href="template.html#/agenda">Calendario</a></li>
+								<li data-ng-hide="hideCorrespondencia"><a href="">Correspondencia</a>
                                     <ul>
-                                        <li><a title="Enviar Correspondencia"href="EnviarCorrespondencia.html">Enviar</a></li>
-                                        <li><a title="Consultar Correspondencia"href="correspondencia.html">Consultar</a></li>
+                                        <li><a title="Enviar Correspondencia"href="template.html#/EnviarCorrespondencia">Enviar</a></li>
+                                        <li><a title="Consultar Correspondencia"href="template.html#/correspondencia">Consultar</a></li>
 										 										
                                      </ul>
                                 </li>
-                                <li data-ng-hide="hideConfiguracion"><a href="#">Configuracion</a>
+                                <li data-ng-hide="hideConfiguracion"><a href="">Configuracion</a>
                                     <ul>
-                                        <li><a title="Configurar los roles del sistema"href="ConfigRol.html">Roles</a></li>
-                                        <li><a title="Configurar los usuarios del sistema"href="ConfigUsuarios.html">Usuarios</a></li>
-										<li><a title="Aceptar o Rechazar solicitud"href="RespuestaSolicitud.html">Solicitudes</a></li> 										
+                                        <li><a title="Configurar los roles del sistema"href="template.html#/ConfigRol">Roles</a></li>
+                                        <li><a title="Configurar los usuarios del sistema"href="template.html#/ConfigUsuarios">Usuarios</a></li>
+										<li><a title="Aceptar o Rechazar solicitud"href="template.html#/RespuestaSolicitud">Solicitudes</a></li> 										
                                         <li class="ultimo"><a title="Configuración del sistema" href="#">sistema</a></li>
                                     </ul>
                                 <!-- </li>
@@ -301,9 +305,9 @@
                    </div> 
                 </div>
             </div>
-          <div class="row-bot">
-            	<div class="center-shadow">
-                	<div class="carousel-container">
+            <div class="row-bot">
+                <div class="center-shadow">
+                    <div class="carousel-container">
                       <div id="carousel">
                         <div class="carousel-feature">
                           <a href="#"><img class="carousel-image" alt="" src="images/gallery-img1.png"></a>
@@ -315,26 +319,25 @@
                           <a href="#"><img class="carousel-image" alt="" src="images/gallery-img2.png"></a>
                         </div>
                       </div>
-    				</div>
+                    </div>
                 </div>
             </div>
-        </header> 
-        
+        </header>         
         <!--==============================content================================-->
         <section id="content"><div class="ic"></div>
             <div class="main">
                 <div class="container_12">
                     <div class="wrapper">
                         <article class="grid_8">
-                        	<h3>Acerca</h3>
+                            <h3>Acerca</h3>
                             <em class="text-1 margin-bot">GESTOFI es un sistema de información para suplir algunas necesidades de la <a class="link" target="_blank" href="http://www.ri.una.ac.cr/">Escuela de Relaciones Internacionales de la Universidad Nacional</a> y creado por estudiantes de informática.</em>
                             <div class="wrapper p4">
-                            	<article class="grid_4 alpha">
-                                	<div class="wrapper p1">
-                                    	<figure class="img-indent2"><img src="images/rsz_documentos.png" alt="" /></figure>
+                                <article class="grid_4 alpha">
+                                    <div class="wrapper p1">
+                                        <figure class="img-indent2"><img src="images/rsz_documentos.png" alt="" /></figure>
                                         <div class="extra-wrap">
-                                        	<div class="indent-top">
-                                            	<h4>Repositorio de Documentos<em>Sub</em></h4>
+                                            <div class="indent-top">
+                                                <h4>Repositorio de Documentos<em>Sub</em></h4>
                                             </div>
                                         </div>
                                     </div>
@@ -342,11 +345,11 @@
                                     <a class="link-1" href="#">Ir</a>
                                 </article>
                                 <article class="grid_4 omega">
-                                	<div class="wrapper p1">
-                                    	<figure class="img-indent2"><img src="images/page1-img4.png" alt="" /></figure>
+                                    <div class="wrapper p1">
+                                        <figure class="img-indent2"><img src="images/page1-img4.png" alt="" /></figure>
                                         <div class="extra-wrap">
-                                        	<div class="indent-top">
-                                            	<h4>Solicitudes<em>Sub 2</em></h4>
+                                            <div class="indent-top">
+                                                <h4>Solicitudes<em>Sub 2</em></h4>
                                             </div>
                                         </div>
                                     </div>
@@ -355,12 +358,12 @@
                                 </article>
                             </div>
                             <div class="wrapper">
-                            	<article class="grid_4 alpha">
-                                	<div class="wrapper p1">
-                                    	<figure class="img-indent2"><img src="images/rsz_calendario.png" alt="" /></figure>
+                                <article class="grid_4 alpha">
+                                    <div class="wrapper p1">
+                                        <figure class="img-indent2"><img src="images/rsz_calendario.png" alt="" /></figure>
                                         <div class="extra-wrap">
-                                        	<div class="indent-top">
-                                            	<h4>Calendario<em>Sub 3</em></h4>
+                                            <div class="indent-top">
+                                                <h4>Calendario<em>Sub 3</em></h4>
                                             </div>
                                         </div>
                                     </div>
@@ -368,11 +371,11 @@
                                     <a class="link-1" href="#">Ir</a>
                                 </article>
                                 <article class="grid_4 omega">
-                                	<div class="wrapper p1">
-                                    	<figure class="img-indent2"><img src="images/rsz_correspondencia.png" alt="" /></figure>
+                                    <div class="wrapper p1">
+                                        <figure class="img-indent2"><img src="images/rsz_correspondencia.png" alt="" /></figure>
                                         <div class="extra-wrap">
-                                        	<div class="indent-top">
-                                            	<h4>Correspondencia<em>Sub 4</em></h4>
+                                            <div class="indent-top">
+                                                <h4>Correspondencia<em>Sub 4</em></h4>
                                             </div>
                                         </div>
                                     </div>
@@ -382,29 +385,29 @@
                             </div>
                         </article>
                         <article class="grid_4">
-                        	<h3>Columna</h3>
+                            <h3>Columna</h3>
                             <div class="wrapper p3">
-                            	<figure class="img-indent"><a href="#"><img class="img-border" src="images/page1-img5.jpg" alt="" /></a></figure>
+                                <figure class="img-indent"><a href="#"><img class="img-border" src="images/page1-img5.jpg" alt="" /></a></figure>
                                 <div class="extra-wrap">
-                                	<span class="text-2">Director</span>
+                                    <span class="text-2">Director</span>
                                     <h4 class="p2">Nombre</h4>
                                     <p class="prev-indent-bot">asdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasdasdasdasdasd</p>
                                     <a class="link-1" href="#">Leer más</a>
                                 </div>
                             </div>
                             <div class="wrapper p3">
-                            	<figure class="img-indent"><a href="#"><img class="img-border" src="images/page1-img6.jpg" alt="" /></a></figure>
+                                <figure class="img-indent"><a href="#"><img class="img-border" src="images/page1-img6.jpg" alt="" /></a></figure>
                                 <div class="extra-wrap">
-                                	<span class="text-2">Sub Director</span>
+                                    <span class="text-2">Sub Director</span>
                                     <h4 class="p1">Nombre 2</h4>
                                     <p class="prev-indent-bot">asdasdasdasdasdassssssssssssssssssssssssssdsdsdsdsdsd</p>
                                     <a class="link-1" href="#">Leer más</a>
                                 </div>
                             </div>
                             <div class="wrapper">
-                            	<figure class="img-indent"><a href="#"><img class="img-border" src="images/page1-img7.jpg" alt="" /></a></figure>
+                                <figure class="img-indent"><a href="#"><img class="img-border" src="images/page1-img7.jpg" alt="" /></a></figure>
                                 <div class="extra-wrap">
-                                	<span class="text-2">Otro cargo</span>
+                                    <span class="text-2">Otro cargo</span>
                                     <h4 class="prev-indent-bot">Nombre 3</h4>
                                     <p class="prev-indent-bot">asdasdasdpsdsssssssssssssssssssdasdasdasdasasd...</p>
                                     <a class="link-1" href="#">Leer más</a>
@@ -424,20 +427,7 @@
             <div class="main">
                 <div class="container_12">
                     <div class="wrapper">
-                        <article class="grid_8">
-                            <h4>Contacto:</h4>
-                            <form id="contact-form" method="post">
-                                <fieldset>
-                                    <label><input name="email" value="Correo Electrónico" onBlur="if(this.value=='') this.value='Email'" onFocus="if(this.value =='Email' ) this.value=''" /></label>
-                                    <label><input name="subject" value="Asunto" onBlur="if(this.value=='') this.value='Subject'" onFocus="if(this.value =='Subject' ) this.value=''" /></label>
-                                    <textarea onBlur="if(this.value=='') this.value='Message'" onFocus="if(this.value =='Message' ) this.value=''">Mensaje</textarea>
-                                    <div class="buttons">
-                                        <a href="#" onClick="document.getElementById('contact-form').reset()">Limpiar</a>
-                                        <a href="#" onClick="document.getElementById('contact-form').submit()">Enviar</a>
-                                    </div>                                          
-                                </fieldset>           
-                            </form>
-                        </article>
+                        
                         <article class="grid_4">                            
                             <h4 class="indent-bot">Contáctanos:</h4>
                             <ul class="list-services border-bot img-indent-bot">
