@@ -31,13 +31,8 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
      $scope.abrirDoc = function(id) {
         for(var i = 0; i<$scope.docs.length; i++) {
                 if($scope.docs[i].id === id) {
-                    //var ruta= $scope.docs[i].ruta;
-                   // $window.open('http://gestofi.com/'+ruta);
-
-                    $http.get('webservice/file/download/'+id).success(function(response){ 
-                        
-                    });
-
+                    var ruta= $scope.docs[i].ruta;
+                    $window.open('http://gestofi.com/webservice/documents/'+ruta); 
                 }
          }  
      };
@@ -102,10 +97,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
      };
 
 
-     $scope.SubirDoc = function(dir, filename){
-       // debugger;  
-         /*$('#ModalSubir').modal({ backdrop: false})
-            .one('click', '#confirmSubir', function () {  */          
+     $scope.SubirDoc = function(dir, filename){               
             
                 $scope.getClasificacionDoc();
                 $scope.getSeguridadDoc();
@@ -132,8 +124,6 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
                             $scope.mensajeFallidoSubidaDoc=true; 
                         });                          
                  });
-            
-        //});
     };
 
     //EMPIEZA CODIGO NECESARIO PARA QUE FUNCIONE EL UPLOADER
@@ -205,35 +195,17 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
         e.preventDefault();
     });
     
-
-    /*$scope.onFileSelect = function($files) {   
-   //var file = $files[];             
-                $scope.upload = $upload.upload({
-                    url: 'webservice/file/upload',
-                    data: {title: 'prueba', documento: $files[0]},                   
-                    file: $files
-                }).progress( this.progress)
-                .success(this.onSuccessLoadFile)
-                .error(function(argResponse){
-                    $scope.mensajeFallidoSubidaDoc=true;
-                });
-                //.then(success, error, progress);
-    };*/
   
     $scope.onSuccessLoadFile = function(response){
             var ruta = response.files[0].fd;
             var nombre = response.files[0].filename;
 
-            //var rutaSliced = "documentos/"+ruta.slice(40); 
             var nombreSliced = nombre.slice(0,-4);
+            var nombreHash = /[^\\]*$/.exec(ruta)[0];
 
-           $scope.SubirDoc(ruta, nombreSliced);
+            $scope.SubirDoc(nombreHash, nombreSliced);
             
         };
-
-   /* $scope.progress = function(evt){
-        console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-    };*/
 
 
     $scope.getClasificacionDoc = function(){         
@@ -244,7 +216,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
                 $scope.clasificacion='Investigacion';
             }
             if (tipo== 'Malla Curricular' || tipo== 'Plan de Estudio' || tipo== 'Descriptores De Programas' ) {
-                $scope.clasificacion='Estudiante ';
+                $scope.clasificacion='Estudiante';
             }
             if (tipo== 'Oficios' || tipo== 'Constancias' || tipo== 'Memorandos' || tipo== 'Circulares' || tipo== 'Minutas Análisis de Oficios') {
                 $scope.clasificacion='Papeleria';
@@ -306,19 +278,3 @@ $scope.$watch('tipo',function() {$scope.test2();});
 
 });
 
-
-
-/*$scope.SubirDocFisico = function(){
-            var objeto_JSON;    
-                       
-            objeto_JSON = {
-                "title": $scope.title,            
-                "avatar": $scope.avatar
-            };
-
-            $http({  method: 'POST', url: 'webservice/file/upload', headers: {enctype:'multipart/form-data'}  }, objeto_JSON).success(function(response){
-                alert("se subio doc: " + $scope.title +" " + $scope.avatar);
-
-            }); 
-
-    }*/

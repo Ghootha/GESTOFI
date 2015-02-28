@@ -55,6 +55,36 @@ module.exports = {
       })
       .pipe(res);
     });
+  },
+  update: function  (req, res) {
+    console.log("en update");
+
+    req.validate({
+      id: 'string'
+    });    
+    
+    var uploadPath = '../../assets/documents';  
+    
+    
+    Documento.findOne(req.param('id')).exec(function (err, documento){
+      if (err) return res.negotiate(err);
+      if (!documento) return res.notFound();
+      
+      var nameHashed = documento.ruta;
+
+      req.file('documento').upload({ dirname: uploadPath, saveAs:nameHashed },function (err, files) {
+          if (err)
+            return res.send(500, err);
+
+          return res.json({
+            message: files.length + ' file(s) updated successfully!',
+            files: files
+          });
+        });
+      
+    });
   }
+   
+  
 
 };

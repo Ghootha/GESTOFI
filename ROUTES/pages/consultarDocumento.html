@@ -74,7 +74,7 @@
                                                             </button> 
                                                         </td>
                                                         <td>
-                                                            <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-success" ng-click="actDoc(doc.id)">
+                                                            <button class="btn btn-success" ng-click="actVersionDoc(doc.id)">
                                                                 <span class="glyphicon glyphicon-refresh"></span>
                                                             </button>
                                                         </td>
@@ -161,7 +161,7 @@
                                                             </button> 
                                                         </td>
                                                         <td>
-                                                            <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-success" ng-click="actDoc(doc.id)">
+                                                            <button class="btn btn-success" ng-click="actVersionDoc(doc.id)">
                                                                 <span class="glyphicon glyphicon-refresh"></span>
                                                             </button>
                                                         </td>
@@ -247,7 +247,7 @@
                                                 </button> 
                                             </td>
                                             <td>
-                                                <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-success" ng-click="actDoc(doc.id)">
+                                                <button class="btn btn-success" ng-click="actVersionDoc(doc.id)">
                                                     <span class="glyphicon glyphicon-refresh"></span>
                                                 </button>
                                             </td>
@@ -334,7 +334,7 @@
                                                     </button> 
                                                 </td>
                                                 <td>
-                                                    <button data-backdrop="false" data-target="#Modal2" data-toggle="modal" class="btn btn-success" ng-click="actDoc(doc.id)">
+                                                    <button class="btn btn-success" ng-click="actVersionDoc(doc.id)">
                                                         <span class="glyphicon glyphicon-refresh"></span>
                                                     </button>
                                                 </td>
@@ -390,7 +390,7 @@
                                                        <select class="form-control" data-ng-model="tipo">
                                                             <option>Formulacion De Proyecto</option>
                                                             <option>Minutas Anañisis de Oficios</option>
-                                                            <option>Plan De Estudio</option>
+                                                            <option>Plan de Estudio</option>
                                                             <option>Descriptores De Programas</option>
                                                             <option>Malla Curricular</option>
                                                             <option>Oficios</option>
@@ -424,6 +424,8 @@
                                                             <option>Encargado de Maestría</option>
                                                             <option>Secretaria</option>
                                                             <option>Personal Academico</option>
+                                                            <option>Recepcionista</option>
+                                                            <option>Concerje</option>
                                                         </select>
                                                     </div>                                            
                                                 </div>
@@ -457,7 +459,7 @@
                                     <!-- MODAL ACTUALIZAR-->
                                         <div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                          <div class="modal-dialog">
-                                           <div class="modal-content">
+                                           <div class="modal-content-update">
 
                                                  <div class="modal-header">
                                                     
@@ -465,39 +467,68 @@
                                                    <h4 class="modal-title" id="myModalLabel"> Actualizar version documento</h4>
                                                  </div>
                                                  
-                                                 <div class="modal-body">                                 
-                                                     <form id="upload" action="index.html" method="POST" enctype="multipart/form-data">
-                                                              <fieldset>                                            
-                                                                <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
-                                                                <div>
-                                                                  <label for="fileselect">Archivos a subir:</label>
-                                                                  <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
-                                                                  <div id="filedrag">o Arrastre los Archivos Aquí.</div>
+                                                 <!-- Empieza seccion de subida de archivo--> 
+                                                        <div class="wrapper">                                      
+                                                            <div class="upload-div">
+                                                                
+                                                                <div class="upload-buttons">
+                                                                        <fieldset class="fielset-uploader"><legend>Subir Archivo</legend>
+                                                                            <div class="up-buttons">
+                                                                                <div ng-file-select ng-model="filesUpdate" class="upload-button" 
+                                                                                       ng-multiple="false" ng-accept="'*.pdf,*.jpg,*.png'" ng-model-rejected="rejFiles" 
+                                                                                       tabindex="0" class="ng-hide">Adjuntar una Imagen o PDF</div><br/>
+                                                                                <button ng-file-select ng-model="filesUpdate" 
+                                                                                        ng-multiple="false" class="btn btn-success" >Adjuntar cualquier archivo</button>
+                                                                            </div>
+                                                                            <div ng-file-drop ng-file-select ng-model="filesUpdate" ng-model-rejected="rejFiles"
+                                                                                drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
+                                                                                ng-multiple="false" allow-dir="true" ng-accept="'image/*,application/pdf'">
+                                                                                    Soltar imágenes o archivos PDF<div>O click para Seleccionar</div>
+                                                                            </div>
+                                                                            <div ng-no-file-drop class="drop-box">File Farg&Drop not supported on your browser</div>
+                                                                        </fieldset>
+                                                                        <br/>
                                                                 </div>
-
-                                                                <div id="submitbutton">
-                                                                  <button type="submit">Subir Archivos</button>
-                                                                </div>
-                                                              </fieldset>
-
-                                                    </form>
-                                                    <div id="messages"><p>Mensajes de Estado</p></div>
-                                                        <!--BARRA DE CARGA-->
-                                                        <div class="progress">
-                                                          <div class="progress-bar progress-bar-info progress-bar-striped active"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                                                            <span class="sr-only">45% Complete</span>
-                                                          </div>
+                                                                <ul ng-show="rejFiles.length > 0" class="response">
+                                                                    <li class="sel-file" ng-repeat="f in rejFiles">
+                                                                        Rejected file: {{f.name}} - size: {{f.size}}B - type: {{f.type}}
+                                                                    </li>
+                                                                </ul>
+                                                                <ul ng-show="filesUpdate.length > 0" class="response">
+                                                                    <li class="sel-file" ng-repeat="f in filesUpdate">
+                                                                        <img ng-show="f.dataUrl" ng-src="{{f.dataUrl}}" class="thumb">
+                                                                        <span class="progress" ng-show="f.progress >= 0">                       
+                                                                            <div style="width:{{f.progress}}%">{{f.progress}}%</div>
+                                                                        </span>             
+                                                                        <button class="button" ng-click="f.upload.abort();f.upload.aborted=true" 
+                                                                                ng-show="f.upload != null && f.progress < 100 && !f.upload.aborted">Abort</button>
+                                                                        {{f.name}} - size: {{f.size}}B - type: {{f.type}}
+                                                                        <a ng-show="f.result" href="javascript:void(0)" ng-click="f.showDetail = !f.showDetail">details</a>
+                                                                        <div ng-show="f.showDetail">
+                                                                            <br/>
+                                                                            <div data-ng-show="f.result.result == null">{{f.result}}</div>
+                                                                            <ul>
+                                                                                <li ng-repeat="item in f.result.result">
+                                                                                    <div data-ng-show="item.name">file name: {{item.name}}</div>
+                                                                                    <div data-ng-show="item.fieldName">name: {{item.fieldName}}</div>
+                                                                                    <div data-ng-show="item.size">size on the serve: {{item.size}}</div>
+                                                                                    <div data-ng-show="item.value">value: {{item.value}}</div>
+                                                                                </li>
+                                                                            </ul>
+                                                                            <div data-ng-show="f.result.requestHeaders" class="reqh">request headers: {{f.result.requestHeaders}}</div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                                <br/>
+                                                                <div class="err" ng-show="errorMsg != null">{{errorMsg}}</div>
+                                                            </div>
                                                         </div>
-                                                 </div>
+                                            <!-- TERMINA seccion de subida de archivo--> 
+                                                  <br>
+                                                  <h4 ng-show="mensajeExitoSubidaDoc">Documento Subido con exito</h4>
+                                                  <h4 ng-show="mensajeFallidoSubidaDoc">Subida Fallida del Documento</h4>
 
                                             </div>
-
-                                             <div class="modal-footer">
-                                               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                               <button class="btn btn-success" data-ng-disabled="error || incomplete">
-                                                   <span class="glyphicon glyphicon-save"></span>  Actualizar
-                                               </button>
-                                             </div>
 
                                            </div>
                                          </div>                                                        
