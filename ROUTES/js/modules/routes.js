@@ -33,7 +33,7 @@ app.config(function($routeProvider) {
 			controller 	: 'equiposController'
 		})
 		.when('/SolicitudAula', {
-			templateUrl	: 'pages/SolicitudAula.html.',
+			templateUrl	: 'pages/SolicitudAula.html',
 			controller 	: 'aulaController'
 		})
 		.when('/SolicitudGiras_Vacaciones', {
