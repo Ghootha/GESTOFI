@@ -8,31 +8,35 @@
 module.exports = {
     autoCreatedAt: false,
     autoUpdatedAt: false,
-    autoPK:false,
 
   attributes: {
-      id: {
-          type: 'integer',
-          autoIncrement: true,
-          unique: true,
-          primaryKey: true,
-          required: true
-      },
-      idDocumento: {
-          columnName: 'documento_id',
-          type: 'string',
-          foreignKey: true,
-          references: 'Usuario',
-          on: 'id'
-      },
-      idMensaje: {
-          columnName: 'mensaje_id',
-          type: 'integer',
-          foreignKey: true,
-          references: 'Mensaje',
-          on: 'id'
-      }
-
+	  idDocumento: {
+		  columnName: 'documento_id',
+		  type: 'string',
+		  foreignKey: true,
+		  references: 'Usuario',
+		  on: 'id'
+	  },
+	  emisor: {
+		  type: 'string',
+		  required: true
+	  },
+	  receptor: {
+		  type: 'string',
+		  required: true
+	  },
+	  asunto: {
+		  type: 'string',
+		  required: true
+	  },
+	fecha:{
+		  type:'date',
+		defaultsTo: function (){ return new Date(); }
+	  },
+	mensaje:{
+		type:'text'
+	}
+	
   }
 };
 
