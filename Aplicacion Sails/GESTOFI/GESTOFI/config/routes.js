@@ -39,8 +39,7 @@ module.exports.routes = {
   'get /logout': 'AuthController.logout',
   'get /register': 'AuthController.register',
   'get /get_user': 'AuthController.get_user',  
-  'get /findReservablebyAula' : 'ReservableController.findReservablebyAula',
-  'get /findReservablebyEquipo' : 'ReservableController.findReservablebyEquipo',
+  
 
   'post /auth/local': 'AuthController.callback',
   'post /auth/local/:action': 'AuthController.callback',
