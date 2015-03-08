@@ -40,6 +40,10 @@ app.config(function($routeProvider) {
 			templateUrl	: 'pages/SolicitudGiras_Vacaciones.html',
 			controller 	: 'solicitudController'
 		})
+		.when('/ControlReservas', {
+			templateUrl	: 'pages/ControlReservas.html',
+			controller 	: 'reservaController'
+		})
 		.when('/agenda', {
 			templateUrl	: 'pages/agenda.html'
 			//controller 	: 'docController'
