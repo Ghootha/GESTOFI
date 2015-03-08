@@ -5,6 +5,15 @@ var objetoReserva;
 
 //$http.get("webservice/findReservablebyEquipo").success(function(response) {$scope.equipos = response;});
 
+$http.get("webservice/get_user").success(function(response){
+      $scope.user= response.user;
+      $scope.userLogged=  $scope.user.fullname;            
+      }).error(function(response, status, header, config){  
+        if(response.status == 300){ //estatus de error para usuario en uso
+          $scope.mensajeErrorRegistro=true;
+        }   
+      });
+
 $scope.edit = true;
 $scope.error = false;
 $scope.incomplete = false;
@@ -13,7 +22,7 @@ $scope.incomplete = false;
 $scope.apartarEquipo = function(idEquipo) {
 
 
-    $http.post("webservice/Reserva/create",objetoReserva).success(function(response){alert("entro a la base :D!! ");});
+    //$http.post("webservice/Reserva/create",objetoReserva).success(function(response){alert("entro a la base :D!! ");});
     //put
     $scope.horaInicio="";
     $scope.horaEntrega="";
@@ -27,13 +36,14 @@ $scope.consultarEquipo= function(){
     var fech=new Date(document.getElementById("fecha").value);
 
         objetoReserva = {
-          //"usuario" : $scope.userLogged,
+          "usuario" : $scope.user.username,
           "horaInicio" : horaI.toTimeString(),
           "horaEntrega" : horaF.toTimeString(),
           "fecha" : fech.toDateString()
         }
 
-         $http.get("webservice/consultaEquipo").success(function(response) {$scope.equipos = response;});
+         $http.get("webservice/Reservable/consultaEquipo").success(function(response) {$scope.equipos = response;});
+         $http.get("webservice/Reservable/findTiposEquipos").success(function(response){$scope.tiposEquipos=response;});
 
 };
 

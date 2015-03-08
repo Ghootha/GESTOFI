@@ -11,9 +11,8 @@
                         
                         <td >
                              <span class="css3-metro-dropdown">
-                                <select  name="dropdown-1" ng-model="search.nombre">
-                                    <option data-ng-repeat="equipo in equipos">{{equipo.tipo}}</option>
-                                            
+                                <select  name="dropdown-1" ng-model="search.nombre" ng-options="o for o in tiposEquipos">
+                                    
                                 </select>
                             </span>
                         <hr>

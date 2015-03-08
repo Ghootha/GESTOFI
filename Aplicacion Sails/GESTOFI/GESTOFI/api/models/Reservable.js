@@ -8,16 +8,16 @@
 module.exports = {
     autoCreatedAt: false,
     autoUpdatedAt: false,
-    autoPK:false,
+    //autoPK:false,
 
   attributes: {
-      id: {
+      /*id: {
 
           type: 'integer',
           autoIncrement: true,
           primaryKey: true,
           required: true
-      },
+      },*/
       nombre: {
           type: 'string',
           required: true

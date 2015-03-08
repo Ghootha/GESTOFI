@@ -10,16 +10,16 @@ module.exports = {
 
     autoCreatedAt: false,
     autoUpdatedAt: false,
-    autoPK:false,
+    //autoPK:false,
 
     attributes: {
-        id: {
+        /*id: {
             type: 'integer',
             autoIncrement: true,
             unique:true,
             primaryKey: true,
             required: true
-        },
+        },*/
         idReserva: {
             columnName: 'reserva_id',
             type: 'integer',

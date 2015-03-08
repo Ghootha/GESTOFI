@@ -23,8 +23,8 @@ module.exports = {
           columnName: 'usuario_id',
           type: 'string',
           foreignKey: true,
-          references: 'Usuario',
-          on: 'id'
+          references: 'User',
+          on: 'username'
       },
       horaInicio:{
           type:'string',

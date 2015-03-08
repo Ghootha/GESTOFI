@@ -24,9 +24,11 @@
                     <tr class="info">
                       <th>Estado</th>
                       <th>Solicitante</th>
-					  <th>Tipo Reserva</th>
-					  <th>Codigo Reserva</th>
+					            <th>Nombre Reserva</th>
+                      <th>Codigo Reserva</th>
+                      <th>Tipo Reserva</th>
                       <th>Hora Reserva</th>
+                      <th>Hora Entrega</th>
 					</tr>
                   </thead>
 				  
@@ -41,10 +43,12 @@
                         </select>
                     </span>
                     </td>
-                      <td >{{reserva .nombre}}</td>
-					  <td >{{reserva .tipoReserva}}</td>
-                          <td>{{reserva .codigoReserva}}</td>
-                      <td>{{reserva .HoraReserva}}</td>
+                      <td>{{reserva .solicitante}}</td>
+					            <td>{{reserva .nombre}}</td>
+                      <td>{{reserva .codigo}}</td>
+                      <td>{{reserva .tipo}}</td>
+                      <td>{{reserva .horaInicio}}</td>
+                      <td>{{reserva .horaEntrega}}</td>
 					</tr>
 				</tbody>
                 </table>
