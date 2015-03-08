@@ -33,10 +33,11 @@
                 <thead>
                 <tr class="info">
                     <th>Editar</th>
-                    <th>Cédula</th>
-                    <th>Nombre</th>
-                    <th>Rol</th>
-                    <th>Eliminar</th>
+                    <th>Username</th>
+                    <th>Nombre Completo</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Eliminar</th>    
                 </tr>
                 </thead>
                 <tbody>
@@ -46,8 +47,9 @@
                             <span class="glyphicon glyphicon-pencil"></span>  Editar
                         </button> 
                     </td>
-                    <td>{{ user.ced }}</td>
-                    <td>{{ user.nombre+" "+user.pApellido+" "+user.sApellido }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.fullname }}</td>
+                    <td>{{ user.email }}</td>
                     <td>{{ user.role }}</td>
                     <td > 
                         <button class="btn btn-danger" data-ng-click="deleteUser(user.id)" >      
@@ -67,6 +69,10 @@
                 <h4 ng-show="mensajeErrorRegistro">Error! Usuario o Correo en Uso</h4>
                 <br> 
                 <h4 ng-show="mensajeExitoRegistro">Usuario registrado con exito</h4> 
+                <br> 
+                <h4 ng-show="mensajeExitoEdicion">Usuario editado con exito</h4>
+                <br> 
+                <h4 ng-show="mensajeFalloEdicion">Edicion de Usuario Fallido</h4>
 
                 <hr>
                 <hr>
@@ -85,29 +91,23 @@
                                 <h3 data-ng-show="edit">Editar Usuario:</h3>
                                 <form class="form-horizontal">
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Cedula:</label>
+                                        <label class="col-sm-2 control-label">Username:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" data-ng-model="ced" data-ng-disabled="!edit" placeholder="Cedula">
+                                            <input type="text" data-ng-model="username" data-ng-disabled="!edit" placeholder="Username">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Primer Nombre:</label>
+                                        <label class="col-sm-2 control-label">Nombre Completo:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" data-ng-model="nombre" data-ng-disabled="!edit" placeholder="Primer Nombre">
+                                            <input type="text" data-ng-model="fullname" data-ng-disabled="!edit" placeholder="Primer Nombre">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Primer Apellido:</label>
+                                        <label class="col-sm-2 control-label">Email:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" data-ng-model="pApellido" data-ng-disabled="!edit" placeholder="Primer Apellido">
+                                            <input type="text" data-ng-model="email" data-ng-disabled="!edit" placeholder="Primer Apellido">
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">Segundo Apellido:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" data-ng-model="sApellido" data-ng-disabled="!edit" placeholder="Segundo Apellido">
-                                        </div>
-                                    </div>
+                                    </div>                                    
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Contraseña:</label>
                                         <div class="col-sm-10">
@@ -121,7 +121,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Rol:</label>
+                                        <label class="col-sm-2 control-label">Role:</label>
                                         <div class="col-sm-2">
                                             <select class="form-control" data-ng-model="role">
                                                 <option>Director</option>
@@ -162,29 +162,23 @@
 
                                 <form class="form-horizontal">
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Cedula:</label>
+                                        <label class="col-sm-2 control-label">Username:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" data-ng-model="ced" data-ng-disabled="!edit" placeholder="Cedula">
+                                            <input type="text" data-ng-model="username" data-ng-disabled="!edit" placeholder="Username">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Primer Nombre:</label>
+                                        <label class="col-sm-2 control-label">Nombre Completo:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" data-ng-model="nombre" data-ng-disabled="!edit" placeholder="Primer Nombre">
+                                            <input type="text" data-ng-model="fullname" data-ng-disabled="!edit" placeholder="Nombre Completo">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Primer Apellido:</label>
+                                        <label class="col-sm-2 control-label">Email:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" data-ng-model="pApellido" data-ng-disabled="!edit" placeholder="Primer Apellido">
+                                            <input type="text" data-ng-model="email" data-ng-disabled="!edit" placeholder="e-mail">
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">Segundo Apellido:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" data-ng-model="sApellido" data-ng-disabled="!edit" placeholder="Segundo Apellido">
-                                        </div>
-                                    </div>
+                                    </div>                                    
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Contraseña:</label>
                                         <div class="col-sm-10">
@@ -201,8 +195,8 @@
                                         <label class="col-sm-2 control-label">Rol:</label>
                                         <div class="col-sm-2">
                                             <select class="form-control" data-ng-model="role">
-                                                <option>Rol 1</option>
-                                                <option>Rol 2</option>
+                                                <option>Director</option>
+                                                <option>Subdirector</option>
                                                 <option>Rol 3</option>
                                                 <option>Rol 4</option>
                                                 <option>Rol 5</option>
