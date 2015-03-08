@@ -138,9 +138,9 @@ module.exports = {
 			 					while(listaF.length>cont2){
 
 			 						if(listaNoDisponibles[cont] === listaF[cont2].id){
-			 							console.log("entra");
+			 							
 			 							listaF.splice(cont2,1);
-			 							//cont2=0;
+			 							
 			 							break;
 			 						}
 			 						cont2++;
@@ -178,7 +178,7 @@ module.exports = {
 		        });
 			 	}
 			 	else{
-			 			console.log("ENTRA AL ELSE");
+			 			
 			 		    Reserva.find({ horaInicio: horaI, fecha : fech}).exec(function(err, idReservas){listaIDReservas=idReservas;});
 			 		   	ReservaEquipo.find().exec(function(err, idReservables){listaIDReservables=idReservables;});
 			 			Reservable.find({ tipo: 'Aula'}).exec(function(err, listaFinal){
@@ -192,7 +192,7 @@ module.exports = {
 			 					while(listaF.length>cont2){
 			 						if(listaNoDisponibles[cont] === listaF[cont2].id){
 			 							listaF.splice(cont2,1);
-			 							//cont2=0;
+			 							
 			 							break;
 			 						}
 			 						cont2++;
