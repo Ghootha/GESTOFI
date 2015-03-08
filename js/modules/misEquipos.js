@@ -3,7 +3,7 @@ var app = angular.module("myAppEquipos", []);
 app.controller("equiposController", function($scope, $http) {
 var objetoReserva;
 
-$http.get("webservice/findReservablebyEquipo").success(function(response) {$scope.equipos = response;});
+//$http.get("webservice/findReservablebyEquipo").success(function(response) {$scope.equipos = response;});
 
 
         $http.get("webservice/get_user").success(function(response){
@@ -43,7 +43,7 @@ $scope.consultarEquipo= function(){
           "fecha" : fech.toDateString()
         }
 
-        $http.get("webservice/findReservablebyEquipo").success(function(response) {$scope.equipos = response;});
+        $http.get("webservice/consultaEquipo/fecha="+fech.toDateString()+"&horaInicio="+horaI.toTimeString()+"&horaEntrega="+horaF.toTimeString()).success(function(response) {$scope.equipos = response;});
 
 };
 
