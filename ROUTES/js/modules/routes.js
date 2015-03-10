@@ -45,8 +45,8 @@ app.config(function($routeProvider) {
 			controller 	: 'reservaController'
 		})
 		.when('/agenda', {
-			templateUrl	: 'pages/agenda.html'
-			//controller 	: 'docController'
+			templateUrl	: 'pages/agenda.html',
+			controller 	: 'agendaController'
 		})
 		.when('/EnviarCorrespondencia', {
 			templateUrl	: 'pages/EnviarCorrespondencia.html',

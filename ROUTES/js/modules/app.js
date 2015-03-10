@@ -11,6 +11,7 @@ var app = angular.module("app", [
     'myAppReserva',
     'myAppSolicitudes',
     'myAppUsers',
+    'myAppAgenda',
     'routes'
     ]);
 
