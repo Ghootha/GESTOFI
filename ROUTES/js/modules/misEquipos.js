@@ -26,16 +26,13 @@ $scope.apartarEquipo = function(idEquipo) {
         "idReservable" : idEquipo
       }
 
-      $http.post("webservice/ReservaEquipo/create",objetoReservaEquipo).success(function(response){alert("Solicitud creada");});
+      $http.post("webservice/ReservaEquipo/create",objetoReservaEquipo).success(function(response){
+        $scope.horaInicio="";
+        $scope.horaEntrega="";
+        $scope.fecha="";
+        $scope.equipos=[];
+        $scope.tiposEquipos=[];});
    });
-   
-    
-    
-    $scope.horaInicio="";
-    $scope.horaEntrega="";
-    $scope.fecha="";
-    $scope.equipos=[];
-    $scope.tiposEquipos=[];
 
 };
 
@@ -44,13 +41,6 @@ $scope.consultarEquipo= function(){
     var horaF=new Date("January 01, 2015 "+document.getElementById("horaEntrega").value+":00");
     var fech=new Date(document.getElementById("fecha").value);
     
-
-        /*objetoReserva = {
-          "usuario" : $scope.user.username,
-          "horaInicio" : horaI,//.toTimeString(),
-          "horaEntrega" : horaF,//.toTimeString(),
-          "fecha" : fech//.toDateString()
-        }*/
 
         objetoReserva={
           "usuario" : $scope.user.username,

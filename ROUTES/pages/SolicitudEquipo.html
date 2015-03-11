@@ -11,7 +11,7 @@
                         
                         <td >
                              <span class="css3-metro-dropdown">
-                                <select  name="dropdown-1" ng-model="search.nombre" ng-options="o for o in tiposEquipos">
+                                <select  name="dropdown-1" ng-model="search.tipo" ng-options="o for o in tiposEquipos">
                                     
                                 </select>
                             </span>
@@ -87,9 +87,41 @@
                           <tbody>
                             <tr data-ng-repeat="equipo in equipos | filter:search">
                               <td >
-								<button class="btn btn-success" ng-click="apartarEquipo(equipo.id)">
+								<button class="btn btn-success" data-backdrop="false" data-target="#Modal3" data-toggle="modal" >
                                   <span class="glyphicon glyphicon-ok"></span>
                                 </button>
+
+
+                                   <!-- MODAL 3 -->
+			                    <div id="Modal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			                             <div class="modal-dialog">
+			                                   <div class="modal-content">
+
+			                                         <div class="modal-header">                                            
+			                                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                                           <h4 class="modal-title" id="myModalLabel"> Confirmar Solicitud</h4>
+			                                         </div>
+			                                         <div class="modal-body">                                         
+			                                         	Confirme la solicitud
+			                                         </div>
+			                                         <div class="modal-footer">
+			                                                <button data-dismiss="modal" class="btn btn-danger">
+			                                                                <span class="glyphicon glyphicon-remove"></span>
+			                                                </button>
+
+			                                                <button data-dismiss="modal" class="btn btn-success" id="confirm" ng-click="apartarEquipo(equipo.id)" > 
+			                                                                <span class="glyphicon glyphicon-ok"></span>
+			                                                </button>                                           
+			                                         </div>
+
+			                                   </div>
+			                             </div>
+			                    </div>
+			                    <!-- FINALIZA MODAL 3 -->
+
+
+
+                                
                               </td>
                               <td >{{ equipo.nombre }}</td>
                               <td>{{ equipo.tipo }}</td>

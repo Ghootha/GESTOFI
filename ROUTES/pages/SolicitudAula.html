@@ -44,12 +44,17 @@
 			                   </div>
 			   				<input type="hidden" id="dtp_input3" value="" /><br/>
 			            </div>
+
+			            <button class="btn btn-success" class="btn btn-success"  ng-click="consultarAula()">
+                    		<span class="glyphicon glyphicon-search"></span>  Consultar
+                    	</button>
+
+                 
+            
 					</form>
-				   
+
 					<hr>
-                    <button class="btn btn-success" ng-click="consultarAula()">
-                    <span class="glyphicon glyphicon-search"></span>  Consultar
-                    </button>
+                    
                     <hr>
 					<h3>Resultados</h3>
                      <form>
@@ -64,9 +69,40 @@
                           <tbody>
                             <tr data-ng-repeat="aula in aulas">
                               <td >
-								<button class="btn btn-success" ng-click="apartarAula(aula.id)">
+								<button class="btn btn-success" data-backdrop="false" data-target="#Modal3" data-toggle="modal" >
                               <span class="glyphicon glyphicon-ok"></span>
                             </button>
+
+
+			                             <!-- MODAL 3 -->
+			                    <div id="Modal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			                             <div class="modal-dialog">
+			                                   <div class="modal-content">
+
+			                                         <div class="modal-header">                                            
+			                                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                                           <h4 class="modal-title" id="myModalLabel"> Confirmar Solicitud</h4>
+			                                         </div>
+			                                         <div class="modal-body">                                         
+			                                         	Confirme la solicitud
+			                                         </div>
+			                                         <div class="modal-footer">
+			                                                <button data-dismiss="modal" class="btn btn-danger">
+			                                                                <span class="glyphicon glyphicon-remove"></span>
+			                                                </button>
+
+			                                                <button data-dismiss="modal" class="btn btn-success" id="confirm" ng-click="apartarAula(aula.id)" > 
+			                                                                <span class="glyphicon glyphicon-ok"></span>
+			                                                </button>                                           
+			                                         </div>
+
+			                                   </div>
+			                             </div>
+			                    </div>
+			                    <!-- FINALIZA MODAL 3 -->
+
+
+
                               </td>
                               <td >{{ aula.nombre }}</td>
                               
@@ -76,6 +112,8 @@
 					 </form>
                      <hr>		                         
                      <hr>
+
+                    
 				</div>
 			</div>
 		</div>
