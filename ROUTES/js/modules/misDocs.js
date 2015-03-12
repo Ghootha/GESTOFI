@@ -9,6 +9,14 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
 
     $http.get("webservice/TipoDocumento/findTipoDocByRole") //SE usa para cargar el combobox de tipso de documentos, dependiendo del role no muestra tipos que no puede crear
         .success(function(response) {$scope.tiposDocumento = response;});
+  
+    $scope.tabs = [  
+      { link : '#home', label : 'Investigaciones' },
+      { link : '#estudiante', label : 'Estudiantes'},
+      { link : '#papeleria', label : 'Papeleria'},
+      { link : '#correos', label : 'Correos'}
+    ]; 
+
 
 
     $scope.mensajeExitoSubidaDoc=false;
@@ -318,7 +326,6 @@ $scope.$watch('tipo',function() {$scope.test2();});
             $scope.botonSubir = false;
         }
     };
-
 
 
 });

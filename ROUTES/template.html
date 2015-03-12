@@ -26,6 +26,17 @@
     <link href="css/barralogin/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/barralogin/main.min.css" rel="stylesheet" type="text/css">   
     <!-- Termina CSS de BARRA LOGIN -->
+
+    <!-- FULLCALENDAR -->    
+    <link href='fullcalendar/fullcalendar.css' rel='stylesheet' />
+    <link href='fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+    <style>
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+    <!-- FULLCALENDAR -->
 	
 	
     
@@ -245,7 +256,7 @@
                     <div class="main">
                         <nav class="indent-left">
                             <ul class="menu wrapper">
-                                <li class="active"><a href="paginaPrincipal.html">Principal</a></li>
+                                <li class="active"><a data-toggle="tooltip" data-placement="left" title="Tooltip on left" href="paginaPrincipal.html">Principal</a></li>
                                 <li ><a href="">Repositorio</a>
                                     <ul>
                                         <li><a title="Consultar documentos del repositorio" href="#consultarDocumento">Consultar</a></li>
@@ -347,22 +358,12 @@
 <script src="js/modules/misSolicitudes.js"></script>
 <script src="js/modules/misUsers.js"></script>
 <script src="js/modules/routes.js"></script>
+<script src="js/modules/miAgenda.js"></script>
 <script src="js/modules/app.js"></script>
 
 <!-- FULLCALENDAR -->
-    <script src="js/modules/miAgenda.js"></script>
-    <link href='fullcalendar/fullcalendar.css' rel='stylesheet' />
-    <link href='fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
-    <script src='fullcalendar/moment.min.js'></script>
-    <script src='fullcalendar/jquery.min.js'></script>
-    <script src='fullcalendar/fullcalendar.min.js'></script>
-     <!--Michael ahorita lo pongo en otro lado -->
-    <style>
-        #calendar {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-    </style>
+    <script src='fullcalendar/moment.min.js'></script>  
+    <script src='fullcalendar/fullcalendar.min.js'></script> 
 <!-- FULLCALENDAR -->
 
 
