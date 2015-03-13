@@ -1,6 +1,6 @@
  var app = angular.module("myAppSolicitudes", []);
 
-app.controller("solicitudController", function($scope, $http) {
+app.controller("solicitudController", function($scope, $http , $window) {
 
 $scope.nombre='';
 $scope.solicitante = '';
@@ -25,7 +25,15 @@ $scope.descargarnombre = function(id) {
  
 };
 
-
+$scope.abrirSolicitud = function(id) {
+          if(id===1){
+            $window.open('http://gestofi.com/webservice/solicitudes/plantillas/PLANTILLA_GIRAS.docx'); 
+          }
+          else{
+            $window.open('http://gestofi.com/webservice/solicitudes/plantillas/PLANTILLA_VACACIONES.docx'); 
+          }
+ 
+    };
 
 
 $scope.$watch('nombre', function() {$scope.test();});

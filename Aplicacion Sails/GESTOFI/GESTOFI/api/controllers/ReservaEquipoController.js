@@ -13,7 +13,7 @@ function reservaEquipoPorFecha(listaReservaEquipo, reservasPorFecha){
 		j=0;
 		while(j <listaReservaEquipo.length){
 			if(listaReservaEquipo[j].idReserva === reservasPorFecha[i].id ){
-				l.push(listaReservaEquipo[j].idReservable);
+				l[i]=listaReservaEquipo[j].idReservable;
 				break;
 			}
 			j++;
@@ -66,10 +66,8 @@ module.exports = {
 		Reserva.find({fecha:f}).exec(function(err,reservas){reservasPorFecha=reservas;});
 		ReservaEquipo.find().exec(function(err,reservaEquipos){listaReservaEquipo=reservaEquipos;}); //FALLA LA PRIMERA VEZ, NO DA RESULTADO Y TABLA NO ESTA VACIA
 
-		var listaReservaEquipoPorFecha= reservaEquipoPorFecha(listaReservaEquipo,reservasPorFecha);
-
 		Reservable.find().exec(function(err, reservables){ 
-				
+				var listaReservaEquipoPorFecha= reservaEquipoPorFecha(listaReservaEquipo,reservasPorFecha);
 				var i=0; var j=0; 
 
 				while(listaReservaEquipoPorFecha.length>i){

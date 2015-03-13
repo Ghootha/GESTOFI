@@ -105,7 +105,7 @@ module.exports = {
 
 	consultaEquipo: function (req, res){
 		 
-		 //var listaF,listaIDReservas,listaIDReservables;
+		
 		 horaI= req.param('horaInicio');
 		 fech= req.param('fecha');
 		 Reserva.find().exec(function(err, reservas){
@@ -148,7 +148,7 @@ module.exports = {
 			 					cont++;
 
 			 				}
-			 				console.log(listaF);
+			 				
 			 				res.json(listaF);
 
 			 			});
@@ -160,7 +160,7 @@ module.exports = {
 
 	consultaAula: function (req, res){
 		 
-		 //var listaF,listaIDReservas,listaIDReservables;
+		 
 		 horaI= req.param('horaInicio');
 		 fech= req.param('fecha');
 		 Reserva.find().exec(function(err, reservas){
@@ -178,6 +178,7 @@ module.exports = {
 		        });
 			 	}
 			 	else{
+			 			
 			 			
 			 		    Reserva.find({ horaInicio: horaI, fecha : fech}).exec(function(err, idReservas){listaIDReservas=idReservas;});
 			 		   	ReservaEquipo.find().exec(function(err, idReservables){listaIDReservables=idReservables;});

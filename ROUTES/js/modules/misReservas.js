@@ -9,7 +9,7 @@ $scope.error = false;
 $scope.incomplete = false; 
 
 $scope.buscarPorFecha = function (){
-
+	
 	var fecha=new Date(document.getElementById("fecha").value);
 
 	var objeto={
@@ -19,9 +19,6 @@ $scope.buscarPorFecha = function (){
 	}
 
 	$http.post("webservice/ReservaEquipo/findReservas", objeto).success(function(response){$scope.reservas=response;});
-
-
-
 
 };
 
