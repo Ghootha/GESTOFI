@@ -1,6 +1,6 @@
-var app = angular.module("myAppSolicitudes", []);
+ var app = angular.module("myAppSolicitudes", []);
 
-app.controller("solicitudController", function($scope) {
+app.controller("solicitudController", function($scope, $http) {
 
 $scope.nombre='';
 $scope.solicitante = '';
@@ -24,6 +24,9 @@ $scope.respondernombre = function(id) {
 $scope.descargarnombre = function(id) {
  
 };
+
+
+
 
 $scope.$watch('nombre', function() {$scope.test();});
 $scope.$watch('solicitante', function() {$scope.test();});

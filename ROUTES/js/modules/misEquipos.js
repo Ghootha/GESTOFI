@@ -2,9 +2,10 @@ var app = angular.module("myAppEquipos", []);
 
 app.controller("equiposController", function($scope, $http) {
 var objetoReserva;
-
+var user;
 $http.get("webservice/get_user").success(function(response){
-      $scope.user= response.user;
+      $scope.user= response.user; 
+      user=$scope.user.username;
       $scope.userLogged=  $scope.user.fullname;            
       }).error(function(response, status, header, config){  
         if(response.status == 300){ //estatus de error para usuario en uso
@@ -36,14 +37,17 @@ $scope.apartarEquipo = function(idEquipo) {
 
 };
 
-$scope.consultarEquipo= function(){
-    var horaI=new Date("January 01, 2015 "+document.getElementById("horaInicio").value+":00");
-    var horaF=new Date("January 01, 2015 "+document.getElementById("horaEntrega").value+":00");
-    var fech=new Date(document.getElementById("fecha").value);
-    
 
+$scope.consultarEquipo= function(){
+  
+  if(typeof $scope.horaInicio !== "undefined" &&typeof $scope.horaEntrega !=="undefined" && typeof $scope.fecha !=="undefined"){
+    var horaI=new Date("January 01, 2015 "+$scope.horaInicio+":00");
+    var horaF=new Date("January 01, 2015 "+$scope.horaEntrega+":00");
+    var fech=new Date($scope.fecha);
+    
+      if(horaI < horaF){
         objetoReserva={
-          "usuario" : $scope.user.username,
+          "usuario" : user,//$scope.user.username,
           "horaInicio" : horaI.toTimeString(),
           "horaEntrega" : horaF.toTimeString(),
           "fecha" : fech.toDateString()
@@ -51,6 +55,14 @@ $scope.consultarEquipo= function(){
 
          $http.post("webservice/Reserva/consultaEquipo",objetoReserva).success(function(response) {$scope.equipos = response;});
          $http.get("webservice/Reserva/findTiposEquipos").success(function(response){$scope.tiposEquipos=response;});
+       }
+
+       else 
+        alert("Horas incorrectas");
+  }
+  else
+    alert("Campos vacios");
+  
 
 };
 
