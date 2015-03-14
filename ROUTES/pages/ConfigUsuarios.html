@@ -9,15 +9,15 @@
                         <div class="col-lg-12">
 
                             <div class ="form-group">
-                                <h3>      Busca usuario:</h3>
+                                <h3>      Buscar Usuario:</h3>
                             </div>                                                                                       
                             <div class="form-group">
 
                                 <div class="col-md-3">
-                                    <input id="busqNombre" name="busqNombre" type="text" placeholder="nombre" class="form-control " ng-model="search.nombre">
+                                    <input id="busqNombre" name="busqNombre" type="text" placeholder="Nombre" class="form-control " ng-model="search.fullname">
                                 </div>
                                 <div class="col-md-3">
-                                    <input id="busqRol" name="busqRol" type="text" placeholder="rol" class="form-control " ng-model="search.role">
+                                    <input id="busqRol" name="busqRol" type="text" placeholder="Role" class="form-control " ng-model="search.role">
                                 </div>                                               
                             </div>
                         </div>
@@ -37,6 +37,7 @@
                     <th>Nombre Completo</th>
                     <th>Email</th>
                     <th>Role</th>
+                    <th>Contraseña</th> 
                     <th>Eliminar</th>    
                 </tr>
                 </thead>
@@ -44,13 +45,18 @@
                 <tr data-ng-repeat="user in users | filter:search">
                     <td >
                        <button class="btn btn-warning" data-ng-click="editUser(user.id)">
-                            <span class="glyphicon glyphicon-pencil"></span>  Editar
+                            <span class="glyphicon glyphicon-pencil"></span>
                         </button> 
                     </td>
                     <td>{{ user.username }}</td>
                     <td>{{ user.fullname }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.role }}</td>
+                    <td > 
+                        <button class="btn btn-warning" data-ng-click="cambiarContrasena(user.id)" >      
+                            <span class="glyphicon glyphicon-refresh"></span>
+                        </button>
+                    </td>
                     <td > 
                         <button class="btn btn-danger" data-ng-click="deleteUser(user.id)" >      
                             <span class="glyphicon glyphicon-remove"></span>
@@ -73,6 +79,10 @@
                 <h4 ng-show="mensajeExitoEdicion">Usuario editado con exito</h4>
                 <br> 
                 <h4 ng-show="mensajeFalloEdicion">Edicion de Usuario Fallido</h4>
+                <br> 
+                <h4 ng-show="mensajeExitoCambiaPass">Contraseña editada con exito</h4>
+                <br> 
+                <h4 ng-show="mensajeFalloCambiaPass">Edición de Contraseña Fallida</h4>
 
                 <hr>
                 <hr>
@@ -88,48 +98,39 @@
                             </div>
 
                             <div class="modal-body">
-                                <h3 data-ng-show="edit">Editar Usuario:</h3>
+                                <h3>Editar Usuario:</h3>
                                 <form class="form-horizontal">
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Username:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" data-ng-model="username" data-ng-disabled="!edit" placeholder="Username">
+                                            <input type="text" data-ng-model="username"  placeholder="Username">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Nombre Completo:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" data-ng-model="fullname" data-ng-disabled="!edit" placeholder="Primer Nombre">
+                                            <input type="text" data-ng-model="fullname"  placeholder="Primer Nombre">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Email:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" data-ng-model="email" data-ng-disabled="!edit" placeholder="Primer Apellido">
-                                        </div>
-                                    </div>                                    
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">Contraseña:</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" data-ng-model="passw1" placeholder="Contraseña">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">Repetir:</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" data-ng-model="passw2" placeholder="Repetir Contraseña">
+                                            <input type="text" data-ng-model="email"  placeholder="Primer Apellido">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Role:</label>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-4">
                                             <select class="form-control" data-ng-model="role">
                                                 <option>Director</option>
+                                                <option>Subdirector</option>
+                                                <option>Asistente Administrativa</option>
                                                 <option>Encargado de Maestría</option>
                                                 <option>Personal Académico</option>
                                                 <option>Secretaria</option>
                                                 <option>Recepcionista</option>
                                                 <option>Concerje</option>
+                                                <option>Estudiante</option>
                                             </select>
                                         </div>
                                     </div>
@@ -138,7 +139,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                <button class="btn btn-success" data-ng-disabled="error || incomplete" id="confirm" ng-click="actualizarUser(user.id)" data-dismiss="modal">
+                                <button class="btn btn-success" data-ng-disabled="incomplete2" id="confirm" ng-click="actualizarUser(user.id)" data-dismiss="modal">
                                     <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
                                 </button>
                             </div>
@@ -158,25 +159,25 @@
                             </div>
                             <div class="modal-body">
 
-                                <h3 data-ng-show="edit">Agregar Usuario:</h3>
+                                <h3>Agregar Usuario:</h3>
 
                                 <form class="form-horizontal">
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Username:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" data-ng-model="username" data-ng-disabled="!edit" placeholder="Username">
+                                            <input type="text" data-ng-model="username"  placeholder="Username">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Nombre Completo:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" data-ng-model="fullname" data-ng-disabled="!edit" placeholder="Nombre Completo">
+                                            <input type="text" data-ng-model="fullname"  placeholder="Nombre Completo">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Email:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" data-ng-model="email" data-ng-disabled="!edit" placeholder="e-mail">
+                                            <input type="text" data-ng-model="email" placeholder="e-mail">
                                         </div>
                                     </div>                                    
                                     <div class="form-group">
@@ -193,13 +194,17 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Rol:</label>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-4">
                                             <select class="form-control" data-ng-model="role">
                                                 <option>Director</option>
                                                 <option>Subdirector</option>
-                                                <option>Rol 3</option>
-                                                <option>Rol 4</option>
-                                                <option>Rol 5</option>
+                                                <option>Asistente Administrativa</option>
+                                                <option>Encargado de Maestría</option>
+                                                <option>Personal Académico</option>
+                                                <option>Secretaria</option>
+                                                <option>Recepcionista</option>
+                                                <option>Concerje</option>
+                                                <option>Estudiante</option>
                                             </select>
                                         </div>
                                     </div>
@@ -247,6 +252,48 @@
                      </div>
                 </div>
 <!-- FINALIZA MODAL 3 -->
+
+<!-- MODAL 4 -->
+                <div id="Modal4" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel"></h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <h3>Cambiar Contraseña:</h3>
+
+                                <form class="form-horizontal">                                    
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Contraseña Nueva:</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" data-ng-model="passw1" placeholder="Contraseña"> 8 caracteres mínimo
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Repetir Contraseña:</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" data-ng-model="passw2" placeholder="Repetir Contraseña">
+                                        </div>
+                                    </div>                                    
+                                </form>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <button class="btn btn-success" data-ng-disabled="error " id="confirmContrasena" data-dismiss="modal">
+                                    <span class="glyphicon glyphicon-save" ></span>  Confirmar
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+<!-- FINALIZA MODAL 4 -->
             </div>
         </div>
     </div>

@@ -6,25 +6,18 @@ app.controller("userController", function($scope, $http) {
         
     $http.get("webservice/User")
         .success(function(response) {$scope.users = response; });
-    
-    $scope.edit = true;
+
     $scope.error = false;
     $scope.incomplete = false;
+    $scope.incomplete2 = false;
     $scope.mensajeErrorRegistro=false;
     $scope.mensajeExitoRegistro=false;
     $scope.mensajeExitoEdicion=false;
     $scope.mensajeFalloEdicion=false;
+    $scope.mensajeExitoCambiaPass=false;
+    $scope.mensajeFalloCambiaPass=false;
 
-    $scope.editUser = function(id) {
-        if (id == 'new') {
-            $scope.edit = true;
-            $scope.incomplete = true;
-            $scope.username='';
-            $scope.fullname = '';
-            $scope.email = '';
-            $scope.role='';
-        } else {
-
+    $scope.editUser = function(id) { 
             for(var i = 0; i<$scope.users.length; i++) {           
                 if($scope.users[i].id === id) {
                     $scope.edit = false;
@@ -35,8 +28,6 @@ app.controller("userController", function($scope, $http) {
                     $scope.actualizarUser(id);
                 }
             } 
-            
-        }
     };
 
     $scope.deleteUser = function(id) {
@@ -81,6 +72,12 @@ app.controller("userController", function($scope, $http) {
     };
 
     $scope.registrar = function(){
+        $scope.username = '';
+        $scope.fullname = '';
+        $scope.email = '';
+        $scope.role = '';
+        $scope.passw1='';
+        $scope.passw2='';
         
          $('#Modal2').modal({ backdrop: false})
         .one('click', '#confirmUser', function () {
@@ -112,6 +109,38 @@ app.controller("userController", function($scope, $http) {
             
     };
 
+    $scope.cambiarContrasena = function(id){
+        $scope.passw1='';
+         $('#Modal4').modal({ backdrop: false})
+        .one('click', '#confirmContrasena', function () { 
+
+                $http.post("webservice/User/"+id).success(function(response){
+                    
+                    var Passport= response.passports[0].id;
+                    var objetoJSON;    
+                                        
+                    objetoJSON = {                   
+                        "password"  : $scope.passw1
+                    };
+
+                    $http.post("webservice/Passport/Update/"+Passport, objetoJSON).success(function(response){                   
+                
+                        $scope.$apply($scope.mensajeExitoCambiaPass=true);
+
+                    }).error(function(response, status, header, config){  
+                       
+                        $scope.$apply($scope.mensajeFalloCambiaPass=true);
+
+                    });
+
+                });    
+
+                
+        });
+            
+            
+    };
+
     $scope.$watch('passw1',function() {$scope.test();});
     $scope.$watch('passw2',function() {$scope.test();});
     $scope.$watch('username', function() {$scope.test();});    
@@ -120,15 +149,20 @@ app.controller("userController", function($scope, $http) {
     $scope.$watch('role', function() {$scope.test();});
 
     $scope.test = function() {
-        if ($scope.passw1 !== $scope.passw2) {
+        if ( !($scope.passw1.length >=8) || ($scope.passw1 !== $scope.passw2)) {
             $scope.error = true;
         } else {
             $scope.error = false;
         }
         $scope.incomplete = false;
-        if ($scope.edit && (!$scope.username.length || !$scope.fullname.length ||
-            !$scope.email.length || !$scope.role.length || !$scope.role.length ||
-            !$scope.passw1.length || !$scope.passw2.length)) {
+        $scope.incomplete2 = false;
+        if (!$scope.username.length || !$scope.fullname.length ||
+            !$scope.email.length || !$scope.role.length) {
+            $scope.incomplete2 = true;
+        }
+        if (!$scope.username.length || !$scope.fullname.length ||
+            !$scope.email.length || !$scope.role.length ||
+            !$scope.passw1.length || !$scope.passw2.length) {
             $scope.incomplete = true;
         }
     };
