@@ -11,7 +11,7 @@ function reservaEquipoPorFecha(listaReservaEquipo, reservasPorFecha){
 	var i=0; var j=0;
 	while(i < reservasPorFecha.length){
 		j=0;
-		while(j <listaReservaEquipo.length){
+		while(j < listaReservaEquipo.length){
 			if(listaReservaEquipo[j].idReserva === reservasPorFecha[i].id ){
 				l[i]=listaReservaEquipo[j].idReservable;
 				break;
@@ -84,7 +84,16 @@ module.exports = {
 					i++;
 				}
 				
-				res.json(mergeJSON(reservasPorFecha,listaF));
+				j=0; listaF=mergeJSON(reservasPorFecha,listaF);
+				//console.log(listaF);
+				while(j<listaF.length){
+
+					User.find({ username : listaF[i].usuario}).exec(function(err, miUsuario){ listaF[i].usuario= miUsuario.fullname;});
+					j++;
+				}
+
+				res.json(listaF);
+				//res.json(mergeJSON(reservasPorFecha,listaF));
 
 		});
 		

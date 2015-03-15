@@ -10,18 +10,19 @@ module.exports = {
 
     autoCreatedAt: false,
     autoUpdatedAt: false,
-    //autoPK:false,
 
     attributes: {
-        /*id: {
-            type: 'integer',
-            autoIncrement: true,
-            unique:true,
-            primaryKey: true,
+     
+        estado:{
+            
+            type: 'string',
             required: true
-        },*/
+
+        },
+
         idReserva: {
             columnName: 'reserva_id',
+            required: true,
             type: 'integer',
             foreignKey: true,
             references: 'Reserva',
@@ -29,11 +30,14 @@ module.exports = {
         },
         idReservable: {
             columnName: 'reservable_id',
+            required: true,
             type: 'integer',
             foreignKey: true,
             references: 'Reservable',
             on: 'id'
         }
+
+
 
     }
 };

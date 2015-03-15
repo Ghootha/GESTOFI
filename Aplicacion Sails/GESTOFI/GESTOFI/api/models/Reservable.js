@@ -11,13 +11,7 @@ module.exports = {
     //autoPK:false,
 
   attributes: {
-      /*id: {
-
-          type: 'integer',
-          autoIncrement: true,
-          primaryKey: true,
-          required: true
-      },*/
+     
       nombre: {
           type: 'string',
           required: true

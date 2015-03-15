@@ -21,9 +21,21 @@
                                         <span class="glyphicon glyphicon-download"></span>  Vacaciones
                                         </button>
                                     </div><br>
-                                    <div class="col-md-3">
-                                            <input  type="file" ng-file-select="onFileSelect($files)" ng-multiple="true" >
-                                    </div> 
+                                    
+
+                                    <div class="upload-buttons">
+                                        <fieldset class="fielset-uploader"><legend>Subir Archivo</legend>
+                                            <div class="up-buttons">
+                                                <button ng-file-select ng-model="files" 
+                                                ng-multiple="false" class="btn btn-success" >Adjuntar cualquier archivo
+                                                </button>
+                                            </div>
+                                                                            
+                                        </fieldset>
+                                        <br/>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </form> 
