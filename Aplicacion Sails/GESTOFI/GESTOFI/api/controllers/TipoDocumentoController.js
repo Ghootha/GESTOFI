@@ -43,7 +43,7 @@ module.exports = {
 
     if( roleLogged  == 'Secretaria' || roleLogged  == 'Recepcionista' || roleLogged  == 'Concerje' || roleLogged  == 'Estudiante' ){  
 
-    	TipoDocumento.find( { seguridad: ['Plan de Estudio', 'Malla Curricular', 'Descriptores De Programas', 'Correos Electronicos']  } )
+    	TipoDocumento.find( { nombre: ['Plan de Estudio', 'Malla Curricular', 'Descriptores De Programas', 'Correos Electronicos']  } )
 		        .exec(function(err,user){
 
 		          if(err)
