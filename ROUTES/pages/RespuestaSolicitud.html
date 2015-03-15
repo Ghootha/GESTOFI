@@ -32,8 +32,10 @@
                         <thead>
                             <tr class="info">
                                 <th>Documento</th>
-                                <th>Solicitud</th>
+                                <th>Asunto</th>
                                 <th>Solicitante</th>
+                                <th>Fecha</th>
+                                <th>Revisado</th>
                                 <th>Responder</th>
                             </tr>
                         </thead>
@@ -42,15 +44,23 @@
                             <tr data-ng-repeat="solicitud in solicitudes">
                                 <td >
 
-                                    <button class="btn btn-success" ng-click="descargarSolicitud(solicitud.id)">
+                                    <button class="btn btn-primary" ng-click="descargarSolicitud(solicitud.id)">
                                     	<span class="glyphicon glyphicon-file"></span>
                                     </button>
                                 </td>
                                 <td >{{ solicitud .nombre }}</td>
                                 <td >{{ solicitud .solicitante}}</td>
+                                <td >{{ solicitud .fecha}}</td>
+                                <td >
+                                    <button  ng-class="setClassButton(solicitud.estado)"> 
+                                       <!--  ng-click="cambioEstado(solicitud.id, solicitud.estado)" --> 
+                                        <span ng-class="setClassSpan(solicitud.estado)"></span> 
+                                    </button>
+                                </td>
                                 <td>
-                                <button data-backdrop="false" data-target="#Modal" class="btn btn-success" data-toggle="modal"> <span class="glyphicon glyphicon-comment"></span> </button>
-                                  
+                                    <button data-backdrop="false" data-target="#Modal" ng-class="setClassButton(solicitud.estado)" data-toggle="modal"> 
+                                        <span class="glyphicon glyphicon-comment"></span> 
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>

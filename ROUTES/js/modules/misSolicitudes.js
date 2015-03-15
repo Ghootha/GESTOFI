@@ -12,6 +12,8 @@ $scope.edit = true;
 $scope.error = false;
 $scope.incomplete = false; 
 
+$http.get("webservice/Solicitudes").success(function(response){$scope.solicitudes=response;})
+
 $scope.abrirSolicitud = function(id) {
           if(id===1){
             $window.open('http://gestofi.com/webservice/solicitudes/plantillas/PLANTILLA_GIRAS.docx'); 
@@ -21,6 +23,36 @@ $scope.abrirSolicitud = function(id) {
           }
  
     };
+
+$scope.setClassButton = function(estado) {
+    
+    if(estado!=="Pendiente"){
+      return "btn btn-success"
+    }
+    else
+      return "btn btn-warning";
+    
+};
+
+$scope.setClassSpan = function(estado) {
+    
+    if(estado==="Pendiente"){
+      return "glyphicon glyphicon-exclamation-sign";
+    }
+    else
+      return "glyphicon glyphicon-ok-sign";
+    
+};
+
+$scope.cambioEstado = function(id, estado) {
+    
+   if(estado==="Pendiente"){
+    $http.put("webservice/Solicitudes/update/"+id+"?estado=Revisado").success(function(response){});
+   }
+   else
+    $http.put("webservice/Solicitudes/update/"+id+"?estado=Pendiente").success(function(response){});
+    
+};
 
 $scope.cargarSolicitud= function(dir, filename){
     $http.get("webservice/get_user").success(function(response){
@@ -98,8 +130,6 @@ $scope.cargarSolicitud= function(dir, filename){
     });
       
     $scope.onSuccessLoadFile = function(response){
-
-            console.log("si pasa");
             var ruta = response.files[0].fd;
             var nombre = response.files[0].filename;
 

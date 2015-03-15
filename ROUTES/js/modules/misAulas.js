@@ -1,7 +1,7 @@
 var app = angular.module("myAppAulas", []);
 
 app.controller("aulaController", function($scope, $http) {
-
+var objetoReserva;
 $scope.nombre= '';
 
 
@@ -37,9 +37,10 @@ $scope.consultarAula= function(){
     var horaI=new Date("January 01, 2015 "+document.getElementById("horaInicio").value+":00");
     var horaF=new Date("January 01, 2015 "+document.getElementById("horaEntrega").value+":00");
     var fech=new Date(document.getElementById("fecha").value);
-    $http.get("webservice/get_user").success(function(response){
-                    $scope.user= response.user;
-      if(horaI < horaF){
+    
+    if(horaI < horaF){
+      $http.get("webservice/get_user").success(function(response){$scope.user= response.user;
+      
         objetoReserva={
           "usuario" : $scope.user.username,
           "horaInicio" : horaI.toTimeString(),
@@ -47,10 +48,11 @@ $scope.consultarAula= function(){
           "fecha" : fech.toDateString()
         }
          $http.post("webservice/Reserva/consultaAula",objetoReserva).success(function(response) {$scope.aulas = response;});
-         }
-         else 
+        });
+    }
+    else 
         alert("Horas incorrectas");
-  });}
+    }
   else
     alert("Campos vacios");
   

@@ -35,9 +35,10 @@ $scope.consultarEquipo= function(){
     var horaI=new Date("January 01, 2015 "+$scope.horaInicio+":00");
     var horaF=new Date("January 01, 2015 "+$scope.horaEntrega+":00");
     var fech=new Date($scope.fecha);
-    $http.get("webservice/get_user").success(function(response){
-                    $scope.user= response.user;
-      if(horaI < horaF){
+    
+    if(horaI < horaF){
+    $http.get("webservice/get_user").success(function(response){$scope.user= response.user;
+      
         objetoReserva={
           "usuario" : $scope.user.username,
           "horaInicio" : horaI.toTimeString(),
@@ -46,12 +47,12 @@ $scope.consultarEquipo= function(){
         }
 
          $http.post("webservice/Reserva/consultaEquipo",objetoReserva).success(function(response) {$scope.equipos = response;});
-         $http.get("webservice/Reserva/findTiposEquipos").success(function(response){$scope.tiposEquipos=response;});
-       }
-
-       else 
+         $http.get("webservice/Reserva/findTiposEquipos").success(function(response){$scope.tiposEquipos=response;})
+       
+    });}
+    else 
         alert("Horas incorrectas");
-  });}
+    }
   else
     alert("Campos vacios");
   
