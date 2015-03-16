@@ -32,13 +32,14 @@ $scope.apartarAula = function(idAula) {
 
 
 $scope.consultarAula= function(){
-   
+  
   if(typeof $scope.horaInicio !== "undefined" &&typeof $scope.horaEntrega !=="undefined" && typeof $scope.fecha !=="undefined"){
     var horaI=new Date("January 01, 2015 "+document.getElementById("horaInicio").value+":00");
     var horaF=new Date("January 01, 2015 "+document.getElementById("horaEntrega").value+":00");
     var fech=new Date(document.getElementById("fecha").value);
     
     if(horaI < horaF){
+      debugger;
       $http.get("webservice/get_user").success(function(response){$scope.user= response.user;
       
         objetoReserva={

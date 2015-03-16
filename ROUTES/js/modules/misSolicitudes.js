@@ -68,7 +68,7 @@ $scope.cargarSolicitud= function(dir, filename){
 
     }
     $http.put("webservice/Solicitudes/create",objetoSolicitud).success(function(response){});
-
+    alert("Solicitud enviada, la respuesta será notificada por correspondencia");
   });
 
     

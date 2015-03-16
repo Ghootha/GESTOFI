@@ -30,13 +30,14 @@ $scope.apartarEquipo = function(idEquipo) {
 
 
 $scope.consultarEquipo= function(){
-  
+ 
   if(typeof $scope.horaInicio !== "undefined" &&typeof $scope.horaEntrega !=="undefined" && typeof $scope.fecha !=="undefined"){
     var horaI=new Date("January 01, 2015 "+$scope.horaInicio+":00");
     var horaF=new Date("January 01, 2015 "+$scope.horaEntrega+":00");
     var fech=new Date($scope.fecha);
     
     if(horaI < horaF){
+       debugger;
     $http.get("webservice/get_user").success(function(response){$scope.user= response.user;
       
         objetoReserva={
