@@ -13,8 +13,8 @@ module.exports = {
   attributes: {
      
       idUsuario: {
-          columnName: 'usuario_id',
           type: 'string',
+          required: true,
           foreignKey: true,
           references: 'User',
           on: 'username'

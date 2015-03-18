@@ -4,7 +4,7 @@
  * @description :: Server-side logic for managing reservaequipoes
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
-	var reservasPorFecha=[]; var listaReservaEquipo=[]; var listaF=[];
+	var reservasPorFecha=[]; var listaReservaEquipo=[]; var listaF=[]; var listaUsuarios=[];
 function reservaEquipoPorFecha(listaReservaEquipo, reservasPorFecha){
 
 	var l=[];
@@ -64,8 +64,8 @@ module.exports = {
 		
 		
 		Reserva.find({fecha:f}).exec(function(err,reservas){reservasPorFecha=reservas;});
-		ReservaEquipo.find().exec(function(err,reservaEquipos){listaReservaEquipo=reservaEquipos;}); //FALLA LA PRIMERA VEZ, NO DA RESULTADO Y TABLA NO ESTA VACIA
-
+		ReservaEquipo.find().exec(function(err,reservaEquipos){listaReservaEquipo=reservaEquipos;});
+		User.find().exec(function(err, miUsuario){listaUsuarios=miUsuario;});
 		Reservable.find().exec(function(err, reservables){ 
 				var listaReservaEquipoPorFecha= reservaEquipoPorFecha(listaReservaEquipo,reservasPorFecha);
 				var i=0; var j=0; 
@@ -84,20 +84,22 @@ module.exports = {
 					i++;
 				}
 				
-				j=0; listaF=mergeJSON(reservasPorFecha,listaF);
-				//console.log(listaF);
-				while(j<listaF.length){
+				listaF=mergeJSON(reservasPorFecha,listaF);
+				
+					for(var s=0;s<listaF.length;s++){
+						for(var e=0;e<listaUsuarios.length;e++){
+							if(listaF[s].usuario === listaUsuarios[e].username){
+								listaF[s].usuario = listaUsuarios[e].fullname;
+							}
+						}
+						
+					} 
 
-					User.find({ username : listaF[i].usuario}).exec(function(err, miUsuario){ listaF[i].usuario= miUsuario.fullname;});
-					j++;
-				}
-
-				res.json(listaF);
-				//res.json(mergeJSON(reservasPorFecha,listaF));
-
+					res.json(listaF);
+				
 		});
 		
-
+		
 	}
 	
 	

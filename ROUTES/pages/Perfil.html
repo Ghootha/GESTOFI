@@ -12,50 +12,51 @@
                                 <li class="active"><a href="#home2" data-toggle="tab">Perfil</a></li>
                                 <li><a href="#profile" data-toggle="tab">Contraseña</a></li>
                             </ul>
-                        <div id="myTabContent" class="tab-content">
+                        <div id="myTabContent" class="tab-content" data-ng-controller='perfilController'>
                             <div class="tab-pane active in" id="home2">
                                 <center>
                                     <div class="panel panel-info">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title" >Carlos Cascante</h3>
+                                        <h3 class="panel-title" ><span class="name" data-ng-model="userLogged">{{ user.fullname }}</span></h3>
                                     </div>
 
                                     <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" class="img-circle"> </div>
-
+                                        <div class="col-md-3 col-lg-3 " align="center"> <img  ng-src="{{userPhoto}}" class="img-circle" width="200" height="200"> </div>
+                                            <!-- alt="User Pic" -->
 
                                         <div class=" col-md-9 col-lg-9 "> 
                                             <table class="table table-user-information">
                                                 <tbody>
                                                     <tr>
                                                         <td>Rol</td>
-                                                        <td>Subdirector</td>
+                                                        <td>{{user.role}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Fecha de nacimiento</td>
-                                                        <td>01/24/1988</td>
+                                                        <td>{{user.birthdate}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Domicilio</td>
-                                                        <td>San Francisco, Heredia</td>
+                                                        <td>{{user.address}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Email</td>
-                                                        <td><a href="mailto:info@support.com">info@support.com</a></td>
+                                                        <td>{{user.email}}</td>
                                                     </tr>
+                                                    <tr>
                                                         <td>Teléfono</td>
-                                                        <td>2222-2222(Oficina)<br><br>8888-8888(Celular)
-                                                    </td>
+                                                        <td>{{user.phone}}</td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
 
                                     <div class="panel-footer">
-                                        <span class="pull-right">
-                                        <a href="#" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                                        </span>
+                                        <button data-backdrop="false" data-target="#Modal2" data-toggle="modal"  class="btn btn-sm btn-warning" ng-click="">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </button>
                                     </div>
                                 </center>
                                     </div>
@@ -83,9 +84,77 @@
                                     </div>
                                 </form>
                             </div>
+
+
+
+
                         </div>
                     </div> 
 <!-- cierra perfil --> 
+
+                        <div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                                             <div class="modal-dialog">
+                                               <div class="modal-content">
+
+                                                 <div class="modal-header">
+                                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                   <h4 class="modal-title" id="myModalLabel">Editar Informacion del Role</h4>
+                                                 </div>
+                                                 <div class="modal-body">   
+                                                  <form class="form-horizontal">
+                                                      <div class="form-group">
+                                                          <label class="col-sm-2 control-label">Nombre:</label>
+                                                          <div class="col-md-6">
+                                                              <input type="text" class="form-control" data-ng-model="user.fullname" >
+                                                          </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="col-sm-2 control-label">Fecha de nacimiento:</label>
+                                                          <div class="col-md-6">
+                                                              <input type="text" class="form-control" data-ng-model="user.birthdate" >
+                                                          </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="col-sm-2 control-label">Domicilio:</label>
+                                                          <div class="col-md-6">
+                                                              <input type="text" class="form-control" data-ng-model="user.address" >
+                                                          </div>
+
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="col-sm-2 control-label">Email:</label>
+                                                          <div class="col-md-6">
+                                                              <input type="text" class="form-control" data-ng-model="user.email" >
+                                                          </div>
+                                                          
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="col-sm-2 control-label">Telefono:</label>
+                                                          <div class="col-md-6">
+                                                              <input type="text" class="form-control" data-ng-model="user.phone" >
+                                                          </div>
+                                                          
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label class="col-sm-2 control-label">Cambiar foto:</label>
+                                                          <div class="col-md-6">
+                                                              <input type="text" class="form-control" data-ng-model="holis" >
+                                                          </div>
+                                                          
+                                                      </div>
+                                                  </form>
+                                                  
+                                                 </div>
+                                                 <div class="modal-footer">
+                                                   <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                   <button class="btn btn-success" data-ng-disabled="incomplete" id="confirm" data-dismiss="modal" ng-click="modificarPerfil()">
+                                                       <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
+                                                   </button>
+                                                 </div>
+
+                                               </div>
+                                             </div>
+                                           </div>
                     </div>
                 </div>
             </div>

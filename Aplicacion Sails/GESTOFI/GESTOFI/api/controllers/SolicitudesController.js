@@ -5,6 +5,7 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
+var misUsuarios=[];
 module.exports = {
 	
 	upload: function  (req, res) {
@@ -20,5 +21,26 @@ module.exports = {
         files: files
       });
     });
+  },
+
+  findSolicitudes : function(req, res){
+      User.find().exec(function(err, miUsuario){listaUsuarios=miUsuario;});
+      Solicitudes.find().exec(function(err, sol){
+
+        for(var s=0;s<sol.length;s++){
+            for(var e=0;e<listaUsuarios.length;e++){
+              if(sol[s].solicitante === listaUsuarios[e].username){
+                sol[s].solicitante = listaUsuarios[e].fullname;
+              }
+            }
+            
+          } 
+
+          res.json(sol);
+      });
+
+
   }
+
+
 };

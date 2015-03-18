@@ -12,12 +12,13 @@ $scope.incomplete = false;
 
 $scope.apartarAula = function(idAula) {
   var IDReserva, objetoReservaEquipo; 
+  
     $http.post("webservice/Reserva/create",objetoReserva).success(function(response){ 
       objetoReservaEquipo= {
         "idReserva" : response.id,
         "idReservable" : idAula,
         "estado": "Pendiente"
-      }
+      };
 
       $http.post("webservice/ReservaEquipo/create",objetoReservaEquipo).success(function(response){
          $scope.horaInicio="";
@@ -39,15 +40,15 @@ $scope.consultarAula= function(){
     var fech=new Date(document.getElementById("fecha").value);
     
     if(horaI < horaF){
-      debugger;
-      $http.get("webservice/get_user").success(function(response){$scope.user= response.user;
-      
+     
+      $http.get("webservice/get_user").success(function(response){
+        $scope.user= response.user;
         objetoReserva={
-          "usuario" : $scope.user.username,
+          "idUsuario" : $scope.user.username,
           "horaInicio" : horaI.toTimeString(),
           "horaEntrega" : horaF.toTimeString(),
           "fecha" : fech.toDateString()
-        }
+        };
          $http.post("webservice/Reserva/consultaAula",objetoReserva).success(function(response) {$scope.aulas = response;});
         });
     }

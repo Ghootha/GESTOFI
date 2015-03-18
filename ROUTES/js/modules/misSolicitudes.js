@@ -5,14 +5,12 @@ app.controller("solicitudController", function($scope, $http , $window, $upload,
 $scope.nombre='';
 $scope.solicitante = '';
 
-$scope.solicitudes = [
-
-];
+$scope.solicitudes = [];
 $scope.edit = true;
 $scope.error = false;
 $scope.incomplete = false; 
 
-$http.get("webservice/Solicitudes").success(function(response){$scope.solicitudes=response;})
+$http.get("webservice/Solicitudes/findSolicitudes").success(function(response){$scope.solicitudes=response;})
 
 $scope.abrirSolicitud = function(id) {
           if(id===1){
