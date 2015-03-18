@@ -92,7 +92,7 @@ app.controller("userController", function($scope, $http) {
                 "password"  : $scope.passw1
             };    
 
-            $http.post("webservice/auth/local/register", objetoJSON).success(function(response, forceReload){                    
+            $http.post("webservice/auth/local/register", objetoJSON).success(function(response){                    
                 
                 if(response.status == 200){ //comprobacion de estatus, devuelve 200 si se realizo el registro/logueo
                      $scope.$apply($scope.mensajeExitoRegistro=true);

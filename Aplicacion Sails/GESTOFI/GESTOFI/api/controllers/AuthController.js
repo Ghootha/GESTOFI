@@ -148,7 +148,7 @@ var AuthController = {
             status: statusCode
 
           };
-
+          console.log("error en callbacck seccion register");
           res.json(result, result.status);   
           break;
 
@@ -172,28 +172,41 @@ var AuthController = {
     }
 
     passport.callback(req, res, function (err, user) {
+      console.log("en callback de passport");
       if (err) {
+        console.log("en err");
         return tryAgain();
       }
 
-      req.login(user, function (err) {
-        if (err) {
-          return tryAgain();
-        }
+      if(!req.user){  //agregue esta validacion para que no loguee al que esta registrando
+          req.login(user, function (err) {
+            if (err) {
+              console.log("entra en res.login()");
+              return tryAgain();
+              
+            }
 
-        // Upon successful login, send the user to the homepage were req.user
-        // will available.
+            // Upon successful login, send the user to the homepage were req.user
+            // will available.
 
-          var statusCode = 200;  
+              var statusCode = 200;  
 
-          var result = {
-            status: statusCode
-          };
+              var result = {
+                status: statusCode
+              };
 
-          res.json(result, result.status);
-        //res.redirect('/paginaPrincipal.html');
+              res.json(result, result.status);
+            //res.redirect('/paginaPrincipal.html');
 
-      });
+          });
+      }
+      var statusCode = 200;  
+
+              var result = {
+                status: statusCode
+              };
+
+              res.json(result, result.status);
     });
   },
 

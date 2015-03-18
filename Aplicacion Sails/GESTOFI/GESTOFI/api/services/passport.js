@@ -235,7 +235,7 @@ passport.callback = function (req, res, next) {
   // Passport.js wasn't really built for local user registration, but it's nice
   // having it tied into everything else.
   if (provider === 'local' && action !== undefined) {
-    if (action === 'register' && !req.user) {
+    if (action === 'register') { //cambie esta parte antes tenia un && !req.user
       this.protocols.local.register(req, res, next);
     }
     else if (action === 'connect' && req.user) {
