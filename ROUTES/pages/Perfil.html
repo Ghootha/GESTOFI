@@ -67,20 +67,20 @@
                                         <tbody>
                                             <tr>
                                                 <td>Contraseña actual</td>
-                                                <td><input type="text" /></td>
+                                                <td><input type="password" ng-model="passAct"/></td>
                                             </tr>
                                             <tr>
                                                 <td>Contraseña nueva</td>
-                                                <td><input type="text" /></td>
+                                                <td><input type="password" ng-model="passNew"/></td>
                                             </tr>
                                             <tr>
                                                 <td>Confirme la nueva contraseña</td>
-                                                <td><input type="text" /></td>
+                                                <td><input type="password" ng-model="passNewConf"/></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div >
-                                        <button class="btn btn-primary">Actualizar</button>
+                                        <button class="btn btn-primary" ng-click="setContrasena()">Actualizar</button>
                                     </div>
                                 </form>
                             </div>
