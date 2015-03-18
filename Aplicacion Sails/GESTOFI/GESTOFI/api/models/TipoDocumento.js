@@ -15,6 +15,10 @@ module.exports = {
       nombre:{
           type: 'string',
           required: true
+      },
+      seguridad:{
+          type: 'string',
+          required: true
       }
   }
   

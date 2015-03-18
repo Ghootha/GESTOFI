@@ -27,7 +27,7 @@ module.exports = {
 
     if( roleLogged  == 'Encargado de Maestría' || roleLogged  == 'Personal Académico' ){  
 
-    	TipoDocumento.find( { nombre: { '!': ['Investigación','Formulacion De Proyecto', 'Minutas Análisis de Oficios'] }} )
+    	TipoDocumento.find( { seguridad: { '!': 'Alta' }} )
 		        .exec(function(err,user){
 
 		          if(err)
@@ -43,7 +43,7 @@ module.exports = {
 
     if( roleLogged  == 'Secretaria' || roleLogged  == 'Recepcionista' || roleLogged  == 'Concerje' || roleLogged  == 'Estudiante' ){  
 
-    	TipoDocumento.find( { nombre: ['Plan de Estudio', 'Malla Curricular', 'Descriptores De Programas', 'Correos Electronicos']  } )
+    	TipoDocumento.find( { seguridad: 'Ninguna' } )
 		        .exec(function(err,user){
 
 		          if(err)

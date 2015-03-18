@@ -385,18 +385,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Tipo:</label>
                                                     <div class="col-sm-5">
-                                                       <select class="form-control" data-ng-model="tipo">
-                                                            <option>Formulacion De Proyecto</option>
-                                                            <option>Minutas Anañisis de Oficios</option>
-                                                            <option>Plan de Estudio</option>
-                                                            <option>Descriptores De Programas</option>
-                                                            <option>Malla Curricular</option>
-                                                            <option>Oficios</option>
-                                                            <option>Constancias</option>
-                                                            <option>Memorandos</option>
-                                                            <option>Circulares</option>
-                                                            <option>Correos Electronicos</option>
-                                                        </select>
+                                                       <select class="form-control" ng-model="tipo" ng-options="tipo.nombre for tipo in tiposDocumento"></select>
                                                     </div>                                            
                                                 </div>
                                                 
