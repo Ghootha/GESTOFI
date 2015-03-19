@@ -35,9 +35,15 @@ $scope.apartarAula = function(idAula) {
 $scope.consultarAula= function(){
   
   if(typeof $scope.horaInicio !== "undefined" &&typeof $scope.horaEntrega !=="undefined" && typeof $scope.fecha !=="undefined"){
-    var horaI=new Date("January 01, 2015 "+document.getElementById("horaInicio").value+":00");
-    var horaF=new Date("January 01, 2015 "+document.getElementById("horaEntrega").value+":00");
-    var fech=new Date(document.getElementById("fecha").value);
+    var h1=new Date("January 01, 2015 "+$scope.horaInicio+":00");
+    var h2=new Date("January 01, 2015 "+$scope.horaEntrega+":00");
+    var horaI=new Date($scope.fecha);
+    var horaF=new Date($scope.fecha);
+    horaI.setHours(h1.getHours());
+    horaI.setMinutes(h1.getMinutes());
+    horaF.setHours(h2.getHours());
+    horaF.setMinutes(h2.getMinutes());
+    var fech=new Date($scope.fecha);
     
     if(horaI < horaF){
      
