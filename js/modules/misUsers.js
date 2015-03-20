@@ -1,63 +1,51 @@
 
 var app = angular.module("myAppUsers", []);
 
-app.controller("userController", function($scope) {
+app.controller("userController", function($scope, $http) {
 
-    $scope.ced='';
-    $scope.nombre = '';
-    $scope.pApellido = '';
-    $scope.sApellido = '';
-    $scope.passw1 = '';
-    $scope.passw2 = '';
-    $scope.role = '';
-    $scope.users = [
-        {id:1, ced:'2-0596-0618', nombre:'Michael',   pApellido:"González", sApellido:"Murillo", role:"Profesor"  },
-        {id:2, ced:'1-1553-0965', nombre:'Andres',   pApellido:"Rodríguez", sApellido:"Morales", role:"Director" },
-        {id:3, ced:'4-0217-0111', nombre:'Natasha',   pApellido:"Arteaga", sApellido:"Guerrero", role:"Asistente" },
-        {id:4, ced:'4-0217-0123', nombre:'José',  pApellido:"Alvarado", sApellido:"Villalobos", role:"Secretario" }
-    ];
-    $scope.edit = true;
+        
+    $http.get("webservice/User")
+        .success(function(response) {$scope.users = response; });
+
     $scope.error = false;
     $scope.incomplete = false;
+    $scope.incomplete2 = false;
     $scope.mensajeErrorRegistro=false;
     $scope.mensajeExitoRegistro=false;
+    $scope.mensajeExitoEdicion=false;
+    $scope.mensajeFalloEdicion=false;
+    $scope.mensajeExitoCambiaPass=false;
+    $scope.mensajeFalloCambiaPass=false;
 
-    $scope.editUser = function(id) {
-        if (id == 'new') {
-            $scope.edit = true;
-            $scope.incomplete = true;
-            $scope.ced='';
-            $scope.nombre = '';
-            $scope.pApellido = '';
-            $scope.sApellido = '';
-            $scope.role='';
-        } else {
-
+    $scope.editUser = function(id) { 
             for(var i = 0; i<$scope.users.length; i++) {           
                 if($scope.users[i].id === id) {
                     $scope.edit = false;
-                    $scope.ced = $scope.users[i].ced;
-                    $scope.nombre = $scope.users[i].nombre;
-                    $scope.pApellido = $scope.users[i].pApellido;
-                    $scope.sApellido = $scope.users[i].sApellido;
+                    $scope.username = $scope.users[i].username;
+                    $scope.fullname = $scope.users[i].fullname;
+                    $scope.email = $scope.users[i].email;
                     $scope.role = $scope.users[i].role;
                     $scope.actualizarUser(id);
                 }
             } 
-            
-        }
     };
 
     $scope.deleteUser = function(id) {
         $('#Modal3').modal({ backdrop: false})
         .one('click', '#confirm', function () {
-            for(var i = 0; i<$scope.users.length; i++) {           
-                if($scope.users[i].id === id) {
-                    $scope.$apply($scope.users.splice(i, 1));
+
+            $http.get("webservice/User/destroy/"+id).success(function(){
+
+                for(var i = 0; i<$scope.users.length; i++) {           
+                    if($scope.users[i].id === id) {
+                        $scope.$apply($scope.users.splice(i, 1));
+                    }
                 }
-            }    
+            });  
+
         });
     };
+ 
 
     $scope.actualizarUser = function(id) {
        $('#Modal').modal({ backdrop: false})
@@ -66,19 +54,17 @@ app.controller("userController", function($scope) {
                 for(var i = 0; i<$scope.users.length; i++) {           
                     if($scope.users[i].id === id) {
                            objetoJSON = {
-                            "cedula": $scope.ced,            
-                            "nombre": $scope.nombre,
-                            "pApellido": $scope.pApellido,
-                            "sApellido": $scope.sApellido,
-                            "role": $scope.role,
-
-                        };
-                        alert("manda put al servidor el user: "+$scope.nombre+$scope.pApellido+$scope.sApellido+" con ced: "+$scope.ced+" y Role "+$scope.role );
-                        // $http.put("webservice/Documento/update/"+id, objetoJSON).success(
-                        //         function(){
-                        //             $http.get("webservice/Documento")
-                        //                 .success(function(response) {$scope.users = response;});
-                        //          });
+                                "username": $scope.username,            
+                                "fullname": $scope.fullname,
+                                "email": $scope.email,
+                                "role": $scope.role
+                            };
+                        
+                            $http.put("webservice/User/update/"+id, objetoJSON).success(function(){
+                                        $scope.mensajeExitoRegistro=true;
+                            }).error(function(){
+                                        $scope.mensajeFalloEdicion=true;
+                            });
                     }
                 }
         }); 
@@ -86,6 +72,12 @@ app.controller("userController", function($scope) {
     };
 
     $scope.registrar = function(){
+        $scope.username = '';
+        $scope.fullname = '';
+        $scope.email = '';
+        $scope.role = '';
+        $scope.passw1='';
+        $scope.passw2='';
         
          $('#Modal2').modal({ backdrop: false})
         .one('click', '#confirmUser', function () {
@@ -100,7 +92,7 @@ app.controller("userController", function($scope) {
                 "password"  : $scope.passw1
             };    
 
-            $http.post("webservice/auth/local/register", objetoJSON).success(function(response, forceReload){                    
+            $http.post("webservice/auth/local/register", objetoJSON).success(function(response){                    
                 
                 if(response.status == 200){ //comprobacion de estatus, devuelve 200 si se realizo el registro/logueo
                      $scope.$apply($scope.mensajeExitoRegistro=true);
@@ -117,24 +109,60 @@ app.controller("userController", function($scope) {
             
     };
 
+    $scope.cambiarContrasena = function(id){
+        $scope.passw1='';
+         $('#Modal4').modal({ backdrop: false})
+        .one('click', '#confirmContrasena', function () { 
+
+                $http.post("webservice/User/"+id).success(function(response){
+                    
+                    var Passport= response.passports[0].id;
+                    var objetoJSON;    
+                                        
+                    objetoJSON = {                   
+                        "password"  : $scope.passw1
+                    };
+
+                    $http.post("webservice/Passport/Update/"+Passport, objetoJSON).success(function(response){                   
+                
+                        $scope.$apply($scope.mensajeExitoCambiaPass=true);
+
+                    }).error(function(response, status, header, config){  
+                       
+                        $scope.$apply($scope.mensajeFalloCambiaPass=true);
+
+                    });
+
+                });    
+
+                
+        });
+            
+            
+    };
+
     $scope.$watch('passw1',function() {$scope.test();});
     $scope.$watch('passw2',function() {$scope.test();});
-    $scope.$watch('ced', function() {$scope.test();});    
-    $scope.$watch('nombre', function() {$scope.test();});
-    $scope.$watch('pApellido', function() {$scope.test();});
-    $scope.$watch('sApellido', function() {$scope.test();});
+    $scope.$watch('username', function() {$scope.test();});    
+    $scope.$watch('fullname', function() {$scope.test();});
+    $scope.$watch('email', function() {$scope.test();});
     $scope.$watch('role', function() {$scope.test();});
 
     $scope.test = function() {
-        if ($scope.passw1 !== $scope.passw2) {
+        if ( !($scope.passw1.length >=8) || ($scope.passw1 !== $scope.passw2)) {
             $scope.error = true;
         } else {
             $scope.error = false;
         }
         $scope.incomplete = false;
-        if ($scope.edit && (!$scope.ced.length || !$scope.nombre.length ||
-            !$scope.pApellido.length || !$scope.sApellido.length || !$scope.role.length ||
-            !$scope.passw1.length || !$scope.passw2.length)) {
+        $scope.incomplete2 = false;
+        if (!$scope.username.length || !$scope.fullname.length ||
+            !$scope.email.length || !$scope.role.length) {
+            $scope.incomplete2 = true;
+        }
+        if (!$scope.username.length || !$scope.fullname.length ||
+            !$scope.email.length || !$scope.role.length ||
+            !$scope.passw1.length || !$scope.passw2.length) {
             $scope.incomplete = true;
         }
     };

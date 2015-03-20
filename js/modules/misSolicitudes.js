@@ -1,29 +1,146 @@
-var app = angular.module("myAppSolicitudes", []);
+ var app = angular.module("myAppSolicitudes", []);
 
-app.controller("solicitudController", function($scope) {
+app.controller("solicitudController", function($scope, $http , $window, $upload, $timeout) {
 
 $scope.nombre='';
 $scope.solicitante = '';
 
-$scope.solicitudes = [
-{id:1, nombre:'Nombre 1', solicitante:'Michael' },
-{id:2, nombre:'Nombre 2', solicitante:'Andres' },
-{id:3, nombre:'Nombre 3', solicitante:'Natasha'},
-{id:4, nombre:'Nombre 4', solicitante:'José'   },
-{id:5, nombre:'Nombre 5', solicitante:'John'   },
-{id:6, nombre:'Nombre 6', solicitante:'Peter'  }
-];
+$scope.solicitudes = [];
 $scope.edit = true;
 $scope.error = false;
 $scope.incomplete = false; 
 
-$scope.respondernombre = function(id) {
+$http.get("webservice/Solicitudes/findSolicitudes").success(function(response){$scope.solicitudes=response;})
+
+$scope.abrirSolicitud = function(id) {
+          if(id===1){
+            $window.open('http://gestofi.com/webservice/solicitudes/plantillas/PLANTILLA_GIRAS.docx'); 
+          }
+          else{
+            $window.open('http://gestofi.com/webservice/solicitudes/plantillas/PLANTILLA_VACACIONES.docx'); 
+          }
  
+    };
+
+$scope.setClassButton = function(estado) {
+    
+    if(estado!=="Pendiente"){
+      return "btn btn-success"
+    }
+    else
+      return "btn btn-warning";
+    
 };
 
-$scope.descargarnombre = function(id) {
- 
+$scope.setClassSpan = function(estado) {
+    
+    if(estado==="Pendiente"){
+      return "glyphicon glyphicon-exclamation-sign";
+    }
+    else
+      return "glyphicon glyphicon-ok-sign";
+    
 };
+
+$scope.cambioEstado = function(id, estado) {
+    
+   if(estado==="Pendiente"){
+    $http.put("webservice/Solicitudes/update/"+id+"?estado=Revisado").success(function(response){});
+   }
+   else
+    $http.put("webservice/Solicitudes/update/"+id+"?estado=Pendiente").success(function(response){});
+    
+};
+
+$scope.cargarSolicitud= function(dir, filename){
+    $http.get("webservice/get_user").success(function(response){
+                    $scope.user= response.user;
+    var objetoSolicitud;
+
+    objetoSolicitud={
+
+      "nombre": filename,
+      "estado": "Pendiente",
+      "solicitante": $scope.user.username,
+      "ruta": dir
+
+    }
+    $http.put("webservice/Solicitudes/create",objetoSolicitud).success(function(response){});
+    alert("Solicitud enviada, la respuesta será notificada por correspondencia");
+  });
+
+    
+
+};
+
+//////////// copiado
+
+//EMPIEZA CODIGO NECESARIO PARA QUE FUNCIONE EL UPLOADER
+    //-------------------------------------------------------------------------------------------------------------------------------------//
+
+    $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
+    
+    $scope.$watch('files', function(files) {        
+        if (files != null) {
+            for (var i = 0; i < files.length; i++) {
+                $scope.errorMsg = null;
+                (function(file) {
+                    uploadUsing$upload(file);
+                })(files[i]);
+            }
+        }
+    });
+    
+
+    function uploadUsing$upload(file) {
+        $scope.errorMsg = null;
+        file.upload = $upload.upload({
+                    url: 'webservice/Solicitudes/upload',
+                    data: {title: 'prueba', documento: file}
+                });
+
+        file.upload.then(function(response) {
+            $timeout(function() {
+               file.result = response.data;
+               $scope.onSuccessLoadFile(file.result);
+            });
+        }, function(response) {
+            if (response.status > 0)
+                $scope.errorMsg = response.status + ': ' + response.data;
+        });
+
+        file.upload.progress(function(evt) {
+            // Math.min is to fix IE which reports 200% sometimes
+            file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+        });
+
+        file.upload.xhr(function(xhr) {
+            // xhr.upload.addEventListener('abort', function(){console.log('abort complete')}, false);
+        });
+    }
+    
+    
+    angular.element(window).bind("dragover", function(e) {
+        e.preventDefault();
+    });
+    angular.element(window).bind("drop", function(e) {
+        e.preventDefault();
+    });
+      
+    $scope.onSuccessLoadFile = function(response){
+            var ruta = response.files[0].fd;
+            var nombre = response.files[0].filename;
+
+            var nombreSliced = nombre.slice(0,-4);
+            var nombreHash = /[^\\]*$/.exec(ruta)[0];
+
+            $scope.cargarSolicitud(nombreHash, nombreSliced);
+            
+    };
+
+
+///////////
+
 
 $scope.$watch('nombre', function() {$scope.test();});
 $scope.$watch('solicitante', function() {$scope.test();});

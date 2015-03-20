@@ -1,56 +1,89 @@
+var app = angular.module("myAppAgenda", []);
 
-	  
-  $(document).ready(function() {
-  
-		$.ajax({
-    type: "GET",
-    url: "webservice/Agenda",
-    contentType: "application/json; charset=utf-8",
-    dataType: "json",
-    success: function(data) {
-		$('#calendar').fullCalendar({
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,agendaWeek,agendaDay'
-			},
-			defaultDate: '2015-02-12',
-			editable: true,
-			eventLimit: true, // allow "more" link when too many events
+app.controller("agendaController", function($scope, $http, $window) {
+
+		var req = {
+			 method: 'GET',
+			 url: 'webservice/Agenda',
+			 dataType: 'json',
+			 data: '',
+			 headers: {
+			   'Content-Type': "application/json; charset=utf-8"
+			 }
+		};
+		
+		
+		$scope.agregarActividad = function(){ 
 			
-			events:data,
+			var objetoJSON;    
+				debugger;   
+			objetoJSON = {
+				"title": $scope.actividadA,
+				"autor": $scope.autorA,
+				"lugar": $scope.lugarA,
+				"descripcion": $scope.descripcionA,
+				"start": $scope.startA,
+				"end": $scope.endA,
+			};
 			
-			eventClick: function(calEvent, jsEvent, view) {
-					
-				$('#modalTitle').html(calEvent.title);
-				$('#modalBody').html("Autor: "+calEvent.autor+"<br>"+"Descripcion: "+calEvent.descripcion+"<br>"+"Lugar: "+calEvent.lugar+"<br>"+calEvent.start.format()+"<br>"+calEvent.end.format());
-				$('#eventUrl').attr('href',calEvent.url);
-				$('#fullCalModal').modal();
+			alert(objetoJSON.title);
+			$http.post("webservice/Agenda/create", objetoJSON).success(function(response){
+				/*$timeout(function(){
+				   // $scope.mensajeExitoSubidaDoc=true;
+				   alert("yeahhh");
+				});   */                     
+		 }).error(function(response, status, header, config){  
+				/*$timeout(function(){
+				   // $scope.mensajeFallidoSubidaDoc=true; 
+				   alert("noooo");
+				}); */                         
+		 });
+		};
+		$http(req).success(function(data){
+			$('#calendar').fullCalendar({
+				lang: 'es',
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+				editable: true,
+				eventLimit: true, // allow "more" link when too many events
 				
-
-			},
-			 
-			dayClick: function(date, jsEvent, view) {
-
-				alert('Clicked on: ' + date.format());
-
-				alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-
-				alert('Current view: ' + view.name);
-
-				// change the day's background color just for fun
-				$(this).css('background-color', 'red');
-
-			}
-			
+				events:data,
+				
+				eventClick: function(calEvent, jsEvent, view) {
+				
+					$scope.$apply(function(){							
+						$scope.title= calEvent.title;
+						$scope.autor= calEvent.autor;
+						$scope.lugar= calEvent.lugar;
+						$scope.descripcion= calEvent.descripcion;
+						$scope.start= calEvent.start;
+						$scope.end= calEvent.end;	
+					});
+					$('#Modal2').modal({backdrop:false});
 					
+				
+							
+				},
+				
+							 
+				dayClick: function(date, jsEvent, view) {
+					$('#Modal3').modal({backdrop:false});
+					$scope.$apply(function(){
+						$scope.startA = date.format('DD MM YYYY');
+					});	
+					$(this).css('background-color', 'blue');
+				}
+					
+					
+							
+			});
+		}).error(function (XMLHttpRequest, textStatus, errorThrown) {
+			alert(XMLHttpRequest + " : " + textStatus + " : " + errorThrown);
 		});
 
-    },
-	error: function (XMLHttpRequest, textStatus, errorThrown) {
-alert(XMLHttpRequest + " : " + textStatus + " : " + errorThrown);
-}
 });
-	});
 	
 		  

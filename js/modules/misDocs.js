@@ -9,17 +9,15 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
 
     $http.get("webservice/TipoDocumento/findTipoDocByRole") //SE usa para cargar el combobox de tipso de documentos, dependiendo del role no muestra tipos que no puede crear
         .success(function(response) {$scope.tiposDocumento = response;});
+  
+    $scope.tabs = [  
+      { link : '#home', label : 'Investigaciones' },
+      { link : '#estudiante', label : 'Estudiantes'},
+      { link : '#papeleria', label : 'Papeleria'},
+      { link : '#correos', label : 'Correos'}
+    ]; 
 
 
-    $http.get("webservice/get_user").success(function(response){
-            $scope.user= response.user;
-            $scope.userLogged=  $scope.user.fullname;            
-            }).error(function(response, status, header, config){  
-                if(response.status == 300){ //estatus de error para usuario en uso
-                    $scope.mensajeErrorRegistro=true;
-                }   
-            });
- 
 
     $scope.mensajeExitoSubidaDoc=false;
     $scope.mensajeFallidoSubidaDoc=false;
@@ -28,14 +26,14 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
     $scope.incomplete2 = true;
     $scope.botonSubir = false;
 
-     $scope.abrirDoc = function(id) {
+    $scope.abrirDoc = function(id) {
         for(var i = 0; i<$scope.docs.length; i++) {
                 if($scope.docs[i].id === id) {
                     var ruta= $scope.docs[i].ruta;
                     $window.open('http://gestofi.com/webservice/documents/'+ruta); 
                 }
          }  
-     };
+    };
 
      $scope.incomplete = false;
     
@@ -55,7 +53,13 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
          }     
      };
 
-     $scope.actualizaDoc = function(id) {  
+     $scope.actVersionDoc = function(id) {  
+        $scope.idDoctoUpdate=id;        
+        $('#Modal2').modal({backdrop:false});        
+    };
+
+
+    $scope.actualizaDoc = function(id) {  
      $('#Modal').modal({ backdrop: false})
         .one('click', '#confirm', function () {       
         var objetoJSON;
@@ -97,11 +101,14 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
      };
 
 
-     $scope.SubirDoc = function(dir, filename){               
+     $scope.SubirDoc = function(dir, filename){              
             
                 $scope.getClasificacionDoc();
                 $scope.getSeguridadDoc();
-            
+                
+                $http.get("webservice/get_user").success(function(response){
+                    $scope.user= response.user;  
+
                 var objetoJSON;    
                        
                 objetoJSON = {
@@ -109,7 +116,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
                     "Role": $scope.user.role,
                     "tipo": $scope.tipo.nombre,
                     "clasificacion": $scope.clasificacion,
-                    "seguridad": $scope.seguridad,  //hay que asignarla cuando se selecciona el tipo
+                    "seguridad": $scope.seguridad,  
                     "duenno" : $scope.user.username,
                     "ruta" : dir, 
                     "codigo": $scope.codigo
@@ -124,6 +131,8 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
                             $scope.mensajeFallidoSubidaDoc=true; 
                         });                          
                  });
+            
+        }); 
     };
 
     //EMPIEZA CODIGO NECESARIO PARA QUE FUNCIONE EL UPLOADER
@@ -194,8 +203,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
     angular.element(window).bind("drop", function(e) {
         e.preventDefault();
     });
-    
-  
+      
     $scope.onSuccessLoadFile = function(response){
             var ruta = response.files[0].fd;
             var nombre = response.files[0].filename;
@@ -205,8 +213,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
 
             $scope.SubirDoc(nombreHash, nombreSliced);
             
-        };
-
+    };
 
     $scope.getClasificacionDoc = function(){         
 
@@ -243,7 +250,53 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
             if (tipo== 'Malla Curricular' || tipo== 'Plan de Estudio' || tipo== 'Descriptores De Programas' || tipo== 'Correos Electronicos') {
                 $scope.seguridad='Ninguna'
             }
-    };
+    };   
+
+    //EMPIEZA CODIGO NECESARIO PARA QUE FUNCIONE EL UPDATER
+    //-------------------------------------------------------------------------------------------------------------------------------------//
+
+    $scope.$watch('filesUpdate', function(files) {        
+        if (files != null) {
+            for (var i = 0; i < files.length; i++) {
+                $scope.errorMsg = null;
+                (function(file) {
+                    upload2Using$upload(file);
+                })(files[i]);
+            }
+        }
+    });
+     
+
+    function upload2Using$upload(file) {
+        $scope.errorMsg = null;
+        $scope.generateThumb(file);
+
+        file.upload = $upload.upload({
+                    url: 'webservice/file/update/'+ $scope.idDoctoUpdate,
+                    data: {title: 'prueba', documento: file}
+                });
+
+        file.upload.then(function(response) {
+            $timeout(function() {
+               file.result = response.data;
+               $scope.mensajeExitoSubidaDoc=true;  
+            });
+        }, function(response) {
+            if (response.status > 0)
+                $scope.errorMsg = response.status + ': ' + response.data;
+        });
+
+        file.upload.progress(function(evt) {
+            // Math.min is to fix IE which reports 200% sometimes
+            file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+        });
+
+        file.upload.xhr(function(xhr) {
+            // xhr.upload.addEventListener('abort', function(){console.log('abort complete')}, false);
+        });
+    }
+
+
 
     $scope.$watch('fecha',function() {$scope.test();});
     $scope.$watch('nombre',function() {$scope.test();});
@@ -275,6 +328,4 @@ $scope.$watch('tipo',function() {$scope.test2();});
     };
 
 
-
 });
-
