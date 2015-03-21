@@ -25,6 +25,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
     $scope.incomplete = true;
     $scope.incomplete2 = true;
     $scope.botonSubir = false;
+    $scope.verDoc="";
 
     $scope.abrirDoc = function(id) {
         for(var i = 0; i<$scope.docs.length; i++) {
@@ -104,7 +105,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
      $scope.SubirDoc = function(dir, filename){              
             
                 $scope.getClasificacionDoc();
-                $scope.getSeguridadDoc();
+               // $scope.getSeguridadDoc();
                 
                 $http.get("webservice/get_user").success(function(response){
                     $scope.user= response.user;  
@@ -116,7 +117,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
                     "Role": $scope.user.role,
                     "tipo": $scope.tipo.nombre,
                     "clasificacion": $scope.clasificacion,
-                    "seguridad": $scope.seguridad,  
+                    "seguridad": $scope.tipo.seguridad,  
                     "duenno" : $scope.user.username,
                     "ruta" : dir, 
                     "codigo": $scope.codigo
@@ -221,36 +222,40 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
 
             if(tipo== 'Formulacion De Proyecto' || tipo== 'Investigación' ){
                 $scope.clasificacion='Investigacion';
+                $scope.verDoc='#home';
             }
             if (tipo== 'Malla Curricular' || tipo== 'Plan de Estudio' || tipo== 'Descriptores De Programas' ) {
                 $scope.clasificacion='Estudiante';
+                $scope.verDoc='#estudiante';
             }
             if (tipo== 'Oficios' || tipo== 'Constancias' || tipo== 'Memorandos' || tipo== 'Circulares' || tipo== 'Minutas Análisis de Oficios') {
                 $scope.clasificacion='Papeleria';
+                $scope.verDoc='#papeleria';
             }
             if (tipo== 'Correos Electronicos') {
                 $scope.clasificacion='Correo';
+                $scope.verDoc='#correos';
             }
     };
 
-    $scope.getSeguridadDoc = function(){
+    // $scope.getSeguridadDoc = function(){
 
-            var tipo = $scope.tipo.nombre;
+    //         var tipo = $scope.tipo.nombre;
 
-            if(tipo== 'Formulacion De Proyecto' || tipo== 'Investigación' || tipo== 'Minutas Análisis de Oficios' ){
-                $scope.seguridad='Alta'
-            }
+    //         if(tipo== 'Formulacion De Proyecto' || tipo== 'Investigación' || tipo== 'Minutas Análisis de Oficios' ){
+    //             $scope.seguridad='Alta'
+    //         }
 
-            if (tipo== 'Oficios' || tipo== 'Constancias' || tipo== 'Memorandos' || tipo== 'Circulares') {
-                $scope.seguridad='Media'
-            }
-            /*if (tipo== '') {  //especificaron seguridad, pero no le dan este grado a ningun documento
-                $scope.seguridad='Baja' 
-            }*/
-            if (tipo== 'Malla Curricular' || tipo== 'Plan de Estudio' || tipo== 'Descriptores De Programas' || tipo== 'Correos Electronicos') {
-                $scope.seguridad='Ninguna'
-            }
-    };   
+    //         if (tipo== 'Oficios' || tipo== 'Constancias' || tipo== 'Memorandos' || tipo== 'Circulares') {
+    //             $scope.seguridad='Media'
+    //         }
+    //         /*if (tipo== '') {  //especificaron seguridad, pero no le dan este grado a ningun documento
+    //             $scope.seguridad='Baja' 
+    //         }*/
+    //         if (tipo== 'Malla Curricular' || tipo== 'Plan de Estudio' || tipo== 'Descriptores De Programas' || tipo== 'Correos Electronicos') {
+    //             $scope.seguridad='Ninguna'
+    //         }
+    // };   
 
     //EMPIEZA CODIGO NECESARIO PARA QUE FUNCIONE EL UPDATER
     //-------------------------------------------------------------------------------------------------------------------------------------//

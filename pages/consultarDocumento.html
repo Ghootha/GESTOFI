@@ -4,12 +4,12 @@
             <div class="wrapper">
                 
                 <ul class="nav nav-tabs">
-                    <li ng-repeat="tab in tabs"><a href="{{tab.link}}" data-toggle="tab">{{tab.label}}</a></li>
+                    <li ng-repeat="tab in tabs"><a data-target="{{tab.link}}" data-toggle="tab">{{tab.label}}</a></li>
                 </ul>
 
             <div id="myTabContent" class="tab-content"> <!--inicia tabs -->
                     
-                    <div class="tab-pane active in" id="home">
+                    <div class="tab-pane active" id="home">
                      <center>
                         
                         <div class="panel panel-info">
@@ -97,7 +97,7 @@
                       </center>
                     </div>
             <!-- Termina primer pestaña-->
-                    <div class="tab-pane fade" id="estudiante">
+                    <div class="tab-pane" id="estudiante">
                         <center>
                         
                         <div class="panel panel-info">
@@ -183,7 +183,7 @@
                         </center>
                     </div>
             <!-- Termina segunda pestaña-->
-                    <div class="tab-pane fade" id="papeleria">
+                    <div class="tab-pane" id="papeleria">
                         <center>
                         
                         <div class="panel panel-info">
@@ -269,7 +269,7 @@
                         </center>
                     </div>
             <!-- Termina tercer pestaña-->
-                    <div class="tab-pane fade" id="correos">
+                    <div class="tab-pane" id="correos">
                         <center>
                         
                         <div class="panel panel-info">
