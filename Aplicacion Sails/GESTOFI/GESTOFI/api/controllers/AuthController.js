@@ -187,16 +187,23 @@ var AuthController = {
             // Upon successful login, send the user to the homepage were req.user
             // will available.
 
-              console.log("status 200");
+              var status = 200;
               var result = {
-                status: statusCode
+                status: status
+              };
+
+              res.json(result, result.status);          
+
+          });
+      }else{
+          var status = 200;
+              var result = {
+                status: status
               };
 
               res.json(result, result.status);
-            //res.redirect('/paginaPrincipal.html');
-
-          });
       }
+
       
     });
   },
