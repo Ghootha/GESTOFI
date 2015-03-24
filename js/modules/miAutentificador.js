@@ -7,6 +7,7 @@ $scope.mensajeError=false;
 $scope.mensajeErrorRegistro=false;
 
     $scope.loguear = function(){
+        debugger;
             var objetoJSON;    
             
             objetoJSON = {
@@ -33,6 +34,7 @@ $scope.mensajeErrorRegistro=false;
 
 
     $scope.registrar = function(){
+
             var objetoJSON;    
             debugger;
             objetoJSON = {

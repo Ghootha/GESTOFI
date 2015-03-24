@@ -3,10 +3,7 @@ var app = angular.module("myAppUsers", []);
 
 app.controller("userController", function($scope, $http) {
 
-        
-    $http.get("webservice/User")
-        .success(function(response) {$scope.users = response; });
-
+  
     $scope.error = false;
     $scope.incomplete = false;
     $scope.incomplete2 = false;

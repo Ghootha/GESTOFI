@@ -12,22 +12,22 @@ app.config(function($routeProvider) {
 			templateUrl	: 'pages/consultarDocumento.html',
 			controller 	: 'docController'
 		})
-		.when('/home', {
-			templateUrl	: 'pages/consultarDocumento.html',
-			controller 	: 'docController'
-		})
-		.when('/estudiante', {
-			templateUrl	: 'pages/consultarDocumento.html',
-			controller 	: 'docController'
-		})
-		.when('/papeleria', {
-			templateUrl	: 'pages/consultarDocumento.html',
-			controller 	: 'docController'
-		})
-		.when('/correos', {
-			templateUrl	: 'pages/consultarDocumento.html',
-			controller 	: 'docController'
-		})
+		// .when('/home', {
+		// 	templateUrl	: 'pages/consultarDocumento.html',
+		// 	controller 	: 'docController'
+		// })
+		// // .when('/estudiante', {
+		// // 	templateUrl	: 'pages/consultarDocumento.html',
+		// // 	controller 	: 'docController'
+		// // })
+		// .when('/papeleria', {
+		// 	templateUrl	: 'pages/consultarDocumento.html',
+		// 	controller 	: 'docController'
+		// })
+		// .when('/correos', {
+		// 	templateUrl	: 'pages/consultarDocumento.html',
+		// 	controller 	: 'docController'
+		// })
 		.when('/SolicitudEquipo', {
 			templateUrl	: 'pages/SolicitudEquipo.html',
 			controller 	: 'equiposController'
