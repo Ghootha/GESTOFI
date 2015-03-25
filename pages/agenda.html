@@ -22,38 +22,38 @@
 										          <div class="form-group">
                                                  <label class="col-sm-2 control-label">Actividad:</label>
                                                  <div class="col-sm-3">
-                                                     <input type="text" class="form-control" data-ng-model="title" >
+                                                     <input type="text" data-ng-disabled="!edit" class="form-control" data-ng-model="title" >
                                                  </div>
                                              </div>
                                              <div class="form-group">
                                                  <label class="col-sm-2 control-label">Autor:</label>
                                                  <div class="col-sm-3">
-                                                     <input type="text" data-ng-model="autor" class="form-control" >
+                                                     <input type="text" data-ng-disabled="!edit" data-ng-model="autor" class="form-control" >
                                                  </div>
                                              </div>
                                              <div class="form-group">
                                                  <label class="col-sm-2 control-label">Lugar:</label>
                                                  <div class="col-sm-3">
-                                                     <input type="text" class="form-control" data-ng-model="lugar" >
+                                                     <input type="text" data-ng-disabled="!edit" class="form-control" data-ng-model="lugar" >
                                                  </div>
                                              </div>
 											 <div class="form-group">
                                                  <label class="col-sm-2 control-label">Inicio:</label>
                                                  <div class="col-sm-3">
-												                                              <!--data-ng-disabled="!edit" -->
-                                                     <input type="text" class="form-control" data-ng-model="start" >
+												                                             
+                                                     <input type="text" data-ng-disabled="!edit" class="form-control" data-ng-model="start" >
                                                  </div>
                                              </div>
 											 	 <div class="form-group">
                                                  <label class="col-sm-2 control-label">Finaliza:</label>
                                                  <div class="col-sm-3">
-                                                     <input type="text" class="form-control" data-ng-model="end" >
+                                                     <input type="text" data-ng-disabled="!edit" class="form-control" data-ng-model="end" >
                                                  </div>
                                              </div>
                                              <div class="form-group">
                                                  <label class="col-sm-2 control-label">Descripcion:</label>
                                                  <div class="col-sm-3">
-                                                     <textarea class="textAreaRol" data-ng-model="descripcion" data-ng-model="descripcion" ></textarea>
+                                                     <textarea class="textAreaRol" data-ng-disabled="!edit" data-ng-model="descripcion" data-ng-model="descripcion" ></textarea>
                                                  </div>
                                              </div>
 											 
@@ -102,8 +102,8 @@
                                              </div>
 											 <div class="form-group">
 												<label for="dtp_input2" class="col-md-2 control-label">Inicia:</label>
-												<div class="input-group date form_date col-md-3" data-date="" data-date-format="dd mm yyyy" data-link-field="dtp_input2" data-link-format="yyyy-dd-mm">
-													<input data-ng-model="startA" class="form-control" size="10" type="text" value="" >
+												<div class="input-group date form_date col-md-3" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+													<input id="startA" data-ng-model="startA" class="form-control" size="16" type="text" value="" readonly>
 													
 													<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 												</div>
@@ -111,7 +111,7 @@
 											</div>
 											<div class="form-group">
 												<label for="dtp_input2" class="col-md-2 control-label">Finaliza:</label>
-												<div class="input-group date form_date col-md-3" data-date="" data-date-format="dd mm yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+												<div class="input-group date form_date col-md-3" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
 													<input data-ng-model="endA" class="form-control" size="10" type="text" value="" >
 													
 													<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -131,6 +131,7 @@
                                      </div>
                                      <div class="modal-footer">
                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+									   
                                        <button class="btn btn-success" data-ng-click="agregarActividad()">
 									  <!-- data-ng-disabled="error || incomplete" -->
                                            <span class="glyphicon glyphicon-save"></span>Guardar Cambios
