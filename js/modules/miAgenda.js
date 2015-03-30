@@ -29,23 +29,24 @@ app.controller("agendaController", function($scope, $http, $window) {
 				"end": ffinal,
 			};
 			
-			alert(objetoJSON.title);
+			//alert(objetoJSON.title);
 			$http.post("webservice/Agenda/create", objetoJSON).success(function(response){
 					/*$timeout(function(){
 				   // $scope.mensajeExitoSubidaDoc=true;
 				   alert("yeahhh");
 				});   */                     
-		 }).error(function(response, status, header, config){  
-				/*$timeout(function(){
-				   // $scope.mensajeFallidoSubidaDoc=true; 
-				   alert("noooo");
-				}); */                         
-		 });
-		 $('#calendar').fullCalendar('renderEvent', objetoJSON, true);
-		 $('#Modal3').each (function(){
-					  this.reset();
-					  });
-		 
+             }).error(function(response, status, header, config){  
+                    /*$timeout(function(){
+                       // $scope.mensajeFallidoSubidaDoc=true; 
+                       alert("noooo");
+                    }); */                         
+             });
+             $('#calendar').fullCalendar('renderEvent', objetoJSON, true);
+//             $('#modal3').each (function(){
+//                          this.reset();
+//                          });
+            $('#modalform').trigger("reset");
+		    $('#modal3').modal('hide');
 		 };
 		$http(req).success(function(data){
 			$('#calendar').fullCalendar( {
@@ -83,7 +84,7 @@ app.controller("agendaController", function($scope, $http, $window) {
 					$scope.$apply(function(){
 						$scope.startA = date.format('DD-MM-YYYY');
 					});	
-					$(this).css('background-color', 'blue');
+					//$(this).css('background-color', 'blue');
 				}
 				//$('#Modal3').removeData('bs.modal');
 										

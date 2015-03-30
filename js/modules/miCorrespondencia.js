@@ -1,5 +1,5 @@
 
-var app = angular.module("myAppCorrespondencia", ['ngRoute']);
+var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput']); //tags aqui
 
 	app.controller("CorrespondenciaController", function($scope, $http, $timeout, $location, $window) {
 
@@ -20,8 +20,13 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute']);
 					$scope.mensajeErrorRegistro=true;
 				}   
 			});
-
-
+        
+        //autocompletar
+    $scope.loadTags = function(query) {
+        return $http.get("webservice/User");
+    };
+        //end autocompletar
+        
 	$scope.mensajeExitoSubidaDoc=false;
 	$scope.mensajeFallidoSubidaDoc=false;
 	
@@ -48,7 +53,7 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute']);
 		}else{ $scope.incomplete = false; }
 	};
 
-	$scope.crearMensaje=function() {
+	/*$scope.crearMensaje=function() {
 		alert("entro a crear mensaje");
 		var objetoJSON;    
 					   
@@ -73,8 +78,44 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute']);
 						//Aqui se manda mensaje de error
 					});                          
 			 });
-	};
-	
+	};*/
+        
+        //crear mensaje con tags
+        $scope.crearMensaje=function() {
+		var objetoJSON;
+        var destinos=$scope.tags;
+        var msjExito="Mensaje Enviado exitosamente a: ";
+        var msjFallo="Mensaje No Enviado a: ";
+        destinos.forEach(function(entry){
+            //alert(JSON.stringify(entry.username, null, 4));
+            objetoJSON = {
+                "emisor": $scope.user.username,            
+                "receptor": entry.username,
+                "asunto": $scope.asunto,
+                "mensaje": $scope.mensaje,
+                //"idDocumento": $scope.idDocumento,  //hay que asignarla cuando se selecciona el tipo
+            };
+            alert(objetoJSON.receptor);
+            $http.put("webservice/Correspondencia/create", objetoJSON).success(function(response){
+					$timeout(function(){
+						$scope.mensajeExito=true;
+                        msjExito.concat(objetoJSON.receptor+" ");
+						//Aqui se manda mensaje de exito en etiqueta html
+					});                        
+			 }).error(function(response, status, header, config){  
+					$timeout(function(){
+						//alert("response: "+response+",    status"+status+",   header: "+header+",    config: "+config);
+						//$scope.mensajeFallo=true;
+                        msjFallo.concat(objetoJSON.receptor+" ");
+						//Aqui se manda mensaje de error
+					});                          
+			 });
+        });
+        
+        //alert(msjExito);
+        //alert(msjFallo);
+        //End crear mensaje con tags
+        };
 	$scope.viewMailOut=function(id) {
 		
 			for(var i = 0; i<$scope.salidas.length; i++) {
