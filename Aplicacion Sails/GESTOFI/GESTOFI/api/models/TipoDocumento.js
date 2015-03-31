@@ -19,6 +19,10 @@ module.exports = {
       seguridad:{
           type: 'string',
           required: true
+      },
+      clasificacion:{
+        type: 'string',
+        required: true
       }
   }
   

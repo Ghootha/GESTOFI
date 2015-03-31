@@ -104,11 +104,13 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
 
      $scope.SubirDoc = function(dir, filename){              
             
-                $scope.getClasificacionDoc();
-               // $scope.getSeguridadDoc();
+                //$scope.getClasificacionDoc();
+                //$scope.getSeguridadDoc();
                 
                 $http.get("webservice/get_user").success(function(response){
                     $scope.user= response.user;  
+
+                $scope.clasificacion=$scope.tipo.clasificacion;
 
                 var objetoJSON;    
                        
@@ -216,27 +218,27 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
             
     };
 
-    $scope.getClasificacionDoc = function(){         
+    // $scope.getClasificacionDoc = function(){         
 
-            var tipo = $scope.tipo.nombre;
+    //         var tipo = $scope.tipo.nombre;
 
-            if(tipo== 'Formulacion De Proyecto' || tipo== 'Investigación' ){
-                $scope.clasificacion='Investigacion';
-                $scope.verDoc='#home';
-            }
-            if (tipo== 'Malla Curricular' || tipo== 'Plan de Estudio' || tipo== 'Descriptores De Programas' ) {
-                $scope.clasificacion='Estudiante';
-                $scope.verDoc='#estudiante';
-            }
-            if (tipo== 'Oficios' || tipo== 'Constancias' || tipo== 'Memorandos' || tipo== 'Circulares' || tipo== 'Minutas Análisis de Oficios') {
-                $scope.clasificacion='Papeleria';
-                $scope.verDoc='#papeleria';
-            }
-            if (tipo== 'Correos Electronicos') {
-                $scope.clasificacion='Correo';
-                $scope.verDoc='#correos';
-            }
-    };
+    //         if(tipo== 'Formulacion De Proyecto' || tipo== 'Investigación' ){
+    //             $scope.clasificacion='Investigacion';
+    //             $scope.verDoc='#home';
+    //         }
+    //         if (tipo== 'Malla Curricular' || tipo== 'Plan de Estudio' || tipo== 'Descriptores De Programas' ) {
+    //             $scope.clasificacion='Estudiante';
+    //             $scope.verDoc='#estudiante';
+    //         }
+    //         if (tipo== 'Oficios' || tipo== 'Constancias' || tipo== 'Memorandos' || tipo== 'Circulares' || tipo== 'Minutas Análisis de Oficios') {
+    //             $scope.clasificacion='Papeleria';
+    //             $scope.verDoc='#papeleria';
+    //         }
+    //         if (tipo== 'Correos Electronicos') {
+    //             $scope.clasificacion='Correo';
+    //             $scope.verDoc='#correos';
+    //         }
+    // };
 
     // $scope.getSeguridadDoc = function(){
 
