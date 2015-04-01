@@ -1,6 +1,7 @@
 var app = angular.module("myAppAgenda", []);
 
-app.controller("agendaController", function($scope, $http, $window) {
+app.controller("agendaController", function($scope, $http, $window, $location, $timeout) {
+
 
 		var req = {
 			 method: 'GET',
@@ -12,7 +13,11 @@ app.controller("agendaController", function($scope, $http, $window) {
 			 }
 			 
 		};
-				
+		$http.get("webservice/get_user").success(function(response){
+			$scope.user= response.user;
+			$scope.userLogged=  $scope.user.fullname;            
+		});
+			
 		$scope.agregarActividad = function(){ 
 			var i=$scope.startA.split("-");
 			var inicio=new Date(i[2],i[1]-1,i[0]);
@@ -22,33 +27,97 @@ app.controller("agendaController", function($scope, $http, $window) {
 				   
 			objetoJSON = {
 				"title": $scope.actividadA,
-				"autor": $scope.autorA,
+				"autor":  $scope.user.username,
 				"lugar": $scope.lugarA,
 				"descripcion": $scope.descripcionA,
 				"start": inicio,
 				"end": ffinal,
 			};
 			
-			//alert(objetoJSON.title);
 			$http.post("webservice/Agenda/create", objetoJSON).success(function(response){
-					/*$timeout(function(){
-				   // $scope.mensajeExitoSubidaDoc=true;
-				   alert("yeahhh");
-				});   */                     
+					$timeout(function(){
+				   
+				   });                       
              }).error(function(response, status, header, config){  
-                    /*$timeout(function(){
-                       // $scope.mensajeFallidoSubidaDoc=true; 
-                       alert("noooo");
-                    }); */                         
+                    $timeout(function(){
+                       alert("Se ha producido un error");
+                      });                          
              });
              $('#calendar').fullCalendar('renderEvent', objetoJSON, true);
-//             $('#modal3').each (function(){
-//                          this.reset();
-//                          });
-            $('#modalform').trigger("reset");
-		    $('#modal3').modal('hide');
+             $('#modalform').trigger("reset");
+		    $('#Modal3').modal('hide');
 		 };
-		$http(req).success(function(data){
+		
+	$scope.actualizaAct = function() {  
+           
+				var objetoJSON;
+				for(var x = 0; x<$scope.actividades.length; x++) {
+						if($scope.actividades[x].id === $scope.id) {
+						
+							var i=$scope.start.split("-");
+							var inicio=new Date(i[2],i[1]-1,i[0]);
+							var f=$scope.end.split("-");
+							var ffinal=new Date(f[2],f[1]-1,f[0]);
+							var objetoJSON;   
+							
+						   
+					objetoJSON = {
+						"title": $scope.title,
+						"autor":  $scope.user.username,
+						"lugar": $scope.lugar,
+						"descripcion": $scope.descripcion,
+						"start": inicio,
+						"end": ffinal,
+					};
+					
+                    $http.put("webservice/Agenda/update/"+$scope.id, objetoJSON).success(
+                     
+                            function(){
+                                $http.get("webservice/Agenda")
+                                    .success(function(data) {$scope.actividades = data;});
+                     }).error(function(response, status, header, config){  
+						$timeout(function(){
+							alert("la actividad no se pudo editar");
+						});                          
+					});	
+					location.href="#agenda"; 
+					$('#Modal2').modal('hide');	
+                }
+          } 
+  };
+		 
+		 
+		 $scope.eliminarAct = function() {
+			 $('#Modal4').modal({ backdrop: false})
+			.one('click', '#confirm', function () {
+				
+			  $http.get("webservice/Agenda/destroy/"+$scope.id).success(
+					function(){
+						for(var i = 0; i<$scope.actividades.length; i++) {  
+								
+							if($scope.actividades[i].id === $scope.id) {
+							  $scope.$apply($scope.actividades.splice(i, 1));
+							}
+						}  
+				    }).error(function(response, status, header, config){  
+						$timeout(function(){
+							alert("la actividad no se pudo eliminar");
+						});                          
+					});
+					
+			//$route.reload(); *
+			//$('#calendar').fullCalendar( 'refetchEvents' );
+			//$location.path();
+			location.href="#agenda"; 
+			$('#Modal2').modal('hide');			 
+			});
+			
+		 };
+			
+	 
+		$http(req).success(function(data, response){
+			$scope.actividades=data;
+			
 			$('#calendar').fullCalendar( {
 				lang: 'es',
 				header: {
@@ -64,17 +133,23 @@ app.controller("agendaController", function($scope, $http, $window) {
 				
 				eventClick: function(calEvent, jsEvent, view) {
 				
-					$scope.$apply(function(){							
+					$scope.$apply(function(){
+						$scope.incomplete = true;
+						$scope.id=calEvent.id;
 						$scope.title= calEvent.title;
 						$scope.autor= calEvent.autor;
 						$scope.lugar= calEvent.lugar;
 						$scope.descripcion= calEvent.descripcion;
 						$scope.start= calEvent.start.format('DD MM YYYY');
-						$scope.end= calEvent.end.format('DD MM YYYY');	
+						$scope.end= calEvent.end.format('DD MM YYYY');
+						if(calEvent.autor==$scope.user.username){
+							$scope.incomplete=false;
+							
+						}	
 					});
+					
 					$('#Modal2').modal({backdrop:false});
-					 //$('#Modal3').reset();
-					 
+					 				 
 					  							
 				},
 				
@@ -83,11 +158,11 @@ app.controller("agendaController", function($scope, $http, $window) {
 					$('#Modal3').modal({backdrop:false});
 					$scope.$apply(function(){
 						$scope.startA = date.format('DD-MM-YYYY');
-					});	
+					});
+						
 					//$(this).css('background-color', 'blue');
 				}
-				//$('#Modal3').removeData('bs.modal');
-										
+														
 			});
 		
 			
