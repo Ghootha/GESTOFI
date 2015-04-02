@@ -31,10 +31,10 @@
 
                         <div class="well">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#agregarReservable" data-toggle="tab">Agregar</a></li>
-                                <li><a href="#editarReservable" data-toggle="tab">Editar</a></li>
+                                <li ng-repeat="tab in tabs"><a  data-target="{{tab.link}}" data-toggle="tab">{{tab.label}}</a></li>
+                                
                             </ul>
-                        <div id="myTabContent" class="tab-content" data-ng-controller='configTiposController'>
+                        <div id="myTabContent" class="tab-content">
                             <div class="tab-pane active in" id="agregarReservable">
                                 
                                     <center>
@@ -87,10 +87,7 @@
                                     </center>  
                                 </div>
 
-                            </div>
-                                  
-
-                            <div class="tab-pane fade" id="editarReservable">
+                                <div class="tab-pane fade" id="editarReservable">
                                 <form>
                                     <table class="table table-striped ">
                                       <thead>
@@ -118,15 +115,15 @@
                                           <td>{{ equipo.descripcion }}</td>
                                         </tr>
 
-
-
-
-
-
                                       </tbody>
                                     </table>
                                 </form>
                             </div>
+
+                            </div>
+                                  
+
+                            
 
                         </div>
                     </div> 

@@ -2,6 +2,11 @@ var app = angular.module("myAppPerfil", []);
 
 app.controller("perfilController", function($scope, $http, $upload, $timeout) {
 
+   $scope.tabs = [  
+      { link : '#home2', label : 'Perfil' },
+      { link : '#profile', label : 'Contraseña'},
+      
+    ]; 
 $http.get("webservice/get_user").success(function(response){
             if(response.user == null){
                window.location.replace("index.html"); 

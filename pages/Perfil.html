@@ -9,10 +9,10 @@
 <!-- perfil -->
                         <div class="well">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#home2" data-toggle="tab">Perfil</a></li>
-                                <li><a href="#profile" data-toggle="tab">Contraseña</a></li>
+                                <li ng-repeat="tab in tabs"><a  data-target="{{tab.link}}" data-toggle="tab">{{tab.label}}</a></li>
+                                
                             </ul>
-                        <div id="myTabContent" class="tab-content" data-ng-controller='perfilController'>
+                        <div id="myTabContent" class="tab-content" >
                             <div class="tab-pane active in" id="home2">
                                 <center>
                                     <div class="panel panel-info">

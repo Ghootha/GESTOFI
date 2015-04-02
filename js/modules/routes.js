@@ -72,26 +72,26 @@ app.config(function($routeProvider) {
 			templateUrl	: 'pages/Perfil.html',
 			controller 	: 'perfilController'
 		})
-		.when('/profile', {
+		/*.when('/profile', {
 			templateUrl	: 'pages/Perfil.html',
 			controller 	: 'perfilController'
 		})
 		.when('/home2', {
 			templateUrl	: 'pages/Perfil.html',
 			controller 	: 'perfilController'
-		})
+		})*/
 		.when('/ConfigTipos', {
 			templateUrl	: 'pages/ConfigTipos.html',
 			controller 	: 'configTiposController'
 		})
-		.when('/agregarReservable', {
+		/*.when('/agregarReservable', {
 			templateUrl	: 'pages/ConfigTipos.html',
 			controller 	: 'configTiposController'
 		})
 		.when('/editarReservable', {
 			templateUrl	: 'pages/ConfigTipos.html',
 			controller 	: 'configTiposController'
-		})
+		})*/
 		.otherwise({
 			redirectTo: '/'
 		});

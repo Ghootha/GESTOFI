@@ -2,6 +2,14 @@ var app = angular.module("myAppConfigTipos", []);
 
 app.controller("configTiposController", function($scope, $http) {
 
+
+
+    $scope.tabs = [  
+      { link : '#agregarReservable', label : 'Agregar' },
+      { link : '#editarReservable', label : 'Editar'},
+      
+    ]; 
+
 $http.get("webservice/Reservable").success(function(response){$scope.equipos=response;});
 $http.get("webservice/TipoReservable").success(function(response){$scope.selectTipos=response;});
 $scope.agregarTipo=function(){
