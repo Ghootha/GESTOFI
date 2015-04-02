@@ -64,7 +64,7 @@ $scope.cargarSolicitud= function(dir, filename){
       "solicitante": $scope.user.username,
       "ruta": dir
 
-    }
+    };
     $http.put("webservice/Solicitudes/create",objetoSolicitud).success(function(response){});
     alert("Solicitud enviada, la respuesta será notificada por correspondencia");
   });
@@ -73,7 +73,6 @@ $scope.cargarSolicitud= function(dir, filename){
 
 };
 
-//////////// copiado
 
 //EMPIEZA CODIGO NECESARIO PARA QUE FUNCIONE EL UPLOADER
     //-------------------------------------------------------------------------------------------------------------------------------------//

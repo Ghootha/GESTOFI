@@ -22,7 +22,10 @@
 
                                     <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-md-3 col-lg-3 " align="center"> <img  ng-src="{{userPhoto}}" class="img-circle" width="200" height="200"> </div>
+                                        
+                                        <div class="col-md-3 col-lg-3 " align="center"> <img ng-src="{{userPhoto}}" ng-file-select ng-model="files" ng-multiple="false" class="img-circle" width="200" height="200"> 
+                                        </div>
+                                        
                                             <!-- alt="User Pic" -->
 
                                         <div class=" col-md-9 col-lg-9 "> 
@@ -54,7 +57,7 @@
                                     </div>
 
                                     <div class="panel-footer">
-                                        <button data-backdrop="false" data-target="#Modal2" data-toggle="modal"  class="btn btn-sm btn-warning" ng-click="">
+                                        <button  class="btn btn-sm btn-warning" ng-click="editarModal()">
                                             <span class="glyphicon glyphicon-edit"></span>
                                         </button>
                                     </div>
@@ -65,10 +68,10 @@
                                 <form align="center" id="tab2">
                                     <table class="table table-user-information">
                                         <tbody>
-                                            <tr>
+                                            <!--<tr>
                                                 <td>Contraseña actual</td>
                                                 <td><input type="password" ng-model="passAct"/></td>
-                                            </tr>
+                                            </tr>-->
                                             <tr>
                                                 <td>Contraseña nueva</td>
                                                 <td><input type="password" ng-model="passNew"/></td>
@@ -92,61 +95,55 @@
                     </div> 
 <!-- cierra perfil --> 
 
-                        <div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                    <div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                                              <div class="modal-dialog">
                                                <div class="modal-content">
 
                                                  <div class="modal-header">
                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                   <h4 class="modal-title" id="myModalLabel">Editar Informacion del Role</h4>
+                                                   <h4 class="modal-title" id="myModalLabel">Editar Informacion del Perfil</h4>
                                                  </div>
                                                  <div class="modal-body">   
                                                   <form class="form-horizontal">
                                                       <div class="form-group">
                                                           <label class="col-sm-2 control-label">Nombre:</label>
                                                           <div class="col-md-6">
-                                                              <input type="text" class="form-control" data-ng-model="user.fullname" >
+                                                              <input type="text" class="form-control" ng-model="modalNombre" >
                                                           </div>
                                                       </div>
                                                       <div class="form-group">
                                                           <label class="col-sm-2 control-label">Fecha de nacimiento:</label>
                                                           <div class="col-md-6">
-                                                              <input type="text" class="form-control" data-ng-model="user.birthdate" >
+                                                              <input type="text" class="form-control" ng-model="modalFecha" >
                                                           </div>
                                                       </div>
                                                       <div class="form-group">
                                                           <label class="col-sm-2 control-label">Domicilio:</label>
                                                           <div class="col-md-6">
-                                                              <input type="text" class="form-control" data-ng-model="user.address" >
+                                                              <input type="text" class="form-control" ng-model="modalDomicilio" >
                                                           </div>
 
                                                       </div>
                                                       <div class="form-group">
                                                           <label class="col-sm-2 control-label">Email:</label>
                                                           <div class="col-md-6">
-                                                              <input type="text" class="form-control" data-ng-model="user.email" >
+                                                              <input type="text" class="form-control" ng-model="modalEmail" >
                                                           </div>
                                                           
                                                       </div>
                                                       <div class="form-group">
                                                           <label class="col-sm-2 control-label">Telefono:</label>
                                                           <div class="col-md-6">
-                                                              <input type="text" class="form-control" data-ng-model="user.phone" >
+                                                              <input type="text" class="form-control" ng-model="modalPhone" >
                                                           </div>
                                                           
                                                       </div>
-                                                      <div class="form-group">
-                                                          <label class="col-sm-2 control-label">Cambiar foto:</label>
-                                                          <div class="col-md-6">
-                                                              <input type="text" class="form-control" data-ng-model="holis" >
-                                                          </div>
-                                                          
-                                                      </div>
+                                                      
                                                   </form>
                                                   
                                                  </div>
                                                  <div class="modal-footer">
-                                                   <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                   <button type="button" class="btn btn-default" data-dismiss="modal" >Cerrar</button>
                                                    <button class="btn btn-success" data-ng-disabled="incomplete" id="confirm" data-dismiss="modal" ng-click="modificarPerfil()">
                                                        <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
                                                    </button>
@@ -155,6 +152,8 @@
                                                </div>
                                              </div>
                                            </div>
+
+                        
                     </div>
                 </div>
             </div>

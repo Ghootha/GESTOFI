@@ -19,12 +19,18 @@ module.exports = {
           references: 'User',
           on: 'username'
       },
+
+      estado:{
+        type: 'string',
+        required: true
+      },
+
       horaInicio:{
-          type:'string',
+          type:'date',
           required:true
       },
       horaEntrega:{
-          type:'string',
+          type:'date',
           required:true
       },
       fecha:{

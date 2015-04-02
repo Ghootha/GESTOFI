@@ -15,7 +15,7 @@ $scope.apartarEquipo = function(idEquipo) {
       objetoReservaEquipo= {
         "idReserva" : response.id,
         "idReservable" : idEquipo,
-        "estado": "Pendiente"
+        
       }
 
       $http.post("webservice/ReservaEquipo/create",objetoReservaEquipo).success(function(response){
@@ -47,10 +47,11 @@ $scope.consultarEquipo= function(){
         
         objetoReserva={
           "idUsuario" : $scope.user.username,
-          "horaInicio" : horaI.toTimeString(),
-          "horaEntrega" : horaF.toTimeString(),
-          "fecha" : fech.toDateString()
-        }
+          "horaInicio" : horaI,//.toTimeString(),
+          "horaEntrega" : horaF,//.toTimeString(),
+          "estado": "Pendiente",
+          "fecha" : fech,//.toDateString()
+        };
          $http.post("webservice/Reserva/consultaEquipo",objetoReserva).success(function(response) {$scope.equipos = response;});
          $http.get("webservice/Reserva/findTiposEquipos").success(function(response){$scope.tiposEquipos=response;});
        });

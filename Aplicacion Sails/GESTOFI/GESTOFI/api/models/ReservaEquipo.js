@@ -12,13 +12,6 @@ module.exports = {
     autoUpdatedAt: false,
 
     attributes: {
-     
-        estado:{
-            
-            type: 'string',
-            required: true
-
-        },
 
         idReserva: {
             columnName: 'reserva_id',

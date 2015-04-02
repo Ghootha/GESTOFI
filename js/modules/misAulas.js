@@ -17,7 +17,7 @@ $scope.apartarAula = function(idAula) {
       objetoReservaEquipo= {
         "idReserva" : response.id,
         "idReservable" : idAula,
-        "estado": "Pendiente"
+        
       };
 
       $http.post("webservice/ReservaEquipo/create",objetoReservaEquipo).success(function(response){
@@ -51,9 +51,10 @@ $scope.consultarAula= function(){
         $scope.user= response.user;
         objetoReserva={
           "idUsuario" : $scope.user.username,
-          "horaInicio" : horaI.toTimeString(),
-          "horaEntrega" : horaF.toTimeString(),
-          "fecha" : fech.toDateString()
+          "horaInicio" : horaI,//.toTimeString(),
+          "horaEntrega" : horaF,//.toTimeString(),
+          "estado": "Pendiente",
+          "fecha" : fech//.toDateString()
         };
          $http.post("webservice/Reserva/consultaAula",objetoReserva).success(function(response) {$scope.aulas = response;});
         });

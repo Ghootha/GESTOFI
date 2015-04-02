@@ -18,7 +18,7 @@
                 </button>
 
                 <br><br>                
-                                    
+                                
 		   	     <table class="table table-striped">
                   <thead>
                     <tr class="info">
@@ -29,19 +29,23 @@
                       <th>Tipo Reserva</th>
                       <th>Hora Reserva</th>
                       <th>Hora Entrega</th>
-					</tr>
+					         </tr>
                   </thead>
-				  
+				          
                   <tbody>
                     <tr data-ng-repeat="reserva in reservas">
                       <td>
-                     <span class="css3-metro-dropdown">
-                        <select name="dropdown-1" >
-                            <option >Por Entregar</option>
-                            <option >En uso</option> 
-                            <option >Recibido</option>         
-                        </select>
-                    </span>
+                        <span class="dropdown-toggle" >
+                          <select ng-init="mostrarEstado(reserva.estado_reserva)" ng-model="estadoSelect" ng-options="opc.id as opc.nombre for opc in opcs" 
+                          ng-change="setEstado(opcs[estadoSelect-1], reserva.idReserva)">
+                          </select>
+                          <!--mostrarEstado(reserva.estado_reserva)
+                          <select ng-model="selectEstado" ng-click="ver()" >
+                            <option >Pendiente</option>
+                            <option >En Uso</option>
+                            <option >Recibido</option>
+                          </select >-->
+                        </span>
                     </td>
                       <td>{{reserva .usuario}}</td>
 					            <td>{{reserva .nombre}}</td>
@@ -49,10 +53,10 @@
                       <td>{{reserva .tipo}}</td>
                       <td>{{reserva .horaInicio}}</td>
                       <td>{{reserva .horaEntrega}}</td>
-					</tr>
-				</tbody>
+					         </tr>
+				        </tbody>
                 </table>
-				<hr>		                         
+				        <hr>		                         
                 <hr>							 
 			</div>
 		</div>

@@ -80,6 +80,18 @@ app.config(function($routeProvider) {
 			templateUrl	: 'pages/Perfil.html',
 			controller 	: 'perfilController'
 		})
+		.when('/ConfigTipos', {
+			templateUrl	: 'pages/ConfigTipos.html',
+			controller 	: 'configTiposController'
+		})
+		.when('/agregarReservable', {
+			templateUrl	: 'pages/ConfigTipos.html',
+			controller 	: 'configTiposController'
+		})
+		.when('/editarReservable', {
+			templateUrl	: 'pages/ConfigTipos.html',
+			controller 	: 'configTiposController'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});
