@@ -7,13 +7,18 @@ app.controller("perfilController", function($scope, $http, $upload, $timeout) {
       { link : '#profile', label : 'Contraseña'},
       
     ]; 
+$scope.user;
 $http.get("webservice/get_user").success(function(response){
             if(response.user == null){
                window.location.replace("index.html"); 
             }else{
              	
                 $scope.user= response.user;
-                
+                $scope.modalNombre=$scope.user.fullname;
+                $scope.modalFecha=$scope.user.birthdate;
+                $scope.modalDomicilio=$scope.user.address;
+                $scope.modalEmail=$scope.user.email;
+                $scope.modalPhone=$scope.user.phone;
                 	
                 	if($scope.user.photo !== null){
                 		$scope.userPhoto= "http://gestofi.com/webservice/fotoPerfil/"+$scope.user.photo;
@@ -29,6 +34,8 @@ $http.get("webservice/get_user").success(function(response){
     });
 $http.get("webservice/User").success(function(response) {$scope.users = response; });
 
+
+
 $scope.modificarPerfil =function(){
     
 	var objeto={
@@ -39,14 +46,19 @@ $scope.modificarPerfil =function(){
 		"phone": $scope.modalPhone
 	};
 
-	$http.put("webservice/User/update/"+$scope.user.id,objeto).success(function(){
+	$http.put("webservice/User/update/"+ $scope.user.id ,objeto).success(function(){
 		
         $scope.user.fullname= objeto.fullname; 
 		$scope.user.birthdate= objeto.birthdate;
 		$scope.user.address= objeto.address;
 		$scope.user.email= objeto.email;
 		$scope.user.phone= objeto.phone;
-        
+        //$http.get("webservice/get_user").success(function(response){$scope.user= response.user;});
+        $scope.modalNombre=$scope.user.fullname;
+        $scope.modalFecha=$scope.user.birthdate;
+        $scope.modalDomicilio=$scope.user.address;
+        $scope.modalEmail=$scope.user.email;
+        $scope.modalPhone=$scope.user.phone;
 		alert("cambiado");
 
 	});
@@ -94,13 +106,17 @@ $scope.setContrasena=function(){
 
 }; 
 
-$scope.cargarFoto= function(dir, filename){
+$scope.cargarFoto= function( filename){
     var objetoFoto;
     
     objetoFoto={
 		"photo": filename
 	};
-    $http.put("webservice/User/update/"+$scope.user.id,objetoFoto).success(function(response){});
+    $http.put("webservice/User/update/"+$scope.user.id,objetoFoto).success(function(response){
+        alert("Foto cambiada");
+        $scope.userPhoto= "http://gestofi.com/webservice/fotoPerfil/"+$scope.user.photo;
+        
+    });
 
 };
 
@@ -159,15 +175,9 @@ $scope.cargarFoto= function(dir, filename){
     });
       
     $scope.onSuccessLoadFile = function(response){
-            var ruta = response.files[0].fd;
-            var nombre = response.files[0].filename;
-
             var nombreSliced = "UserPhoto"+$scope.user.id+".png";
-            var nombreHash = /[^\\]*$/.exec(ruta)[0];
-
-            $scope.cargarFoto(nombreHash, nombreSliced);
-
-            
+            $scope.cargarFoto(nombreSliced);
+ 
     };   
 
 $scope.test = function() {
