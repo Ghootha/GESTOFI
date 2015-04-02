@@ -41,6 +41,7 @@ $scope.agregarReservable=function(){
 		$scope.inputEstado="";
 		$scope.inputDescripcion="";
 		$scope.inputCodigo="";
+		$http.get("webservice/Reservable").success(function(response){$scope.equipos=response;});
 		alert("Reservable creado");
 	});
 };

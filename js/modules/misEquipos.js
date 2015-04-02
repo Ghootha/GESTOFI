@@ -16,7 +16,7 @@ $scope.apartarEquipo = function(idEquipo) {
         "idReserva" : response.id,
         "idReservable" : idEquipo,
         
-      }
+      };
 
       $http.post("webservice/ReservaEquipo/create",objetoReservaEquipo).success(function(response){
         $scope.horaInicio="";

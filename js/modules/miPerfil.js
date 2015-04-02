@@ -37,7 +37,7 @@ $http.get("webservice/User").success(function(response) {$scope.users = response
 
 
 $scope.modificarPerfil =function(){
-    
+   
 	var objeto={
 		"fullname": $scope.modalNombre,
 		"birthdate": $scope.modalFecha,
@@ -82,23 +82,15 @@ $scope.editarModal=function(){
 
 $scope.setContrasena=function(){
 	
-
-	/*$http.get("webservice/User/"+$scope.user.id).success(function(response){
-		pass = response.passports[0].password;
-		alert(pass);
-	});*/
-	
-	if($scope.passNew === $scope.passNewConf && $scope.passNew!= "" && $scope.passNew.length >= 8){
-		//if($scope.pass===$scope.passAct){
-			var o={
+    if($scope.passNew === $scope.passNewConf && $scope.passNew!= "" && $scope.passNew.length >= 8){
+		
+			var objeto={
 				"password": $scope.passNew
 			};
 
-			$http.put("webservice/Passport/update/"+$scope.user.id,o).success(function(response){
+			$http.put("webservice/Passport/update/"+$scope.user.id,objeto).success(function(response){
 		          alert("Cambio existoso");   
             });
-
-		//}
 
 	}
     
@@ -106,16 +98,17 @@ $scope.setContrasena=function(){
 
 }; 
 
-$scope.cargarFoto= function( filename){
+$scope.cargarFoto= function(filename){
     var objetoFoto;
-    
+    $scope.userPhoto="http://gestofi.com/webservice/fotoPerfil/default-user-image.png";
     objetoFoto={
 		"photo": filename
 	};
     $http.put("webservice/User/update/"+$scope.user.id,objetoFoto).success(function(response){
         alert("Foto cambiada");
-        $scope.userPhoto= "http://gestofi.com/webservice/fotoPerfil/"+$scope.user.photo;
-        
+        $timeout(function(){
+            $scope.userPhoto="http://gestofi.com/webservice/fotoPerfil/"+filename;
+        });
     });
 
 };

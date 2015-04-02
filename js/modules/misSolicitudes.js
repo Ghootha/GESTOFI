@@ -73,6 +73,13 @@ $scope.cargarSolicitud= function(dir, filename){
 
 };
 
+$scope.descargarSolicitud= function(id){
+  $http.get("webservice/Solicitudes/"+id).success(function(response){
+   $window.open('http://gestofi.com/webservice/solicitudes/solicitudesRecibidas/'+response.ruta); 
+  })
+    
+};
+
 
 //EMPIEZA CODIGO NECESARIO PARA QUE FUNCIONE EL UPLOADER
     //-------------------------------------------------------------------------------------------------------------------------------------//
@@ -127,11 +134,13 @@ $scope.cargarSolicitud= function(dir, filename){
     });
       
     $scope.onSuccessLoadFile = function(response){
+            debugger;
             var ruta = response.files[0].fd;
             var nombre = response.files[0].filename;
 
             var nombreSliced = nombre.slice(0,-4);
-            var nombreHash = /[^\\]*$/.exec(ruta)[0];
+            //var nombreHash = /[^\\]*$/.exec(ruta)[0];
+            var nombreHash = ruta.slice(74,ruta.length+1);
 
             $scope.cargarSolicitud(nombreHash, nombreSliced);
             
