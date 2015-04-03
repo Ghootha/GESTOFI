@@ -23,6 +23,21 @@ module.exports = {
     });
   },
 
+  uploadPlantilla: function  (req, res) {
+    
+    var uploadPath = '../../assets/solicitudes/plantillas';  
+    
+    req.file('documento').upload({ dirname: uploadPath, saveAs:req.param('nomDoc')},function (err, files) {
+      if (err)
+        return res.send(500, err);
+
+      return res.json({
+        message: files.length + ' file(s) uploaded successfully!',
+        files: files
+      });
+    });
+  },
+
   findSolicitudes : function(req, res){
       User.find().exec(function(err, miUsuario){listaUsuarios=miUsuario;});
       Solicitudes.find().exec(function(err, sol){

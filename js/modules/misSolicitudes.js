@@ -134,14 +134,13 @@ $scope.descargarSolicitud= function(id){
     });
       
     $scope.onSuccessLoadFile = function(response){
-            debugger;
+           
             var ruta = response.files[0].fd;
             var nombre = response.files[0].filename;
 
             var nombreSliced = nombre.slice(0,-4);
-            //var nombreHash = /[^\\]*$/.exec(ruta)[0];
-            var nombreHash = ruta.slice(74,ruta.length+1);
-
+            var nombreHash = /[^\/]*$/.exec(ruta)[0];//para MAC
+            //var nombreHash = /[^\\]*$/.exec(ruta)[0];//para WIN
             $scope.cargarSolicitud(nombreHash, nombreSliced);
             
     };

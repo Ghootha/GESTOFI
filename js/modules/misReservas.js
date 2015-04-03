@@ -14,9 +14,10 @@ $scope.opcs=[{id:1,nombre:'Pendiente'},{id:2,nombre:'En uso'},{id:3,nombre:'Reci
 var objetoFecha;
 
 $scope.buscarPorFecha = function (){
-	var fecha=new Date(document.getElementById("fecha").value);
+	var fech=$scope.fecha.split("-");
+    fech=new Date(fech[2],fech[1]-1,fech[0]);
 	objetoFecha={
-		"fecha" : fecha.toDateString()
+		"fecha" : fech.toISOString()
 	};
 	$http.post("webservice/ReservaEquipo/findReservas", objetoFecha).success(function(response){$scope.reservas=response;});
 

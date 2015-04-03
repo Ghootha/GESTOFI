@@ -81,21 +81,18 @@ $scope.editarModal=function(){
 
 
 $scope.setContrasena=function(){
-	
+	debugger;
     if($scope.passNew === $scope.passNewConf && $scope.passNew!= "" && $scope.passNew.length >= 8){
-		
-			var objeto={
-				"password": $scope.passNew
-			};
-
-			$http.put("webservice/Passport/update/"+$scope.user.id,objeto).success(function(response){
-		          alert("Cambio existoso");   
+            $http.post("webservice/User/"+$scope.user.id).success(function(response){
+                var Passport= response.passports[0].id;
+                var objeto={
+                    "password": $scope.passNew
+                 };
+                $http.post("webservice/Passport/Update/"+Passport,objeto).success(function(response){
+                  alert("Cambio existoso");   
+                });
             });
-
 	}
-    
-	
-
 }; 
 
 $scope.cargarFoto= function(filename){

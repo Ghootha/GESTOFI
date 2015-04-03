@@ -1,14 +1,19 @@
 var app = angular.module("myAppConfigTipos", []);
 
-app.controller("configTiposController", function($scope, $http) {
+app.controller("configTiposController", function($scope, $http,$upload, $timeout) {
 
 
-
+$scope.btnFile=false;
     $scope.tabs = [  
       { link : '#agregarReservable', label : 'Agregar' },
       { link : '#editarReservable', label : 'Editar'},
       
     ]; 
+
+    $scope.plantillas = [
+        {nombre:'Giras'},
+        {nombre:'Vacaciones'}
+    ];
 
 $http.get("webservice/Reservable").success(function(response){$scope.equipos=response;});
 $http.get("webservice/TipoReservable").success(function(response){$scope.selectTipos=response;});
@@ -86,6 +91,91 @@ $scope.editarReservable=function(idReservable){
 	});
 	
 };
+
+$scope.checkOption=function(){
+	if($scope.selectPlantilla==="Giras"){
+		$scope.nombreArchivo="PLANTILLA_GIRAS.docx";
+		$scope.btnFile=true;
+	}
+	else{
+		$scope.nombreArchivo="PLANTILLA_VACACIONES.docx";
+		$scope.btnFile=true;
+	}
+};
+
+ $scope.cargarArchivo=function(nombre){
+ 	$scope.btnFile=false;
+ 	$scope.selectPlantilla=false;
+ 	alert("subida del archivo"+" "+nombre+" "+"exitoso");
+
+ };
+
+//EMPIEZA CODIGO NECESARIO PARA QUE FUNCIONE EL UPLOADER
+    //-------------------------------------------------------------------------------------------------------------------------------------//
+
+    $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
+    
+    $scope.$watch('files', function(files) {        
+        if (files != null) {
+            for (var i = 0; i < files.length; i++) {
+                $scope.errorMsg = null;
+                (function(file) {
+                    uploadUsing$upload(file);
+                })(files[i]);
+            }
+        }
+    });
+    
+
+    function uploadUsing$upload(file) {
+        $scope.errorMsg = null;
+        file.upload = $upload.upload({
+                    url: 'webservice/Solicitudes/uploadPlantilla',
+                    data: {title: 'prueba', documento: file, nomDoc:$scope.nombreArchivo}
+                });
+
+        file.upload.then(function(response) {
+            $timeout(function() {
+               file.result = response.data;
+               $scope.onSuccessLoadFile(file.result);
+            });
+        }, function(response) {
+            if (response.status > 0)
+                $scope.errorMsg = response.status + ': ' + response.data;
+        });
+
+        file.upload.progress(function(evt) {
+            // Math.min is to fix IE which reports 200% sometimes
+            file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+        });
+
+        file.upload.xhr(function(xhr) {
+            // xhr.upload.addEventListener('abort', function(){console.log('abort complete')}, false);
+        });
+    }
+    
+    
+    angular.element(window).bind("dragover", function(e) {
+        e.preventDefault();
+    });
+    angular.element(window).bind("drop", function(e) {
+        e.preventDefault();
+    });
+      
+    $scope.onSuccessLoadFile = function(response){
+           
+            //var ruta = response.files[0].fd;
+            //var nombre = response.files[0].filename;
+
+            //var nombreSliced = nombre.slice(0,-4);
+            //var nombreHash = /[^\/]*$/.exec(ruta)[0];//para MAC
+            //var nombreHash = /[^\\]*$/.exec(ruta)[0];//para WIN
+            $scope.cargarArchivo($scope.nombreArchivo);
+            
+    };
+
+
+///////////
 
 $scope.test = function() {
 

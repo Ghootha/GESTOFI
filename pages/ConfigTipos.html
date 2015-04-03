@@ -126,6 +126,24 @@
                             
 
                         </div>
+
+                        <h3>Actualizacion de plantillas de solicitud</h3>
+
+                        <div class="col-md-6 column">
+                                <h2>Plantilla a cambiar</h2>
+                                <div><form name="btns">
+                                    <label for="girasRadio">Giras:</label>
+                                    <input id="girasRadio" type="radio" ng-model="selectPlantilla" value="Giras" ng-click="checkOption()"/>
+
+                                    <label for="vacasRadio">Vacaciones:</label>
+                                    <input id="vacasRadio" type="radio" ng-model="selectPlantilla" value="Vacaciones" ng-click="checkOption()" />
+                                </form></div>
+                                <br>
+                                <div class="up-buttons">
+                                    <button ng-file-select ng-model="files" ng-multiple="false" class="btn btn-success" ng-show="btnFile">Adjuntar Plantilla
+                                    </button>
+                                </div>                                     
+                        </div> 
                     </div> 
                          <!-- MODAL 1 -->
                 <div id="Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

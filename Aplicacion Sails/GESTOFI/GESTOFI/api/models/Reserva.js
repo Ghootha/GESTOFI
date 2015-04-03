@@ -26,11 +26,11 @@ module.exports = {
       },
 
       horaInicio:{
-          type:'date',
+          type:'datetime',
           required:true
       },
       horaEntrega:{
-          type:'date',
+          type:'datetime',
           required:true
       },
       fecha:{
