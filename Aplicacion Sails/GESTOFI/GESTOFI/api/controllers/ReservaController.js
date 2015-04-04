@@ -26,7 +26,10 @@ function MlistaNoDisponibles(listaIDReservables, listaIDReservas){
 		var listaResult=[];var j=0;
 		
 		for(var i=0;i<listaIDReservas.length;i++){
-			if( ((new Date(listaIDReservas[i].horaInicio) <= new Date (horaInicio))&&(new Date(listaIDReservas[i].horaEntrega) > new Date (horaInicio))) || ( new Date(listaIDReservas[i].horaInicio) <= new Date(horaEntrega) && new Date(horaEntrega)<= new Date(listaIDReservas[i].horaEntrega) ) ){
+			if( new Date(listaIDReservas[i].horaInicio) <= new Date (horaInicio) && new Date(listaIDReservas[i].horaEntrega) > new Date (horaInicio) 
+				|| new Date(listaIDReservas[i].horaInicio) <= new Date(horaEntrega) && new Date(horaEntrega)<= new Date(listaIDReservas[i].horaEntrega) 
+				|| new Date(listaIDReservas[i].horaInicio) > new Date(horaInicio) && new Date(listaIDReservas[i].horaEntrega) < new Date(horaEntrega) ){
+				
 				listaResult[j]=listaIDReservas[i];
 				j++;
 			}
@@ -201,7 +204,7 @@ module.exports = {
 		        });
 			 	}
 			 	else{
-			 		   	Reserva.find({fecha:fech).exec(function(err, idReservas){listaIDReservas=idReservas;});
+			 		   	Reserva.find({fecha:fech}).exec(function(err, idReservas){listaIDReservas=idReservas;});
 			 		   	//Reserva.find({ fecha : req.param('fecha'), horaInicio: { $gl :req.param('horaInicio')}, horaEntrega: {$lg:req.param('horaEntrega')}}).exec(function(err, idReservas){listaIDReservas=idReservas;});
 			 		   	ReservaEquipo.find().exec(function(err, idReservables){listaIDReservables=idReservables;});
 			 			Reservable.find({ tipo: 'Aula'}).exec(function(err, listaFinal){
