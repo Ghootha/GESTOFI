@@ -56,8 +56,8 @@ $scope.consultarAula= function(){
           "estado": "Pendiente",
           "fecha" : fech.toISOString(),//.toDateString()
         };
-         $http.post("webservice/Reserva/consultaEquipo",objetoReserva).success(function(response) {$scope.equipos = response;});
-         $http.get("webservice/Reserva/findTiposEquipos").success(function(response){$scope.tiposEquipos=response;});
+         $http.post("webservice/Reserva/consultaAula",objetoReserva).success(function(response) {$scope.aulas = response;});
+         
        });
        
     

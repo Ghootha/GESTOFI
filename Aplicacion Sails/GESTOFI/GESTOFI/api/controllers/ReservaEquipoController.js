@@ -32,6 +32,7 @@ function mergeJSON(json1,json2){
    while(i<json1.length){
 
    		var o={
+   			"ID": i,
    			"usuario" : json1[i].idUsuario,
    			"horaInicio" : new Date(json1[i].horaInicio).toLocaleTimeString(),
 			"horaEntrega" : new Date(json1[i].horaEntrega).toLocaleTimeString(),
