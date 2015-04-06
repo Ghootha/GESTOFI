@@ -8,6 +8,8 @@ app.controller("perfilController", function($scope, $http, $upload, $timeout) {
       
     ]; 
 $scope.user;
+ 
+
 $http.get("webservice/get_user").success(function(response){
             if(response.user == null){
                window.location.replace("index.html"); 
@@ -66,10 +68,15 @@ $scope.modificarPerfil =function(){
 
 };
 
+$scope.switchDate=function(fecha){
+    var i=fecha.split("-");
+    i=i[1]+"-"+i[0]+"-"+i[2];
+    return i;
+};
+
 $scope.editarModal=function(){
-        
+        $('#modalFecha').combodate({value:$scope.modalFecha});  
         $('#Modal2').modal({backdrop:false}).one('click', '#confirm', function(){
-            $scope.modalNombre=$scope.user.fullname;
             $scope.modalFecha=$scope.user.birthdate;
             $scope.modalDomicilio=$scope.user.address;
             $scope.modalEmail=$scope.user.email;
@@ -81,7 +88,7 @@ $scope.editarModal=function(){
 
 
 $scope.setContrasena=function(){
-	debugger;
+	
     if($scope.passNew === $scope.passNewConf && $scope.passNew!= "" && $scope.passNew.length >= 8){
             $http.post("webservice/User/"+$scope.user.id).success(function(response){
                 var Passport= response.passports[0].id;
