@@ -1,149 +1,318 @@
+ <style type="text/css">
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #ebebeb;
+    }
+    body, button {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    h1 {
+      padding-top: 50px;
+    }
+    img {
+      max-width: 100%;
+    }
+    .prueba {
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      background: rgba(255, 255, 255, 0.8);
+    }
+    nav li, nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: center
+    }
+    nav li, nav a {
+      display: inline-block;
+    }
+    nav a {
+      padding: 20px;
+      color: #333;
+      text-decoration: none;
+    }
+    a:hover {
+      background: #fff;
+    }
+    a.active {
+      background: #00AC7F;
+      color: #fff;
+    }
+    .wrap {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+    section {
+      padding: 50px 0 30px 0;
+    }
+    footer {
+      text-align: center;
+    }
+    button {
+      font-size: 18px;
+      border: 0;
+      padding: 15px 30px;
+      background: #00AC7F;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
 <!--==============================content================================-->
 <div class="content-bg">
-    <div class="main">
+  
         <div class="container_12">
             <div class="wrapper">
-                <div class="container">
+                <div class="container2">
                     <div class="row clearfix">
-                        <h3>Configuraciones de Sistema</h3>
-                        
-                            <h2>Agregar tipo de reservable</h2>
-                            <div class="col-md-6 column">
-                                <h2>Nombre del nuevo tipo</h2>
-                                <div class="sideBySide">                                        
-                                    <input class="col-md-6 column" type="text" ng-model="nomNuevoTipo"></input>
-                                </div>                                      
-                            </div>  
-                            <br><br>
-                            <div class="col-md-6 column">
-                                <div class="sideBySide">
-                                    <div class="left"> 
-                                        <button type="button" class="btn btn-success" ng-click="agregarTipo()">Agregar</button>
-                                    </div>                                        
-                                </div>                                      
+<div class="wrap">
+   <nav class="prueba">
+    <ul>
+      <li><a href="#section-1" du-smooth-scroll du-scrollspy>Section 1</a></li>
+      <li><a href="#section-2" du-smooth-scroll du-scrollspy>Section 2</a></li>
+      <li><a href="#section-3" du-smooth-scroll du-scrollspy>Section 3</a></li>    
+      <li><a href="#section-4" du-smooth-scroll du-scrollspy>Section 4</a></li>     
+    </ul>
+  </nav>
+
+  <section id="section-1">
+    <h2>Section 1</h2>
+        <h2>Agregar tipo de reservable</h2>
+        <div class="col-md-6 column">
+            <h2>Nombre del nuevo tipo</h2>
+            <div class="sideBySide">                                        
+                <input class="col-md-6 column" type="text" ng-model="nomNuevoTipo"></input>
+            </div>                                      
+        </div>  
+        <br><br>
+        <div class="col-md-6 column">
+            <div class="sideBySide">
+                <div class="left"> 
+                    <button type="button" class="btn btn-success" ng-click="agregarTipo()">Agregar</button>
+                </div>                                        
+            </div>                                      
+        </div>                             
+  </section>
+<hr>
+  <section id="section-2">
+    <h2>Section 2</h2>
+        <h2>Reservables</h2>
+
+        <div class="well">
+            <ul class="nav nav-tabs">
+                <li ng-repeat="tab in tabs"><a  data-target="{{tab.link}}" data-toggle="tab">{{tab.label}}</a></li>
+                
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane active in" id="agregarReservable">
+                    
+                        <center>
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" ><span class="name" data-ng-model="agregaReservableModel">Agregar Reservable</span></h3>
                             </div> 
-                            <br><br><br><br>
 
-
-                        
-
-                        <h2>Reservables</h2>
-
-                        <div class="well">
-                            <ul class="nav nav-tabs">
-                                <li ng-repeat="tab in tabs"><a  data-target="{{tab.link}}" data-toggle="tab">{{tab.label}}</a></li>
-                                
-                            </ul>
-                        <div id="myTabContent" class="tab-content">
-                            <div class="tab-pane active in" id="agregarReservable">
-                                
-                                    <center>
-                                    <div class="panel panel-info">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title" ><span class="name" data-ng-model="agregaReservableModel">Agregar Reservable</span></h3>
-                                        </div> 
-
-                                            <div class="panel-body">
-                                           
-                                                <div class=" col-md-9 col-lg-9"> 
-                                                    <table class="table table-user-information">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Nombre</td>
-                                                                <td><input type="text" ng-model="inputNombre"/></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Tipo</td>
-                                                                <td>
-                                                                    <span class="dropdown-toggle" >
-                                                                      <select ng-model="tipoSelect" ng-options="opc.nombre as opc.nombre for opc in selectTipos" 
-                                                                      ng-change="">
-                                                                      </select>
-                                                                      
-                                                                    </span></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Estado</td>
-                                                                <td><input type="text" ng-model="inputEstado"/></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Descripcion</td>
-                                                                <td><input type="text" ng-model="inputDescripcion"/></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Código</td>
-                                                                <td><input type="text" ng-model="inputCodigo"/></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-
-
-                                        <div class="panel-footer">
-                                            <button type="button" class="btn btn-success" ng-click="agregarReservable()">Agregar</button>
-                                        </div>
-                                    </div>    
-                                    </center>  
+                                <div class="panel-body">
+                               
+                                    <div class=" col-md-9 col-lg-9"> 
+                                        <table class="table table-user-information">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Nombre</td>
+                                                    <td><input type="text" ng-model="inputNombre"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tipo</td>
+                                                    <td>
+                                                        <span class="dropdown-toggle" >
+                                                          <select ng-model="tipoSelect" ng-options="opc.nombre as opc.nombre for opc in selectTipos" 
+                                                          ng-change="">
+                                                          </select>                                               
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Estado</td>
+                                                    <td><input type="text" ng-model="inputEstado"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Descripcion</td>
+                                                    <td><input type="text" ng-model="inputDescripcion"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Código</td>
+                                                    <td><input type="text" ng-model="inputCodigo"/></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="editarReservable">
-                                <form>
-                                    <table class="table table-striped ">
-                                      <thead>
-                                        <tr class="info">
-                                          <th>Editar</th>
-                                          <th>Nombre</th>
-                                          <th>Tipo</th>
-                                          <th>Código</th>
-                                          <th>Estado</th>
-                                          <th>Descripción</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        <tr data-ng-repeat="equipo in equipos">
-                                          <td >
-                                            <button class="btn btn-warning " data-ng-click="editarModal(equipo.id)">
-                                              <span class="glyphicon glyphicon-pencil"></span>
-                                            </button>
 
-                                          </td>
-                                          <td>{{ equipo.nombre }}</td>
-                                          <td>{{ equipo.tipo }}</td>
-                                          <td>{{ equipo.codigo }}</td>
-                                          <td>{{ equipo.estado }}</td>
-                                          <td>{{ equipo.descripcion }}</td>
-                                        </tr>
-
-                                      </tbody>
-                                    </table>
-                                </form>
+                            <div class="panel-footer">
+                                <button type="button" class="btn btn-success" ng-click="agregarReservable()">Agregar</button>
                             </div>
+                        </div>    
+                        </center>  
+                </div>
 
+                    <div class="tab-pane fade" id="editarReservable">
+                    <form>
+                        <table class="table table-striped ">
+                          <thead>
+                            <tr class="info">
+                              <th>Editar</th>
+                              <th>Nombre</th>
+                              <th>Tipo</th>
+                              <th>Código</th>
+                              <th>Estado</th>
+                              <th>Descripción</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr data-ng-repeat="equipo in equipos">
+                              <td >
+                                <button class="btn btn-warning " data-ng-click="editarModal(equipo.id)">
+                                  <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                              </td>
+                              <td>{{ equipo.nombre }}</td>
+                              <td>{{ equipo.tipo }}</td>
+                              <td>{{ equipo.codigo }}</td>
+                              <td>{{ equipo.estado }}</td>
+                              <td>{{ equipo.descripcion }}</td>
+                            </tr>
+
+                          </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+  </section>
+<hr>
+  <section id="section-3">
+    <h2>Section 3</h2>
+      <h3>Actualizacion de plantillas de solicitud</h3>
+      <div class="col-md-6 column">
+              <h2>Plantilla a cambiar</h2>
+              <div><form name="btns">
+                  <label for="girasRadio">Giras:</label>
+                  <input id="girasRadio" type="radio" ng-model="selectPlantilla" value="Giras" ng-click="checkOption()"/>
+
+                  <label for="vacasRadio">Vacaciones:</label>
+                  <input id="vacasRadio" type="radio" ng-model="selectPlantilla" value="Vacaciones" ng-click="checkOption()" />
+              </form></div>
+              <br>
+              <div class="up-buttons">
+                  <button ng-file-select ng-model="files" ng-multiple="false" class="btn btn-success" ng-show="btnFile">Adjuntar Plantilla
+                  </button>
+              </div>                                     
+      </div>
+     
+  </section>
+<hr>
+  <section id="section-4">
+    <h2>Section 4</h2>
+      <h2>Tipos Documento</h2>
+
+        <div class="well">
+            <ul class="nav nav-tabs">
+                <li ng-repeat="tab in tabs2"><a  data-target="{{tab.link}}" data-toggle="tab">{{tab.label}}</a></li>
+                
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane active in" id="agregarTipoDocumento">
+                    
+                        <center>
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" ><span class="name" data-ng-model="agregaReservableModel">Agregar Tipo Documento</span></h3>
+                            </div> 
+
+                                <div class="panel-body">
+                               
+                                    <div class=" col-md-9 col-lg-9"> 
+                                        <table class="table table-user-information">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Nombre</td>
+                                                    <td><input type="text" ng-model="nombreTipoDoc"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Seguridad</td>
+                                                    <td>
+                                                        <span class="dropdown-toggle" >
+                                                          <select data-ng-model="seguridadTipoDoc">    
+                                                            <option>Alta</option>
+                                                            <option>Media</option>
+                                                            <option>Baja</option>
+                                                            <option>Ninguna</option>
+                                                          </select>                                                
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Clasificacion</td>
+                                                    <td><input type="text" ng-model="clasificacionTipoDoc"/></td>
+                                                </tr>
+                                                                                               
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            <div class="panel-footer">
+                                <button type="button" class="btn btn-success" ng-click="agregarTipoDoc()">Agregar</button>
                             </div>
-                                  
+                        </div>    
+                        </center>  
+                </div>
 
-                            
+                    <div class="tab-pane fade" id="editarTipoDocumento">
+                    <form>
+                        <table class="table table-striped ">
+                          <thead>
+                            <tr class="info">
+                              <th>Editar</th>
+                              <th>Nombre</th>
+                              <th>Seguridad</th>
+                              <th>Clasificacion</th>                              
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr data-ng-repeat="tipoDoc in tipoDocumentos">
+                              <td >
+                                <button class="btn btn-warning " data-ng-click="editarTipoDoc(tipoDoc.id)">
+                                  <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                              </td>
+                              <td>{{ tipoDoc.nombre }}</td>
+                              <td>{{ tipoDoc.seguridad }}</td>
+                              <td>{{ tipoDoc.clasificacion }}</td>                              
+                            </tr>
 
-                        </div>
+                          </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-                        <h3>Actualizacion de plantillas de solicitud</h3>
+  </section>
+  <footer>
+    <button ng-click="toTheTop()">Take me back!</button> or <button ng-click="toSection2()">To section 2</button>
+  </footer>
+</div>
 
-                        <div class="col-md-6 column">
-                                <h2>Plantilla a cambiar</h2>
-                                <div><form name="btns">
-                                    <label for="girasRadio">Giras:</label>
-                                    <input id="girasRadio" type="radio" ng-model="selectPlantilla" value="Giras" ng-click="checkOption()"/>
-
-                                    <label for="vacasRadio">Vacaciones:</label>
-                                    <input id="vacasRadio" type="radio" ng-model="selectPlantilla" value="Vacaciones" ng-click="checkOption()" />
-                                </form></div>
-                                <br>
-                                <div class="up-buttons">
-                                    <button ng-file-select ng-model="files" ng-multiple="false" class="btn btn-success" ng-show="btnFile">Adjuntar Plantilla
-                                    </button>
-                                </div>                                     
-                        </div> 
+                         
                     </div> 
                          <!-- MODAL 1 -->
                 <div id="Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -206,12 +375,61 @@
                     </div>
                 </div> 
 <!-- FINALIZA MODAL 1 -->
+
+         <!-- MODAL 2 -->
+                <div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel"></h4>
+                            </div>
+
+                            <div class="modal-body">
+                                <h3>Editar Tipo Documento:</h3>
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Nombre:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" data-ng-model="nombreTipoDoc"  placeholder="Nombre">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Seguridad:</label>
+                                        <div class="col-sm-5">
+                                            <select class="form-control" data-ng-model="seguridadTipoDoc">    
+                                                <option>Alta</option>
+                                                <option>Media</option>
+                                                <option>Baja</option>
+                                                <option>Ninguna</option>
+                                            </select>                                                 
+                                        </div> 
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Clasificacion:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" data-ng-model="clasificacionTipoDoc"  placeholder="Codigo">
+                                        </div>
+                                    </div>                                    
+                                </form>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <button class="btn btn-success" data-ng-disabled="incomplete2" id="confirm2" ng-click="editarTipoDoc(equipo.id)" data-dismiss="modal">
+                                    <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <!-- FINALIZA MODAL 2 -->
                     <!-- CIERRA CONTENIDo-->
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+
 
  

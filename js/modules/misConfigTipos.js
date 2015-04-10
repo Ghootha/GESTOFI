@@ -1,12 +1,29 @@
-var app = angular.module("myAppConfigTipos", []);
+var app = angular.module("myAppConfigTipos", ['duScroll']);
 
-app.controller("configTiposController", function($scope, $http,$upload, $timeout) {
+app.controller("configTiposController", function($scope, $http,$upload, $timeout, $document) {
+
+$scope.toTheTop = function() {
+      $document.scrollTopAnimated(0, 5000).then(function() {
+        console && console.log('You just scrolled to the top!');
+      });
+    }
+    var section2 = angular.element(document.getElementById('section-2'));
+    $scope.toSection2 = function() {
+      $document.scrollToElementAnimated(section2);
+    }
+  
 
 
 $scope.btnFile=false;
     $scope.tabs = [  
       { link : '#agregarReservable', label : 'Agregar' },
       { link : '#editarReservable', label : 'Editar'},
+      
+    ]; 
+
+    $scope.tabs2 = [  
+      { link : '#agregarTipoDocumento', label : 'Agregar' },
+      { link : '#editarTipoDocumento', label : 'Editar'},
       
     ]; 
 
@@ -17,6 +34,7 @@ $scope.btnFile=false;
 
 $http.get("webservice/Reservable").success(function(response){$scope.equipos=response;});
 $http.get("webservice/TipoReservable").success(function(response){$scope.selectTipos=response;});
+$http.get("webservice/TipoDocumento").success(function(response){$scope.tipoDocumentos=response;});
 $scope.agregarTipo=function(){
 
 	var objeto={
@@ -91,6 +109,55 @@ $scope.editarReservable=function(idReservable){
 	});
 	
 };
+
+$scope.agregarTipoDoc=function(){
+	var objeto={
+		"nombre": $scope.nombreTipoDoc,
+		"seguridad": $scope.seguridadTipoDoc,
+		"clasificacion": $scope.clasificacionTipoDoc
+	};
+
+	$http.post("webservice/TipoDocumento/create",objeto).success(function(response){
+		$scope.nombreTipoDoc="";		
+		$scope.seguridadTipoDoc="";
+		$scope.clasificacionTipoDoc="";	
+		$http.get("webservice/TipoDocumento").success(function(response){$scope.tipoDocumentos=response;});
+		alert("TipoDoc creado");
+	});
+};
+
+$scope.editarTipoDoc=function(id){
+		for(var i = 0; i<$scope.tipoDocumentos.length; i++) {
+                if($scope.tipoDocumentos[i].id === id) {
+                    $scope.nombreTipoDoc = $scope.tipoDocumentos[i].fecha;
+                    $scope.seguridadTipoDoc = $scope.tipoDocumentos[i].nombre;
+                    $scope.clasificacionTipoDoc = $scope.tipoDocumentos[i].codigo;                    
+                    $scope.actualizaTipoDoc(id);    
+                }
+         }     
+	
+};
+
+$scope.actualizaTipoDoc=function(idTipoDoc){
+	$('#Modal2').modal({backdrop:false}).one('click', '#confirm2', function(){
+
+		var objeto={
+		"nombre": $scope.nombreTipoDoc,
+		"seguridad": $scope.seguridadTipoDoc,
+		"clasificacion": $scope.clasificacionTipoDoc
+	};
+
+	$http.put("webservice/TipoDocumento/update/"+idTipoDoc, objeto).success(function(response){
+		$scope.nombreTipoDoc="";
+		$scope.seguridadTipoDoc="";
+		$scope.clasificacionTipoDoc="";		
+		$http.get("webservice/TipoDocumento").success(function(response){$scope.tipoDocumentos=response;});
+	});
+
+	});
+	
+};
+
 
 $scope.checkOption=function(){
 	if($scope.selectPlantilla==="Giras"){
@@ -181,4 +248,4 @@ $scope.test = function() {
 
 };
 
-});
+}).value('duScrollOffset', 30);
