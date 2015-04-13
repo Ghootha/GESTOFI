@@ -5,13 +5,13 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 
 		var req = {
 			 method: 'GET',
-			 url: 'webservice/Agenda',
+			 url: 'webservice/Agenda/findActByUser',
 			 dataType: 'json',
 			 data: '',
 			 headers: {
 			   'Content-Type': "application/json; charset=utf-8"
 			 }
-			 
+			 //url: 'webservice/Agenda', para ver todas las act
 		};
 		$http.get("webservice/get_user").success(function(response){
 			$scope.user= response.user;
@@ -23,11 +23,12 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 			var inicio=new Date(i[2],i[1]-1,i[0]);
 			var f=$scope.endA.split("-");
 			var ffinal=new Date(f[2],f[1]-1,f[0]);
-			var objetoJSON;    
+			var objetoJSON;
+				 			
 				   
 			objetoJSON = {
 				"title": $scope.actividadA,
-				"autor":  $scope.user.username,
+				"autor":  $scope.user.fullname,
 				"lugar": $scope.lugarA,
 				"descripcion": $scope.descripcionA,
 				"start": inicio,
@@ -47,42 +48,43 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
              $('#modalform').trigger("reset");
 		    $('#Modal3').modal('hide');
 		 };
+		 
 		
 	$scope.actualizaAct = function() {  
-           
+				var f;
+				var i;
 				var objetoJSON;
 				for(var x = 0; x<$scope.actividades.length; x++) {
-						if($scope.actividades[x].id === $scope.id) {
+					if($scope.actividades[x].id === $scope.id) {
 						
-							var i=$scope.start.split("-");
-							var inicio=new Date(i[2],i[1]-1,i[0]);
-							var f=$scope.end.split("-");
-							var ffinal=new Date(f[2],f[1]-1,f[0]);
-							var objetoJSON;   
-							
-						   
-					objetoJSON = {
-						"title": $scope.title,
-						"autor":  $scope.user.username,
-						"lugar": $scope.lugar,
-						"descripcion": $scope.descripcion,
-						"start": inicio,
-						"end": ffinal,
-					};
-					
-                    $http.put("webservice/Agenda/update/"+$scope.id, objetoJSON).success(
-                     
-                            function(){
-                                $http.get("webservice/Agenda")
-                                    .success(function(data) {$scope.actividades = data;});
-                     }).error(function(response, status, header, config){  
-						$timeout(function(){
-							alert("la actividad no se pudo editar");
-						});                          
-					});	
-					location.href="#agenda"; 
-					$('#Modal2').modal('hide');	
-                }
+								i=$scope.start.split("-");
+								f=$scope.end.split("-");
+								
+								var inicio=new Date(i[2],i[1]-1,i[0]);
+								var ffinal=new Date(f[2],f[1]-1,f[0]);
+																							
+							objetoJSON = {
+								"title": $scope.title,
+								"autor":  $scope.user.fullname,
+								"lugar": $scope.lugar,
+								"descripcion": $scope.descripcion,
+								"start": inicio,
+								"end": ffinal
+							};
+											
+						$http.put("webservice/Agenda/update/"+$scope.id, objetoJSON).success(
+						 
+								function(){
+									$http.get("webservice/Agenda")
+										.success(function(data) {$scope.actividades = data;});
+						 }).error(function(response, status, header, config){  
+							$timeout(function(){
+								alert("la actividad no se pudo editar");
+							});                          
+						});	
+						location.href="#agenda"; 
+						$('#Modal2').modal('hide');	
+					}
           } 
   };
 		 
@@ -140,9 +142,10 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 						$scope.autor= calEvent.autor;
 						$scope.lugar= calEvent.lugar;
 						$scope.descripcion= calEvent.descripcion;
-						$scope.start= calEvent.start.format('DD MM YYYY');
-						$scope.end= calEvent.end.format('DD MM YYYY');
-						if(calEvent.autor==$scope.user.username){
+						$scope.start= calEvent.start.format('DD-MM-YYYY');
+						$scope.end= calEvent.end.format('DD-MM-YYYY');
+						
+						if(calEvent.autor==$scope.user.fullname){
 							$scope.incomplete=false;
 							
 						}	
