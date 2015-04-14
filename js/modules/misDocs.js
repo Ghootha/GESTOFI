@@ -13,7 +13,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
     $scope.tabs = [  
       { link : '#home', label : 'Investigaciones' },
       { link : '#estudiante', label : 'Estudiantes'},
-      { link : '#papeleria', label : 'Papeleria'},
+      { link : '#papeleria', label : 'Administrativos'},
       { link : '#correos', label : 'Correos'}
     ]; 
 

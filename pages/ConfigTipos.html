@@ -3,34 +3,36 @@
     .prueba {
       position: fixed;
       z-index: 1;
-          
-      left: 10px;      
-      background: #fff;
-    
+      left: 10px;
     }      
     .prueba a.active {
-      background: #00AC7F;
-      color: #fff;
+      background: #096E87;
+      color: #FFF;
     }
 
-     .prueba li, .prueba ul {      
-      margin: 10px;
-      padding: 10px;
-      text-align: center
+    .prueba ul{
+      background: #1C6BA5;
+      padding: 5px;
+
+    }
+
+    .prueba li { 
+      background: url("../images/left-menu.jpg") no-repeat scroll center top transparent;
+      padding: 11px;
+      text-align: right;
     }
 
     .prueba a {
-      padding: 20px;
-      color: #333;
+      padding: 10.5px;
+      color: #FFF;
       text-decoration: none;
     }
     .wrap {
-      position: relative;      
-      margin: 0 auto;
-      padding: 50px 20px;
+      position: relative;
+      padding: 0px 65px;
     }
     section {
-      padding: 50px 0 30px 0;
+      padding: 20px 0 20px 0;
     }
      
   </style>
@@ -44,35 +46,32 @@
 <div class="wrap">
    <nav class="prueba">
     <ul>
-      <li><a href="#section-1" du-smooth-scroll du-scrollspy>Section 1</a></li>
-      <li><a href="#section-2" du-smooth-scroll du-scrollspy>Section 2</a></li>
-      <li><a href="#section-3" du-smooth-scroll du-scrollspy>Section 3</a></li>    
-      <li><a href="#section-4" du-smooth-scroll du-scrollspy>Section 4</a></li>     
+      <li><a href="#section-1" du-smooth-scroll du-scrollspy>Tipo Reservable</a></li>
+      <li><a href="#section-2" du-smooth-scroll du-scrollspy>Reservables</a></li>
+      <li><a href="#section-3" du-smooth-scroll du-scrollspy>Plantillas Solicitud</a></li>    
+      <li><a href="#section-4" du-smooth-scroll du-scrollspy>Tipo Documento</a></li>     
     </ul>
   </nav>
 
-  <section id="section-1">
-    <h2>Section 1</h2>
-        <h2>Agregar tipo de reservable</h2>
+  <section id="section-1">    
+        <h2>Agregar Tipo Reservable</h2>
         <div class="col-md-6 column">
-            <h2>Nombre del nuevo tipo</h2>
+            <br>
             <div class="sideBySide">                                        
-                <input class="col-md-6 column" type="text" ng-model="nomNuevoTipo"></input>
+                <input type="text" ng-model="nomNuevoTipo" placeholder="Nombre"></input>
             </div>                                      
-        </div>  
-        <br><br>
+        </div>
         <div class="col-md-6 column">
+           <br>
             <div class="sideBySide">
-                <div class="left"> 
                     <button type="button" class="btn btn-success" ng-click="agregarTipo()">Agregar</button>
-                </div>                                        
             </div>                                      
-        </div>                             
+        </div>
+        <br><br><br>                             
   </section>
 <hr>
-  <section id="section-2">
-    <h2>Section 2</h2>
-        <h2>Reservables</h2>
+  <section id="section-2">    
+        <h2>Configuración Reservables</h2>
 
         <div class="well">
             <ul class="nav nav-tabs">
@@ -167,10 +166,10 @@
         </div>
   </section>
 <hr>
-  <section id="section-3">
-    <h2>Section 3</h2>
+  <section id="section-3">    
       <h3>Actualizacion de plantillas de solicitud</h3>
-      <div class="col-md-6 column">
+
+      <div class="col-md-12 column">
               <h2>Plantilla a cambiar</h2>
               <div><form name="btns">
                   <label for="girasRadio">Giras:</label>
@@ -183,14 +182,13 @@
               <div class="up-buttons">
                   <button ng-file-select ng-model="files" ng-multiple="false" class="btn btn-success" ng-show="btnFile">Adjuntar Plantilla
                   </button>
-              </div>                                     
+              </div>                                                              
       </div>
-     
+     <br><br><br> 
   </section>
 <hr>
-  <section id="section-4">
-    <h2>Section 4</h2>
-      <h2>Tipos Documento</h2>
+  <section id="section-4">    
+      <h2>Configuración Tipos Documento</h2>
 
         <div class="well">
             <ul class="nav nav-tabs">
@@ -378,9 +376,14 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Clasificacion:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" data-ng-model="clasificacionTipoDoc"  placeholder="Codigo">
-                                        </div>
+                                        <div class="col-sm-5">
+                                            <select class="form-control" data-ng-model="clasificacionTipoDoc">    
+                                                <option>Investigación</option>
+                                                <option>Estudiante</option>
+                                                <option>Administrativo</option>
+                                                <option>Correo</option>
+                                            </select>                                                 
+                                        </div> 
                                     </div>                                    
                                 </form>
                             </div>

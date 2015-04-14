@@ -110,6 +110,8 @@ $scope.editarReservable=function(idReservable){
 	
 };
 
+
+//------------------------------------------------------------INICIA CONFIG DE TIPO DOCUMENTO------------------------------------------------------//
 $scope.agregarTipoDoc=function(){
 	var objeto={
 		"nombre": $scope.nombreTipoDoc,
@@ -129,9 +131,9 @@ $scope.agregarTipoDoc=function(){
 $scope.editarTipoDoc=function(id){
 		for(var i = 0; i<$scope.tipoDocumentos.length; i++) {
                 if($scope.tipoDocumentos[i].id === id) {
-                    $scope.nombreTipoDoc = $scope.tipoDocumentos[i].fecha;
-                    $scope.seguridadTipoDoc = $scope.tipoDocumentos[i].nombre;
-                    $scope.clasificacionTipoDoc = $scope.tipoDocumentos[i].codigo;                    
+                    $scope.nombreTipoDoc = $scope.tipoDocumentos[i].nombre;
+                    $scope.seguridadTipoDoc = $scope.tipoDocumentos[i].seguridad;
+                    $scope.clasificacionTipoDoc = $scope.tipoDocumentos[i].clasificacion;                    
                     $scope.actualizaTipoDoc(id);    
                 }
          }     

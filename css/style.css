@@ -508,7 +508,7 @@ footer {
 	color:#999;
 	background:url(../images/footer-tail.gif) center top repeat;
 	position:relative;
-	z-index:9;
+	/*z-index:9;*/
 	overflow:hidden;
 	margin-top: 100px;
 }
