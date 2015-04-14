@@ -37,6 +37,21 @@ module.exports = {
 		          else
 		            res.json(user);
 		        });
-	}
+	},
+    
+    uploadDocCorrespondencia: function  (req, res) {
+    
+    var uploadPath = '../../assets/docsCorrespondencia';  
+    
+    req.file('documento').upload({ dirname: uploadPath},function (err, files) {
+      if (err)
+        return res.send(500, err);
+
+      return res.json({
+        message: files.length + ' file(s) uploaded successfully!',
+        files: files
+      });
+    });
+  }
 };
 

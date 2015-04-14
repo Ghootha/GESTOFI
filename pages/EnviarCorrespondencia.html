@@ -8,13 +8,35 @@
 						<h3>
 							Enviar correspondencia
 						</h3>
-						<div class="col-md-12 column">
+						
+                        <div class="col-md-8 column">
 							<li>Destinatario:</li>
 <!--							<input type="text" class="form-control" autofocus data-ng-model="destinatario" />-->
                             <tags-input ng-model="tags" display-property="username" placeholder="Destinatario" >
                                 <auto-complete source="loadTags($query)" min-length="2" load-on-focus="true" load-on-empty="true" load-on-down-arrow="true" select-first-match="false"></auto-complete>
                             </tags-input> 
 						</div>
+                        
+                        <div class="col-md-4 column">
+                            <li>Enviar a Rol:</li>
+<!--                            <label class="col-sm-2 control-label">Rol:</label>-->
+<!--                            <div class="col-sm-4">-->
+                                <select class="form-control" data-ng-model="role">
+                                    <option>Ninguno</option>
+                                    <option>Director</option>
+                                    <option>Subdirector</option>
+                                    <option>Asistente Administrativa</option>
+                                    <option>Encargado de Maestría</option>
+                                    <option>Personal Académico</option>
+                                    <option>Secretaria</option>
+                                    <option>Recepcionista</option>
+                                    <option>Concerje</option>
+                                    <option>Estudiante</option>
+                                    <option>Todos</option>
+                                </select>
+<!--                            </div>-->
+                        </div>
+                        
 						<div class="col-md-12 column">
 							<br><li>Asunto:</li>
 							<input type="text" name="asunto" class="form-control" data-ng-model="asunto"></textarea>
@@ -23,16 +45,20 @@
 							<br><li>Numero de Folio:</li>
 							<input type="text" size="129" data-ng-model="folio"/>
 						</div>-->
+                        <br>
 						<div class="col-md-6 column">
-							<br><li>Adjuntar Archivo:</li>
-							<input type="file" size="129" data-ng-model="idDocumento"/>
+							<div class="up-buttons">
+                              <button ng-file-select ng-model="files" ng-multiple="false" class="btn btn-success">Adjuntar Archivo
+                              </button>
+                          </div>  
 						</div>
 						<!--<div class="col-md-6 column">
 							<button type="button" class="btn btn-default" data-backdrop="false" data-target="#Modal2" data-toggle="modal"><span class="glyphicon glyphicon-save"></span>  Subir Doc </button>
-						</div>-->
-						<div class="col-md-6 column">
-							<button class="btn btn-default" data-ng-click="adjDoc()">  Subir Doc </button>
 						</div>
+						<div class="col-md-6 column">
+                            <br>
+							<button class="btn btn-default" data-ng-click="adjDoc()" data-backdrop="false" data-target="#Modal3" data-toggle="modal">  Subir Doc </button>
+						</div>-->
 						<div class="col-md-12 column">
 							<BR><li>Mensaje:</li><br>
 							<textarea cols="130" rows="18" class="form-control" name="Mensaje" data-ng-model="mensaje"></textarea>

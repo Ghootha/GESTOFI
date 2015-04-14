@@ -35,6 +35,7 @@
 						<th>De</th>
 						<th>Asunto</th>
 						<th>Fecha</th>
+                        <th>Eliminar</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -42,6 +43,7 @@
 						<td>{{ entrada.emisor }}</td>
 						<td>{{ entrada.asunto }}</td>
 						<td>{{ entrada.fecha }}</td>
+                        <td><button class="btn btn-danger" ng-click="eliminaMsjEntrada(entrada.id); $event.stopPropagation();"><span class="glyphicon glyphicon-remove" ></span></button></td>
 					</tr>
 					</tbody>
 					<!--Finaliza Tabla-->
@@ -54,6 +56,7 @@
 						<th>Para</th>
 						<th>Asunto</th>
 						<th>Fecha</th>
+                        <th>Eliminar</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -61,6 +64,7 @@
 						<td>{{ salida.receptor }}</td>
 						<td>{{ salida.asunto }}</td>
 						<td>{{ salida.fecha }}</td>
+                        <td><button class="btn btn-danger" ng-click="eliminaMsjSalida(salida.id); $event.stopPropagation();"><span class="glyphicon glyphicon-remove" ></span></button></td>
 					</tr>
 					</tbody>
 					<!--Finaliza Tabla-->
@@ -96,6 +100,9 @@
 									  <input type="text" class="form-control" data-ng-model="receptor" data-ng-disabled="!edit">
 								  </div>
 							  </div>
+                              <div class="form-group">
+								  <button type="button" class="btn btn-default" ng-show="btnDoc" ng-click="abrirDoc()">Abrir Documento</button>
+							  </div>
 							  <div class="form-group">
 								  <label class="col-sm-2 control-label">Asunto:</label>
 								  <div class="col-sm-3">
@@ -113,8 +120,8 @@
 						 </div>
 						 <div class="modal-footer">
 						   <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						   <button class="btn btn-success" data-ng-disabled="incomplete" id="confirm" data-dismiss="modal" >
-							   <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
+						   <button class="btn btn-success" data-ng-disabled="incomplete" id="confirm" data-dismiss="modal" ng-click="responder()">
+							   <span class="glyphicon glyphicon-circle-arrow-left"></span>  Responder
 						   </button>
 						 </div>
 
@@ -123,7 +130,35 @@
 				   </div>
 
 				   <!--TERMINA MODAL-->
-				
+				<!-- MODAL ELIMINAR-->
+                                        <!-- Esta comentado para hacer pruebas -->
+                                        <div id="Modal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                             <div class="modal-dialog">
+                                               <div class="modal-content">
+
+                                                 <div class="modal-header">
+                                                    
+                                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                   <h4 class="modal-title" id="myModalLabel"> Eliminar documento</h4>
+                                                 </div>
+                                                 <div class="modal-body">                                                         
+                                                 Confirme que desea eliminar este documento del repositorio
+                                                 </div>
+                                                 <div class="modal-footer">
+                                                   <button data-dismiss="modal" class="btn btn-danger">
+                                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                    </button>
+
+                                                    <button data-dismiss="modal" class="btn btn-success" id="confirm">
+                                                                    <span class="glyphicon glyphicon-ok"></span>
+                                                    </button>
+                                                   
+                                                 </div>
+
+                                               </div>
+                                             </div>
+                                           </div>
+                                    <!-- FINALIZA MODAL ELIMINAR -->   
 				
 			</div>
 		</div>

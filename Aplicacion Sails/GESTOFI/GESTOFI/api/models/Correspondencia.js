@@ -10,12 +10,12 @@ module.exports = {
     autoUpdatedAt: false,
 
   attributes: {
-	  idDocumento: {
-		  columnName: 'documento_id',
+	  documento: {
+		  columnName: 'documento',
 		  type: 'string',
-		  foreignKey: true,
-		  references: 'Usuario',
-		  on: 'id'
+		  //foreignKey: true,
+		  //references: 'Usuario',
+		  //on: 'id'
 	  },
 	  emisor: {
 		  type: 'string',
