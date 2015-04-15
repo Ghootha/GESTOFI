@@ -102,55 +102,27 @@
                                         <ul>
                                             <!-- notification: inbox -->
                                             <li class="notification-item inbox">
-                                                <div class="btn-group">
+                                                <div class="btn-group" data-ng-controller='CorrespondenciaController'>
                                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                                         <i class="fa fa-envelope"></i>
-                                                        <span class="count">2</span>
+                                                        <span class="count" data-ng-model="cant">{{ cant }}</span>
                                                         <span class="circle"></span>
                                                     </a>
 
                                                     <ul class="dropdown-menu" role="menu">
-                                                        <li class="notification-header">
-                                                            <em>Tiene 2 mensajes Sin leer</em>
+                                                        <li class="notification-header" data-ng-model="cant">
+                                                            <em>Tiene {{ cant }} mensajes sin leer</em>
                                                         </li>
-                                                        <li class="inbox-item unread clearfix">
+                                                        <li class="inbox-item unread clearfix" ng-repeat="item in entradas" ng-if="!item.leido">
                                                             <a href="#">
                                                                 <div class="media">
                                                                     <div class="pull-left" href="#">
                                                                         <img class="media-object" src="images/imgLogin/user1.png" alt="Antonio">
                                                                     </div>
                                                                     <div class="media-body">
-                                                                        <h5 class="media-heading name">Andres</h5>
-                                                                        <p class="text">Revisar plan de estudios</p>
-                                                                        <span class="timestamp">4 minutes atras</span>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                        </li>
-                                                        <li class="inbox-item unread clearfix">
-                                                            <a href="#">
-                                                                <div class="media">
-                                                                    <div class="pull-left" href="#">
-                                                                        <img class="media-object" src="images/imgLogin/user2.png" alt="Antonio">
-                                                                    </div>
-                                                                    <div class="media-body">
-                                                                        <h5 class="media-heading name">Jose</h5>
-                                                                        <p class="text">Oficio 1234</p>
-                                                                        <span class="timestamp">2 horas atras</span>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                        </li>
-                                                        <li class="inbox-item clearfix">
-                                                            <a href="#">
-                                                                <div class="media">
-                                                                    <div class="pull-left" href="#">
-                                                                        <img class="media-object" src="images/imgLogin/user3.png" alt="Antonio">
-                                                                    </div>
-                                                                    <div class="media-body">
-                                                                        <h5 class="media-heading name">Natasha</h5>
-                                                                        <p class="text">Correspondencia 3</p>
-                                                                        <span class="timestamp">Junio 4</span>
+                                                                        <h5 class="media-heading name">{{ item.emisor }}</h5>
+                                                                        <p class="text">{{ item.asunto }}</p>
+                                                                        <span class="timestamp">{{ item.fecha }}</span>
                                                                     </div>
                                                                 </div>
                                                             </a>
@@ -166,34 +138,34 @@
 
                                             <!-- notification: general -->
                                             <li class="notification-item general">
-                                                <div class="btn-group">
-                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <div class="btn-group" data-ng-controller='NotificacionesController'>
+                                                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
                                                         <i class="fa fa-bell"></i>
-                                                        <span class="count">2</span>
+                                                        <span class="count" data-ng-model="cant"> {{ cant }}</span>
                                                         <span class="circle"></span>
                                                     </a>
                                                     <ul class="dropdown-menu" role="menu">
-                                                        <li class="notification-header">
-                                                            <em>Tiene 2 Notificaciones</em>
+                                                        <li class="notification-header" data-ng-model="cant">
+                                                            <em>Tiene {{cant }} Notificaciones</em>
                                                         </li>
 
-                                                        <li>
-                                                            <a href="#">
+                                                        <li ng-repeat="item in notificaciones" ng-if="!item.leido">
+                                                            <a href="">
                                                                 <i class="fa fa-user green-font"></i>
-                                                                <span class="text">Te invitaron a un evento</span>
-                                                                <span class="timestamp">12 minutos atras</span>
+                                                                <span class="text"> {{ item.titulo }}</span>
+                                                                <span class="timestamp">{{ item.fecha }}</span>
                                                             </a>
                                                         </li>
 
-                                                        <li>
+                                                        <!--<li>
                                                             <a href="#">
                                                                 <i class="fa fa-warning red-font"></i>
                                                                 <span class="text red-font">Tu solicitud ha sido rechazada!</span>
                                                                 <span class="timestamp">13 minutos atras</span>
                                                             </a>
-                                                        </li>
+                                                        </li>-->
                                                         <li class="notification-footer">
-                                                            <a href="#">Ver todas las notificaciones</a>
+                                                            <a href="#notificaciones">Ver todas las notificaciones</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -482,7 +454,8 @@
     <script src="js/modules/misSolicitudes.js"></script>
     <script src="js/modules/misUsers.js"></script>
     <script src="js/modules/miAgenda.js"></script>
-    <script src="js/modules/misConfigTipos.js"></script>    
+    <script src="js/modules/misConfigTipos.js"></script>
+    <script src="js/modules/misNotificaciones.js"></script> 
     <script src="js/modules/routes.js"></script>
     <script src="js/modules/app.js"></script>
 

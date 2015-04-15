@@ -35,7 +35,11 @@ module.exports = {
 	  },
 	mensaje:{
 		type:'text'
-	}
+	},
+      leido:{
+        type:'boolean',
+          defaultsTo: false
+      }
 	
   }
 };

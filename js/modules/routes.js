@@ -83,6 +83,9 @@ app.config(function($routeProvider) {
 		.when('/ConfigTipos', {
 			templateUrl	: 'pages/ConfigTipos.html',
 			controller 	: 'configTiposController'
+		}).when('/notificaciones', {
+			templateUrl	: 'pages/notificaciones.html',
+			controller 	: 'NotificacionesController'
 		})
 		/*.when('/agregarReservable', {
 			templateUrl	: 'pages/ConfigTipos.html',

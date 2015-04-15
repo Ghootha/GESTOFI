@@ -1,0 +1,72 @@
+<div class="content-bg">
+	<div class="main">
+		<div class="container_12">
+			<div class="wrapper">
+				<!--<div class="container">-->
+				<!-------------------TABLA--------------------------------------->
+				<table class="table table-striped table-hover">
+					<thead>
+					<tr class="info">
+						<th>De</th>
+						<th>Titulo</th>
+						<th>Fecha</th>
+                        <th>Eliminar</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr data-ng-repeat="item in notificaciones" data-ng-class="{black : item.leido, red: !item.leido}" data-ng-click="actualizar(item.id)">
+						<td>{{ item.emisor }}</td>
+						<td>{{ item.titulo }}</td>
+						<td>{{ item.fecha }}</td>
+                        <td><button class="btn btn-danger" ng-click="eliminaNotificacion(item.id); $event.stopPropagation();"><span class="glyphicon glyphicon-remove" ></span></button></td>
+					</tr>
+					</tbody>
+					<!--Finaliza Tabla-->
+				</table>
+
+				
+				<!--</div>-->
+				<!-- MODAL ELIMINAR-->
+                <!-- Esta comentado para hacer pruebas -->
+                <div id="Modal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                       <div class="modal-content">
+
+                         <div class="modal-header">
+
+                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                           <h4 class="modal-title" id="myModalLabel"> Eliminar documento</h4>
+                         </div>
+                         <div class="modal-body">                                                         
+                         Confirme que desea eliminar este documento del repositorio
+                         </div>
+                         <div class="modal-footer">
+                           <button data-dismiss="modal" class="btn btn-danger">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+
+                            <button data-dismiss="modal" class="btn btn-success" id="confirm">
+                                            <span class="glyphicon glyphicon-ok"></span>
+                            </button>
+
+                         </div>
+
+                       </div>
+                     </div>
+                   </div>
+            <!-- FINALIZA MODAL ELIMINAR -->   
+				
+			</div>
+		</div>
+	</div>
+	<div class="block"></div>
+</div>
+<style type="text/css">
+.red {
+    color: red; 
+}
+
+.black {
+    color: black;
+}
+</style>

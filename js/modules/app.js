@@ -13,6 +13,7 @@ var app = angular.module("app", [
     'myAppUsers',
     'myAppAgenda',
     'myAppConfigTipos',
+    'myAppNotificaciones',
     'routes'
     ]);
 

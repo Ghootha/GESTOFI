@@ -1,10 +1,19 @@
 
 var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput']); //tags aqui
 
-	app.controller("CorrespondenciaController", function($scope, $http, $timeout, $location, $window, $upload, $document) {
+	app.controller("CorrespondenciaController", function($scope, $http, $timeout, $location, $window, $upload, $document, $route) {
 
 	$http.get("webservice/bandejaDeEntrada")
-		.success(function(response) {$scope.entradas = response;});
+		.success(function(response) {
+            $scope.entradas = response;
+            var c=0;
+            for(var i=0; i<$scope.entradas.length; i++){
+                if($scope.entradas[i].leido==false){
+                    c=c+1;
+                }
+            }
+            $scope.cant=c;
+        });
 
 	$http.get("webservice/bandejaDeSalida")
 		.success(function(response) {$scope.salidas = response;});
@@ -32,7 +41,8 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput']); //
 	
     
     var ruta="vacio";    
-    var rutaAct;    
+    var rutaAct;
+    var refrescar=false;
 	$scope.inbox = true;
 	$scope.outbox = false;
     $scope.btnDoc = false;
@@ -164,9 +174,29 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput']); //
                         $scope.btnDoc=true;
                         rutaAct=$scope.entradas[i].documento;
                     }
+                    if($scope.entradas[i].leido==false){
+                        objetoJSON = {
+                            "emisor": $scope.entradas[i].emisor,            
+                            "receptor": $scope.entradas[i].receptor,
+                            "asunto": $scope.entradas[i].asunto,
+                            "mensaje": $scope.entradas[i].mensaje,
+                            "fecha": $scope.entradas[i].fecha,
+                            "documento": $scope.entradas[i].documento,
+                            "leido": true
+                        };
+                        $http.put("webservice/Correspondencia/update/"+id, objetoJSON);
+                        refrescar=true;
+                        
+                    } else {refrescar=false;}
                 }
             }
 	}
+    
+    $scope.reloadRoute = function() {
+        if(refrescar=true){
+            $route.reload();
+        }
+    }
     
     $scope.abrirDoc = function(){
         var nom=rutaAct.split("docsCorrespondencia/");

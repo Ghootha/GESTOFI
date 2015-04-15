@@ -39,7 +39,7 @@
 					</tr>
 					</thead>
 					<tbody>
-					<tr data-ng-repeat="entrada in entradas" data-ng-click="viewMailIn(entrada.id)" data-backdrop="false" data-target="#Modal2" data-toggle="modal">
+					<tr data-ng-repeat="entrada in entradas" data-ng-class="{black : entrada.leido, red: !entrada.leido}" data-ng-click="viewMailIn(entrada.id)" data-backdrop="false" data-target="#Modal2" data-toggle="modal">
 						<td>{{ entrada.emisor }}</td>
 						<td>{{ entrada.asunto }}</td>
 						<td>{{ entrada.fecha }}</td>
@@ -119,7 +119,7 @@
 						  
 						 </div>
 						 <div class="modal-footer">
-						   <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+						   <button type="button" class="btn btn-default" ng-click="reloadRoute()" data-dismiss="modal">Cerrar</button>
 						   <button class="btn btn-success" data-ng-disabled="incomplete" id="confirm" data-dismiss="modal" ng-click="responder()">
 							   <span class="glyphicon glyphicon-circle-arrow-left"></span>  Responder
 						   </button>
@@ -165,3 +165,12 @@
 	</div>
 	<div class="block"></div>
 </div>
+<style type="text/css">
+.red {
+    color: red; 
+}
+
+.black {
+    color: black;
+}
+</style>
