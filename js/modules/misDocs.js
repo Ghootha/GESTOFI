@@ -45,10 +45,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
                     $scope.fecha = $scope.docs[i].fecha;
                     $scope.nombre = $scope.docs[i].nombre;
                     $scope.codigo = $scope.docs[i].codigo;
-                    $scope.Role = $scope.docs[i].Role;
-                    $scope.seguridad = $scope.docs[i].seguridad;     
-                    $scope.tipo = $scope.docs[i].tipo; 
-                    $scope.clasificacion = $scope.docs[i].clasificacion; 
+                    $scope.Role = $scope.docs[i].Role;                    
                     $scope.actualizaDoc(id);    
                 }
          }     
@@ -69,9 +66,10 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
                     objetoJSON = {
                         "nombre": $scope.nombre,            
                         "Role": $scope.Role,
-                        "tipo": $scope.tipo,
-                        "seguridad": $scope.seguridad,
-                        "clasificacion" : $scope.clasificacion
+                        "tipo": $scope.tipo.nombre,
+                        "seguridad": $scope.tipo.seguridad,
+                        "codigo": $scope.codigo,
+                        "clasificacion" : $scope.tipo.clasificacion
                     };
                     //alert("llamdo al server put: nombre "+$scope.nombre +"Role"+$scope.Role+" tipo "+$scope.tipo+"seguridad "+$scope.seguridad);
                     $http.put("webservice/Documento/update/"+id, objetoJSON).success(

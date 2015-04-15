@@ -381,15 +381,22 @@
                                                         <input type="text" data-ng-model="nombre" placeholder="Nombre">
                                                     </div>
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Código:</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" data-ng-model="codigo" placeholder="Código">
+                                                    </div>
+                                                </div>
                                                 
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Tipo:</label>
                                                     <div class="col-sm-5">
-                                                       <select class="form-control" ng-model="tipo" ng-options="tipo.nombre for tipo in tiposDocumento"></select>
+                                                       <select class="form-control" data-ng-model="tipo" ng-options="tipo.nombre for tipo in tiposDocumento"></select>
                                                     </div>                                            
                                                 </div>
                                                 
-                                                <div class="form-group">
+                                               <!--  <div class="form-group">
                                                     <label class="col-sm-2 control-label">Seguridad:</label>
                                                     <div class="col-sm-5">
                                                         <select class="form-control" data-ng-model="seguridad">    
@@ -399,7 +406,7 @@
                                                             <option>Ninguna</option>
                                                         </select>                                                 
                                                     </div>                                            
-                                                </div>
+                                                </div> -->
                                                 
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Rol:</label>
@@ -416,18 +423,18 @@
                                                         </select>
                                                     </div>                                            
                                                 </div>
-
+<!-- 
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Clasificación:</label>
                                                     <div class="col-sm-5">
                                                         <select class="form-control" data-ng-model="clasificacion">
-                                                            <option>Investigacion</option>
+                                                            <option>Investigación</option>
                                                             <option>Estudiante</option>
-                                                            <option>Papeleria</option>
+                                                            <option>Administrativo</option>
                                                             <option>Correo</option>          
                                                         </select>
                                                     </div>                                            
-                                                </div>
+                                                </div> -->
                                             </form>
                                          
                                          </div>
