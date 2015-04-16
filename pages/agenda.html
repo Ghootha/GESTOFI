@@ -44,8 +44,18 @@
                                                      <input type="text" data-ng-disabled="incomplete" class="form-control" data-ng-model="start">
 													 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                                  </div>
-												 <input type="hidden" id="dtp_input2" value="" /><br/>
+												 <input type="hidden" id="dtp_input2" value="" />
                                              </div>
+											 
+											 <div class="form-group">
+												   <label for="dtp_input2" data-ng-disabled="incomplete" class="col-md-2 control-label">Hora:</label>
+												   <div class="input-group date form_time col-md-3" data-date="" data-date-format="hh:ii" data-link-field="dtp_input2" data-link-format="hh:ii">
+													   <input id="horaS" data-ng-model="horaS" class="form-control" size="10" type="text" value="" >
+													   
+													<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+												   </div>
+												<input type="hidden" id="dtp_input2" value="" /><br/>
+											</div>
 											 											 										 
 											 	 <div class="form-group">
                                                  <label for="dtp_input2" class="col-sm-2 control-label">Finaliza:</label>
@@ -53,9 +63,18 @@
                                                      <input type="text" data-ng-disabled="incomplete" class="form-control" data-ng-model="end" >
 													 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                                  </div>
-												 <input type="hidden" id="dtp_input2" value="" /><br/>
+												 <input type="hidden" id="dtp_input2" value="" />
                                              </div>
-																		 											 										 
+																																																		<div class="form-group">
+												   <label for="dtp_input2" class="col-md-2 control-label">Hora:</label>
+												   <div class="input-group date form_time col-md-3" data-date="" data-date-format="hh:ii" data-link-field="dtp_input2" data-link-format="hh:ii">
+													   <input id="horaE" data-ng-model="horaE" data-ng-disabled="incomplete" class="form-control" size="10" type="text" value="" >
+													   
+													<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+												   </div>
+												<input type="hidden" id="dtp_input2" value="" /><br/>
+											</div>	
+																																									
                                              <div class="form-group">
                                                  <label class="col-sm-2 control-label">Descripcion:</label>
                                                  <div class="col-sm-3">
@@ -106,23 +125,42 @@
 											 <div class="form-group">
 												<label for="dtp_input2" class="col-md-2 control-label">Inicia:</label>
 												<div class="input-group date form_date col-md-3" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-													<input id="startA" data-ng-model="startA" class="form-control" size="16" type="text" value="" >
+													<input id="startA" data-ng-model="startA" class="form-control" size="10" type="text" value="" >
 													
 													<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-												</div>
+												</div> 
+												<input type="hidden" id="dtp_input2" value="" />
+											
+											
+												   <label for="dtp_input2" class="col-md-2 control-label">Hora:</label>
+												   <div class="input-group date form_time col-md-3" data-date="" data-date-format="hh:ii" data-link-field="dtp_input2" data-link-format="hh:ii">
+													   <input id="horaSA" data-ng-model="horaSA" class="form-control" size="10" type="text" value="" >
+													   
+													<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+												   </div>
 												<input type="hidden" id="dtp_input2" value="" /><br/>
 											</div>
-																																	
+														
+											
 											<div class="form-group">
 												<label for="dtp_input2" class="col-md-2 control-label">Finaliza:</label>
 												<div class="input-group date form_date col-md-3" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-													<input data-ng-model="endA" class="form-control" size="10" type="text" value="" >
+													<input id="endA" data-ng-model="endA" class="form-control" size="10" type="text" value="" >
 													
 													<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 												</div>
+												<input type="hidden" id="dtp_input2" value="" />
+											
+                                             
+											 	   <label for="dtp_input2" class="col-md-2 control-label">Hora:</label>
+												   <div class="input-group date form_time col-md-3" data-date="" data-date-format="hh:ii" data-link-field="dtp_input2" data-link-format="hh:ii">
+													   <input id="horaEA" data-ng-model="horaEA" class="form-control" size="10" type="text" value="">
+													   
+													<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+												   </div>
 												<input type="hidden" id="dtp_input2" value="" /><br/>
 											</div>
-                                             
+											
                                              <div class="form-group">
                                                  <label class="col-sm-2 control-label">Descripcion:</label>
                                                  <div class="col-sm-3">
@@ -177,4 +215,4 @@
 <!--==============================content=================================-->
     <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="js/bootstrap-datepicker2.js" charset="UTF-8"></script> 
-https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.css
+<!--https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.css -->

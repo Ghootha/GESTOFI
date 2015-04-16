@@ -19,20 +19,22 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 		});
 			
 		$scope.agregarActividad = function(){ 
+			var k=$scope.horaSA.split(":");
+			var w=$scope.horaEA.split(":");
 			var i=$scope.startA.split("-");
-			var inicio=new Date(i[2],i[1]-1,i[0]);
+			var inicio=new Date(i[2],i[1]-1,i[0],k[0]-6,k[1],"00");
 			var f=$scope.endA.split("-");
-			var ffinal=new Date(f[2],f[1]-1,f[0]);
+			var ffinal=new Date(f[2],f[1]-1,f[0],w[0]-6,w[1],"00");
 			var objetoJSON;
-				 			
-				   
+						
+				
 			objetoJSON = {
 				"title": $scope.actividadA,
 				"autor":  $scope.user.fullname,
 				"lugar": $scope.lugarA,
 				"descripcion": $scope.descripcionA,
 				"start": inicio,
-				"end": ffinal,
+				"end": ffinal
 			};
 			
 			$http.post("webservice/Agenda/create", objetoJSON).success(function(response){
@@ -56,13 +58,15 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 				var objetoJSON;
 				for(var x = 0; x<$scope.actividades.length; x++) {
 					if($scope.actividades[x].id === $scope.id) {
-						
-								i=$scope.start.split("-");
-								f=$scope.end.split("-");
-								
-								var inicio=new Date(i[2],i[1]-1,i[0]);
-								var ffinal=new Date(f[2],f[1]-1,f[0]);
-																							
+					
+								var k=$scope.horaS.split(":");
+								var w=$scope.horaE.split(":");
+								var i=$scope.start.split("-");
+								var inicio=new Date(i[2],i[1]-1,i[0],k[0]-6,k[1],"00");
+								var f=$scope.end.split("-");
+								var ffinal=new Date(f[2],f[1]-1,f[0],w[0]-6,w[1],"00");
+																		
+																												
 							objetoJSON = {
 								"title": $scope.title,
 								"autor":  $scope.user.fullname,
@@ -134,7 +138,7 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 				events:data,
 				
 				eventClick: function(calEvent, jsEvent, view) {
-				
+						
 					$scope.$apply(function(){
 						$scope.incomplete = true;
 						$scope.id=calEvent.id;
@@ -144,6 +148,8 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 						$scope.descripcion= calEvent.descripcion;
 						$scope.start= calEvent.start.format('DD-MM-YYYY');
 						$scope.end= calEvent.end.format('DD-MM-YYYY');
+						$scope.horaS=calEvent.start.format('HH:mm');
+						$scope.horaE=calEvent.end.format('HH:mm');
 						
 						if(calEvent.autor==$scope.user.fullname){
 							$scope.incomplete=false;
