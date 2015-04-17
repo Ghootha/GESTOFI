@@ -3,7 +3,7 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput']); //
 
 	app.controller("CorrespondenciaController", function($scope, $http, $timeout, $location, $window, $upload, $document, $route) {
 
-	$http.get("webservice/bandejaDeEntrada")
+	$http.get("webservice/Correspondencia/bandejaDeEntrada")
 		.success(function(response) {
             $scope.entradas = response;
             var c=0;
@@ -15,7 +15,7 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput']); //
             $scope.cant=c;
         });
 
-	$http.get("webservice/bandejaDeSalida")
+	$http.get("webservice/Correspondencia/bandejaDeSalida")
 		.success(function(response) {$scope.salidas = response;});
 		
 	$http.get("webservice/Correspondencia")

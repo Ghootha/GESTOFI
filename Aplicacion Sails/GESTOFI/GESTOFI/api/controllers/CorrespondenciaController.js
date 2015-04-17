@@ -10,7 +10,7 @@ module.exports = {
 	
 	bandejaDeEntrada:function(req, res){
 		
-		var usuarioLogged = req.user.fullname;
+		var usuarioLogged = req.user.username;
 		Correspondencia.find( {receptor : usuarioLogged} )
 			.exec(function(err,user){
 
@@ -26,7 +26,7 @@ module.exports = {
 	
 	bandejaDeSalida:function(req, res){
 		
-		var usuarioLogged = req.user.fullname;
+		var usuarioLogged = req.user.username;
 		Correspondencia.find( {emisor : usuarioLogged} )
 			.exec(function(err,user){
 
