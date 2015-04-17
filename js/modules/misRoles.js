@@ -1,20 +1,20 @@
 var app = angular.module("myAppRoles", []);
 
-app.controller("rolController", function($scope) {
+app.controller("rolController", function($scope, $http) {
+    
+    $http.get("webservice/Role")
+            .success(function(response) {$scope.roles = response; });
 
     $scope.nombre='';
     $scope.seguridad = '';
-    $scope.descripcion = '';
-    $scope.roles = [
-        {id:1, nombre:'director', seguridad:'Alta',   descripcion:"es el director(?)"},
-        {id:2, nombre:'asistente', seguridad:'Alta',   descripcion:"es el asistente del director(?)"},
-        {id:3, nombre:'secretario', seguridad:'medio',   descripcion:"es el secretario(?)"},
-        {id:4, nombre:'profesor', seguridad:'Baja',   descripcion:"es un profesor(?)" },
-        {id:5, nombre:'sub-director', seguridad:'Alta',   descripcion:"es el sub-director(?)" }
-    ];
+
+    
     $scope.edit = true;
     $scope.error = false;
     $scope.incomplete = false;
+
+    $scope.mensajeError=false;
+    $scope.mensajeExito=false;
 
     $scope.editRole = function(id) {
         if (id == 'new') {
@@ -22,13 +22,11 @@ app.controller("rolController", function($scope) {
             $scope.incomplete = true;
             $scope.nombre='';
             $scope.seguridad = '';
-            $scope.descripcion = '';
         } else {
             for(var i = 0; i<$scope.roles.length; i++) {
                 if($scope.roles[i].id === id) {
                     $scope.nombre = $scope.roles[i].nombre;
                     $scope.seguridad = $scope.roles[i].seguridad;
-                    $scope.descripcion = $scope.roles[i].descripcion;
                     $scope.actualizarRole(id);
                 }
 
@@ -40,16 +38,18 @@ app.controller("rolController", function($scope) {
     $scope.deleteRole = function(id) { 
          $('#Modal3').modal({ backdrop: false})
         .one('click', '#confirm', function () { 
+                
+            $http.get("webservice/Role/destroy/"+id).success(function(){
                 for(var i = 0; i<$scope.roles.length; i++) {           
                     if($scope.roles[i].id === id) {
-                        $scope.$apply(
-                        $scope.roles.splice(i, 1)
-                        );
-                       
+                        $scope.$apply($scope.roles.splice(i, 1));                       
                     }
                 } 
+            });  
         });    
     };
+
+   
 
     $scope.actualizarRole = function(id) {
         $('#Modal2').modal({ backdrop: false})
@@ -59,36 +59,56 @@ app.controller("rolController", function($scope) {
                     if($scope.roles[i].id === id) {
                            objetoJSON = {
                             "nombre": $scope.nombre,            
-                            "seguridad": $scope.seguridad,
-                            "descripcion": $scope.descripcion
+                            "seguridad": $scope.seguridad
                         };
-                        alert("manda put al servidor el role:"+$scope.nombre+" Seguridad: "+$scope.seguridad+" descripcion: "+$scope.descripcion);
-                        // $http.put("webservice/Documento/update/"+id, objetoJSON).success(
-                        //         function(){
-                        //             $http.get("webservice/Documento")
-                        //                 .success(function(response) {$scope.roles = response;});
-                        //          });
+                        
+                        $http.put("webservice/Role/update/"+id, objetoJSON).success(
+                                function(){
+                                    $http.get("webservice/Role")
+                                        .success(function(response) {$scope.roles = response;});
+                                 });
                     }
                 }
         }); 
-        
-      
-         
     };
 
+    $scope.crearRole = function(){
+        $scope.nombre = '';
+        $scope.seguridad = '';
+        
+        
+         $('#Modal').modal({ backdrop: false})
+        .one('click', '#confirmRole', function () {
+
+            var objetoJSON;    
+                                    
+            objetoJSON = {
+                "nombre"  : $scope.nombre,   
+                "seguridad"  : $scope.seguridad
+            };    
+
+            $http.post("webservice/Role/create", objetoJSON).success(function(response){
+                $http.get("webservice/Role")
+            .success(function(response) {$scope.roles = response; });
+                     $scope.$apply($scope.mensajeExito=true);
+            }).error(function(response, status, header, config){
+                    $scope.$apply($scope.mensajeError=true);               
+            });
+        });
+            
+            
+    };
+
+   
+
     $scope.$watch('nombre', function() {$scope.test();});
-    $scope.$watch('seguridad',function() {$scope.test();});
-    $scope.$watch('descripcion',function() {$scope.test();});
+    $scope.$watch('seguridad',function() {$scope.test();});    
 
     $scope.test = function() {
-        if ($scope.nombre !== null) {
-            $scope.error = true;
-        } else {
-            $scope.error = false;
-        }
+        
         $scope.incomplete = false;
-        if ($scope.edit && (!$scope.nombre.length ||
-            !$scope.seguridad.length || !$scope.descripcion.length )) {
+        if (!$scope.nombre.length ||
+            !$scope.seguridad.length) {
             $scope.incomplete = true;
         }
     };

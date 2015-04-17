@@ -31,8 +31,7 @@
                                 <tr class="info">
                                     <th>Editar</th>
                                     <th>Nombre</th>
-                                    <th>Seguridad</th>
-                                    <th>Descripcion</th>
+                                    <th>Seguridad</th>                  
                                     <th>Eliminar</th>
                                 </tr>
                                 </thead>
@@ -44,8 +43,7 @@
 	                                    </button>                                        
                                     </td>
                                     <td>{{ rol.nombre }}</td>
-                                    <td>{{ rol.seguridad }}</td>
-                                    <td>{{ rol.descripcion }}</td>
+                                    <td>{{ rol.seguridad }}</td>                                    
                                     <td > 
                                         <button class="btn btn-danger" ng-click="deleteRole(rol.id)">      
                                             <span class="glyphicon glyphicon-remove"></span>
@@ -56,10 +54,19 @@
                             </table>
 
                             <hr>
-                            <button data-backdrop="false" data-target="#Modal" data-toggle="modal" class="btn btn-success" data-ng-click="editRole('new')">
-                            <span class="glyphicon glyphicon-user"></span>  Crear Nuevo Usuario
-                            </button>
-                            <hr>  
+                            <hr>
+                            <button class="btn btn-success" ng-click="crearRole()">
+                            <span class="glyphicon glyphicon-user"></span>  Crear Nuevo Role
+                            </button> 
+                            <br>                    
+                            <h4 ng-show="mensajeError">Error! En creación de Role</h4>
+                            <br> 
+                            <h4 ng-show="mensajeExito">Role creado con exito</h4> 
+                            <br> 
+                           
+                            <hr>
+                            <hr>
+                            <hr> 
 
 						   <!--MODAL EDITAR-->
                                           <div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -88,13 +95,7 @@
                                                                   <option>Ninguna</option>
                                                               </select>
                                                           </div>
-                                                      </div>
-                                                      <div class="form-group">
-                                                          <label class="col-sm-2 control-label">Descripcion:</label>
-                                                          <div class="col-sm-3">
-                                                              <textarea class="textAreaRol" data-ng-model="descripcion"></textarea>
-                                                          </div>
-                                                      </div>
+                                                      </div>                                                     
                                                   </form>
                                                   
                                                  </div>
@@ -122,11 +123,11 @@
                                      <div class="modal-body">
                                          <form class="form-horizontal">
                                              <div class="form-group">
-                                                 <label class="col-sm-2 control-label">Nombre:</label>
-                                                 <div class="col-sm-3">
-                                                     <input type="text" class="form-control" data-ng-disabled="!edit">
-                                                 </div>
-                                             </div>
+                                                <label class="col-sm-2 control-label">Nombre:</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" data-ng-model="nombre"  placeholder="Nombre">
+                                                </div>
+                                            </div>
                                              <div class="form-group">
                                                  <label class="col-sm-2 control-label">Seguridad:</label>
                                                  <div class="col-sm-3">
@@ -137,20 +138,14 @@
                                                          <option>Ninguna</option>
                                                      </select>
                                                  </div>
-                                             </div>
-                                             <div class="form-group">
-                                                 <label class="col-sm-2 control-label">Descripcion:</label>
-                                                 <div class="col-sm-3">
-                                                     <textarea class="textAreaRol" data-ng-model="descripcion" data-ng-disabled="!edit"></textarea>
-                                                 </div>
-                                             </div>
+                                             </div>                                            
                                          </form>                                     
                                      </div>
                                      <div class="modal-footer">
                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                       <button class="btn btn-success" data-ng-disabled="error || incomplete">
-                                           <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
-                                       </button>
+                                       <button class="btn btn-success" data-ng-disabled="incomplete" id="confirmRole" data-dismiss="modal">
+                                        <span class="glyphicon glyphicon-save" ></span>  Guardar
+                                      </button>
                                      </div>
                                 </div>
                              </div>

@@ -6,10 +6,16 @@ app.controller("userController", function($scope, $http) {
     $http.get("webservice/User")
         .success(function(response) {$scope.users = response; });
 
+    $http.get("webservice/Role")
+    .success(function(response) {$scope.roles = response; });
+
   
     $scope.error = false;
     $scope.incomplete = false;
     $scope.incomplete2 = false;
+    $scope.passw1=' ';
+    $scope.passw2=' ';
+    $scope.username='';
     $scope.mensajeErrorRegistro=false;
     $scope.mensajeExitoRegistro=false;
     $scope.mensajeExitoEdicion=false;
@@ -23,8 +29,7 @@ app.controller("userController", function($scope, $http) {
                     $scope.edit = false;
                     $scope.username = $scope.users[i].username;
                     $scope.fullname = $scope.users[i].fullname;
-                    $scope.email = $scope.users[i].email;
-                    $scope.role = $scope.users[i].role;
+                    $scope.email = $scope.users[i].email;                    
                     $scope.actualizarUser(id);
                 }
             } 
@@ -57,11 +62,11 @@ app.controller("userController", function($scope, $http) {
                                 "username": $scope.username,            
                                 "fullname": $scope.fullname,
                                 "email": $scope.email,
-                                "role": $scope.role
+                                "role": $scope.role.nombre
                             };
                         
                             $http.put("webservice/User/update/"+id, objetoJSON).success(function(){
-                                        $scope.mensajeExitoRegistro=true;
+                                        $scope.mensajeExitoEdicion=true;
                             }).error(function(){
                                         $scope.mensajeFalloEdicion=true;
                             });
@@ -88,7 +93,7 @@ app.controller("userController", function($scope, $http) {
                 "username"  : $scope.username,   
                 "fullname"  : $scope.fullname,
                 "email"     : $scope.email,
-                "role"      : $scope.role,   
+                "role"      : $scope.role.nombre,   
                 "password"  : $scope.passw1
             };    
 
@@ -157,11 +162,11 @@ app.controller("userController", function($scope, $http) {
         $scope.incomplete = false;
         $scope.incomplete2 = false;
         if (!$scope.username.length || !$scope.fullname.length ||
-            !$scope.email.length || !$scope.role.length) {
+            !$scope.email.length || !$scope.role.nombre.length) {
             $scope.incomplete2 = true;
         }
         if (!$scope.username.length || !$scope.fullname.length ||
-            !$scope.email.length || !$scope.role.length ||
+            !$scope.email.length || !$scope.role.nombre.length ||
             !$scope.passw1.length || !$scope.passw2.length) {
             $scope.incomplete = true;
         }
