@@ -1,6 +1,6 @@
 var app = angular.module("myAppRoles", []);
 
-app.controller("rolController", function($scope, $http) {
+app.controller("rolController", function($scope, $http, $timeout) {
     
     $http.get("webservice/Role")
             .success(function(response) {$scope.roles = response; });
@@ -88,11 +88,14 @@ app.controller("rolController", function($scope, $http) {
             };    
 
             $http.post("webservice/Role/create", objetoJSON).success(function(response){
-                $http.get("webservice/Role")
-            .success(function(response) {$scope.roles = response; });
-                     $scope.$apply($scope.mensajeExito=true);
+                $scope.roles.push(response);                
+                $timeout(function(){
+                    $scope.mensajeExito=true;
+                }); 
             }).error(function(response, status, header, config){
-                    $scope.$apply($scope.mensajeError=true);               
+                $timeout(function(){
+                    $scope.mensajeError=true;
+                });                  
             });
         });
             

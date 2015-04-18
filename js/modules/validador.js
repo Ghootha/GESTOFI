@@ -32,29 +32,42 @@ $scope.$watch('user',function() {$scope.test();});
     $scope.test = function() {  //metodo encargado de limitar el acceso al menu dependiendo del role conectado
         
         if ( $scope.user != null ) {
-
             var roleLogged = $scope.user.role;
             
-            if( roleLogged  == 'Encargado de Maestría' || roleLogged  == 'Personal Académico' ){  
-                    $scope.hideConfiguracion = true;
-            }
+            $http.get("webservice/Role").success(function(response){
 
-            if( roleLogged  == 'Secretaria' || roleLogged  == 'Recepcionista' || roleLogged  == 'Concerje' ){ 
-                    $scope.hideConfiguracion = true;
-                    $scope.hideSolicitudEquipo = true;
-                    $scope.hideSolicitudAula = true;
-            }
+                    for(var i = 0; i<$response.length; i++) {           
+                        if(response[i].nombre === roleLogged) {
+                            
+                            var seguridad=response[i].seguridad;
 
-            if( roleLogged  == 'Estudiante' ){ 
-                    $scope.hideConfiguracion = true;
-                    $scope.hideAlmacenar = true;
-                    $scope.hideSolicitudes = true;
-                    $scope.hideAgenda = true;
-                    $scope.hideCorrespondencia = true; 
-            }
+                            if( seguridad == 'Media'){  
+                            $scope.hideConfiguracion = true;
+                            }
 
+                            if( seguridad  == 'Baja'){ 
+                            $scope.hideConfiguracion = true;
+                            $scope.hideSolicitudEquipo = true;
+                            $scope.hideSolicitudAula = true;
+                            }
+
+                            if( seguridad  == 'Ninguna'){ 
+                            $scope.hideConfiguracion = true;
+                            $scope.hideAlmacenar = true;
+                            $scope.hideSolicitudes = true;
+                            $scope.hideAgenda = true;
+                            $scope.hideCorrespondencia = true; 
+                            }
+                        }
+                    }  
+
+
+            });
         }
+
     };
+
+
    
 
 

@@ -42,7 +42,7 @@ $scope.agregarTipo=function(){
 	};
 
 	$http.post("webservice/TipoReservable/create",objeto).success(function(response){
-		$http.get("webservice/TipoReservable").success(function(response){$scope.selectTipos=response;});
+		$scope.selectTipos.push(response);
 		$scope.nomNuevoTipo="";
 		alert("Tipo creado");
 	});
@@ -63,8 +63,8 @@ $scope.agregarReservable=function(){
 		$scope.tipoSelect= $scope.selectTipos[0];
 		$scope.inputEstado="";
 		$scope.inputDescripcion="";
-		$scope.inputCodigo="";
-		$http.get("webservice/Reservable").success(function(response){$scope.equipos=response;});
+		$scope.inputCodigo="";		
+		$scope.equipos.push(response);
 		alert("Reservable creado");
 	});
 };
@@ -122,8 +122,8 @@ $scope.agregarTipoDoc=function(){
 	$http.post("webservice/TipoDocumento/create",objeto).success(function(response){
 		$scope.nombreTipoDoc="";		
 		$scope.seguridadTipoDoc="";
-		$scope.clasificacionTipoDoc="";	
-		$http.get("webservice/TipoDocumento").success(function(response){$scope.tipoDocumentos=response;});
+		$scope.clasificacionTipoDoc="";		
+		$scope.tipoDocumentos.push(response);		
 		alert("TipoDoc creado");
 	});
 };
@@ -160,6 +160,22 @@ $scope.actualizaTipoDoc=function(idTipoDoc){
 	
 };
 
+ $scope.eliminaTipoDoc = function(id) {
+          $('#Modal3').modal({ backdrop: false})
+        .one('click', '#confirm', function () {
+
+            $http.get("webservice/TipoDocumento/destroy/"+id).success(function(){
+                    for(var i = 0; i<$scope.tipoDocumentos.length; i++) {           
+                        if($scope.tipoDocumentos[i].id === id) {
+                            $scope.$apply($scope.tipoDocumentos.splice(i, 1));
+                        }
+                    }  
+            });
+        });
+     };
+
+
+//----------------------------------------------------TERMINA CONFIG TIPO DOC -----------------------------------------------------//
 
 $scope.checkOption=function(){
 	if($scope.selectPlantilla==="Giras"){

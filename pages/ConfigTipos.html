@@ -228,7 +228,15 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Clasificacion</td>
-                                                    <td><input type="text" ng-model="clasificacionTipoDoc"/></td>
+                                                    <td><span class="dropdown-toggle" >
+                                                          <select data-ng-model="clasificacionTipoDoc">    
+                                                              <option>Investigación</option>
+                                                              <option>Estudiante</option>
+                                                              <option>Administrativo</option>
+                                                              <option>Correo</option>
+                                                          </select>                                                
+                                                        </span>
+                                                    </td>
                                                 </tr>
                                                                                                
                                             </tbody>
@@ -252,7 +260,8 @@
                               <th>Editar</th>
                               <th>Nombre</th>
                               <th>Seguridad</th>
-                              <th>Clasificacion</th>                              
+                              <th>Clasificacion</th>
+                              <th>Eliminar</th>                              
                             </tr>
                           </thead>
                           <tbody>
@@ -264,7 +273,12 @@
                               </td>
                               <td>{{ tipoDoc.nombre }}</td>
                               <td>{{ tipoDoc.seguridad }}</td>
-                              <td>{{ tipoDoc.clasificacion }}</td>                              
+                              <td>{{ tipoDoc.clasificacion }}</td>
+                              <td >
+                                <button class="btn btn-danger " data-ng-click="eliminaTipoDoc(tipoDoc.id)">
+                                  <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                              </td>                              
                             </tr>
 
                           </tbody>
@@ -398,6 +412,36 @@
                     </div>
                 </div> 
                 <!-- FINALIZA MODAL 2 -->
+
+                <!-- MODAL ELIMINAR-->
+                                        <!-- Esta comentado para hacer pruebas -->
+                                        <div id="Modal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                             <div class="modal-dialog">
+                                               <div class="modal-content">
+
+                                                 <div class="modal-header">
+                                                    
+                                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                   <h4 class="modal-title" id="myModalLabel"> Eliminar Tipo documento</h4>
+                                                 </div>
+                                                 <div class="modal-body">                                                         
+                                                 Confirme que desea eliminar este Tipo documento
+                                                 </div>
+                                                 <div class="modal-footer">
+                                                   <button data-dismiss="modal" class="btn btn-danger">
+                                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                    </button>
+
+                                                    <button data-dismiss="modal" class="btn btn-success" id="confirm">
+                                                                    <span class="glyphicon glyphicon-ok"></span>
+                                                    </button>
+                                                   
+                                                 </div>
+
+                                               </div>
+                                             </div>
+                                           </div>
+                                    <!-- FINALIZA MODAL ELIMINAR --> 
                     <!-- CIERRA CONTENIDo-->
                     </div>
                 </div>

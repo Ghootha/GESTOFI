@@ -1,7 +1,7 @@
 
 var app = angular.module("myAppUsers", []);
 
-app.controller("userController", function($scope, $http) {
+app.controller("userController", function($scope, $http, $timeout) {
 
     $http.get("webservice/User")
         .success(function(response) {$scope.users = response; });
@@ -13,9 +13,11 @@ app.controller("userController", function($scope, $http) {
     $scope.error = false;
     $scope.incomplete = false;
     $scope.incomplete2 = false;
-    $scope.passw1=' ';
-    $scope.passw2=' ';
+    $scope.passw1='';
+    $scope.passw2='';
     $scope.username='';
+    $scope.fullname='';
+    $scope.email='';
     $scope.mensajeErrorRegistro=false;
     $scope.mensajeExitoRegistro=false;
     $scope.mensajeExitoEdicion=false;
@@ -100,12 +102,17 @@ app.controller("userController", function($scope, $http) {
             $http.post("webservice/auth/local/register", objetoJSON).success(function(response){                    
                 
                 if(response.status == 200){ //comprobacion de estatus, devuelve 200 si se realizo el registro/logueo
-                     $scope.$apply($scope.mensajeExitoRegistro=true);
+                    $http.get("webservice/User").success(function(response) {$scope.users = response; });
+                    $timeout(function(){
+                        $scope.mensajeExitoRegistro=true;
+                    }); 
                 }
 
             }).error(function(response, status, header, config){  
                 if(response.status == 300){ //estatus de error para usuario en uso
-                    $scope.$apply($scope.mensajeErrorRegistro=true);
+                    $timeout(function(){
+                        $scope.mensajeErrorRegistro=true;
+                    }); 
                 }                 
                     
             });
