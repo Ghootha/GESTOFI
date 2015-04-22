@@ -80,8 +80,8 @@ app.controller("rolController", function($scope, $http, $timeout) {
          $('#Modal').modal({ backdrop: false})
         .one('click', '#confirmRole', function () {
 
-            var objetoJSON;    
-                                    
+            var objetoJSON;
+                          
             objetoJSON = {
                 "nombre"  : $scope.nombre,   
                 "seguridad"  : $scope.seguridad

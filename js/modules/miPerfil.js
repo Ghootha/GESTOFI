@@ -61,7 +61,7 @@ $scope.modificarPerfil =function(){
         $scope.modalDomicilio=$scope.user.address;
         $scope.modalEmail=$scope.user.email;
         $scope.modalPhone=$scope.user.phone;
-		alert("cambiado");
+		
 
 	});
     
@@ -69,9 +69,13 @@ $scope.modificarPerfil =function(){
 };
 
 $scope.switchDate=function(fecha){
+    if(typeof fecha === "undefined"){
+        return "";
+    }
+    else{
     var i=fecha.split("-");
     i=i[1]+"-"+i[0]+"-"+i[2];
-    return i;
+    return i;}
 };
 
 $scope.editarModal=function(){
@@ -92,11 +96,14 @@ $scope.setContrasena=function(){
     if($scope.passNew === $scope.passNewConf && $scope.passNew!= "" && $scope.passNew.length >= 8){
             $http.post("webservice/User/"+$scope.user.id).success(function(response){
                 var Passport= response.passports[0].id;
-                var objeto={
+                var objeto;
+                objeto={
                     "password": $scope.passNew
                  };
-                $http.post("webservice/Passport/Update/"+Passport,objeto).success(function(response){
-                  alert("Cambio existoso");   
+                $http.post("webservice/Passport/Update/"+1,objeto).success(function(response){
+                  $scope.passNew="";
+                  $scope.passNewConf="";
+                     
                 });
             });
 	}

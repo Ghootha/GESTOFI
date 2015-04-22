@@ -14,7 +14,10 @@ $scope.nombresSelect=[];
 var objetoFecha;
 
 $scope.buscarPorFecha = function (){
-	
+	if(typeof fecha === "undefined"){
+        return "";
+    }
+    else{
 	var fech=$scope.fecha.split("-");
     fech=new Date(fech[2],fech[1]-1,fech[0]);
 	objetoFecha={
@@ -25,8 +28,9 @@ $scope.buscarPorFecha = function (){
 	for(var i=0; i<$scope.reservas.length;i++){
 		$scope.nombresSelect[i]="select"+i;
 	}
+
 	});
-	
+	}
 	
 };
 
