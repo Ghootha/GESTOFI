@@ -35,11 +35,12 @@ $scope.$watch('user',function() {$scope.test();});
             var roleLogged = $scope.user.role;
             
             $http.get("webservice/Role").success(function(response){
+                    var roles = response;
 
-                    for(var i = 0; i<$response.length; i++) {           
-                        if(response[i].nombre === roleLogged) {
+                    for(var i = 0; i<roles.length; i++) {           
+                        if(roles[i].nombre === roleLogged) {
                             
-                            var seguridad=response[i].seguridad;
+                            var seguridad=roles[i].seguridad;
 
                             if( seguridad == 'Media'){  
                             $scope.hideConfiguracion = true;
