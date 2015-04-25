@@ -6,7 +6,7 @@
                 <div class="container">
                     <h3>Respuesta Solicitud</h3>
 
-                    <h3>Lista de solicitudes</h3>
+                    <h3>Lista de solicitudes Pendientes</h3>
 
                     <div id="Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-
+				
                     <table class="table table-striped">
                         <thead>
                             <tr class="info">
@@ -62,7 +62,7 @@
                         </thead>
 
                         <tbody>
-                            <tr data-ng-repeat="solicitud in solicitudes">
+                            <tr data-ng-repeat="solicitud in solicitudes" ng-if="solicitud.estado=='Pendiente'">
                                 <td >
 
                                     <button class="btn btn-primary" ng-click="descargarSolicitud(solicitud.id)">
@@ -93,6 +93,50 @@
 
 
                 </div>
+				<div class="container">
+				<br>
+				<br>
+					<h3>Lista de solicitudes Revisadas Anteriormente</h3>
+					<table class="table table-striped">
+                        <thead>
+                            <tr class="info">
+                                <th>Documento</th>
+                                <th>Asunto</th>
+                                <th>Solicitante</th>
+                                <th>Fecha</th>
+								<th>Estado</th>
+                                <th>Responder</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr data-ng-repeat="solicitud in solicitudes" ng-if="solicitud.estado!='Pendiente'">
+                                <td >
+
+                                    <button class="btn btn-primary" ng-click="descargarSolicitud(solicitud.id)">
+                                    	<span class="glyphicon glyphicon-file"></span>
+                                    </button>
+                                </td>
+                                <td >{{ solicitud .nombre }}</td>
+                                <td >{{ solicitud .solicitante}}</td>
+                                <td >{{ solicitud .fecha}}</td>
+								
+								<td >
+                                    <button   ng-class="setClassButton(solicitud.estado)"> 
+                                         
+                                        <span ng-class="setClassSpan(solicitud.estado)"></span> 
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-warning" data-backdrop="false" data-target="#Modal"  ng-click="setAt(solicitud.id,solicitud.solicitante, solicitud.nombre)" data-toggle="modal"> 
+                                        <span class="glyphicon glyphicon-comment"></span> 
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+					
+				</div>
 			</div>
         </div>
     </div>
