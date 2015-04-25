@@ -1,6 +1,6 @@
  var app = angular.module("myAppSolicitudes", []);
 
-app.controller("solicitudController", function($scope, $http , $window, $upload, $timeout) {
+app.controller("solicitudController", function($scope, $http , $window, $upload, $timeout,$route) {
 
 $scope.nombre='';
 $scope.solicitante = '';
@@ -9,11 +9,16 @@ $scope.solicitudes = [];
 $scope.edit = true;
 $scope.error = false;
 $scope.incomplete = false; 
-
+var estado="";
 $http.get("webservice/Solicitudes/findSolicitudes").success(function(response){$scope.solicitudes=response;})
 
+$http.get("webservice/get_user").success(function(response){
+			$scope.user= response.user;
+			$scope.userLogged=  $scope.user.fullname;            
+});
+
 $scope.abrirSolicitud = function(id) {
-          if(id===1){
+          if(id==1){
             $window.open('http://gestofi.com/webservice/solicitudes/plantillas/PLANTILLA_GIRAS.docx'); 
           }
           else{
@@ -24,32 +29,75 @@ $scope.abrirSolicitud = function(id) {
 
 $scope.setClassButton = function(estado) {
     
-    if(estado!=="Pendiente"){
-      return "btn btn-success"
+    if(estado=="Aprobar"){
+      return "btn btn-success";
     }
     else
-      return "btn btn-warning";
-    
+		if(estado=="Rechazar"){
+			return "btn btn-danger";
+		}
+		else
+			return "btn btn-warning";
 };
+
 
 $scope.setClassSpan = function(estado) {
     
-    if(estado==="Pendiente"){
-      return "glyphicon glyphicon-exclamation-sign";
+    if(estado=="Rechazar"){
+      return "glyphicon glyphicon-remove";
     }
-    else
-      return "glyphicon glyphicon-ok-sign";
-    
+    else {
+		if(estado=="Aprobar"){
+				return "glyphicon glyphicon-ok";
+			}
+			else
+				return "glyphicon glyphicon-exclamation-sign";
+	}	
+	};
+
+$scope.cambioEstado = function(id,estado) {
+   
+     if(estado=="Rechazar"){
+    $http.put("webservice/Solicitudes/update/"+id+"?estado=Rechazar").success(function(response){
+	var objetoJSON;
+			objetoJSON ={
+				"duenno":$scope.solicitante,
+				"emisor":$scope.user.username,
+				"titulo":"Solicitud Rechazada "+$scope.nombre,
+				"tipo":"Solicitud",
+				"mensaje":$scope.comentario
+			};
+			$http.put("webservice/notificaciones/create", objetoJSON).success(function(response){alert("Se envió la notificación")});$route.reload();});
+   }
+   else {
+		if(estado=="Aprobar"){
+			$http.put("webservice/Solicitudes/update/"+id+"?estado=Aprobar").success(function(response){
+			var objetoJSON;
+			objetoJSON ={
+				"duenno":$scope.solicitante,
+				"emisor":$scope.user.username,
+				"titulo":"Solicitud Aprobada "+$scope.nombre,
+				"tipo":"Solicitud",
+				"mensaje":$scope.comentario
+			};
+			$http.put("webservice/notificaciones/create", objetoJSON).success(function(response){alert("Se envió la notificación")});
+			$route.reload();});
+		}
+		else
+			$http.put("webservice/Solicitudes/update/"+id+"?estado=Pendiente").success(function(response){$route.reload();});
+	}
 };
 
-$scope.cambioEstado = function(id, estado) {
-    
-   if(estado==="Pendiente"){
-    $http.put("webservice/Solicitudes/update/"+id+"?estado=Revisado").success(function(response){});
-   }
-   else
-    $http.put("webservice/Solicitudes/update/"+id+"?estado=Pendiente").success(function(response){});
-    
+$scope.setAt =function(id,solicitante,nombre){
+	$scope.id=id;
+	$scope.nombre=nombre;
+	$scope.solicitante=solicitante;
+};
+
+
+$scope.enviarSolicitud = function(id) {
+	$scope.cambioEstado($scope.id,$scope.estado);
+	$('#Modal').modal('hide');
 };
 
 $scope.cargarSolicitud= function(dir, filename){
@@ -60,7 +108,7 @@ $scope.cargarSolicitud= function(dir, filename){
     objetoSolicitud={
 
       "nombre": filename,
-      "estado": "Pendiente",
+	  "estado": "Pendiente",
       "solicitante": $scope.user.username,
       "ruta": dir
 

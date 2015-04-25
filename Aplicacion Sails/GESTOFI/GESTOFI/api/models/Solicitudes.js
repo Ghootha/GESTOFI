@@ -26,8 +26,8 @@ module.exports = {
           type:'string',
           required:true
       },
-
-      solicitante:{
+	  
+	  solicitante:{
           type:'string',
           required:true,
           foreignKey: true,

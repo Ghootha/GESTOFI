@@ -11,17 +11,38 @@
                     <div id="Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-
+	
                                 <div class="modal-header">
+								<h4>Respuesta a la Solicitud</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <h4 class="modal-title" id="myModalLabel"></h4>
                                 </div>
                                 <div class="modal-body">
-                                    <textarea ></textarea>
-                                </div>
+									<div class="form-group"> 
+										<div class="left">
+											<h5>Estado: </h5>
+											<br>
+											<div class="sideBySide">
+												
+												<span class="css3-metro-dropdown" >
+													<select  data-ng-model="estado" >
+														<option value="Pendiente" style="display: none">Pendiente</option>
+														<option value="Aprobar"> Aprobar</option>
+														<option value="Rechazar">Rechazar</option>
+													</select>
+												</span>
+											</div>                                        
+										</div>	
+										<br>				
+									
+									<br>
+									
+										<textarea class="textAreaRol" data-ng-model="comentario" ></textarea>
+									</div>
+									</div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                    <button type="button" class="btn btn-primary">Enviar Respuesta</button>
+                                    <button type="button" data-ng-click="enviarSolicitud()" class="btn btn-primary"> Enviar Respuesta</button>
                                 </div>
 
                             </div>
@@ -35,7 +56,7 @@
                                 <th>Asunto</th>
                                 <th>Solicitante</th>
                                 <th>Fecha</th>
-                                <th>Revisado</th>
+								<th>Estado</th>
                                 <th>Responder</th>
                             </tr>
                         </thead>
@@ -51,14 +72,15 @@
                                 <td >{{ solicitud .nombre }}</td>
                                 <td >{{ solicitud .solicitante}}</td>
                                 <td >{{ solicitud .fecha}}</td>
-                                <td >
-                                    <button  ng-class="setClassButton(solicitud.estado)"> 
-                                       <!--  ng-click="cambioEstado(solicitud.id, solicitud.estado)" --> 
+								
+								<td >
+                                    <button   ng-class="setClassButton(solicitud.estado)"> 
+                                         
                                         <span ng-class="setClassSpan(solicitud.estado)"></span> 
                                     </button>
                                 </td>
                                 <td>
-                                    <button data-backdrop="false" data-target="#Modal" ng-class="setClassButton(solicitud.estado)" data-toggle="modal"> 
+                                    <button class="btn btn-warning" data-backdrop="false" data-target="#Modal"  ng-click="setAt(solicitud.id,solicitud.solicitante, solicitud.nombre)" data-toggle="modal"> 
                                         <span class="glyphicon glyphicon-comment"></span> 
                                     </button>
                                 </td>

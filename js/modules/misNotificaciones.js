@@ -39,7 +39,15 @@ var app = angular.module("myAppNotificaciones", ['ngRoute']);
                    });
         });
      };
-        
+     $scope.mostrarInfo = function(id){
+		for(var i = 0; i<$scope.notificaciones.length; i++) {
+                if($scope.notificaciones[i].id === id) {
+					$scope.titulo = $scope.notificaciones[i].titulo;
+                    $scope.mensaje = $scope.notificaciones[i].mensaje;
+				}	
+		}		
+	 };
+	    
         
     $scope.actualizar=function(id) {
 		

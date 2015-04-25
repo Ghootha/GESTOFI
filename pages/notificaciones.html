@@ -14,7 +14,7 @@
 					</tr>
 					</thead>
 					<tbody>
-					<tr data-ng-repeat="item in notificaciones" data-ng-class="{black : item.leido, red: !item.leido}" data-ng-click="actualizar(item.id)">
+					<tr data-ng-repeat="item in notificaciones" data-ng-class="{black : item.leido, red: !item.leido}" data-backdrop="false" data-target="#Modal2" data-toggle="modal" data-ng-click="actualizar(item.id) ; mostrarInfo(item.id)">
 						<td>{{ item.emisor }}</td>
 						<td>{{ item.titulo }}</td>
 						<td>{{ item.fecha }}</td>
@@ -35,10 +35,10 @@
                          <div class="modal-header">
 
                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                           <h4 class="modal-title" id="myModalLabel"> Eliminar documento</h4>
+                           <h4 class="modal-title" id="myModalLabel"> Eliminar notificacion</h4>
                          </div>
                          <div class="modal-body">                                                         
-                         Confirme que desea eliminar este documento del repositorio
+                         Confirme que desea eliminar esta notificacion
                          </div>
                          <div class="modal-footer">
                            <button data-dismiss="modal" class="btn btn-danger">
@@ -55,7 +55,39 @@
                      </div>
                    </div>
             <!-- FINALIZA MODAL ELIMINAR -->   
-				
+			
+			<!-- INICIA MODAL SOLICITUDES --> 
+					<div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+	
+                                <div class="modal-header">
+								<h4>Respuesta a la Solicitud</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel"></h4>
+                                </div>
+                                <div class="modal-body">
+									<div class="form-group"> 
+										<div class="left">
+											<h5>Estado: </h5>
+												 <input type="text" data-ng-disabled="!edit" data-ng-model="titulo" class="form-control" >
+											<br>										                    
+										</div>	
+										<br>
+									<br>
+										<h5>Mensaje: </h5>
+											 <input type="text" data-ng-disabled="!edit" data-ng-model="mensaje" class="form-control" >
+										<br>
+									</div>
+									</div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    </div>
+
+                            </div>
+                        </div>
+                    </div>
+			<!-- FINALIZA MODAL SOLICITUDES --> 	
 			</div>
 		</div>
 	</div>
