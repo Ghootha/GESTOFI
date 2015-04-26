@@ -24,7 +24,8 @@ module.exports = {
       },
       leido:{
           type: 'boolean',
-          required: true
+          required: true,
+		  defaultsTo:false
       },
       tipo:{
         type: 'string',
@@ -33,6 +34,9 @@ module.exports = {
       fecha:{
 		  type:'date',
 		defaultsTo: function (){ return new Date(); }
+	  },
+	  mensaje:{
+		type:'text'
 	  }
   }
   
