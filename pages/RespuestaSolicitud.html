@@ -22,21 +22,23 @@
 										<div class="left">
 											<h5>Estado: </h5>
 											<br>
-											<div class="sideBySide">
+											<div class="sideBySide col-md-4">
 												
-												<span class="css3-metro-dropdown" >
-													<select  data-ng-model="estado" >
-														<option value="Pendiente" style="display: none">Pendiente</option>
+												
+													<select class="form-control selectpicker" data-ng-model="estado" >
+														<option value="Pendiente" style="display:none" ng-selected="true">Pendiente</option>
 														<option value="Aprobar"> Aprobar</option>
 														<option value="Rechazar">Rechazar</option>
 													</select>
-												</span>
+												
 											</div>                                        
 										</div>	
 										<br>				
 									
 									<br>
-									
+									</div>
+									<div class="form-group"> 
+									<br>
 										<textarea class="textAreaRol" data-ng-model="comentario" ></textarea>
 									</div>
 									</div>

@@ -17,7 +17,10 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 			$scope.user= response.user;
 			$scope.userLogged=  $scope.user.fullname;            
 		});
-			
+		$scope.loadTags = function(query) {
+        return $http.get("webservice/User");
+		};
+	
 		$scope.agregarActividad = function(){ 
 			var k=$scope.horaSA.split(":");
 			var w=$scope.horaEA.split(":");
@@ -26,12 +29,14 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 			var f=$scope.endA.split("-");
 			var ffinal=new Date(f[2],f[1]-1,f[0],w[0]-6,w[1],"00");
 			var objetoJSON;
+					
 						
-				
+			
 			objetoJSON = {
 				"title": $scope.actividadA,
 				"autor":  $scope.user.fullname,
 				"lugar": $scope.lugarA,
+				"invitado": $scope.invitadoA[0].username,
 				"descripcion": $scope.descripcionA,
 				"start": inicio,
 				"end": ffinal
@@ -71,6 +76,7 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 								"title": $scope.title,
 								"autor":  $scope.user.fullname,
 								"lugar": $scope.lugar,
+								"invitado": $scope.invitado,
 								"descripcion": $scope.descripcion,
 								"start": inicio,
 								"end": ffinal
@@ -145,6 +151,7 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 						$scope.title= calEvent.title;
 						$scope.autor= calEvent.autor;
 						$scope.lugar= calEvent.lugar;
+						$scope.invitado= calEvent.invitado;
 						$scope.descripcion= calEvent.descripcion;
 						$scope.start= calEvent.start.format('DD-MM-YYYY');
 						$scope.end= calEvent.end.format('DD-MM-YYYY');

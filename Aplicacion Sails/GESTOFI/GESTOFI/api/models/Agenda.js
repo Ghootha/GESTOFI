@@ -27,6 +27,10 @@ module.exports = {
 			type:'string',
 			required:false
       }, 
+	  invitado:{
+			type:'string',
+			required:false
+	  },
 	  start:{
           type: 'datetime'
           //defaultsTo: function (){ return new Date(); }
