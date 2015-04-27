@@ -9,52 +9,63 @@ module.exports = {
 
 	findTipoDocByRole:function(req,res){
     
-    var roleLogged = req.user.role;
+    var roleLogged = req.user.role; 
+		
+		Role.findOne({ nombre: roleLogged}).exec(function (err, role){
+			var seguridadRole= role.seguridad;
+			
+			if(seguridadRole =='Alta'){
+				TipoDocumento.find( {} )
+				.exec(function(err,user){
+					  if(err)
+					    res.json({error:err});
+					  if(user === undefined)
+					    res.json({notFound:true});
+					  else
+					    res.json(user);
+				});
+			}
+			if (seguridadRole == 'Media') {
+				TipoDocumento.find( { seguridad: { '!': 'Alta' }} )
+				.exec(function(err,user){
+					  if(err)
+					    res.json({error:err});
+					  if(user === undefined)
+					    res.json({notFound:true});
+					  else
+					    res.json(user);
+				});
 
-    if(roleLogged  == 'Director' || roleLogged  == 'Subdirector' || roleLogged  == 'Asistente Administrativa' ){
-		TipoDocumento.find({})
-		        .exec(function(err,user){
+			}
+			
+			if (seguridadRole == 'Baja') {
+				TipoDocumento.find( { seguridad: { '!' : ['Alta', 'Media'] } } )
+				.exec(function(err,user){
+					  if(err)
+					    res.json({error:err});
+					  if(user === undefined)
+					    res.json({notFound:true});
+					  else
+					    res.json(user);
+				});
 
-		          if(err)
-		            res.json({error:err});
-		          if(user === undefined)
-		            res.json({notFound:true});
-		          else
-		            res.json(user);
-		        });
-		  }
-    
+			}
 
-    if( roleLogged  == 'Encargado de Maestría' || roleLogged  == 'Personal Académico' ){  
+			// if(seguridadRole == 'Ninguna'){
+			// 	TipoDocumento.find( {seguridad: seguridadRole} )
+			// 	.exec(function(err,user){
+			// 		  if(err)
+			// 		    res.json({error:err});
+			// 		  if(user === undefined)
+			// 		    res.json({notFound:true});
+			// 		  else
+			// 		    res.json(user);
+			// 	});
 
-    	TipoDocumento.find( { seguridad: { '!': 'Alta' }} )
-		        .exec(function(err,user){
+			// }
 
-		          if(err)
-		            res.json({error:err});
-		          if(user === undefined)
-		            res.json({notFound:true});
-		          else
-		            res.json(user);
-		        });
-		  }
-
-    
-
-    if( roleLogged  == 'Secretaria' || roleLogged  == 'Recepcionista' || roleLogged  == 'Concerje' || roleLogged  == 'Estudiante' ){  
-
-    	TipoDocumento.find( { seguridad: 'Ninguna' } )
-		        .exec(function(err,user){
-
-		          if(err)
-		            res.json({error:err});
-		          if(user === undefined)
-		            res.json({notFound:true});
-		          else
-		            res.json(user);
-		        });
-		  }
-
+				
+		});
     }
 	
 };

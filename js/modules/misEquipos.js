@@ -3,6 +3,36 @@ var app = angular.module("myAppEquipos", []);
 app.controller("equiposController", function($scope, $http) {
 var objetoReserva;
 
+$scope.$on('$viewContentLoaded', function() {
+    $http.get("webservice/get_user").success(function(response){
+            if(response.user == null){
+              window.location.replace("index.html"); 
+            }else{     
+              $scope.user= response.user;  
+              var roleLogged = response.user.role;
+            
+              $http.get("webservice/Role").success(function(response){
+                      var roles = response;
+
+                      for(var i = 0; i<roles.length; i++) {           
+                          if(roles[i].nombre === roleLogged) {
+                              
+                              var seguridad=roles[i].seguridad;
+
+                              if( seguridad == 'Ninguna' || seguridad == 'Baja' ){  
+                                 window.location.replace("paginaPrincipal.html"); 
+                              }
+                              
+                          }
+                      }
+              });               
+          }
+  }).error(function(response, status, header, config){  
+          console.log("error en obtencion de usuario conectado");  
+  });
+});
+
+
 $scope.edit = true;
 $scope.error = false;
 $scope.incomplete = false;

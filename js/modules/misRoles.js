@@ -1,10 +1,39 @@
 var app = angular.module("myAppRoles", []);
 
 app.controller("rolController", function($scope, $http, $timeout) {
-    
-    $http.get("webservice/Role")
-            .success(function(response) {$scope.roles = response; });
 
+    $scope.$on('$viewContentLoaded', function() {
+        $http.get("webservice/get_user").success(function(response){
+            if(response.user == null){
+               window.location.replace("index.html"); 
+            }else{                
+                var roleLogged = response.user.role;
+            
+                $http.get("webservice/Role").success(function(response){
+                        $scope.roles = response;
+                        var roles = response;
+
+                        for(var i = 0; i<roles.length; i++) {           
+                            if(roles[i].nombre === roleLogged) {
+                                
+                                var seguridad=roles[i].seguridad;
+
+                                if( seguridad != 'Alta'){  
+                                     window.location.replace("paginaPrincipal.html"); 
+                                }
+                                
+                            }
+                        }
+                });               
+            }
+        }).error(function(response, status, header, config){  
+                console.log("error en obtencion de usuario conectado");  
+        });
+
+        
+    });
+    
+    
     $scope.nombre='';
     $scope.seguridad = '';
 

@@ -3,8 +3,37 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput']); //
 
 	app.controller("CorrespondenciaController", function($scope, $http, $timeout, $location, $window, $upload, $document, $route) {
 
-	$http.get("webservice/Correspondencia/bandejaDeEntrada")
-		.success(function(response) {
+    $scope.$on('$viewContentLoaded', function () {
+        
+        $http.get("webservice/get_user").success(function(response){
+            if(response.user == null){
+               window.location.replace("index.html"); 
+            }else{ 
+                $scope.user= response.user;               
+                var roleLogged = response.user.role;
+            
+                $http.get("webservice/Role").success(function(response){
+                        var roles = response;
+
+                        for(var i = 0; i<roles.length; i++) {           
+                            if(roles[i].nombre === roleLogged) {
+                                
+                                var seguridad=roles[i].seguridad;
+
+                                if( seguridad == 'Ninguna'){  
+                                     window.location.replace("paginaPrincipal.html"); 
+                                }
+                                
+                            }
+                        }
+                });               
+            }
+        }).error(function(response, status, header, config){  
+                console.log("error en obtencion de usuario conectado");  
+        });
+
+        $http.get("webservice/Correspondencia/bandejaDeEntrada")
+        .success(function(response) {
             $scope.entradas = response;
             var c=0;
             for(var i=0; i<$scope.entradas.length; i++){
@@ -15,21 +44,14 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput']); //
             $scope.cant=c;
         });
 
-	$http.get("webservice/Correspondencia/bandejaDeSalida")
-		.success(function(response) {$scope.salidas = response;});
-		
-	$http.get("webservice/Correspondencia")
-		.success(function(response) {$scope.correspondencia = response;});	
+        $http.get("webservice/Correspondencia/bandejaDeSalida")
+            .success(function(response) {$scope.salidas = response;});
+            
+        $http.get("webservice/Correspondencia")
+            .success(function(response) {$scope.correspondencia = response;});  
+    }); 
 
-	$http.get("webservice/get_user").success(function(response){
-			$scope.user= response.user;
-			$scope.userLogged=  $scope.user.fullname;            
-			}).error(function(response, status, header, config){  
-				if(response.status == 300){ //estatus de error para usuario en uso
-					$scope.mensajeErrorRegistro=true;
-				}   
-			});
-        
+           
         //autocompletar
     $scope.loadTags = function(query) {
         return $http.get("webservice/User");
