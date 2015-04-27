@@ -12,22 +12,6 @@ app.config(function($routeProvider) {
 			templateUrl	: 'pages/consultarDocumento.html',
 			controller 	: 'docController'
 		})
-		// .when('/home', {
-		// 	templateUrl	: 'pages/consultarDocumento.html',
-		// 	controller 	: 'docController'
-		// })
-		// // .when('/estudiante', {
-		// // 	templateUrl	: 'pages/consultarDocumento.html',
-		// // 	controller 	: 'docController'
-		// // })
-		// .when('/papeleria', {
-		// 	templateUrl	: 'pages/consultarDocumento.html',
-		// 	controller 	: 'docController'
-		// })
-		// .when('/correos', {
-		// 	templateUrl	: 'pages/consultarDocumento.html',
-		// 	controller 	: 'docController'
-		// })
 		.when('/SolicitudEquipo', {
 			templateUrl	: 'pages/SolicitudEquipo.html',
 			controller 	: 'equiposController'
@@ -72,14 +56,6 @@ app.config(function($routeProvider) {
 			templateUrl	: 'pages/Perfil.html',
 			controller 	: 'perfilController'
 		})
-		/*.when('/profile', {
-			templateUrl	: 'pages/Perfil.html',
-			controller 	: 'perfilController'
-		})
-		.when('/home2', {
-			templateUrl	: 'pages/Perfil.html',
-			controller 	: 'perfilController'
-		})*/
 		.when('/ConfigTipos', {
 			templateUrl	: 'pages/ConfigTipos.html',
 			controller 	: 'configTiposController'
@@ -87,14 +63,6 @@ app.config(function($routeProvider) {
 			templateUrl	: 'pages/notificaciones.html',
 			controller 	: 'NotificacionesController'
 		})
-		/*.when('/agregarReservable', {
-			templateUrl	: 'pages/ConfigTipos.html',
-			controller 	: 'configTiposController'
-		})
-		.when('/editarReservable', {
-			templateUrl	: 'pages/ConfigTipos.html',
-			controller 	: 'configTiposController'
-		})*/
 		.otherwise({
 			redirectTo: '/'
 		});

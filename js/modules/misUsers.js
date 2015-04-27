@@ -2,13 +2,41 @@
 var app = angular.module("myAppUsers", []);
 
 app.controller("userController", function($scope, $http, $timeout) {
+   
+    $scope.$on('$viewContentLoaded', function() { //aca va todo auqello que se quiera cargar al inicio de cada pagina
+        
+        $http.get("webservice/get_user").success(function(response){
+                if(response.user == null){
+                   window.location.replace("index.html"); 
+                }else{                
+                    var roleLogged = response.user.role;
+                
+                    $http.get("webservice/Role").success(function(response){
+                            $scope.roles = response;
+                            var roles = response;
 
-    $http.get("webservice/User")
+                            for(var i = 0; i<roles.length; i++) {           
+                                if(roles[i].nombre === roleLogged) {
+                                    
+                                    var seguridad=roles[i].seguridad;
+
+                                    if( seguridad != 'Alta'){  
+                                         window.location.replace("paginaPrincipal.html"); 
+                                    }
+                                    
+                                }
+                            }
+                    });               
+                }
+        }).error(function(response, status, header, config){  
+                console.log("error en obtencion de usuario conectado");  
+        });
+
+        $http.get("webservice/User")
         .success(function(response) {$scope.users = response; });
 
-    $http.get("webservice/Role")
-    .success(function(response) {$scope.roles = response; });
-
+    });    
+    
   
     $scope.error = false;
     $scope.incomplete = false;

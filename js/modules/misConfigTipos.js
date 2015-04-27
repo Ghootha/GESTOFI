@@ -2,6 +2,43 @@ var app = angular.module("myAppConfigTipos", ['duScroll']);
 
 app.controller("configTiposController", function($scope, $http,$upload, $timeout, $document) {
 
+
+
+$scope.$on('$viewContentLoaded', function () {
+
+	$http.get("webservice/get_user").success(function(response){
+		if(response.user == null){
+		   window.location.replace("index.html"); 
+		}else{ 
+			$scope.user= response.user;               
+		    var roleLogged = response.user.role;
+
+		    $http.get("webservice/Role").success(function(response){
+		            var roles = response;
+
+		            for(var i = 0; i<roles.length; i++) {           
+		                if(roles[i].nombre === roleLogged) {
+		                    
+		                    var seguridad=roles[i].seguridad;
+
+		                    if( seguridad != 'Alta'){  
+		                    	 window.location.replace("paginaPrincipal.html"); 
+		                    }
+		                    
+		                }
+		            }
+		    });               
+		}
+	}).error(function(response, status, header, config){  
+	        console.log("error en obtencion de usuario conectado");  
+	});
+
+	$http.get("webservice/Reservable").success(function(response){$scope.equipos=response;});
+	$http.get("webservice/TipoReservable").success(function(response){$scope.selectTipos=response;});
+	$http.get("webservice/TipoDocumento").success(function(response){$scope.tipoDocumentos=response;});
+	
+});
+
 $scope.toTheTop = function() {
       $document.scrollTopAnimated(0, 5000).then(function() {
         console && console.log('You just scrolled to the top!');
@@ -32,9 +69,11 @@ $scope.btnFile=false;
         {nombre:'Vacaciones'}
     ];
 
-$http.get("webservice/Reservable").success(function(response){$scope.equipos=response;});
-$http.get("webservice/TipoReservable").success(function(response){$scope.selectTipos=response;});
-$http.get("webservice/TipoDocumento").success(function(response){$scope.tipoDocumentos=response;});
+// $http.get("webservice/Reservable").success(function(response){$scope.equipos=response;});
+// $http.get("webservice/TipoReservable").success(function(response){$scope.selectTipos=response;});
+// $http.get("webservice/TipoDocumento").success(function(response){$scope.tipoDocumentos=response;});
+//$http.get("webservice/get_user").success(function(response){$scope.user= response.user;});
+
 $scope.agregarTipo=function(){
 
 	var objeto={
@@ -265,5 +304,31 @@ $scope.checkOption=function(){
 $scope.test = function() {
 
 };
+
+var init = function () {
+	if ( $scope.user != null ) {
+            var roleLogged = $scope.user.role;
+            
+            $http.get("webservice/Role").success(function(response){
+                    var roles = response;
+
+                    for(var i = 0; i<roles.length; i++) {           
+                        if(roles[i].nombre === roleLogged) {
+                            
+                            var seguridad=roles[i].seguridad;
+
+                            if( seguridad != 'Alta'){  
+                            	 window.location.replace("paginaPrincipal.html"); 
+                            }
+                            
+                        }
+                    }  
+
+
+            });
+        }
+};
+// and fire it after definition
+init();
 
 }).value('duScrollOffset', 30);

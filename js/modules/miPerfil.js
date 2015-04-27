@@ -9,32 +9,32 @@ app.controller("perfilController", function($scope, $http, $upload, $timeout) {
     ]; 
 $scope.user;
  
+$scope.$on('$viewContentLoaded', function () {
+    $http.get("webservice/get_user").success(function(response){
+                if(response.user == null){
+                   window.location.replace("index.html"); 
+                }else{
+                 	
+                    $scope.user= response.user;
+                    $scope.modalNombre=$scope.user.fullname;
+                    $scope.modalFecha=$scope.user.birthdate;
+                    $scope.modalDomicilio=$scope.user.address;
+                    $scope.modalEmail=$scope.user.email;
+                    $scope.modalPhone=$scope.user.phone;
+                    	
+                    	if($scope.user.photo !== null){
+                    		$scope.userPhoto= "http://gestofi.com/webservice/fotoPerfil/"+$scope.user.photo;
+                    	}
+                    	else
+                    		$scope.userPhoto= "http://gestofi.com/webservice/fotoPerfil/default-user-image.png" ;
 
-$http.get("webservice/get_user").success(function(response){
-            if(response.user == null){
-               window.location.replace("index.html"); 
-            }else{
-             	
-                $scope.user= response.user;
-                $scope.modalNombre=$scope.user.fullname;
-                $scope.modalFecha=$scope.user.birthdate;
-                $scope.modalDomicilio=$scope.user.address;
-                $scope.modalEmail=$scope.user.email;
-                $scope.modalPhone=$scope.user.phone;
-                	
-                	if($scope.user.photo !== null){
-                		$scope.userPhoto= "http://gestofi.com/webservice/fotoPerfil/"+$scope.user.photo;
-                	}
-                	else
-                		$scope.userPhoto= "http://gestofi.com/webservice/fotoPerfil/default-user-image.png" ;
-
-
-
-            }
+                }
     }).error(function(response, status, header, config){  
             console.log("error en obtencion de usuario conectado");  
     });
-$http.get("webservice/User").success(function(response) {$scope.users = response; });
+});
+
+//$http.get("webservice/User").success(function(response) {$scope.users = response; }); comenté (Michael) xq al parecer no se usa
 
 
 
