@@ -13,14 +13,41 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 			 }
 			 //url: 'webservice/Agenda', para ver todas las act
 		};
-		$http.get("webservice/get_user").success(function(response){
-			$scope.user= response.user;
-			$scope.userLogged=  $scope.user.fullname;            
+		
+		$scope.$on('$viewContentLoaded', function () {
+		  	$http.get("webservice/get_user").success(function(response){
+		            if(response.user == null){
+		               window.location.replace("index.html"); 
+		            }else{ 
+		                $scope.user= response.user;               
+		                var roleLogged = response.user.role;
+		            
+		                $http.get("webservice/Role").success(function(response){
+		                        var roles = response;
+
+		                        for(var i = 0; i<roles.length; i++) {           
+		                            if(roles[i].nombre === roleLogged) {
+		                                
+		                                var seguridad=roles[i].seguridad;
+
+		                                if( seguridad == 'Ninguna'){  
+		                                     window.location.replace("paginaPrincipal.html"); 
+		                                }
+		                                
+		                            }
+		                        }
+		                });               
+		            }
+		    }).error(function(response, status, header, config){  
+		            console.log("error en obtencion de usuario conectado");  
+		    });
 		});
+
 		$scope.loadTags = function(query) {
         return $http.get("webservice/User");
 		};
 	
+
 		$scope.agregarActividad = function(){ 
 			var k=$scope.horaSA.split(":");
 			var w=$scope.horaEA.split(":");
@@ -29,14 +56,17 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 			var f=$scope.endA.split("-");
 			var ffinal=new Date(f[2],f[1]-1,f[0],w[0]-6,w[1],"00");
 			var objetoJSON;
-					
-						
-			
+			var invitados=$scope.invitadoA;
+			var auxinvitado="";
+			invitados.forEach(function(entry){		
+				auxinvitado=auxinvitado+entry.username+",";		
+			});
+			alert("sirve "+auxinvitado);
 			objetoJSON = {
 				"title": $scope.actividadA,
 				"autor":  $scope.user.fullname,
 				"lugar": $scope.lugarA,
-				"invitado": $scope.invitadoA[0].username,
+				"invitado": auxinvitado,
 				"descripcion": $scope.descripcionA,
 				"start": inicio,
 				"end": ffinal
@@ -70,13 +100,17 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 								var inicio=new Date(i[2],i[1]-1,i[0],k[0]-6,k[1],"00");
 								var f=$scope.end.split("-");
 								var ffinal=new Date(f[2],f[1]-1,f[0],w[0]-6,w[1],"00");
-																		
+							var invitados=$scope.invitado;
+							var auxinvitado="";
+							invitados.forEach(function(entry){		
+								auxinvitado=auxinvitado+entry.username+",";		
+							});											
 																												
 							objetoJSON = {
 								"title": $scope.title,
 								"autor":  $scope.user.fullname,
 								"lugar": $scope.lugar,
-								"invitado": $scope.invitado,
+								"invitado": $scope.auxinvitado,
 								"descripcion": $scope.descripcion,
 								"start": inicio,
 								"end": ffinal
