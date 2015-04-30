@@ -39,7 +39,7 @@
 					</tr>
 					</thead>
 					<tbody>
-					<tr data-ng-repeat="entrada in entradas" data-ng-class="{black : entrada.leido, red: !entrada.leido}" data-ng-click="viewMailIn(entrada.id)" data-backdrop="false" data-target="#Modal2" data-toggle="modal">
+					<tr data-ng-repeat="entrada in entradas.slice().reverse()" data-ng-class="{black : entrada.leido, red: !entrada.leido}" data-ng-click="viewMailIn(entrada.id)" data-backdrop="false" data-target="#Modal2" data-toggle="modal">
 						<td>{{ entrada.emisor }}</td>
 						<td>{{ entrada.asunto }}</td>
 						<td>{{ entrada.fecha }}</td>
@@ -60,7 +60,7 @@
 					</tr>
 					</thead>
 					<tbody>
-					<tr  data-ng-repeat="salida in salidas" data-ng-click="viewMailOut(salida.id)" data-backdrop="false" data-target="#Modal2" data-toggle="modal">
+					<tr  data-ng-repeat="salida in salidas.slice().reverse()" data-ng-click="viewMailOut(salida.id)" data-backdrop="false" data-target="#Modal2" data-toggle="modal">
 						<td>{{ salida.receptor }}</td>
 						<td>{{ salida.asunto }}</td>
 						<td>{{ salida.fecha }}</td>
@@ -74,45 +74,52 @@
 				<!--MODAL Ver MEnsaje-->
 				  <div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					 <div class="modal-dialog">
-					   <div class="modal-content">
+					   <div class="modal-content-update">
 
 						 <div class="modal-header">
 						   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						   <h4 class="modal-title" id="myModalLabel">TITULO</h4>
 						 </div>
-						 <div class="modal-body">   
+						 <div class="modal-body"> 
+                             
 						  <form class="form-horizontal">
 							  <div class="form-group">
+                                  
 								  <label class="col-sm-2 control-label">Fecha:</label>
-								  <div class="col-sm-3">
-									  <input type="text" class="form-control" data-ng-model="fecha" data-ng-disabled="!edit">
+								  <div class="col-sm-6">
+									  <!--<input type="text" class="form-control" data-ng-model="fecha" data-ng-disabled="!edit">-->
+                                      <label class="col-sm-12 control-label" data-ng-model="fecha">{{ fecha }}</label>
 								  </div>
+                                  
 							  </div>
 							  <div class="form-group">
 								  <label class="col-sm-2 control-label">De:</label>
-								  <div class="col-sm-3">
-									  <input type="text" class="form-control" data-ng-model="emisor" data-ng-disabled="!edit">
+								  <div class="col-sm-6">
+									  <!--<input type="text" class="form-control" data-ng-model="emisor" data-ng-disabled="!edit">-->
+                                      <label class="col-sm-12 control-label" data-ng-model="emisor">{{ emisor }}</label>
 								  </div>
 							  </div>
 							  <div class="form-group">
 								  <label class="col-sm-2 control-label">Para:</label>
 								  <div class="col-sm-3">
-									  <input type="text" class="form-control" data-ng-model="receptor" data-ng-disabled="!edit">
+									  <!--<input type="text" class="form-control" data-ng-model="receptor" data-ng-disabled="!edit">-->
+                                      <label class="col-sm-12 control-label" data-ng-model="receptor">{{ receptor }}</label>
+								  </div>
+                                  
+							  </div>
+							  <div class="form-group">
+								  <label class="col-sm-2 control-label">Asunto:</label>
+								  <div class="col-sm-3">
+									  <!--<input type="text" class="form-control" data-ng-model="asunto" data-ng-disabled="!edit">-->
+                                      <label class="col-sm-12 control-label" data-ng-model="asunto">{{ asunto }}</label>
 								  </div>
 							  </div>
                               <div class="form-group">
 								  <button type="button" class="btn btn-default" ng-show="btnDoc" ng-click="abrirDoc()">Abrir Documento</button>
 							  </div>
 							  <div class="form-group">
-								  <label class="col-sm-2 control-label">Asunto:</label>
-								  <div class="col-sm-3">
-									  <input type="text" class="form-control" data-ng-model="asunto" data-ng-disabled="!edit">
-								  </div>
-							  </div>
-							  <div class="form-group">
-								  <label class="col-sm-2 control-label">Descripcion:</label>
-								  <div class="col-sm-3">
-									  <textarea class="textAreaRol" data-ng-model="mensaje"></textarea>
+								  <div class="col-sm-12">
+									  <textarea class="textAreaCorrespondencia" data-ng-model="mensaje"></textarea>
 								  </div>
 							  </div>
 						  </form>

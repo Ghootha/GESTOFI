@@ -14,7 +14,7 @@
 					</tr>
 					</thead>
 					<tbody>
-					<tr data-ng-repeat="item in notificaciones" data-ng-class="{black : item.leido, red: !item.leido}" data-backdrop="false" data-target="#Modal2" data-toggle="modal" data-ng-click="actualizar(item.id) ; mostrarInfo(item.id)">
+					<tr data-ng-repeat="item in notificaciones" data-ng-class="{black : item.leido, red: !item.leido}" data-backdrop="false" data-target="#Modal2" data-toggle="modal" data-ng-click="cambiarLeido(item.id) ; mostrarInfo(item.id)">
 						<td>{{ item.emisor }}</td>
 						<td>{{ item.titulo }}</td>
 						<td>{{ item.fecha }}</td>
@@ -81,7 +81,7 @@
 									</div>
 									</div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" data-ng-click="actualizar()">Cerrar</button>
                                     </div>
 
                             </div>

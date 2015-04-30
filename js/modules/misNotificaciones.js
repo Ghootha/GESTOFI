@@ -49,29 +49,11 @@ var app = angular.module("myAppNotificaciones", ['ngRoute']);
 	 };
 	    
         
-    $scope.actualizar=function(id) {
-		
-			for(var i = 0; i<$scope.notificaciones.length; i++) {
-                if($scope.notificaciones[i].id === id) {
-                    
-                    if($scope.notificaciones[i].leido==false){
-                        objetoJSON = {
-                            "duenno": $scope.notificaciones[i].duenno,            
-                            "emisor": $scope.notificaciones[i].emisor,
-                            "titulo": $scope.notificaciones[i].titulo,
-                            "tipo": $scope.notificaciones[i].tipo,
-                            "fecha": $scope.notificaciones[i].fecha,
-                            "leido": true
-                        };
-                        $http.put("webservice/Notificaciones/update/"+id, objetoJSON).success(
-                            function (){
-                                 $route.reload();
-                            }
-                        );
-                        
-                        
-                    }
-                }
-            }
+    $scope.cambiarLeido=function(id) {
+		$http.put("webservice/Notificaciones/update/"+id+"?leido=true").success();
 	}    
+    
+    $scope.actualizar= function(){
+        $route.reload();
+    }
 });

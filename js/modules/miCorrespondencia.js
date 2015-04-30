@@ -117,7 +117,6 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput']); //
         
         //crear mensaje con tags
         $scope.crearMensaje=function() {
-            debugger;
 		var objetoJSON;
         var destinos=$scope.tags;
         var msjExito="Mensaje Enviado exitosamente a: ";
@@ -141,7 +140,6 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput']); //
                     "documento": ruta  //hay que asignarla cuando se selecciona el tipo
                 };
             //}
-            alert(objetoJSON.receptor);
             ruta="vacio";
             $http.put("webservice/Correspondencia/create", objetoJSON).success(function(response){
 					$timeout(function(){
@@ -282,7 +280,6 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput']); //
     $scope.$watch('files', function(files) {
         
         if (files != null) {
-            alert("1");
             for (var i = 0; i < files.length; i++) {
                 $scope.errorMsg = null;
                 (function(file) {
@@ -332,7 +329,7 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput']); //
            
             ruta = response.files[0].fd;
             var nombre = response.files[0].filename;
-            debugger;
+            $scope.docu = nombre;
             //var nombreSliced = nombre.slice(0,-4);
             //var nombreHash = /[^\/]*$/.exec(ruta)[0];//para MAC
             //var nombreHash = /[^\\]*$/.exec(ruta)[0];//para WIN
