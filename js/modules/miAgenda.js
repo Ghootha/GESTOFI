@@ -1,6 +1,6 @@
 var app = angular.module("myAppAgenda", []);
 
-app.controller("agendaController", function($scope, $http, $window, $location, $timeout) {
+app.controller("agendaController", function($scope, $http, $window, $location, $timeout, $route) {
 
 
 		var req = {
@@ -58,10 +58,24 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 			var objetoJSON;
 			var invitados=$scope.invitadoA;
 			var auxinvitado="";
+			
 			invitados.forEach(function(entry){		
-				auxinvitado=auxinvitado+entry.username+",";		
-			});
-			alert("sirve "+auxinvitado);
+				auxinvitado=auxinvitado+entry.username+",";	
+				var objetoJSON;
+				objetoJSON ={
+					
+					"duenno":entry.username,
+					"emisor":$scope.user.fullname,
+					"titulo":"Agenda: "+$scope.actividadA,
+					"tipo":"Agenda",
+					"mensaje":$scope.descripcionA
+				};
+			
+				$http.put("webservice/notificaciones/create", objetoJSON).success(function(response){alert("Se envió la notificación")});$route.reload();
+			});	
+			
+			
+			
 			objetoJSON = {
 				"title": $scope.actividadA,
 				"autor":  $scope.user.fullname,
@@ -81,6 +95,8 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
                        alert("Se ha producido un error");
                       });                          
              });
+			 
+					
              $('#calendar').fullCalendar('renderEvent', objetoJSON, true);
              $('#modalform').trigger("reset");
 		    $('#Modal3').modal('hide');
