@@ -46,11 +46,12 @@
 							<input type="text" size="129" data-ng-model="folio"/>
 						</div>-->
                         <br>
-						<div class="col-md-6 column">
+						<div class="col-md-12 column">
+                            <br>
 							<div class="up-buttons">
-                              <button ng-file-select ng-model="files" ng-multiple="false" class="btn btn-success">Adjuntar Archivo
-                              </button>
-                          </div>  
+                              <button ng-file-select ng-model="files" ng-multiple="false" class="btn btn-success">Adjuntar Archivo</button>
+                            </div>
+                            <label class="col-sm-8 control-label" data-ng-model="docu">{{ docu }}</label>
 						</div>
 						<!--<div class="col-md-6 column">
 							<button type="button" class="btn btn-default" data-backdrop="false" data-target="#Modal2" data-toggle="modal"><span class="glyphicon glyphicon-save"></span>  Subir Doc </button>
@@ -60,13 +61,14 @@
 							<button class="btn btn-default" data-ng-click="adjDoc()" data-backdrop="false" data-target="#Modal3" data-toggle="modal">  Subir Doc </button>
 						</div>-->
 						<div class="col-md-12 column">
-							<BR><li>Mensaje:</li><br>
+							<BR><li>Mensaje:</li>
 							<textarea cols="130" rows="18" class="form-control" name="Mensaje" data-ng-model="mensaje"></textarea>
 						</div>
 					</div>
 					<div class="row clearfix">
 					</div>
 					<div>
+                        <br>
 						<input type="submit" name="submit" id="submit" value="Enviar" class="btn btn-info pull-left" data-ng-click="crearMensaje()">
 						<h4 ng-show="mensajeExito">Mensaje Enviado</h4>
 					<h4 ng-show="mensajeFallo">Mensaje No Enviado</h4>

@@ -195,18 +195,8 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput']); //
                         rutaAct=$scope.entradas[i].documento;
                     }
                     if($scope.entradas[i].leido==false){
-                        objetoJSON = {
-                            "emisor": $scope.entradas[i].emisor,            
-                            "receptor": $scope.entradas[i].receptor,
-                            "asunto": $scope.entradas[i].asunto,
-                            "mensaje": $scope.entradas[i].mensaje,
-                            "fecha": $scope.entradas[i].fecha,
-                            "documento": $scope.entradas[i].documento,
-                            "leido": true
-                        };
-                        $http.put("webservice/Correspondencia/update/"+id, objetoJSON);
+                        $http.put("webservice/Correspondencia/update/"+id+"?leido=true").success();
                         refrescar=true;
-                        
                     } else {refrescar=false;}
                 }
             }

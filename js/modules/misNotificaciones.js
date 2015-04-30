@@ -13,7 +13,19 @@ var app = angular.module("myAppNotificaciones", ['ngRoute']);
                 }
             }
             $scope.cant=c;
-                                    });
+        });
+        
+        $http.get("webservice/Correspondencia/bandejaDeEntrada")
+		.success(function(response) {
+            $scope.entradas = response;
+            var c=0;
+            for(var i=0; i<$scope.entradas.length; i++){
+                if($scope.entradas[i].leido==false){
+                    c=c+1;
+                }
+            }
+            $scope.cant2=c;
+        });
     
     $http.get("webservice/get_user").success(function(response){
 			$scope.user= response.user;
