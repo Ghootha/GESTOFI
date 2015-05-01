@@ -128,10 +128,14 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
                 
                 $http.put("webservice/Documento/create", objetoJSON).success(function(response){
                         $timeout(function(){
+                            $scope.codigo="";
+                            $scope.tipo="";
                             $scope.mensajeExitoSubidaDoc=true;
                         });                        
                  }).error(function(response, status, header, config){  
                         $timeout(function(){
+                            $scope.codigo="";
+                            $scope.tipo="";
                             $scope.mensajeFallidoSubidaDoc=true; 
                         });                          
                  });
