@@ -252,7 +252,9 @@
                                     <ul>
                                         <li data-ng-hide="hideSolicitudEquipo"><a title="Solicitar un equipo Audio-Visual" href="template.html#/SolicitudEquipo">Equipo</a></li>
                                         <li data-ng-hide="hideSolicitudAula"><a title="Solicitar el apartado de un Aula" href="template.html#/SolicitudAula">Aula</a></li>
-                                        <li class="ultimo" data-ng-hide="hideSolicitudVacaciones"><a title="Realizar una solicitud para una gira o vacaciones" href="template.html#/SolicitudGiras_Vacaciones">Giras/Vacaciones</a></li>
+                                        <li data-ng-hide="hideSolicitudVacaciones"><a title="Realizar una solicitud para una gira o vacaciones" href="template.html#/SolicitudGiras_Vacaciones">Giras/Vacaciones</a></li>
+                                        <li data-ng-hide="hideMisSolicitudes"><a title="Revisar mis solicitudes" href="template.html#/SolicitudesUsuario">Mis Solicitudes</a></li>
+                                        <li class="ultimo" data-ng-hide="hideControlReserva"><a title="Ver el control de reservas" href="template.html#/ControlReservas">Control Reservas</a></li>
                                     </ul>
                                 </li>
                                 <li data-ng-hide="hideAgenda"><a href="template.html#/agenda">Calendario</a></li>
@@ -455,7 +457,8 @@
     <script src="js/modules/misUsers.js"></script>
     <script src="js/modules/miAgenda.js"></script>
     <script src="js/modules/misConfigTipos.js"></script>
-    <script src="js/modules/misNotificaciones.js"></script> 
+    <script src="js/modules/misNotificaciones.js"></script>
+    <script src="js/modules/misSolicitudesUser.js"></script>  
     <script src="js/modules/routes.js"></script>
     <script src="js/modules/app.js"></script>
 

@@ -31,7 +31,6 @@ $scope.$on('$viewContentLoaded', function() {
 	});	
 });
 
-
 $scope.edit = true;
 $scope.error = false;
 $scope.incomplete = false; 

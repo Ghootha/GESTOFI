@@ -28,6 +28,10 @@ app.config(function($routeProvider) {
 			templateUrl	: 'pages/ControlReservas.html',
 			controller 	: 'reservaController'
 		})
+		.when('/SolicitudesUsuario', {
+			templateUrl	: 'pages/SolicitudesUsuario.html',
+			controller 	: 'solicitudesUserController'
+		})
 		.when('/agenda', {
 			templateUrl	: 'pages/agenda.html',
 			controller 	: 'agendaController'

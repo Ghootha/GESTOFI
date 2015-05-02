@@ -1,0 +1,44 @@
+<!--==============================content================================-->
+<div class="content-bg">
+    <div class="main">                  
+        <div class="container_12">
+            <div class="wrapper">                
+				<h3>Mis Solicitudes</h3>
+                                        
+                <div class="well">
+                            <ul class="nav nav-tabs">
+                                <li ng-repeat="tab in tabs"><a  data-target="{{tab.link}}" data-toggle="tab">{{tab.label}}</a></li>
+                                
+                            </ul>
+                        <table class="table table-striped">
+                          <thead>
+                            <tr class="info">
+                              <th>Nombre Reserva</th>
+                              <th>Codigo Reserva</th>
+                              <th>Tipo Reserva</th>
+                              <th>Hora Reserva</th>
+                              <th>Hora Entrega</th>
+                           </tr>
+                          </thead>
+                  
+                          <tbody>
+                            <tr data-ng-repeat="reserva in reservas |orderBy:'horaInicio'">
+                              
+                              <td>{{reserva .nombre}}</td>
+                              <td>{{reserva .codigo}}</td>
+                              <td>{{reserva .tipo}}</td>
+                              <td>{{reserva .horaInicio}}</td>
+                              <td>{{reserva .horaEntrega}}</td>
+                           </tr>
+                        </tbody>
+                      </table>
+                </div> 
+       						 
+			</div>
+		</div>
+	</div>         
+</div>
+     
+<script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/bootstrap-datepicker2.js" charset="UTF-8"></script> 
+		
