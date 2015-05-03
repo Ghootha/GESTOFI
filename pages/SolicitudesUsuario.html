@@ -10,29 +10,61 @@
                                 <li ng-repeat="tab in tabs"><a  data-target="{{tab.link}}" data-toggle="tab">{{tab.label}}</a></li>
                                 
                             </ul>
+
+                    <div id="myTabContent" class="tab-content" >
+                      <div class="tab-pane active in" id="pendiente">
                         <table class="table table-striped">
                           <thead>
                             <tr class="info">
                               <th>Nombre Reserva</th>
                               <th>Codigo Reserva</th>
                               <th>Tipo Reserva</th>
+                              <th>Fecha</th>
                               <th>Hora Reserva</th>
                               <th>Hora Entrega</th>
                            </tr>
                           </thead>
                   
                           <tbody>
-                            <tr data-ng-repeat="reserva in reservas |orderBy:'horaInicio'">
+                            <tr data-ng-repeat="reserva in reservasPendientes |orderBy:'horaInicio'">
                               
                               <td>{{reserva .nombre}}</td>
                               <td>{{reserva .codigo}}</td>
                               <td>{{reserva .tipo}}</td>
+                              <td>{{reserva .fecha}}</td>
                               <td>{{reserva .horaInicio}}</td>
                               <td>{{reserva .horaEntrega}}</td>
                            </tr>
                         </tbody>
                       </table>
                 </div> 
+
+                <div  class="tab-pane fade" id="historial">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr class="info">
+                              <th>Nombre Reserva</th>
+                              <th>Codigo Reserva</th>
+                              <th>Tipo Reserva</th>
+                              <th>Fecha</th>
+                              <th>Hora Reserva</th>
+                              <th>Hora Entrega</th>
+                           </tr>
+                          </thead>
+                  
+                          <tbody>
+                            <tr data-ng-repeat="reserva in reservasHistorial |orderBy:'horaInicio'">
+                              
+                              <td>{{reserva .nombre}}</td>
+                              <td>{{reserva .codigo}}</td>
+                              <td>{{reserva .tipo}}</td>
+                              <td>{{reserva .fecha}}</td>
+                              <td>{{reserva .horaInicio}}</td>
+                              <td>{{reserva .horaEntrega}}</td>
+                           </tr>
+                        </tbody>
+                      </table>        
+                </div></div></div>
        						 
 			</div>
 		</div>

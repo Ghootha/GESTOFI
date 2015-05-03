@@ -41,7 +41,7 @@ $scope.nombresSelect=[];
 var objetoFecha;
 
 $scope.buscarPorFecha = function (){
-	if(typeof fecha === "undefined"){
+	if(typeof $scope.fecha === "undefined"){
         return "";
     }
     else{

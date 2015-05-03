@@ -25,12 +25,42 @@ function reservaEquipoPorFecha(listaReservaEquipo, reservasPorFecha){
 
 }
 
+function separaSolicitudesUsuario(tipo,lista){
+	//separo las solicitudes pendientes o historial 
+	var fechaHoy= new Date();
+	var i=0;var f1;var f; var listaPendientes=[]; var listaHistorial=[]; var lp=0; var lh=0;
+	while(i<lista.length){
+		f1=new Date(lista[i].fecha);
+		if(fechaHoy < f1){
+			f= f1.getDate()+"/"+(f1.getMonth()+1)+"/"+f1.getFullYear();
+		   	lista[i].fecha=f;
+		   	listaPendientes[lp]=lista[i];
+		   	lp++;
+		}
+		else {
+			f= f1.getDate()+"/"+(f1.getMonth()+1)+"/"+f1.getFullYear();
+		   	lista[i].fecha=f;
+		   	listaHistorial[lh]=lista[i];
+		   	lh++;
+		}
+		i++;
+	}
+
+	if(tipo==1){
+		return listaPendientes;
+	}
+	else
+		return listaHistorial;
+	
+
+}
+
 function mergeJSON(json1,json2){
    var i=0;
    var jsonFinal=[];
    if(json1.length>0 && json2.length>0){
    while(i<json1.length){
-
+   	
    		var o={
    			"ID": i,
    			"usuario" : json1[i].idUsuario,
@@ -59,11 +89,7 @@ module.exports = {
 
 
 	findReservas : function (req,res){
-
-	 	
-		
 		var f=req.param('fecha');
-		
 		
 		Reserva.find({fecha:f}).exec(function(err,reservas){reservasPorFecha=reservas;});
 		ReservaEquipo.find().exec(function(err,reservaEquipos){listaReservaEquipo=reservaEquipos;});
@@ -102,8 +128,37 @@ module.exports = {
 		});
 		
 		
+	},
+
+	findReservasUsuario : function(req, res){
+		
+		var usuario= req.param('usuario');
+		var indexList= req.param('lista');//1 para pendiente, 2 para historial
+		var reservasUsuario=[]; var reservablesUsuario=[]; var reservaEquipos=[];
+		
+
+		Reserva.find({idUsuario:usuario}).exec(function(err,reservas){reservasUsuario=reservas;});
+		ReservaEquipo.find().exec(function(err,reservaEquipo){reservaEquipos=reservaEquipo;});
+		Reservable.find().exec(function(err,reservables){
+			reservablesUsuario=reservaEquipoPorFecha(reservaEquipos,reservasUsuario);
+			var i=0;var j=0;
+			while(reservablesUsuario.length>i){
+				j=0;
+				while(reservables.length>j){
+					if(reservablesUsuario[i]===reservables[j].id){
+						listaF[i]=reservables[j];
+						break;
+					}
+					j++;
+				}
+				i++;
+			}
+			
+			listaF=mergeJSON(reservasUsuario,listaF);
+			listaF=separaSolicitudesUsuario(indexList, listaF);
+			res.json(listaF);
+		});
 	}
-	
 	
 };
 
