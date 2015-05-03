@@ -78,6 +78,8 @@ $scope.consultarAula= function(){
     fech=new Date(fech[2],fech[1]-1,fech[0]);
     var horaI=new Date(fech);
     var horaF=new Date(fech);
+    fech.setHours(h1.getHours());
+    fech.setMinutes(h1.getMinutes());
     horaI.setHours(h1.getHours());
     horaI.setMinutes(h1.getMinutes());
     horaF.setHours(h2.getHours());
@@ -114,6 +116,7 @@ $scope.validacion =function(){
     horaF.setHours(h2.getHours());
     horaF.setMinutes(h2.getMinutes());
     if(horaI < horaF){
+      $scope.aulas=[];
       $scope.btnConsultar=false;
     }
   }

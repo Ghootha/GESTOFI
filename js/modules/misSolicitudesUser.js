@@ -17,11 +17,15 @@ app.controller("solicitudesUserController", function($scope, $http) {
             "usuario": response.user.username,
             "lista":2
         };
-        $http.post("webservice/ReservaEquipo/findReservasUsuario",objetoPendientes).success(function(response){
-        $http.post("webservice/ReservaEquipo/findReservasUsuario",objetoHistorial).success(function(response){$scope.reservasHistorial=response;});
-        $scope.reservasPendientes=response;});
-    });
+
+        $http.post("webservice/ReservaEquipo/findReservasUsuario",objetoPendientes).success(function(response){$scope.reservasPendientes=response;
+            $http.post("webservice/ReservaEquipo/findReservasUsuario",objetoHistorial).success(function(response){$scope.reservasHistorial=response;});
     
+        });
+
+    
+        
+    });
     
     
     

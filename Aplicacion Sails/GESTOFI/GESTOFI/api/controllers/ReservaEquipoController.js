@@ -28,9 +28,12 @@ function reservaEquipoPorFecha(listaReservaEquipo, reservasPorFecha){
 function separaSolicitudesUsuario(tipo,lista){
 	//separo las solicitudes pendientes o historial 
 	var fechaHoy= new Date();
-	var i=0;var f1;var f; var listaPendientes=[]; var listaHistorial=[]; var lp=0; var lh=0;
+	var i=0;var f1;var f; var hora;var listaPendientes=[]; var listaHistorial=[]; var lp=0; var lh=0;
 	while(i<lista.length){
 		f1=new Date(lista[i].fecha);
+		hora=new Date("January 01, 2015 "+lista[i].horaInicio+":00");
+		f1.setHours(hora.getHours());
+		f1.setMinutes(hora.getMinutes());
 		if(fechaHoy < f1){
 			f= f1.getDate()+"/"+(f1.getMonth()+1)+"/"+f1.getFullYear();
 		   	lista[i].fecha=f;
