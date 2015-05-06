@@ -7,19 +7,15 @@
  
  module.exports = {
 	
-	
 	findActByUser:function(req, res){
 		
 		var usuarioLogged = req.user.fullname;
-		Agenda.find( {autor : usuarioLogged} )
-			.exec(function(err,user){
-
-		          if(err)
-		            res.json({error:err});
-		          if(user === undefined)
-		            res.json({notFound:true});
-		          else
-		            res.json(user);
-			});
+		var quer ="select * from Agenda where autor = '"+usuarioLogged+"' OR invitado LIKE '%,"+usuarioLogged+",%'";
+		
+		Agenda.query(quer,function(err, results) {
+		 if (err) 
+			return res.serverError(err);
+		  return res.ok(results.rows);
+		});
 	}
 };

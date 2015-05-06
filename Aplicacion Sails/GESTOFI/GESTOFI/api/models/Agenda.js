@@ -33,11 +33,11 @@ module.exports = {
 	  },
 	  start:{
           type: 'datetime'
-          //defaultsTo: function (){ return new Date(); }
+        
       },
 	  end:{
           type: 'datetime'
-          //defaultsTo: function (){ return new Date(); }
+          
       }
   }
 };

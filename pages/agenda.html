@@ -26,7 +26,7 @@
 												 </div>
 													<label class="col-sm-2 control-label">Invitados:</label>
 												<div class="col-sm-3">
-													<tags-input data-ng-disabled="incomplete" data-ng-model="invitado" display-property="username" placeholder="invitado" >
+													<tags-input data-ng-disabled="incomplete" data-ng-model="invitado" display-property="fullname"  >
 														<auto-complete source="loadTags($query)" min-length="2" load-on-focus="true" load-on-empty="true" load-on-down-arrow="true" select-first-match="false"></auto-complete>
 													</tags-input> 
 												</div>
@@ -55,7 +55,7 @@
                                              
 												   <label for="dtp_input2" data-ng-disabled="incomplete" class="col-md-2 control-label">Hora:</label>
 												   <div class="input-group date form_time col-md-3" data-date="" data-date-format="hh:ii" data-link-field="dtp_input2" data-link-format="hh:ii">
-													   <input id="horaS" data-ng-model="horaS" class="form-control" size="10" type="text" value="" >
+													   <input id="horaS" data-ng-disabled="incomplete" data-ng-model="horaS" class="form-control" size="10" type="text" value="" >
 													   
 													<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
 												   </div>
@@ -121,7 +121,7 @@
                                                  </div>
 												 <label class="col-sm-2 control-label">Invitados:</label>
 												<div class="col-sm-3">
-													<tags-input data-ng-model="invitadoA" display-property="username" >
+													<tags-input data-ng-model="invitadoA" display-property="fullname" >
 														<auto-complete source="loadTags($query)" min-length="2" load-on-focus="true" load-on-empty="true" load-on-down-arrow="true" select-first-match="false"></auto-complete>
 													</tags-input> 
 												</div>

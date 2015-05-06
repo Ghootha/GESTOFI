@@ -57,21 +57,22 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 			var ffinal=new Date(f[2],f[1]-1,f[0],w[0]-6,w[1],"00");
 			var objetoJSON;
 			var invitados=$scope.invitadoA;
-			var auxinvitado="";
+			var auxinvitado=",";
 			
 			invitados.forEach(function(entry){		
-				auxinvitado=auxinvitado+entry.username+",";	
+				auxinvitado=auxinvitado+entry.fullname+",";	
+				
 				var objetoJSON;
 				objetoJSON ={
 					
-					"duenno":entry.username,
+					"duenno":entry.fullname,
 					"emisor":$scope.user.fullname,
 					"titulo":"Agenda: "+$scope.actividadA,
 					"tipo":"Agenda",
 					"mensaje":$scope.descripcionA
 				};
 			
-				$http.put("webservice/notificaciones/create", objetoJSON).success(function(response){alert("Se envió la notificación")});$route.reload();
+				$http.put("webservice/notificaciones/create", objetoJSON).success(function(response){alert("Se envio la notificacion")});$route.reload();
 			});	
 			
 			
@@ -166,10 +167,7 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 							alert("la actividad no se pudo eliminar");
 						});                          
 					});
-					
-			//$route.reload(); *
-			//$('#calendar').fullCalendar( 'refetchEvents' );
-			//$location.path();
+			
 			location.href="#agenda"; 
 			$('#Modal2').modal('hide');			 
 			});
