@@ -22,11 +22,12 @@
                               <th>Fecha</th>
                               <th>Hora Reserva</th>
                               <th>Hora Entrega</th>
+                              <th>Eliminar</th>
                            </tr>
                           </thead>
                   
                           <tbody>
-                            <tr data-ng-repeat="reserva in reservasPendientes |orderBy:'horaInicio'">
+                            <tr data-ng-repeat="reserva in reservasPendientes |orderBy:'fecha'">
                               
                               <td>{{reserva .nombre}}</td>
                               <td>{{reserva .codigo}}</td>
@@ -34,6 +35,11 @@
                               <td>{{reserva .fecha}}</td>
                               <td>{{reserva .horaInicio}}</td>
                               <td>{{reserva .horaEntrega}}</td>
+                              <td>
+                                  <button class="btn btn-danger" ng-click="modalConfirmacion(reserva)">      
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                  </button>
+                              </td>
                            </tr>
                         </tbody>
                       </table>
@@ -53,7 +59,7 @@
                           </thead>
                   
                           <tbody>
-                            <tr data-ng-repeat="reserva in reservasHistorial |orderBy:'horaInicio'">
+                            <tr data-ng-repeat="reserva in reservasHistorial |orderBy:'fecha'">
                               
                               <td>{{reserva .nombre}}</td>
                               <td>{{reserva .codigo}}</td>
@@ -65,6 +71,52 @@
                         </tbody>
                       </table>        
                 </div></div></div>
+
+                <!-- MODAL 3 -->
+                          <div id="Modal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                   <div class="modal-dialog">
+                                         <div class="modal-content">
+
+                                               <div class="modal-header">                                            
+                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                 <h4 class="modal-title" id="myModalLabel"> Eliminar Reserva</h4>
+                                               </div>
+                                               <div class="modal-body">                                         
+                                                <table class="table table-striped" >
+                                                  <tbody>
+                                                      <tr>
+                                                          <td>Nombre</td>
+                                                          <td>{{nombre}}</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>Hora Inicio</td>
+                                                          <td>{{horaInicio}}</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>Hora Entrega</td>
+                                                          <td>{{horaEntrega}}</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>Fecha</td>
+                                                          <td>{{fecha}} </td>
+                                                      </tr>
+                                                                          
+                                                  </tbody>
+                                                </table>
+                                              </div>
+                                               <div class="modal-footer">
+                                                      <button data-dismiss="modal" class="btn btn-danger">
+                                                          <span class="glyphicon glyphicon-remove"></span>
+                                                      </button>
+
+                                                      <button data-dismiss="modal" class="btn btn-success" id="confirm"> 
+                                                          <span class="glyphicon glyphicon-ok"></span>
+                                                      </button>                                           
+                                               </div>
+                                        </div>
+                                   </div>
+                          </div>
+                          <!-- FINALIZA MODAL 3 -->
        						 
 			</div>
 		</div>
