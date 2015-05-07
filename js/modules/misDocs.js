@@ -34,7 +34,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
         for(var i = 0; i<$scope.docs.length; i++) {
                 if($scope.docs[i].id === id) {
                     var ruta= $scope.docs[i].ruta;
-                    $window.open('http://gestofi.com/webservice/documents/'+ruta); 
+                    $window.open('gestofi.com/webservice/documents/'+ruta); 
                 }
          }  
     };

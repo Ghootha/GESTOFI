@@ -5,21 +5,17 @@
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
-module.exports = {
-    autoCreatedAt: false,
-    autoUpdatedAt: false,
-    autoPK:false,
+module.exports = {  
 
       attributes: {
-          id: {
-
-              type: 'string',
-              primaryKey: true,
-              required: true
-          },
+          
           nombre: {
               type: 'string',
               required: true
+          },
+          seguridad:{
+            type:'string',
+            required: true
           }
 
       }
