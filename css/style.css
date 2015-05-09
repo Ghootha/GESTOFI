@@ -186,12 +186,13 @@ h1 {
     border-right: none;
     font-size: 16px;
 }
-.indent-left ul ul a:hover {
+/*.indent-left ul ul a:hover {
     background-image: -moz-linear-gradient(0% 100px 90deg, #303030, #C8C8C8);    
-}
+}*/
 
 .indent-left li:hover {    
     background-image: -moz-linear-gradient(0% 100px 90deg, #303030, #C8C8C8);
+    background: -webkit-linear-gradient(top, #dadada 0%,#747474 100%); /* Chrome10+,Safari5.1+ */
 }
 
 .indent-left ul ul{
@@ -219,7 +220,8 @@ h1 {
 }
 .indent-left ul ul a:hover {
 	color:black;
-    background-image: -moz-linear-gradient(0% 100px 90deg, #303030, #C8C8C8);    
+    background-image: -moz-linear-gradient(0% 100px 90deg, #303030, #C8C8C8);     
+	background: -webkit-linear-gradient(top, #dadada 0%,#747474 100%); /* Chrome10+,Safari5.1+ */
     
 }
 /**Acaba la animacion para menu replegable**/
