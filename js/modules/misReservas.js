@@ -1,7 +1,7 @@
 var app = angular.module("myAppReserva", []);
 
 app.controller("reservaController", function($scope, $http) {
-
+var objetoFecha;
 $scope.$on('$viewContentLoaded', function() {
 	$http.get("webservice/get_user").success(function(response){
             if(response.user == null){
@@ -9,7 +9,16 @@ $scope.$on('$viewContentLoaded', function() {
             }else{     
               $scope.user= response.user;  
               var roleLogged = response.user.role;
-            
+              objetoFecha={
+					"fecha" : new Date().toISOString()
+				};
+				$http.post("webservice/ReservaEquipo/findReservas", objetoFecha).success(function(response){$scope.reservas=response;
+					$scope.nombresSelect=[];
+				for(var i=0; i<$scope.reservas.length;i++){
+					$scope.nombresSelect[i]="select"+i;
+				}
+
+				});	
               $http.get("webservice/Role").success(function(response){
                       var roles = response;
 
@@ -38,7 +47,7 @@ $scope.incomplete = false;
 $scope.opcs=[{id:1,nombre:'Pendiente'},{id:2,nombre:'En uso'},{id:3,nombre:'Recibido'}];
 $scope.nombresSelect=[];
 
-var objetoFecha;
+
 
 $scope.buscarPorFecha = function (){
 	if(typeof $scope.fecha === "undefined"){

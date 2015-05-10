@@ -139,12 +139,26 @@ $scope.cargarSolicitud= function(dir, filename){
     objetoSolicitud={
 
       "nombre": filename,
-	  "estado": "Pendiente",
+	    "estado": "Pendiente",
       "solicitante": $scope.user.username,
       "ruta": dir
 
     };
-    $http.put("webservice/Solicitudes/create",objetoSolicitud).success(function(response){});
+    $http.put("webservice/Solicitudes/create",objetoSolicitud).success(function(response){
+      var objetoJSON;
+        
+        objetoJSON ={
+          
+          "duenno":"Director",//buscar y poner nombre
+          "emisor":$scope.user.fullname,
+          "titulo":"Solicitud Pendiente",
+          "tipo":"Solicitud de Gira/Vacaciones",
+          "mensaje":"Ha recibido una nueva solicitud de giras o vacaciones, la puede acceder en Configuraciones > Solicitudes > Pendientes"
+        };
+      
+        $http.put("webservice/notificaciones/create", objetoJSON).success(function(response){alert("Se envio la notificacion")});
+
+    });
     alert("Solicitud enviada, la respuesta será notificada por correspondencia");
   });
 

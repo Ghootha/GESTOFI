@@ -12,8 +12,8 @@
 
 							<div class="form-group">
 				                <label for="dtp_input2" class="col-md-2 control-label">Fecha:</label>
-				                <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="dd-mm-yyyy">
-				                    <input data-ng-model="fecha" class="form-control" size="16" type="text" value="" readonly>
+				                <div id="fechaDiv" class="input-group date form_date col-md-5" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="dd-mm-yyyy">
+				                    <input ng-disabled="btnFecha" data-ng-model="fecha" class="form-control" size="16" type="text" value="" readonly>
 				                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 				                </div>
 								<input  type="hidden" id="dtp_input2" value=""/><br/>

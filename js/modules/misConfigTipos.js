@@ -55,6 +55,7 @@ $scope.btnFile=false;
     $scope.tabs = [  
       { link : '#agregarReservable', label : 'Agregar' },
       { link : '#editarReservable', label : 'Editar'},
+      { link : '#editarTipo', label : 'Editar Tipo'},
       
     ]; 
 
@@ -75,7 +76,7 @@ $scope.btnFile=false;
 //$http.get("webservice/get_user").success(function(response){$scope.user= response.user;});
 
 $scope.agregarTipo=function(){
-
+	if(typeof $scope.nomNuevoTipo !== "undefined"){
 	var objeto={
 		"nombre":$scope.nomNuevoTipo
 	};
@@ -84,11 +85,15 @@ $scope.agregarTipo=function(){
 		$scope.selectTipos.push(response);
 		$scope.nomNuevoTipo="";
 		alert("Tipo creado");
-	});
+	});}
+	else{
+		alert("Espacio de nombre esta vacio");
+	}
 
 };
 
 $scope.agregarReservable=function(){
+	if(typeof $scope.inputNombre!=="undefined" || typeof $scope.inputEstado !=="undefined" || typeof $scope.inputDescripcion!=="undefined" || typeof $scope.inputCodigo!=="undefined"){
 	var objeto={
 		"nombre": $scope.inputNombre,
 		"tipo": $scope.tipoSelect,
@@ -105,15 +110,18 @@ $scope.agregarReservable=function(){
 		$scope.inputCodigo="";		
 		$scope.equipos.push(response);
 		alert("Reservable creado");
-	});
+	});}
+	else{
+		alert("Existen espacios con datos incorrectos");
+	}
 };
 
-$scope.editarModal=function(idReservable){
-	
+$scope.editarModal=function(idReservable, index){
+	if(index===1){
 	$http.get("webservice/Reservable/"+idReservable).success(function(response){
 		$scope.nombreModal=response.nombre;
 		for(var i=0;i<$scope.selectTipos.length;i++){
-			if($scope.selectTipos[i].nombre===response.tipo){
+			if($scope.selectTipos[i].id===response.id){
 				$scope.tipoModal=$scope.selectTipos[i].nombre;
 			}
 		}
@@ -122,7 +130,13 @@ $scope.editarModal=function(idReservable){
 		$scope.estadoModal=response.estado;
 		$scope.descripcionModal=response.descripcion;
 		$scope.editarReservable(idReservable);
+	});}
+	else if(index===2){
+		$http.get("webservice/TipoReservable/"+idReservable).success(function(response){
+		$scope.nombreModal=response.nombre;
+		$scope.editarTipoReservable(idReservable);
 	});
+	}
 };
 
 $scope.editarReservable=function(idReservable){
@@ -143,6 +157,22 @@ $scope.editarReservable=function(idReservable){
 		$scope.estadoModal="";
 		$scope.descripcionModal="";
 		$http.get("webservice/Reservable").success(function(response){$scope.equipos=response;});
+	});
+
+	});
+	
+};
+
+$scope.editarTipoReservable=function(idReservable){
+	$('#Modal4').modal({backdrop:false}).one('click', '#confirm', function(){
+		
+		var objeto={
+		"nombre": $scope.nombreModal,
+	};
+
+	$http.put("webservice/TipoReservable/update/"+idReservable, objeto).success(function(response){
+		$scope.nombreModal="";
+		$http.get("webservice/TipoReservable").success(function(response){$scope.selectTipos=response;});
 	});
 
 	});

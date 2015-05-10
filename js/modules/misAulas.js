@@ -85,7 +85,7 @@ $scope.consultarAula= function(){
     horaF.setHours(h2.getHours());
     horaF.setMinutes(h2.getMinutes());
     
-   
+   if(fech >= new Date()){
       $http.get("webservice/get_user").success(function(response){$scope.user= response.user;
         
         objetoReserva={
@@ -97,13 +97,18 @@ $scope.consultarAula= function(){
         };
          $http.post("webservice/Reserva/consultaAula",objetoReserva).success(function(response) {$scope.aulas = response;});
          
-       });
+       });}
+      else {
+        $scope.fecha="";
+        alert("La fecha es anterior a la fecha de hoy");
+      }
 };
 $scope.$watch('fecha',function() {$scope.validacion();});
 $scope.$watch('horaInicio',function() {$scope.validacion();});
 $scope.$watch('horaEntrega',function() {$scope.validacion();});
 
 $scope.validacion =function(){
+  $scope.aulas=[];
   if(typeof $scope.horaInicio !== "undefined" &&typeof $scope.horaEntrega !=="undefined" && typeof $scope.fecha !=="undefined"){
     var h1=new Date("January 01, 2015 "+$scope.horaInicio+":00");
     var h2=new Date("January 01, 2015 "+$scope.horaEntrega+":00");

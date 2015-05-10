@@ -30,6 +30,7 @@ $scope.$on('$viewContentLoaded', function() {
   }).error(function(response, status, header, config){  
           console.log("error en obtencion de usuario conectado");  
   });
+ 
 });
 
 
@@ -68,7 +69,7 @@ $scope.modalConfirmacion = function(id){
 
 $scope.consultarEquipo= function(){
   $scope.btnConsultar=true;
-  
+  $scope.btnFecha=false;
     var h1=new Date("January 01, 2015 "+$scope.horaInicio+":00");
     var h2=new Date("January 01, 2015 "+$scope.horaEntrega+":00");
     var fech=$scope.fecha.split("-");
@@ -82,6 +83,7 @@ $scope.consultarEquipo= function(){
     horaF.setHours(h2.getHours());
     horaF.setMinutes(h2.getMinutes());
     
+    if(fech >= new Date()){
    
       $http.get("webservice/get_user").success(function(response){$scope.user= response.user;
         
@@ -94,7 +96,11 @@ $scope.consultarEquipo= function(){
         };
          $http.post("webservice/Reserva/consultaEquipo",objetoReserva).success(function(response) {$scope.equipos = response;});
          $http.get("webservice/Reserva/findTiposEquipos").success(function(response){$scope.tiposEquipos=response;});
-       });
+       });}
+      else {
+        $scope.fecha="";
+        alert("La fecha es anterior a la fecha de hoy");
+      }
 
 };
 
@@ -102,7 +108,9 @@ $scope.$watch('fecha',function() {$scope.validacion();});
 $scope.$watch('horaInicio',function() {$scope.validacion();});
 $scope.$watch('horaEntrega',function() {$scope.validacion();});
 
+
 $scope.validacion =function(){
+  $scope.equipos=[];
   if(typeof $scope.horaInicio !== "undefined" &&typeof $scope.horaEntrega !=="undefined" && typeof $scope.fecha !=="undefined"){
     var h1=new Date("January 01, 2015 "+$scope.horaInicio+":00");
     var h2=new Date("January 01, 2015 "+$scope.horaEntrega+":00");

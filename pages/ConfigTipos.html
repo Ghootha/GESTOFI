@@ -140,14 +140,14 @@
                               <th>Nombre</th>
                               <th>Tipo</th>
                               <th>Código</th>
-                              <th>Estado</th>
+                              <th>Estado fisico</th>
                               <th>Descripción</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr data-ng-repeat="equipo in equipos">
                               <td >
-                                <button class="btn btn-warning " data-ng-click="editarModal(equipo.id)">
+                                <button class="btn btn-warning " data-ng-click="editarModal(equipo.id,1)">
                                   <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
                               </td>
@@ -156,6 +156,32 @@
                               <td>{{ equipo.codigo }}</td>
                               <td>{{ equipo.estado }}</td>
                               <td>{{ equipo.descripcion }}</td>
+                            </tr>
+
+                          </tbody>
+                        </table>
+                    </form>
+                </div>
+
+                <div class="tab-pane fade" id="editarTipo">
+                    <form>
+                        <table class="table table-striped ">
+                          <thead>
+                            <tr class="info">
+                              <th>Editar</th>
+                              <th>Nombre</th>
+                              
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr data-ng-repeat="tipoReservable in selectTipos">
+                              <td >
+                                <button class="btn btn-warning " data-ng-click="editarModal(tipoReservable.id,2)">
+                                  <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                              </td>
+                              <td>{{ tipoReservable.nombre }}</td>
+                          
                             </tr>
 
                           </tbody>
@@ -333,7 +359,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Estado:</label>
+                                        <label class="col-sm-2 control-label">Estado fisico:</label>
                                         <div class="col-sm-10">
                                             <input type="text" data-ng-model="estadoModal"  placeholder="Estado">
                                         </div>
@@ -357,6 +383,38 @@
                     </div>
                 </div> 
 <!-- FINALIZA MODAL 1 -->
+
+              <!-- MODAL 4 -->
+                <div id="Modal4" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel"></h4>
+                            </div>
+
+                            <div class="modal-body">
+                                <h3>Editar tipo reservable:</h3>
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Nombre:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" data-ng-model="nombreModal"  placeholder="Nombre">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <button class="btn btn-success" data-ng-disabled="incomplete2" id="confirm" ng-click="editarTipoReservable(tipoReservable.id)" data-dismiss="modal">
+                                    <span class="glyphicon glyphicon-save"></span>  Guardar Cambios
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
 
          <!-- MODAL 2 -->
                 <div id="Modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
