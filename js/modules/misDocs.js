@@ -10,6 +10,9 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
 
         $http.get("webservice/TipoDocumento/findTipoDocByRole") //SE usa para cargar el combobox de tipso de documentos, dependiendo del role no muestra tipos que no puede crear
             .success(function(response) {$scope.tiposDocumento = response;});
+
+        $http.get("webservice/Role") //SE usa para cargar el combobox de tipso de documentos, dependiendo del role no muestra tipos que no puede crear
+            .success(function(response) {$scope.roles = response;});
     });
 
   
@@ -24,11 +27,15 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
 
     $scope.mensajeExitoSubidaDoc=false;
     $scope.mensajeFallidoSubidaDoc=false;
+    $scope.mensajeErrorCodigo=false;
     $scope.error = false;
     $scope.incomplete = true;
     $scope.incomplete2 = true;
     $scope.botonSubir = false;
+    $scope.dragable = false;
+    $scope.codigofield = false;
     $scope.verDoc="";
+
 
     $scope.abrirDoc = function(id) {
         for(var i = 0; i<$scope.docs.length; i++) {
@@ -41,19 +48,39 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
 
      $scope.incomplete = false;
     
-     $scope.editDoc = function(id) { 
-         $scope.edit = true;
+     $scope.editDoc = function(id) {
+    
          for(var i = 0; i<$scope.docs.length; i++) {
                 if($scope.docs[i].id === id) {
                     $scope.fecha = $scope.docs[i].fecha;
                     $scope.nombre = $scope.docs[i].nombre;
                     $scope.codigo = $scope.docs[i].codigo;
-                    $scope.Role = $scope.docs[i].Role;                    
+                    $scope.getObjetoRole($scope.docs[i].Role);
+                    $scope.getObjetoTipo($scope.docs[i].tipo);                                       
                     $scope.actualizaDoc(id);    
                 }
          }     
      };
 
+     $scope.getObjetoRole = function(nombreRole) { 
+         
+         for(var i = 0; i<$scope.roles.length; i++) {
+                if($scope.roles[i].nombre === nombreRole) {                    
+                    $scope.Role= $scope.roles[i];                       
+                }
+         }     
+     };
+
+     $scope.getObjetoTipo = function(nombreTipo) { 
+         
+         for(var i = 0; i<$scope.tiposDocumento.length; i++) {
+                if($scope.tiposDocumento[i].nombre === nombreTipo) {                    
+                    $scope.tipo= $scope.tiposDocumento[i];                       
+                }
+         }     
+     };
+
+    
      $scope.actVersionDoc = function(id) {  
         $scope.idDoctoUpdate=id;        
         $('#Modal2').modal({backdrop:false});        
@@ -68,7 +95,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
                 if($scope.docs[i].id === id) {
                     objetoJSON = {
                         "nombre": $scope.nombre,            
-                        "Role": $scope.Role,
+                        "Role": $scope.Role.nombre,
                         "tipo": $scope.tipo.nombre,
                         "seguridad": $scope.tipo.seguridad,
                         "codigo": $scope.codigo,
@@ -217,7 +244,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
             var nombre = response.files[0].filename;
 
             var nombreSliced = nombre.slice(0,-4);
-            var nombreHash = /[^\\]*$/.exec(ruta)[0];
+            var nombreHash = /[^\/]*$/.exec(ruta)[0];
 
             $scope.SubirDoc(nombreHash, nombreSliced);
             
@@ -310,17 +337,16 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
 
 
 
-    $scope.$watch('fecha',function() {$scope.test();});
+    //$scope.$watch('fecha',function() {$scope.test();});
     $scope.$watch('nombre',function() {$scope.test();});
     $scope.$watch('codigo', function() {$scope.test();});    
     $scope.$watch('Role', function() {$scope.test();});
-    $scope.$watch('seguridad', function() {$scope.test();});
+    //$scope.$watch('seguridad', function() {$scope.test();});
     $scope.$watch('tipo', function() {$scope.test();});    
 
-    $scope.test = function() {        
-        if ($scope.edit && (!$scope.fecha.length || !$scope.nombre.length ||
-            !$scope.codigo.length || !$scope.Role.length || !$scope.seguridad.length ||
-            !$scope.tipo.length)) {
+    $scope.test = function() { 
+
+        if ($scope.nombre == null || $scope.nombre == "") {
             $scope.incomplete = true;
         }else{ $scope.incomplete = false; }
     };
@@ -333,10 +359,46 @@ $scope.$watch('tipo',function() {$scope.test2();});
     $scope.test2 = function() {       
         $scope.incomplete2 = false;
         $scope.botonSubir = true;
+        $scope.dragable=true;
+        $scope.codigofield=true;
         if ( $scope.tipo == null ) {
             $scope.incomplete2 = true;
             $scope.botonSubir = false;
+            $scope.dragable=false;
+            $scope.codigofield=false;
         }
+    };
+
+$scope.$watch('codigo',function() {$scope.test3();});
+   
+
+    $scope.test3 = function() {  
+        if($scope.codigo != null){
+            $scope.incomplete2 = true;
+            $scope.dragable = false;
+
+            var objetoJSON={
+                "where":{
+                    "codigo":$scope.codigo
+                }
+            };
+
+            $http.post("webservice/Documento/find", objetoJSON).success(function(response) {
+                if(response.length != 0){
+                    $scope.mensajeErrorCodigo=true; 
+                    $scope.botonSubir = false;                                       
+                }else{
+                    $scope.mensajeErrorCodigo=false;
+                    $scope.botonSubir = true; 
+                }
+
+            });
+        }
+        if($scope.codigo == "" && $scope.tipo != null){
+            $scope.incomplete2 = false;
+            $scope.dragable = true;
+        }
+
     };
 
 

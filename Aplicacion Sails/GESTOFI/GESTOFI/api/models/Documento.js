@@ -21,7 +21,8 @@ module.exports = {
           required:true
       },
       codigo:{
-        type:'string'
+        type:'string',
+        unique: true
       },
       Role: {
         type:'string',

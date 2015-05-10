@@ -237,31 +237,32 @@
                                             <tbody>
                                                 <tr>
                                                     <td>Nombre</td>
-                                                    <td><input type="text" ng-model="nombreTipoDoc"/></td>
+                                                    <td><div class="col-sm-8"><input class="form-control" type="text" ng-model="nombreTipoDoc"/></div></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Seguridad</td>
                                                     <td>
-                                                        <span class="dropdown-toggle" >
-                                                          <select data-ng-model="seguridadTipoDoc">    
+                                                        <div class="col-sm-8">
+                                                          <select class="form-control" data-ng-model="seguridadTipoDoc">    
                                                             <option>Alta</option>
                                                             <option>Media</option>
                                                             <option>Baja</option>
                                                             <option>Ninguna</option>
                                                           </select>                                                
-                                                        </span>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Clasificacion</td>
-                                                    <td><span class="dropdown-toggle" >
-                                                          <select data-ng-model="clasificacionTipoDoc">    
+                                                    <td>
+													<div class="col-sm-8">
+                                                          <select class="form-control" data-ng-model="clasificacionTipoDoc">    
                                                               <option>Investigación</option>
                                                               <option>Estudiante</option>
                                                               <option>Administrativo</option>
                                                               <option>Correo</option>
                                                           </select>                                                
-                                                        </span>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                                                                
@@ -431,8 +432,8 @@
                                 <form class="form-horizontal">
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Nombre:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" data-ng-model="nombreTipoDoc"  placeholder="Nombre">
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="text" data-ng-model="nombreTipoDoc"  placeholder="Nombre">
                                         </div>
                                     </div>
                                     <div class="form-group">

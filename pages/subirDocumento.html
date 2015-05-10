@@ -3,25 +3,31 @@
       <div class="container_12">
           <div class="wrapper">             
                     <h3>Información Del Documento a Subir</h3>                                  
-                        <div class="row clearfix">                                 
-  			 	
-                            <div class="col-md-6 column">
-                                <h3>Código del Documento</h3>
-                                <div class="sideBySide">                                        
-                                    <input type="text" ng-model="codigo"></input>
-                                </div>                                      
-                            </div>	
+                        <div class="row clearfix">  
 
                             <div class="col-md-6 column">
                                 <h3>Tipos Disponibles</h3>
                                 <div class="sideBySide">
                                     <div class="left"> 
-                                        <span class="css3-metro-dropdown">
-                                            <select ng-model="tipo" ng-options="tipo.nombre for tipo in tiposDocumento"></select>
+                                        <span class="col-sm-8">
+                                            <select class="form-control" ng-model="tipo" ng-options="tipo.nombre for tipo in tiposDocumento"></select>
                                         </span>
                                     </div>                                        
                                 </div>                                      
-                            </div>              
+                            </div>
+
+                            <div class="col-md-4 column">
+                                <h3>Código del Documento</h3>
+                                <div class="sideBySide"> 
+                                                                        
+                                      <input class="form-control" type="text" ng-model="codigo" ng-show="codigofield" class="ng-hide"></input>
+                                       
+                                </div>
+                                <br> 
+                                <h4 ng-show="mensajeErrorCodigo">Codigo en uso</h4>                                     
+                            </div>
+
+                                        
                         </div>
                     <br>
                     <br>
@@ -39,11 +45,11 @@
                                            ng-multiple="false" ng-accept="'*.pdf,*.jpg,*.png'" ng-model-rejected="rejFiles" 
                                            tabindex="0" ng-show="botonSubir" class="ng-hide">Adjuntar una Imagen o PDF</div><br/>
                                     <button ng-file-select ng-model="files" 
-                                            ng-multiple="true" class="btn btn-success" data-ng-disabled="error || incomplete2">Adjuntar cualquier archivo</button>
+                                            ng-multiple="true" class="btn btn-success"  data-ng-disabled="incomplete2">Adjuntar cualquier archivo</button>
                                 </div>
                                 <div ng-file-drop ng-file-select ng-model="files" ng-model-rejected="rejFiles"
                                     drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
-                                    ng-multiple="true" allow-dir="true" ng-accept="'image/*,application/pdf'" ng-show="botonSubir" class="ng-hide">
+                                    ng-multiple="true" allow-dir="true" ng-accept="'image/*,application/pdf'" ng-show="dragable" class="ng-hide">
                                         Soltar imágenes o archivos PDF<div>O click para Seleccionar</div>
                                 </div>
                                 <div ng-no-file-drop class="drop-box">File Farg&Drop not supported on your browser</div>
