@@ -5,28 +5,27 @@
                     <h3>Información Del Documento a Subir</h3>                                  
                         <div class="row clearfix">  
 
-                            <div class="col-md-6 column">
+                            <div class="col-md-4 column">
                                 <h3>Tipos Disponibles</h3>
                                 <div class="sideBySide">
                                     <div class="left"> 
-                                        <span class="col-sm-8">
+                                        
                                             <select class="form-control" ng-model="tipo" ng-options="tipo.nombre for tipo in tiposDocumento"></select>
-                                        </span>
+                                        
                                     </div>                                        
                                 </div>                                      
                             </div>
 
                             <div class="col-md-4 column">
                                 <h3>Código del Documento</h3>
-                                <div class="sideBySide"> 
-                                                                        
+                                <div class="sideBySide">                                                                        
                                       <input class="form-control" type="text" ng-model="codigo" ng-show="codigofield" class="ng-hide"></input>
-                                       
                                 </div>
                                 <br> 
                                 <h4 ng-show="mensajeErrorCodigo">Codigo en uso</h4>                                     
                             </div>
-
+                            <!-- <span class="css3-metro-dropdown">
+                                            <select ng-model="tipo" ng-options="tipo.nombre for tipo in tiposDocumento"></select> -->
                                         
                         </div>
                     <br>
