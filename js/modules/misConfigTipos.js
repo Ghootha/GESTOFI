@@ -84,10 +84,12 @@ $scope.agregarTipo=function(){
 	$http.post("webservice/TipoReservable/create",objeto).success(function(response){
 		$scope.selectTipos.push(response);
 		$scope.nomNuevoTipo="";
-		alert("Tipo creado");
+		bootbox.alert("Tipo creado");
+		//alert("Tipo creado");
 	});}
 	else{
-		alert("Espacio de nombre esta vacio");
+		bootbox.alert("Espacio de nombre esta vacio");
+		//alert("Espacio de nombre esta vacio");
 	}
 
 };
@@ -109,10 +111,12 @@ $scope.agregarReservable=function(){
 		$scope.inputDescripcion="";
 		$scope.inputCodigo="";		
 		$scope.equipos.push(response);
-		alert("Reservable creado");
+		bootbox.alert("Reservable creado");
+		//alert("Reservable creado");
 	});}
 	else{
-		alert("Existen espacios con datos incorrectos");
+		bootbox.alert("Existen espacios con datos incorrectos");
+		//alert("Existen espacios con datos incorrectos");
 	}
 };
 
@@ -260,7 +264,8 @@ $scope.checkOption=function(){
  $scope.cargarArchivo=function(nombre){
  	$scope.btnFile=false;
  	$scope.selectPlantilla=false;
- 	alert("subida del archivo"+" "+nombre+" "+"exitoso");
+ 	bootbox.alert("subida del archivo"+" "+nombre+" "+"exitoso");
+ 	//alert("subida del archivo"+" "+nombre+" "+"exitoso");
 
  };
 

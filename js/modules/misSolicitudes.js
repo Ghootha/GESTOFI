@@ -156,10 +156,11 @@ $scope.cargarSolicitud= function(dir, filename){
           "mensaje":"Ha recibido una nueva solicitud de giras o vacaciones, la puede acceder en Configuraciones > Solicitudes > Pendientes"
         };
       
-        $http.put("webservice/notificaciones/create", objetoJSON).success(function(response){alert("Se envio la notificacion")});
+        $http.put("webservice/notificaciones/create", objetoJSON).success(function(response){});
 
     });
-    alert("Solicitud enviada, la respuesta será notificada por correspondencia");
+    bootbox.alert("Solicitud enviada, la respuesta será notificada por correspondencia");
+    //alert("Solicitud enviada, la respuesta será notificada por correspondencia");
   });
 
     

@@ -100,7 +100,8 @@ $scope.consultarAula= function(){
        });}
       else {
         $scope.fecha="";
-        alert("La fecha es anterior a la fecha de hoy");
+        bootbox.alert("La fecha es anterior a la fecha de hoy");
+        //alert("La fecha es anterior a la fecha de hoy");
       }
 };
 $scope.$watch('fecha',function() {$scope.validacion();});

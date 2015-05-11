@@ -116,7 +116,8 @@ $scope.cargarFoto= function(filename){
 		"photo": filename
 	};
     $http.put("webservice/User/update/"+$scope.user.id,objetoFoto).success(function(response){
-        alert("Foto cambiada");
+        bootbox.alert("Foto editada");
+        //alert("Foto cambiada");
         $timeout(function(){
             $scope.userPhoto="http://gestofi.com/webservice/fotoPerfil/"+filename;
         });
