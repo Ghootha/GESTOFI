@@ -95,7 +95,8 @@ $scope.agregarTipo=function(){
 };
 
 $scope.agregarReservable=function(){
-	if(typeof $scope.inputNombre!=="undefined" || typeof $scope.inputEstado !=="undefined" || typeof $scope.inputDescripcion!=="undefined" || typeof $scope.inputCodigo!=="undefined"){
+	
+	if(typeof $scope.inputNombre!=="undefined" && typeof $scope.inputEstado !=="undefined" && typeof $scope.inputDescripcion!=="undefined" && typeof $scope.inputCodigo!=="undefined"){
 	var objeto={
 		"nombre": $scope.inputNombre,
 		"tipo": $scope.tipoSelect,

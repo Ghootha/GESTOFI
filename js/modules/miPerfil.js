@@ -116,10 +116,11 @@ $scope.cargarFoto= function(filename){
 		"photo": filename
 	};
     $http.put("webservice/User/update/"+$scope.user.id,objetoFoto).success(function(response){
-        bootbox.alert("Foto editada");
+       
         //alert("Foto cambiada");
         $timeout(function(){
             $scope.userPhoto="http://gestofi.com/webservice/fotoPerfil/"+filename;
+            bootbox.alert("Foto editada");
         });
     });
 
@@ -180,6 +181,7 @@ $scope.cargarFoto= function(filename){
     });
       
     $scope.onSuccessLoadFile = function(response){
+            
             var nombreSliced = "UserPhoto"+$scope.user.id+".png";
             $scope.cargarFoto(nombreSliced);
  

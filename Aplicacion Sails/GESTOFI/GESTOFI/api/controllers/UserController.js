@@ -20,5 +20,20 @@ module.exports = {
         files: files
       });
     });
+  },
+
+  getSeguridadAltaUsers: function  (req, res) {
+    User.find({role:['Director','Subdirector','Asistente Administrativa']}).exec(function(err,usuarios){
+
+      var nombres=[];
+
+      for(var i=0; i<usuarios.length; i++){
+        nombres[i]=usuarios[i].fullname;
+      }
+
+      res.json(nombres);
+      //console.log(res.json(nombres));
+
+    });
   }
 };

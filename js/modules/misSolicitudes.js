@@ -29,7 +29,7 @@ $scope.$on('$viewContentLoaded', function() {
     }).error(function(response, status, header, config){  
             console.log("error en obtencion de usuario conectado");  
     });
-
+    
     $http.get("webservice/Solicitudes/findSolicitudes").success(function(response){$scope.solicitudes=response;});
 });
 
@@ -144,12 +144,15 @@ $scope.cargarSolicitud= function(dir, filename){
       "ruta": dir
 
     };
+
+    $http.get("webservice/User/getSeguridadAltaUsers").success(function(response){$scope.seguridadAlta=response;
     $http.put("webservice/Solicitudes/create",objetoSolicitud).success(function(response){
       var objetoJSON;
         
+        for(var i=0;i<$scope.seguridadAlta.length;i++){
         objetoJSON ={
           
-          "duenno":"Director",//buscar y poner nombre
+          "duenno":$scope.seguridadAlta[i],//buscar y poner nombre
           "emisor":$scope.user.fullname,
           "titulo":"Solicitud Pendiente",
           "tipo":"Solicitud de Gira/Vacaciones",
@@ -157,11 +160,11 @@ $scope.cargarSolicitud= function(dir, filename){
         };
       
         $http.put("webservice/notificaciones/create", objetoJSON).success(function(response){});
-
+      }
     });
     bootbox.alert("Solicitud enviada, la respuesta será notificada por correspondencia");
     //alert("Solicitud enviada, la respuesta será notificada por correspondencia");
-  });
+  });});
 
     
 
