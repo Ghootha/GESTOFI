@@ -44,12 +44,14 @@ $scope.$watch('user',function() {$scope.test();});
 
                             if( seguridad == 'Media'){  
                             $scope.hideConfiguracion = true;
+                            $scope.hideControlReserva=true;
                             }
 
                             if( seguridad  == 'Baja'){ 
                             $scope.hideConfiguracion = true;
                             $scope.hideSolicitudEquipo = true;
                             $scope.hideSolicitudAula = true;
+                            $scope.hideControlReserva=true;
                             }
 
                             if( seguridad  == 'Ninguna'){ 
@@ -58,6 +60,7 @@ $scope.$watch('user',function() {$scope.test();});
                             $scope.hideSolicitudes = true;
                             $scope.hideAgenda = true;
                             $scope.hideCorrespondencia = true; 
+                            $scope.hideControlReserva=true;
                             }
                         }
                     }  
