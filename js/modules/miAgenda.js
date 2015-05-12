@@ -129,7 +129,7 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 								"title": $scope.title,
 								"autor":  $scope.user.fullname,
 								"lugar": $scope.lugar,
-								"invitado": auxinvitado,
+								//"invitado": auxinvitado,
 								"descripcion": $scope.descripcion,
 								"start": inicio,
 								"end": ffinal
@@ -204,11 +204,8 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 						$scope.title= calEvent.title;
 						$scope.autor= calEvent.autor;
 						$scope.lugar= calEvent.lugar;
-						
-																				
+																								
 						$scope.invitado= [{ text: calEvent.invitado }];
-						
-						
 						$scope.descripcion= calEvent.descripcion;
 						$scope.start= calEvent.start.format('DD-MM-YYYY');
 						$scope.end= calEvent.end.format('DD-MM-YYYY');
