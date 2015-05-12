@@ -58,7 +58,6 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 			var objetoJSON;
 			var invitados=$scope.invitadoA;
 			var auxinvitado=",";
-			
 			invitados.forEach(function(entry){		
 				auxinvitado=auxinvitado+entry.fullname+",";	
 				
@@ -72,7 +71,9 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 					"mensaje":$scope.descripcionA
 				};
 			
-				$http.put("webservice/notificaciones/create", objetoJSON).success(function(response){alert("Se envio la notificacion")});$route.reload();
+				$http.put("webservice/notificaciones/create", objetoJSON).success(function(response){});
+				$route.reload();
+				
 			});	
 			
 			
@@ -101,6 +102,7 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
              $('#calendar').fullCalendar('renderEvent', objetoJSON, true);
              $('#modalform').trigger("reset");
 		    $('#Modal3').modal('hide');
+			bootbox.alert("Se ha creado la actividad correctamente");
 		 };
 		 
 		
@@ -118,16 +120,16 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 								var f=$scope.end.split("-");
 								var ffinal=new Date(f[2],f[1]-1,f[0],w[0]-6,w[1],"00");
 							var invitados=$scope.invitado;
-							var auxinvitado="";
+							var auxinvitado=",";
 							invitados.forEach(function(entry){		
-								auxinvitado=auxinvitado+entry.username+",";		
+								auxinvitado=auxinvitado+entry.fullname+",";		
 							});											
 																												
 							objetoJSON = {
 								"title": $scope.title,
 								"autor":  $scope.user.fullname,
 								"lugar": $scope.lugar,
-								"invitado": $scope.auxinvitado,
+								"invitado": auxinvitado,
 								"descripcion": $scope.descripcion,
 								"start": inicio,
 								"end": ffinal
@@ -145,6 +147,7 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 						});	
 						location.href="#agenda"; 
 						$('#Modal2').modal('hide');	
+						bootbox.alert("Se ha editado la actividad correctamente");
 					}
           } 
   };
@@ -169,7 +172,8 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 					});
 			
 			location.href="#agenda"; 
-			$('#Modal2').modal('hide');			 
+			$('#Modal2').modal('hide');	
+			bootbox.alert("Se ha eliminado la actividad correctamente");
 			});
 			
 		 };
@@ -192,14 +196,19 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 				events:data,
 				
 				eventClick: function(calEvent, jsEvent, view) {
-						
+													
+										
 					$scope.$apply(function(){
 						$scope.incomplete = true;
 						$scope.id=calEvent.id;
 						$scope.title= calEvent.title;
 						$scope.autor= calEvent.autor;
 						$scope.lugar= calEvent.lugar;
-						$scope.invitado= calEvent.invitado;
+						
+																				
+						$scope.invitado= [{ text: calEvent.invitado }];
+						
+						
 						$scope.descripcion= calEvent.descripcion;
 						$scope.start= calEvent.start.format('DD-MM-YYYY');
 						$scope.end= calEvent.end.format('DD-MM-YYYY');
