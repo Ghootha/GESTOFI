@@ -94,28 +94,27 @@
 
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myModalLabel"></h4>
+                                <h4 class="modal-title" id="myModalLabel">Editar Usuario</h4>
                             </div>
 
                             <div class="modal-body">
-                                <h3>Editar Usuario:</h3>
                                 <form class="form-horizontal">
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Username:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" data-ng-model="username"  placeholder="Username">
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="text" data-ng-model="username"  placeholder="Username">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Nombre Completo:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" data-ng-model="fullname"  placeholder="Primer Nombre">
+                                        <div class="col-sm-5">
+                                            <input  class="form-control" type="text" data-ng-model="fullname"  placeholder="Primer Nombre">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Email:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" data-ng-model="email"  placeholder="Primer Apellido">
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="text" data-ng-model="email"  placeholder="Primer Apellido">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -145,46 +144,44 @@
 
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myModalLabel"></h4>
+                                <h4 class="modal-title" id="myModalLabel">Agregar Usuario</h4>
                             </div>
                             <div class="modal-body">
-
-                                <h3>Agregar Usuario:</h3>
 
                                 <form class="form-horizontal">
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Username:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" data-ng-model="username"  placeholder="Username">
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="text" data-ng-model="username"  placeholder="Username">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Nombre Completo:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" data-ng-model="fullname"  placeholder="Nombre Completo">
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="text" data-ng-model="fullname"  placeholder="Nombre Completo">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Email:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" data-ng-model="email" placeholder="e-mail">
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="text" data-ng-model="email" placeholder="e-mail">
                                         </div>
                                     </div>                                    
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Contraseña:</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" data-ng-model="passw1" placeholder="Contraseña">
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="password" data-ng-model="passw1" placeholder="Contraseña">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Repetir:</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" data-ng-model="passw2" placeholder="Repetir Contraseña">
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="password" data-ng-model="passw2" placeholder="Repetir Contraseña">
                                         </div>
                                     </div>                                    
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Role:</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-5">
                                            <select class="form-control" data-ng-model="role" ng-options="role.nombre for role in roles"></select>
                                         </div>                                            
                                     </div>
@@ -240,23 +237,21 @@
 
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myModalLabel"></h4>
+                                <h4 class="modal-title" id="myModalLabel">Cambiar Contraseña</h4>
                             </div>
                             <div class="modal-body">
-
-                                <h3>Cambiar Contraseña:</h3>
 
                                 <form class="form-horizontal">                                    
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Contraseña Nueva:</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" data-ng-model="passw1" placeholder="Contraseña"> 8 caracteres mínimo
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="password" data-ng-model="passw1" placeholder="Contraseña"> 8 caracteres mínimo
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Repetir Contraseña:</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" data-ng-model="passw2" placeholder="Repetir Contraseña">
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="password" data-ng-model="passw2" placeholder="Repetir Contraseña">
                                         </div>
                                     </div>                                    
                                 </form>

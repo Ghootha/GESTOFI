@@ -35,6 +35,9 @@ app.controller("userController", function($scope, $http, $timeout) {
         $http.get("webservice/User")
         .success(function(response) {$scope.users = response; });
 
+        $http.get("webservice/Role") //SE usa para cargar el combobox de tipso de documentos, dependiendo del role no muestra tipos que no puede crear
+            .success(function(response) {$scope.roles = response;});
+
     });    
     
   
@@ -59,11 +62,22 @@ app.controller("userController", function($scope, $http, $timeout) {
                     $scope.edit = false;
                     $scope.username = $scope.users[i].username;
                     $scope.fullname = $scope.users[i].fullname;
-                    $scope.email = $scope.users[i].email;                    
+                    $scope.email = $scope.users[i].email;
+                    $scope.nombre= $scope.users[i].role;
+                    $scope.getObjetoRole($scope.users[i].role)                    
                     $scope.actualizarUser(id);
                 }
             } 
     };
+
+    $scope.getObjetoRole = function(nombreRole) { 
+         
+         for(var i = 0; i<$scope.roles.length; i++) {
+                if($scope.roles[i].nombre === nombreRole) {                    
+                    $scope.role= $scope.roles[i];                       
+                }
+         }     
+     };
 
     $scope.deleteUser = function(id) {
         $('#Modal3').modal({ backdrop: false})
