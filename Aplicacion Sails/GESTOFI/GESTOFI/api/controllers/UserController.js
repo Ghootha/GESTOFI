@@ -10,30 +10,36 @@ module.exports = {
 	upload: function  (req, res) {
     
     var uploadPath = '../../assets/fotoPerfil';  
-    console.log(req.param('nomDoc'));
+    //console.log(req.param('nomDoc'));
     req.file('documento').upload({ dirname: uploadPath, saveAs:req.param('nomDoc')},function (err, files) {
+      
       if (err)
         return res.send(500, err);
 
-      return res.json({
-        message: files.length + ' file(s) uploaded successfully!',
-        files: files
-      });
-    });
-  },
-
-  getSeguridadAltaUsers: function  (req, res) {
-    User.find({role:['Director','Subdirector','Asistente Administrativa']}).exec(function(err,usuarios){
-
-      var nombres=[];
-
-      for(var i=0; i<usuarios.length; i++){
-        nombres[i]=usuarios[i].fullname;
+      else{
+          return res.json({
+          message: files.length + ' file(s) uploaded successfully!',
+          files: files
+      });   
       }
-
-      res.json(nombres);
-      //console.log(res.json(nombres));
-
     });
+    
+  },
+  getSeguridadAltaUsers: function  (req, res) {
+    
+    Role.find({seguridad:"Alta"}).exec(function(err, roles){
+      var nombresRoles=[];
+      for(var i=0; i<roles.length;i++){
+        nombresRoles[i]=roles[i].nombre;
+      }
+      User.find({role:nombresRoles}).exec(function(err,usuarios){
+        var nombres=[];
+          for(var i=0; i<usuarios.length; i++){
+            nombres[i]=usuarios[i].fullname;
+          }
+        res.json(nombres);
+      });});
+
+
   }
 };

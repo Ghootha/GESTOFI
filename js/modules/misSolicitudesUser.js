@@ -15,14 +15,21 @@ app.controller("solicitudesUserController", function($scope, $http) {
                 }else{     
                   $scope.user= response.user;  
                   var roleLogged = response.user.role;
+                  /////NO SE DONDE DEBO UBICAR ESTO PARA QUE SIEMPRE SIRVA
                   objetoPendientes={
-                    "usuario": response.user.username,
+                    "usuario": $scope.user.username,
                     "lista":1
                   };
                   objetoHistorial={
-                    "usuario": response.user.username,
+                    "usuario": $scope.user.username,
                     "lista":2
-                  };  
+                  }; 
+                  $http.post("webservice/ReservaEquipo/findReservasUsuario",objetoPendientes).success(function(response){
+                    $scope.reservasPendientes=response;
+                    $http.post("webservice/ReservaEquipo/findReservasUsuario",objetoHistorial).success(function(response){$scope.reservasHistorial=response;
+                    });
+                  });
+                  ///////////////////// 
                   $http.get("webservice/Role").success(function(response){
                           
                           var roles = response;
@@ -44,10 +51,9 @@ app.controller("solicitudesUserController", function($scope, $http) {
               console.log("error en obtencion de usuario conectado");  
       });
 
-      $http.post("webservice/ReservaEquipo/findReservasUsuario",objetoPendientes).success(function(response){$scope.reservasPendientes=response;
-        $http.post("webservice/ReservaEquipo/findReservasUsuario",objetoHistorial).success(function(response){$scope.reservasHistorial=response;});
-      });
+      
     });
+      
 
     $scope.modalConfirmacion = function(objeto){
         $scope.nombre=objeto.nombre;

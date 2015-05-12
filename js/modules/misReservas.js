@@ -38,8 +38,9 @@ $scope.$on('$viewContentLoaded', function() {
 	}).error(function(response, status, header, config){  
 	        console.log("error en obtencion de usuario conectado");  
 	});	
+	
 });
-
+				
 $scope.edit = true;
 $scope.error = false;
 $scope.incomplete = false; 

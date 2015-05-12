@@ -48,7 +48,7 @@ $scope.apartarEquipo = function(idEquipo) {
         "idReservable" : idEquipo,
         
       };
-
+      
       $http.post("webservice/ReservaEquipo/create",objetoReservaEquipo).success(function(response){
         $scope.horaInicio="";
         $scope.horaEntrega="";
@@ -83,7 +83,7 @@ $scope.consultarEquipo= function(){
     horaF.setHours(h2.getHours());
     horaF.setMinutes(h2.getMinutes());
     
-    if(fech >= new Date()){
+    if(fech > new Date()){
    
       $http.get("webservice/get_user").success(function(response){$scope.user= response.user;
         

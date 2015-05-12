@@ -34,13 +34,13 @@
 				          
                   <tbody>
                     <tr data-ng-repeat="reserva in reservas |orderBy:'horaInicio'">
-                      <td>
-                        <span class="dropdown-toggle" >
-                          <select ng-init="mostrarEstado(reserva.estado_reserva, reserva.ID)" ng-model="nombresSelect[reserva.ID]" ng-options="opc.id as opc.nombre for opc in opcs" 
+                      
+                        <div class="col-sm-5" ><td>
+                          <select class="form-control" ng-init="mostrarEstado(reserva.estado_reserva, reserva.ID)" ng-model="nombresSelect[reserva.ID]" ng-options="opc.id as opc.nombre for opc in opcs" 
                           ng-change="setEstado(opcs[nombresSelect[reserva.ID]-1], reserva.idReserva)">
-                          </select>
-                        </span>
-                    </td>
+                          </select></td>
+                        </div>
+                    
                       <td>{{reserva .usuario}}</td>
 					            <td>{{reserva .nombre}}</td>
                       <td>{{reserva .codigo}}</td>

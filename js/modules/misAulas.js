@@ -85,7 +85,7 @@ $scope.consultarAula= function(){
     horaF.setHours(h2.getHours());
     horaF.setMinutes(h2.getMinutes());
     
-   if(fech >= new Date()){
+   if(fech > new Date()){
       $http.get("webservice/get_user").success(function(response){$scope.user= response.user;
         
         objetoReserva={
