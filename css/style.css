@@ -587,3 +587,10 @@ width: 700px;
             max-width: 900px;
             margin: 0 auto;
         }
+
+/************ navs tabs de documento consulta ************/
+
+#nav-tabs-docs>li>a {
+	padding: 14px 73px;
+  	font-size: larger;
+}
