@@ -57,8 +57,8 @@
         <h2>Agregar Tipo Reservable</h2>
         <div class="col-md-6 column">
             <br>
-            <div class="sideBySide">                                        
-                <input type="text" ng-model="nomNuevoTipo" placeholder="Nombre"></input>
+            <div class="col-sm-8">                                        
+                <input class="form-control" type="text" ng-model="nomNuevoTipo" placeholder="Nombre"></input>
             </div>                                      
         </div>
         <div class="col-md-6 column">
@@ -94,12 +94,12 @@
                                             <tbody>
                                                 <tr>
                                                     <td>Nombre</td>
-                                                    <td><input type="text" ng-model="inputNombre"/></td>
+                                                    <td><div class="col-sm-8"><input class="form-control" type="text" ng-model="inputNombre"/></div></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Tipo</td>
                                                     <td>
-                                                        <div class="col-sm-5" >
+                                                        <div class="col-sm-8" >
                                                           <select class="form-control" ng-model="tipoSelect" ng-options="opc.nombre as opc.nombre for opc in selectTipos" 
                                                           ng-change="">
                                                           </select>                                               
@@ -108,15 +108,15 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Estado fisico</td>
-                                                    <td><input type="text" ng-model="inputEstado"/></td>
+                                                    <td><div class="col-sm-8"><input class="form-control" type="text" ng-model="inputEstado"/></div></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Descripcion</td>
-                                                    <td><input type="text" ng-model="inputDescripcion"/></td>
+                                                    <td><div class="col-sm-8"><input class="form-control" type="text" ng-model="inputDescripcion"/></div></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Código</td>
-                                                    <td><input type="text" ng-model="inputCodigo"/></td>
+                                                    <td><div class="col-sm-8"><input class="form-control" type="text" ng-model="inputCodigo"/></div></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -338,8 +338,8 @@
                                 <form class="form-horizontal">
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Nombre:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" data-ng-model="nombreModal"  placeholder="Nombre">
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="text" data-ng-model="nombreModal"  placeholder="Nombre">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -353,20 +353,20 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Codigo:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" data-ng-model="codigoModal"  placeholder="Codigo">
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="text" data-ng-model="codigoModal"  placeholder="Codigo">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Estado fisico:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" data-ng-model="estadoModal"  placeholder="Estado">
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="text" data-ng-model="estadoModal"  placeholder="Estado">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Descripcion:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" data-ng-model="descripcionModal"  placeholder="Descripcion">
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="text" data-ng-model="descripcionModal"  placeholder="Descripcion">
                                         </div>
                                     </div>
                                 </form>
@@ -398,8 +398,8 @@
                                 <form class="form-horizontal">
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Nombre:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" data-ng-model="nombreModal"  placeholder="Nombre">
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="text" data-ng-model="nombreModal"  placeholder="Nombre">
                                         </div>
                                     </div>
                                 </form>

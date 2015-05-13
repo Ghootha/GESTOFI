@@ -45,6 +45,7 @@ $scope.$watch('user',function() {$scope.test();});
                             if( seguridad == 'Media'){  
                             $scope.hideConfiguracion = true;
                             $scope.hideControlReserva=true;
+                            $scope.hideRespuestaSolicitudes=true;
                             }
 
                             if( seguridad  == 'Baja'){ 
@@ -52,6 +53,7 @@ $scope.$watch('user',function() {$scope.test();});
                             $scope.hideSolicitudEquipo = true;
                             $scope.hideSolicitudAula = true;
                             $scope.hideControlReserva=true;
+                            $scope.hideRespuestaSolicitudes=true;
                             }
 
                             if( seguridad  == 'Ninguna'){ 
@@ -61,6 +63,7 @@ $scope.$watch('user',function() {$scope.test();});
                             $scope.hideAgenda = true;
                             $scope.hideCorrespondencia = true; 
                             $scope.hideControlReserva=true;
+                            $scope.hideRespuestaSolicitudes=true;
                             }
                         }
                     }  
