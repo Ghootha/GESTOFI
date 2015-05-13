@@ -5,58 +5,70 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-module.exports = {
+module.exports = {	
 
-	findDocByRole:function(req,res){
-    
-    var roleLogged = req.user.role;
+    findDocByRole: function(req, res){
 
-    if(roleLogged  == 'Director' || roleLogged  == 'Subdirector' || roleLogged  == 'Asistente Administrativa' ){
-		Documento.find({})
-		        .exec(function(err,user){
+    	var roleLogged = req.user.role; 
+		
+		Role.findOne({ nombre: roleLogged}).exec(function (err, role){
+			var seguridadRole= role.seguridad;
+			
+			if(seguridadRole =='Alta'){
+				Documento.find( {} )
+				.exec(function(err,user){
+					  if(err)
+					    res.json({error:err});
+					  if(user === undefined)
+					    res.json({notFound:true});
+					  else
+					    res.json(user);
+				});
+			}
+			if (seguridadRole == 'Media') {
+				Documento.find( { seguridad: { '!': 'Alta' }} )
+				.exec(function(err,user){
+					  if(err)
+					    res.json({error:err});
+					  if(user === undefined)
+					    res.json({notFound:true});
+					  else
+					    res.json(user);
+				});
 
-		          if(err)
-		            res.json({error:err});
-		          if(user === undefined)
-		            res.json({notFound:true});
-		          else
-		            res.json(user);
-		        });
-		  }
-    
+			}
+			
+			if (seguridadRole == 'Baja') {
+				Documento.find( { seguridad: { '!' : ['Alta', 'Media'] } } )
+				.exec(function(err,user){
+					  if(err)
+					    res.json({error:err});
+					  if(user === undefined)
+					    res.json({notFound:true});
+					  else
+					    res.json(user);
+				});
 
-    if( roleLogged  == 'Encargado de Maestría' || roleLogged  == 'Personal Académico' ){  
+			}
 
-    	Documento.find( { seguridad: { '!': 'Alta' }} )
-		        .exec(function(err,user){
+			if(seguridadRole == 'Ninguna'){
+				Documento.find( {seguridad: seguridadRole} )
+				.exec(function(err,user){
+					  if(err)
+					    res.json({error:err});
+					  if(user === undefined)
+					    res.json({notFound:true});
+					  else
+					    res.json(user);
+				});
 
-		          if(err)
-		            res.json({error:err});
-		          if(user === undefined)
-		            res.json({notFound:true});
-		          else
-		            res.json(user);
-		        });
-		  }
+			}
 
-    
+				
+		});
 
-    if( roleLogged  == 'Secretaria' || roleLogged  == 'Recepcionista' || roleLogged  == 'Concerje' || roleLogged  == 'Estudiante' ){  
-
-    	Documento.find( { seguridad: { '!' : ['Alta', 'Media'] } } )
-		        .exec(function(err,user){
-
-		          if(err)
-		            res.json({error:err});
-		          if(user === undefined)
-		            res.json({notFound:true});
-		          else
-		            res.json(user);
-		        });
-		  }
 
     }
-
     
 	
 };
