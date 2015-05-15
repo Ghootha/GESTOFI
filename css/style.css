@@ -594,3 +594,40 @@ width: 700px;
 	padding: 14px 73px;
   	font-size: larger;
 }
+
+/************ menu lateral en conf del sistema ************/
+ 
+.prueba {
+  position: fixed;
+  z-index: 1;
+  right: 1%;
+}      
+.prueba a.active {
+  background: #096E87;
+  color: #FFF;
+}
+
+.prueba ul{
+  background: #1C6BA5;
+  padding: 5px;
+
+}
+
+.prueba li { 
+  background: url("../images/left-menu.jpg") no-repeat scroll center top transparent;
+  padding: 11px;
+  text-align: right;
+}
+
+.prueba a {
+  padding: 10.5px;
+  color: #FFF;
+  text-decoration: none;
+}
+.wrap {
+  position: relative;
+  padding: 0px 65px;
+}
+section {
+  padding: 20px 0 20px 0;
+}

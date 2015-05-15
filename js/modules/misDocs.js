@@ -373,7 +373,7 @@ $scope.$watch('codigo',function() {$scope.test3();});
    
 
     $scope.test3 = function() {  
-        if($scope.codigo != null){
+        if($scope.codigo != null && $scope.codigo != "" ){
             $scope.incomplete2 = true;
             $scope.dragable = false;
 

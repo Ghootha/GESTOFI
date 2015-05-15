@@ -60,8 +60,8 @@
                                                     </tr>
                                                   </thead>
                                                   <tbody>
-                                                    <tr data-ng-repeat="doc in docs | filter:search | filter:{clasificacion : 'Investigación'}">
-                                                        <td>{{ doc.fecha  }}</td>
+                                                    <tr data-ng-repeat="doc in docs | orderBy:'-fecha' | filter:search | filter:{clasificacion : 'Investigación'}">
+                                                        <td>{{ doc.fecha.slice(0,-14);  }}</td>
                                                         <td>{{ doc.nombre }}</td>
                                                         <td>{{ doc.codigo  }}</td>
                                                         <td>{{ doc.Role }}</td>
@@ -147,8 +147,8 @@
                                                     </tr>
                                                   </thead>
                                                   <tbody>
-                                                    <tr data-ng-repeat="doc in docs | filter:search | filter:{clasificacion : 'Estudiante'}">
-                                                        <td>{{ doc.fecha  }}</td>
+                                                    <tr data-ng-repeat="doc in docs | orderBy:'-fecha' | filter:search | filter:{clasificacion : 'Estudiante'}">
+                                                        <td>{{ doc.fecha.slice(0,-14);  }}</td>
                                                         <td>{{ doc.nombre }}</td>
                                                         <td>{{ doc.codigo  }}</td>
                                                         <td>{{ doc.Role }}</td>
@@ -188,7 +188,7 @@
                         
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Documentos De Papelería</h3>
+                                <h3 class="panel-title">Documentos Administrativos</h3>
                             </div>
 
                             <div class="panel-body">
@@ -233,8 +233,8 @@
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr data-ng-repeat="doc in docs | filter:search | filter:{clasificacion : 'Administrativo'}">
-                                            <td>{{ doc.fecha  }}</td>
+                                        <tr data-ng-repeat="doc in docs | orderBy:'-fecha' | filter:search | filter:{clasificacion : 'Administrativo'}">
+                                            <td>{{ doc.fecha.slice(0,-14);  }}</td>
                                             <td>{{ doc.nombre }}</td>
                                             <td>{{ doc.codigo  }}</td>
                                             <td>{{ doc.Role }}</td>
@@ -320,8 +320,8 @@
                                             </tr>
                                           </thead>
                                           <tbody>
-                                            <tr data-ng-repeat="doc in docs | filter:search | filter:{clasificacion : 'Correo'}">
-                                                <td>{{ doc.fecha  }}</td>
+                                            <tr data-ng-repeat="doc in docs | orderBy:'-fecha' | filter:search | filter:{clasificacion : 'Correo'}">
+                                                <td>{{ doc.fecha.slice(0,-14);  }}</td>
                                                 <td>{{ doc.nombre }}</td>
                                                 <td>{{ doc.codigo  }}</td>
                                                 <td>{{ doc.Role }}</td>
