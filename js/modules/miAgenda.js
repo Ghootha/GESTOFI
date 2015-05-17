@@ -58,6 +58,7 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 			var objetoJSON;
 			var invitados=$scope.invitadoA;
 			var auxinvitado=",";
+			
 			invitados.forEach(function(entry){		
 				auxinvitado=auxinvitado+entry.fullname+",";	
 				
@@ -76,7 +77,7 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 				
 			});	
 			
-			
+			if(ffinal > inicio){
 			
 			objetoJSON = {
 				"title": $scope.actividadA,
@@ -91,19 +92,24 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 			$http.post("webservice/Agenda/create", objetoJSON).success(function(response){
 					$timeout(function(){
 				   
-				   });                       
+				   }); 
+					
              }).error(function(response, status, header, config){  
                     $timeout(function(){
                        alert("Se ha producido un error");
                       });                          
              });
-			 
+				$('#calendar').fullCalendar('renderEvent', objetoJSON, true);
+				$('#modalform').trigger("reset");
+				$('#Modal3').modal('hide');
+				bootbox.alert("Se ha creado la actividad correctamente");
+			 }
+			 else {
+				$scope.endA="";
+				bootbox.alert("No se creo la actividad porque la fecha final es anterior a la fecha de inicio");
+			}
 					
-             $('#calendar').fullCalendar('renderEvent', objetoJSON, true);
-             $('#modalform').trigger("reset");
-		    $('#Modal3').modal('hide');
-			bootbox.alert("Se ha creado la actividad correctamente");
-		 };
+         };
 		 
 		
 	$scope.actualizaAct = function() {  
@@ -124,7 +130,8 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 							invitados.forEach(function(entry){		
 								auxinvitado=auxinvitado+entry.fullname+",";		
 							});											
-																												
+									
+							if(ffinal > inicio){
 							objetoJSON = {
 								"title": $scope.title,
 								"autor":  $scope.user.fullname,
@@ -149,6 +156,12 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 						$('#Modal2').modal('hide');	
 						bootbox.alert("Se ha editado la actividad correctamente");
 					}
+					
+			 else {
+				$scope.end="";
+				bootbox.alert("No se edito la actividad porque la fecha final es anterior a la fecha de inicio");
+			}
+			}
           } 
   };
 		 

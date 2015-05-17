@@ -33,7 +33,10 @@ $scope.$on('$viewContentLoaded', function() {
     $http.get("webservice/Solicitudes/findSolicitudes").success(function(response){$scope.solicitudes=response;});
 });
 
-
+$scope.tabs = [  
+      { link : '#home', label : 'Solicitudes Pendientes' },
+      { link : '#revisadas', label : 'Solicitudes revisadas anteriormente'}
+     ]; 
 $scope.nombre='';
 $scope.solicitante = '';
 
@@ -98,7 +101,7 @@ $scope.cambioEstado = function(id,estado) {
 				"tipo":"Solicitud",
 				"mensaje":$scope.comentario
 			};
-			$http.put("webservice/notificaciones/create", objetoJSON).success(function(response){alert("Se envió la notificación")});$route.reload();});
+			$http.put("webservice/notificaciones/create", objetoJSON).success(function(response){bootbox.alert("Se envió la notificación")});$route.reload();});
    }
    else {
 		if(estado=="Aprobar"){
@@ -111,7 +114,7 @@ $scope.cambioEstado = function(id,estado) {
 				"tipo":"Solicitud",
 				"mensaje":$scope.comentario
 			};
-			$http.put("webservice/notificaciones/create", objetoJSON).success(function(response){alert("Se envió la notificación")});
+			$http.put("webservice/notificaciones/create", objetoJSON).success(function(response){bootbox.alert("Se envió la notificación")});
 			$route.reload();});
 		}
 		else
