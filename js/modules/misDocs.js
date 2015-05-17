@@ -1,7 +1,7 @@
 
-var app = angular.module("myAppDocs", ['ngRoute', 'angularFileUpload']);
+var app = angular.module("myAppDocs", ['ngRoute', 'ngFileUpload']);
 
-app.controller("docController", function($scope, $upload, $http, $timeout, $location, $window) {
+app.controller("docController", function($scope, Upload, $http, $timeout, $location, $window) {
 
     $scope.$on('$viewContentLoaded', function () {
         
@@ -180,7 +180,7 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
             for (var i = 0; i < files.length; i++) {
                 $scope.errorMsg = null;
                 (function(file) {
-                    uploadUsing$upload(file);
+                    uploadUsingUpload(file);
                 })(files[i]);
             }
         }
@@ -203,12 +203,13 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
         }
     }
 
-    function uploadUsing$upload(file) {
+    function uploadUsingUpload(file) {
         $scope.errorMsg = null;
         $scope.generateThumb(file);     
-        file.upload = $upload.upload({
+        file.upload = Upload.upload({
                     url: 'webservice/file/upload',
-                    data: {title: 'prueba', documento: file}
+                    method: 'POST',
+                    file: file
                 });
 
         file.upload.then(function(response) {
@@ -245,51 +246,12 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
 
             var nombreSliced = nombre.slice(0,-4);
             var nombreHash = /[^\/]*$/.exec(ruta)[0];
+            //var nombreHash = /[^\\]*$/.exec(ruta)[0];
 
             $scope.SubirDoc(nombreHash, nombreSliced);
             
     };
 
-    // $scope.getClasificacionDoc = function(){         
-
-    //         var tipo = $scope.tipo.nombre;
-
-    //         if(tipo== 'Formulacion De Proyecto' || tipo== 'Investigación' ){
-    //             $scope.clasificacion='Investigacion';
-    //             $scope.verDoc='#home';
-    //         }
-    //         if (tipo== 'Malla Curricular' || tipo== 'Plan de Estudio' || tipo== 'Descriptores De Programas' ) {
-    //             $scope.clasificacion='Estudiante';
-    //             $scope.verDoc='#estudiante';
-    //         }
-    //         if (tipo== 'Oficios' || tipo== 'Constancias' || tipo== 'Memorandos' || tipo== 'Circulares' || tipo== 'Minutas Análisis de Oficios') {
-    //             $scope.clasificacion='Papeleria';
-    //             $scope.verDoc='#papeleria';
-    //         }
-    //         if (tipo== 'Correos Electronicos') {
-    //             $scope.clasificacion='Correo';
-    //             $scope.verDoc='#correos';
-    //         }
-    // };
-
-    // $scope.getSeguridadDoc = function(){
-
-    //         var tipo = $scope.tipo.nombre;
-
-    //         if(tipo== 'Formulacion De Proyecto' || tipo== 'Investigación' || tipo== 'Minutas Análisis de Oficios' ){
-    //             $scope.seguridad='Alta'
-    //         }
-
-    //         if (tipo== 'Oficios' || tipo== 'Constancias' || tipo== 'Memorandos' || tipo== 'Circulares') {
-    //             $scope.seguridad='Media'
-    //         }
-    //         /*if (tipo== '') {  //especificaron seguridad, pero no le dan este grado a ningun documento
-    //             $scope.seguridad='Baja' 
-    //         }*/
-    //         if (tipo== 'Malla Curricular' || tipo== 'Plan de Estudio' || tipo== 'Descriptores De Programas' || tipo== 'Correos Electronicos') {
-    //             $scope.seguridad='Ninguna'
-    //         }
-    // };   
 
     //EMPIEZA CODIGO NECESARIO PARA QUE FUNCIONE EL UPDATER
     //-------------------------------------------------------------------------------------------------------------------------------------//
@@ -299,20 +261,21 @@ app.controller("docController", function($scope, $upload, $http, $timeout, $loca
             for (var i = 0; i < files.length; i++) {
                 $scope.errorMsg = null;
                 (function(file) {
-                    upload2Using$upload(file);
+                    upload2UsingUpload(file);
                 })(files[i]);
             }
         }
     });
      
 
-    function upload2Using$upload(file) {
+    function upload2UsingUpload(file) {
         $scope.errorMsg = null;
         $scope.generateThumb(file);
 
-        file.upload = $upload.upload({
+        file.upload = Upload.upload({
                     url: 'webservice/file/update/'+ $scope.idDoctoUpdate,
-                    data: {title: 'prueba', documento: file}
+                    method: 'POST',
+                    file: file
                 });
 
         file.upload.then(function(response) {

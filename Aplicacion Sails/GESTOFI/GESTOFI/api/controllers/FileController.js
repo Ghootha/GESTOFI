@@ -25,7 +25,7 @@ module.exports = {
     //var uploadPath = 'D:/Documentos/vhosts/GESTOFI/documentos';
     var uploadPath = '../../assets/documents';  
     
-    req.file('documento').upload({ dirname: uploadPath},function (err, files) {
+    req.file('file').upload({ dirname: uploadPath},function (err, files) {
       if (err)
         return res.send(500, err);
 
@@ -72,7 +72,7 @@ module.exports = {
       
       var nameHashed = documento.ruta;
 
-      req.file('documento').upload({ dirname: uploadPath, saveAs:nameHashed },function (err, files) {
+      req.file('file').upload({ dirname: uploadPath, saveAs:nameHashed },function (err, files) {
           if (err)
             return res.send(500, err);
 
