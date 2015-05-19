@@ -1,6 +1,6 @@
- var app = angular.module("myAppSolicitudes", []);
+ var app = angular.module("myAppSolicitudes", ['ngFileUpload']);
 
-app.controller("solicitudController", function($scope, $http , $window, $upload, $timeout,$route) {
+app.controller("solicitudController", function($scope, $http , $window, Upload, $timeout,$route) {
 
 $scope.$on('$viewContentLoaded', function() {
     $http.get("webservice/get_user").success(function(response){
@@ -191,18 +191,20 @@ $scope.descargarSolicitud= function(id){
             for (var i = 0; i < files.length; i++) {
                 $scope.errorMsg = null;
                 (function(file) {
-                    uploadUsing$upload(file);
+                  uploadUsingUpload(file);
                 })(files[i]);
             }
         }
     });
     
 
-    function uploadUsing$upload(file) {
+    function uploadUsingUpload(file) {
         $scope.errorMsg = null;
-        file.upload = $upload.upload({
+        
+        file.upload = Upload.upload({
                     url: 'webservice/Solicitudes/upload',
-                    data: {title: 'prueba', documento: file}
+                    method: 'POST',
+                    file: file//data: {title: 'prueba', documento: file}
                 });
 
         file.upload.then(function(response) {

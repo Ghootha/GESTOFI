@@ -5,14 +5,15 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var misUsuarios=[];
+var misUsuarios=[];var nomDoc;
 module.exports = {
 	
+  
 	upload: function  (req, res) {
     
     var uploadPath = '../../assets/solicitudes/solicitudesRecibidas';  
     
-    req.file('documento').upload({ dirname: uploadPath},function (err, files) {
+    req.file('file').upload({ dirname: uploadPath},function (err, files) {
       if (err)
         return res.send(500, err);
 
@@ -23,11 +24,27 @@ module.exports = {
     });
   },
 
-  uploadPlantilla: function  (req, res) {
+ 
+  uploadPlantillaGiras: function  (req, res) {
     
     var uploadPath = '../../assets/solicitudes/plantillas';  
+    req.file('file').upload({ dirname: uploadPath, saveAs:"PLANTILLA_GIRAS.docx"},function (err, files) {
+      
+      if (err)
+        return res.send(500, err);
+
+      return res.json({
+        message: files.length + ' file(s) uploaded successfully!',
+        files: files
+      });
+    });
+  },
+
+  uploadPlantillaVacaciones: function  (req, res) {
     
-    req.file('documento').upload({ dirname: uploadPath, saveAs:req.param('nomDoc')},function (err, files) {
+    var uploadPath = '../../assets/solicitudes/plantillas';  
+    req.file('file').upload({ dirname: uploadPath, saveAs:"PLANTILLA_VACACIONES.docx"},function (err, files) {
+      
       if (err)
         return res.send(500, err);
 

@@ -1,6 +1,6 @@
-var app = angular.module("myAppPerfil", []);
+var app = angular.module("myAppPerfil", ['ngFileUpload']);
 
-app.controller("perfilController", function($scope, $http, $upload, $timeout) {
+app.controller("perfilController", function($scope, $http, Upload, $timeout) {
 
    $scope.tabs = [  
       { link : '#home2', label : 'Perfil' },
@@ -137,18 +137,20 @@ $scope.cargarFoto= function(filename){
             for (var i = 0; i < files.length; i++) {
                 $scope.errorMsg = null;
                 (function(file) {
-                    uploadUsing$upload(file);
+                    uploadUsingUpload(file);
                 })(files[i]);
             }
         }
     });
     
 
-    function uploadUsing$upload(file) {
+    function uploadUsingUpload(file) {
         $scope.errorMsg = null;
-        file.upload = $upload.upload({
+        file.upload = Upload.upload({
                     url: 'webservice/User/upload',
-                    data: {title: 'prueba', documento: file, nomDoc:"UserPhoto"+$scope.user.id+".png"}
+                    method: 'POST',
+                    file:file
+                    //data: {title: 'prueba', documento: file, nomDoc:"UserPhoto"+$scope.user.id+".png"}
                 });
 
         file.upload.then(function(response) {

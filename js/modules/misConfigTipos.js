@@ -1,6 +1,6 @@
-var app = angular.module("myAppConfigTipos", ['duScroll']);
+var app = angular.module("myAppConfigTipos", ['duScroll','ngFileUpload']);
 
-app.controller("configTiposController", function($scope, $http,$upload, $timeout, $document) {
+app.controller("configTiposController", function($scope, $http, Upload, $timeout, $document) {
 
 
 
@@ -253,11 +253,11 @@ $scope.actualizaTipoDoc=function(idTipoDoc){
 
 $scope.checkOption=function(){
 	if($scope.selectPlantilla==="Giras"){
-		$scope.nombreArchivo="PLANTILLA_GIRAS.docx";
+		$scope.nombreArchivo=1;//"PLANTILLA_GIRAS.docx";
 		$scope.btnFile=true;
 	}
 	else{
-		$scope.nombreArchivo="PLANTILLA_VACACIONES.docx";
+		$scope.nombreArchivo=2;//"PLANTILLA_VACACIONES.docx";
 		$scope.btnFile=true;
 	}
 };
@@ -265,6 +265,7 @@ $scope.checkOption=function(){
  $scope.cargarArchivo=function(nombre){
  	$scope.btnFile=false;
  	$scope.selectPlantilla=false;
+ 	if(nombre===1){nombre="PLANTILLA_GIRAS.docx";}else nombre="PLANTILLA_VACACIONES.docx";
  	bootbox.alert("subida del archivo"+" "+nombre+" "+"exitoso");
  	//alert("subida del archivo"+" "+nombre+" "+"exitoso");
 
@@ -280,18 +281,27 @@ $scope.checkOption=function(){
             for (var i = 0; i < files.length; i++) {
                 $scope.errorMsg = null;
                 (function(file) {
-                    uploadUsing$upload(file);
+                    uploadUsingUpload(file);
                 })(files[i]);
             }
         }
     });
     
 
-    function uploadUsing$upload(file) {
+    function uploadUsingUpload(file) {
         $scope.errorMsg = null;
-        file.upload = $upload.upload({
-                    url: 'webservice/Solicitudes/uploadPlantilla',
-                    data: {title: 'prueba', documento: file, nomDoc:$scope.nombreArchivo}
+       	var miUrl;
+       	if($scope.nombreArchivo===1){
+       		miUrl='webservice/Solicitudes/uploadPlantillaGiras';
+       	}
+       	else if($scope.nombreArchivo===2){
+       		miUrl='webservice/Solicitudes/uploadPlantillaVacaciones';
+       	}
+        file.upload = Upload.upload({
+                    url: miUrl,
+                    method: 'POST',
+                    file:file
+                    
                 });
 
         file.upload.then(function(response) {

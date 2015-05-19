@@ -10,8 +10,8 @@ module.exports = {
 	upload: function  (req, res) {
     
     var uploadPath = '../../assets/fotoPerfil';  
-    //console.log(req.param('nomDoc'));
-    req.file('documento').upload({ dirname: uploadPath, saveAs:req.param('nomDoc')},function (err, files) {
+    
+    req.file('file').upload({ dirname: uploadPath, saveAs:'UserPhoto'+req.user.id+".png"},function (err, files) {
       
       if (err)
         return res.send(500, err);
