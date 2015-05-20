@@ -245,8 +245,8 @@ app.controller("docController", function($scope, Upload, $http, $timeout, $locat
             var nombre = response.files[0].filename;
 
             var nombreSliced = nombre.slice(0,-4);
-            var nombreHash = /[^\/]*$/.exec(ruta)[0];
-            //var nombreHash = /[^\\]*$/.exec(ruta)[0];
+            //var nombreHash = /[^\/]*$/.exec(ruta)[0];
+            var nombreHash = /[^\\]*$/.exec(ruta)[0];
 
             $scope.SubirDoc(nombreHash, nombreSliced);
             

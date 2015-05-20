@@ -44,7 +44,7 @@
                                            ngf-multiple="false" ngf-accept="'*.pdf,*.doc,*.docx,*.xls,*.xlsx'" ng-model-rejected="rejFiles" 
                                            tabindex="0" ng-show="botonSubir" class="ng-hide">Adjuntar una Imagen o PDF</div><br/>
                                     <button ngf-select ng-model="files" 
-                                            ngf-multiple="true" ngf-accept="'*.pdf,*.doc,*.docx,*.xls,*.xlsx'" class="btn btn-success"  data-ng-disabled="incomplete2">Adjuntar varios archivos</button>
+                                            ngf-multiple="true" ngf-accept="'*.pdf,*.doc,*.docx,*.xls,*.xlsx'" ng-model-rejected="rejFiles" class="btn btn-success"  data-ng-disabled="incomplete2">Adjuntar varios archivos</button>
                                 </div>
                                 <div ngf-drop ngf-select ng-model="files" ng-model-rejected="rejFiles"
                                     ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
