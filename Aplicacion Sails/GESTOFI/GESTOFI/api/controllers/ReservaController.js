@@ -121,10 +121,17 @@ module.exports = {
 		 horaI= req.param('horaInicio');
 		 fech= req.param('fecha');
 		 horaE= req.param('horaEntrega');
+		 var misTiposEquipos=[];
+		 TipoReservable.find({tipo:"Equipo"}).exec(function(err,r){
+			//var nombres=[];
+		      for(var i=0; i<r.length;i++){
+		        misTiposEquipos[i]=r[i].nombre;
+		      }
+		 });
 		 Reserva.find().exec(function(err, reservas){
 		 	
 			if(Object.keys(reservas).length === 0){
-			 	Reservable.find(  { tipo: {'!': 'Aula' } }).exec(function(err,reservable){
+			 	Reservable.find(  { tipo: misTiposEquipos }).exec(function(err,reservable){
 				  if(err)
 		            res.json({error:err});
 		          if(reservable=== undefined)
@@ -154,7 +161,7 @@ module.exports = {
 			 		    });
 			 		   	ReservaEquipo.find().exec(function(err, idReservables){listaIDReservables=idReservables;});
 			 			
-			 			Reservable.find({ tipo:{ '!': 'Aula'}}).exec(function(err, listaFinal){
+			 			Reservable.find({ tipo: misTiposEquipos}).exec(function(err, listaFinal){
 			 			listaF=listaFinal;	
 			 			var cont=0; var cont2=0;
 			 			listaIDReservas=depurarDisponibles(listaIDReservas,horaI,horaE);
@@ -189,10 +196,17 @@ module.exports = {
 		 horaI= req.param('horaInicio');
 		 fech= req.param('fecha');
 		 horaE= req.param('horaEntrega');
+		 var misTiposAulas=[];
+		 TipoReservable.find({tipo:"Aula"}).exec(function(err,r){
+			//var nombres=[];
+		      for(var i=0; i<r.length;i++){
+		        misTiposAulas[i]=r[i].nombre;
+		      }
+		 });
 		 Reserva.find().exec(function(err, reservas){
 		 	
 			if(Object.keys(reservas).length === 0){
-			 	Reservable.find(  { tipo:  'Aula'  }).exec(function(err,reservable){
+			 	Reservable.find(  { tipo:  misTiposAulas  }).exec(function(err,reservable){
 				  if(err)
 		            res.json({error:err});
 		          if(reservable=== undefined)
@@ -207,7 +221,7 @@ module.exports = {
 			 		   	Reserva.find({fecha:fech}).exec(function(err, idReservas){listaIDReservas=idReservas;});
 			 		   	//Reserva.find({ fecha : req.param('fecha'), horaInicio: { $gl :req.param('horaInicio')}, horaEntrega: {$lg:req.param('horaEntrega')}}).exec(function(err, idReservas){listaIDReservas=idReservas;});
 			 		   	ReservaEquipo.find().exec(function(err, idReservables){listaIDReservables=idReservables;});
-			 			Reservable.find({ tipo: 'Aula'}).exec(function(err, listaFinal){
+			 			Reservable.find({ tipo: misTiposAulas}).exec(function(err, listaFinal){
 			 			listaF=listaFinal;	
 			 			var cont=0; var cont2=0;
 			 			listaIDReservas=depurarDisponibles(listaIDReservas,horaI,horaE); 

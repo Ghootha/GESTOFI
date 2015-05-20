@@ -12,24 +12,9 @@ app.controller("solicitudesUserController", function($scope, $http) {
       $http.get("webservice/get_user").success(function(response){
                 if(response.user == null){
                   window.location.replace("index.html"); 
-                }else{     
+                }else{ 
                   $scope.user= response.user;  
                   var roleLogged = response.user.role;
-                  /////NO SE DONDE DEBO UBICAR ESTO PARA QUE SIEMPRE SIRVA
-                  objetoPendientes={
-                    "usuario": $scope.user.username,
-                    "lista":1
-                  };
-                  objetoHistorial={
-                    "usuario": $scope.user.username,
-                    "lista":2
-                  }; 
-                  $http.post("webservice/ReservaEquipo/findReservasUsuario",objetoPendientes).success(function(response){
-                    $scope.reservasPendientes=response;
-                    $http.post("webservice/ReservaEquipo/findReservasUsuario",objetoHistorial).success(function(response){$scope.reservasHistorial=response;
-                    });
-                  });
-                  ///////////////////// 
                   $http.get("webservice/Role").success(function(response){
                           
                           var roles = response;
@@ -45,7 +30,23 @@ app.controller("solicitudesUserController", function($scope, $http) {
                                   
                               }
                           }
-                  });               
+                  }); 
+
+                  ///////////////////////////////
+
+                /////NO SE DONDE DEBO UBICAR ESTO PARA QUE SIEMPRE SIRVA
+                  objetoPendientes={
+                    "usuario": $scope.user.username,
+                    "lista":1
+                  };
+                  objetoHistorial={
+                    "usuario": $scope.user.username,
+                    "lista":2
+                  }; 
+                  $http.post("webservice/ReservaEquipo/findReservasUsuario",objetoPendientes).success(function(response){$scope.reservasPendientes=response;});
+                  $http.post("webservice/ReservaEquipo/findReservasUsuario",objetoHistorial).success(function(response){$scope.reservasHistorial=response;});
+                  ///////////////////// 
+                                
               }
       }).error(function(response, status, header, config){  
               console.log("error en obtencion de usuario conectado");  

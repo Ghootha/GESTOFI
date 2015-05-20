@@ -27,7 +27,8 @@
                                         <fieldset class="fielset-uploader"><legend>Subir Archivo</legend>
                                             <div class="up-buttons">
                                                 <button ngf-select ng-file-select ng-model="files" 
-                                                ngf-multiple="false" ngf-accept="'*.pdf,*.doc,*.docx'" class="btn btn-success" >Adjuntar cualquier archivo
+                                                ngf-multiple="false" ng-model-rejected="rejFiles" 
+                                           tabindex="0" ngf-accept="'*.pdf,*.doc,*.docx'" class="btn btn-success" >Adjuntar cualquier archivo
                                                 </button>
                                             </div>
 
@@ -41,6 +42,13 @@
                                                                            
                                         </fieldset>
                                         <br/>
+                                        <ul ng-show="rejFiles.length > 0" class="response">
+                                          <br>
+                                          <li class="sel-file">
+                                            Archivo Rechazado, El archivo admitido debe ser .docx, .doc o bien .pdf
+                                          </li>
+                                        </ul>
+
                                     </div>
 
 

@@ -110,19 +110,22 @@ $scope.setContrasena=function(){
 }; 
 
 $scope.cargarFoto= function(filename){
-    var objetoFoto;
-    $scope.userPhoto="http://gestofi.com/webservice/fotoPerfil/default-user-image.png";
+    var objetoFoto;    
     objetoFoto={
 		"photo": filename
 	};
+    $scope.userPhoto="http://gestofi.com/webservice/fotoPerfil/default-user-image.png";
     $http.put("webservice/User/update/"+$scope.user.id,objetoFoto).success(function(response){
-       
-        //alert("Foto cambiada");
+        
+        
         $timeout(function(){
             $scope.userPhoto="http://gestofi.com/webservice/fotoPerfil/"+filename;
-            bootbox.alert("Foto editada");
         });
+        bootbox.alert("Foto editada");
+        
     });
+   
+    
 
 };
 

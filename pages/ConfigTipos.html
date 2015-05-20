@@ -21,14 +21,25 @@
             <br>
             <div class="col-sm-8">                                        
                 <input class="form-control" type="text" ng-model="nomNuevoTipo" placeholder="Nombre"></input>
-            </div>                                      
+            </div> 
+
+            <div>
+              <form name="btns">
+                      <label for="aulaRadio">Aula:</label>
+                      <input id="aulaRadio" type="radio" ng-model="selectTipoReservable" value="Aula" ng-click="checkOption()"/>
+
+                      <label for="equipoRadio">Equipo:</label>
+                      <input id="equipoRadio" type="radio" ng-model="selectTipoReservable" value="Equipo" ng-click="checkOption()" />
+              </form>
+            </div>
+
+            <div class="col-md-6 column"><br>
+              <div class="sideBySide">
+                <button type="button" class="btn btn-success" ng-click="agregarTipo()">Agregar</button>
+              </div>                                      
+           </div>                                     
         </div>
-        <div class="col-md-6 column">
-           <br>
-            <div class="sideBySide">
-                    <button type="button" class="btn btn-success" ng-click="agregarTipo()">Agregar</button>
-            </div>                                      
-        </div>
+        
         <br><br><br>                             
   </section>
 <hr>
@@ -169,11 +180,18 @@
               <br>
               <div class="up-buttons">
                   <button ngf-select ng-file-select ng-model="files" 
-                  ngf-multiple="false" ngf-accept="'*.docx'" class="btn btn-success"  ng-show="btnFile">Adjuntar Plantilla
+                    ngf-multiple="false" ngf-accept="'*.docx'" ng-model-rejected="rejFiles" 
+                    tabindex="0" class="btn btn-success"  ng-show="btnFile">Adjuntar Plantilla
                   </button>
               </div>                                                              
       </div>
      <br><br><br> 
+     <ul ng-show="rejFiles.length > 0" class="response">
+          <br><br>
+          <li class="sel-file">
+            Archivo Rechazado, El archivo admitido debe ser ".docx"
+          </li>
+    </ul>
   </section>
 <hr>
   <section id="section-4">    

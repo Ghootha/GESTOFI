@@ -78,13 +78,17 @@ $scope.btnFile=false;
 $scope.agregarTipo=function(){
 	if(typeof $scope.nomNuevoTipo !== "undefined"){
 	var objeto={
-		"nombre":$scope.nomNuevoTipo
+		"nombre":$scope.nomNuevoTipo,
+		"tipo":$scope.selectTipoReservable
+
 	};
 
 	$http.post("webservice/TipoReservable/create",objeto).success(function(response){
 		$scope.selectTipos.push(response);
 		$scope.nomNuevoTipo="";
+		$scope.selectTipoReservable="";
 		bootbox.alert("Tipo creado");
+
 		//alert("Tipo creado");
 	});}
 	else{
