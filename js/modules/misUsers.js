@@ -211,11 +211,11 @@ app.controller("userController", function($scope, $http, $timeout) {
         $scope.incomplete = false;
         $scope.incomplete2 = false;
         if (!$scope.username.length || !$scope.fullname.length ||
-            !$scope.email.length || !$scope.role.nombre.length) {
+            !$scope.email.length || $scope.role.nombre == null) {
             $scope.incomplete2 = true;
         }
         if (!$scope.username.length || !$scope.fullname.length ||
-            !$scope.email.length || !$scope.role.nombre.length ||
+            !$scope.email.length || !$scope.role.nombre == null ||
             !$scope.passw1.length || !$scope.passw2.length) {
             $scope.incomplete = true;
         }
