@@ -1,6 +1,6 @@
 var app = angular.module("myAppPerfil", ['ngFileUpload']);
 
-app.controller("perfilController", function($scope, $http, Upload, $timeout) {
+app.controller("perfilController", function($scope, $http, Upload, $timeout,$interval) {
 
    $scope.tabs = [  
       { link : '#home2', label : 'Perfil' },
@@ -79,7 +79,7 @@ $scope.switchDate=function(fecha){
 };
 
 $scope.editarModal=function(){
-        $('#modalFecha').combodate({value:$scope.modalFecha});  
+       $('#modalFecha').combodate({value:$scope.modalFecha});  
         $('#Modal2').modal({backdrop:false}).one('click', '#confirm', function(){
             $scope.modalFecha=$scope.user.birthdate;
             $scope.modalDomicilio=$scope.user.address;
@@ -110,23 +110,19 @@ $scope.setContrasena=function(){
 }; 
 
 $scope.cargarFoto= function(filename){
+    $scope.userPhoto="http://gestofi.com/webservice/fotoPerfil/default-user-image.png";
     var objetoFoto;    
     objetoFoto={
 		"photo": filename
 	};
-    $scope.userPhoto="http://gestofi.com/webservice/fotoPerfil/default-user-image.png";
+    $scope.inter=$interval(function(){
     $http.put("webservice/User/update/"+$scope.user.id,objetoFoto).success(function(response){
-        
-        
-        $timeout(function(){
-            $scope.userPhoto="http://gestofi.com/webservice/fotoPerfil/"+filename;
-        });
-        bootbox.alert("Foto editada");
-        
+        $scope.userPhoto="http://gestofi.com/webservice/fotoPerfil/"+filename;
     });
-   
-    
-
+    },2000);
+    bootbox.confirm("Confirme al ver su imagen", function(result){
+        $interval.cancel($scope.inter);
+    });
 };
 
 
