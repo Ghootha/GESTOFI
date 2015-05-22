@@ -63,13 +63,13 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 			if(invitados.length != 0 ){
 				var auxinvitado=",";
 				invitados.forEach(function(entry){		
-					auxinvitado=auxinvitado+entry.fullname+",";	
+					auxinvitado=auxinvitado+entry.username+",";	
 					
 					var objetoJSON;
 					objetoJSON ={
 						
-						"duenno":entry.fullname,
-						"emisor":$scope.user.fullname,
+						"duenno":entry.username,
+						"emisor":$scope.user.username,
 						"titulo":"Agenda: "+$scope.actividadA,
 						"tipo":"Agenda",
 						"mensaje":$scope.descripcionA
@@ -85,7 +85,7 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 			
 			objetoJSON = {
 				"title": $scope.actividadA,
-				"autor":  $scope.user.fullname,
+				"autor":  $scope.user.username,
 				"lugar": $scope.lugarA,
 				"invitado": auxinvitado,
 				"descripcion": $scope.descripcionA,
@@ -137,7 +137,7 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 						if(ffinal > inicio){
 							objetoJSON = {
 								"title": $scope.title,
-								"autor":  $scope.user.fullname,
+								"autor":  $scope.user.username,
 								"lugar": $scope.lugar,
 								//"invitado": auxinvitado,
 								"descripcion": $scope.descripcion,
@@ -230,7 +230,7 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 						$scope.horaS=calEvent.start.format('HH:mm');
 						$scope.horaE=calEvent.end.format('HH:mm');
 						
-						if(calEvent.autor==$scope.user.fullname){
+						if(calEvent.autor==$scope.user.username){
 							$scope.incomplete=false;
 							
 						}	

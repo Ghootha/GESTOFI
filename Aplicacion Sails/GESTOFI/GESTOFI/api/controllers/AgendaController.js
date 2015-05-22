@@ -9,7 +9,7 @@
 	
 	findActByUser:function(req, res){
 		
-		var usuarioLogged = req.user.fullname;
+		var usuarioLogged = req.user.username;
 		var quer ="select * from Agenda where autor = '"+usuarioLogged+"' OR invitado LIKE '%,"+usuarioLogged+",%'";
 		
 		Agenda.query(quer,function(err, results) {
