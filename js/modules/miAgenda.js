@@ -49,6 +49,7 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 	
 
 		$scope.agregarActividad = function(){ 
+			debugger;
 			var k=$scope.horaSA.split(":");
 			var w=$scope.horaEA.split(":");
 			var i=$scope.startA.split("-");
@@ -57,25 +58,28 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 			var ffinal=new Date(f[2],f[1]-1,f[0],w[0]-6,w[1],"00");
 			var objetoJSON;
 			var invitados=$scope.invitadoA;
-			var auxinvitado=",";
+			var auxinvitado="";
 			
-			invitados.forEach(function(entry){		
-				auxinvitado=auxinvitado+entry.fullname+",";	
-				
-				var objetoJSON;
-				objetoJSON ={
+			if(invitados.length != 0 ){
+				var auxinvitado=",";
+				invitados.forEach(function(entry){		
+					auxinvitado=auxinvitado+entry.fullname+",";	
 					
-					"duenno":entry.fullname,
-					"emisor":$scope.user.fullname,
-					"titulo":"Agenda: "+$scope.actividadA,
-					"tipo":"Agenda",
-					"mensaje":$scope.descripcionA
-				};
-			
-				$http.put("webservice/notificaciones/create", objetoJSON).success(function(response){});
-				$route.reload();
+					var objetoJSON;
+					objetoJSON ={
+						
+						"duenno":entry.fullname,
+						"emisor":$scope.user.fullname,
+						"titulo":"Agenda: "+$scope.actividadA,
+						"tipo":"Agenda",
+						"mensaje":$scope.descripcionA
+					};
 				
-			});	
+					$http.put("webservice/notificaciones/create", objetoJSON).success(function(response){});
+					//$route.reload();
+					
+				});	
+			}
 			
 			if(ffinal > inicio){
 			
@@ -89,22 +93,20 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 				"end": ffinal
 			};
 			
-			$http.post("webservice/Agenda/create", objetoJSON).success(function(response){
-					$timeout(function(){
-				   
-				   }); 
-					
-             }).error(function(response, status, header, config){  
-                    $timeout(function(){
-                       alert("Se ha producido un error");
-                      });                          
-             });
+			$http.post("webservice/Agenda/create", objetoJSON).success(function(response){				
+				$route.reload();
 				$('#calendar').fullCalendar('renderEvent', objetoJSON, true);
 				$('#modalform').trigger("reset");
 				$('#Modal3').modal('hide');
 				bootbox.alert("Se ha creado la actividad correctamente");
-			 }
-			 else {
+					
+             }).error(function(response, status, header, config){  
+                    $timeout(function(){
+                       bootbox.alert("Se ha producido un error");
+                      });                          
+             });
+				
+			 }else {
 				$scope.endA="";
 				bootbox.alert("No se creo la actividad porque la fecha final es anterior a la fecha de inicio");
 			}
@@ -113,11 +115,12 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 		 
 		
 	$scope.actualizaAct = function() {  
+		debugger;
 				var f;
 				var i;
 				var objetoJSON;
-				for(var x = 0; x<$scope.actividades.length; x++) {
-					if($scope.actividades[x].id === $scope.id) {
+				// for(var x = 0; x<$scope.actividades.length; x++) {
+				// 	if($scope.actividades[x].id === $scope.id) {
 					
 								var k=$scope.horaS.split(":");
 								var w=$scope.horaE.split(":");
@@ -125,13 +128,13 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 								var inicio=new Date(i[2],i[1]-1,i[0],k[0]-6,k[1],"00");
 								var f=$scope.end.split("-");
 								var ffinal=new Date(f[2],f[1]-1,f[0],w[0]-6,w[1],"00");
-							var invitados=$scope.invitado;
-							var auxinvitado=",";
-							invitados.forEach(function(entry){		
-								auxinvitado=auxinvitado+entry.fullname+",";		
-							});											
+							// var invitados=$scope.invitado;
+							// var auxinvitado=",";
+							// invitados.forEach(function(entry){		
+							// 	auxinvitado=auxinvitado+entry.fullname+",";		
+							// });											
 									
-							if(ffinal > inicio){
+						if(ffinal > inicio){
 							objetoJSON = {
 								"title": $scope.title,
 								"autor":  $scope.user.fullname,
@@ -140,29 +143,31 @@ app.controller("agendaController", function($scope, $http, $window, $location, $
 								"descripcion": $scope.descripcion,
 								"start": inicio,
 								"end": ffinal
-							};
+						};
 											
-						$http.put("webservice/Agenda/update/"+$scope.id, objetoJSON).success(
-						 
-								function(){
-									$http.get("webservice/Agenda")
-										.success(function(data) {$scope.actividades = data;});
+						$http.put("webservice/Agenda/update/"+$scope.id, objetoJSON).success(function(response){
+									
+									$http.get("webservice/Agenda/findActByUser")
+										.success(function(data) {											
+											$route.reload();
+											$('#Modal2').modal('hide');	
+											bootbox.alert("Se ha editado la actividad correctamente");
+										});
 						 }).error(function(response, status, header, config){  
 							$timeout(function(){
-								alert("la actividad no se pudo editar");
+								bootbox.alert("la actividad no se pudo editar");
 							});                          
 						});	
-						location.href="#agenda"; 
-						$('#Modal2').modal('hide');	
-						bootbox.alert("Se ha editado la actividad correctamente");
+						
+						
 					}
 					
 			 else {
 				$scope.end="";
 				bootbox.alert("No se edito la actividad porque la fecha final es anterior a la fecha de inicio");
 			}
-			}
-          } 
+			//}
+         // } 
   };
 		 
 		 

@@ -7,7 +7,6 @@ $scope.mensajeError=false;
 $scope.mensajeErrorRegistro=false;
 
     $scope.loguear = function(){
-        debugger;
             var objetoJSON;    
             
             objetoJSON = {
