@@ -122,7 +122,7 @@
                                                                     <div class="media-body">
                                                                         <h5 class="media-heading name">{{ item.emisor }}</h5>
                                                                         <p class="text">{{ item.asunto }}</p>
-                                                                        <span class="timestamp">{{ item.fecha }}</span>
+                                                                        <span class="timestamp">{{ item.fecha | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
                                                                     </div>
                                                                 </div>
                                                             </a>
@@ -153,7 +153,7 @@
                                                             <a href="template.html#/agenda">
                                                                 <i class="fa fa-user green-font"></i>
                                                                 <span class="text"> {{ item.titulo }}</span>
-                                                                <span class="timestamp">{{ item.fecha }}</span>
+                                                                <span class="timestamp">{{ item.fecha | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
                                                             </a>
                                                         </li>
 

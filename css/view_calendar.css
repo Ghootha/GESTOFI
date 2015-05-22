@@ -5,7 +5,8 @@
 
 #content_wrapper{
 	width: 1150px;
-	margin-left: 25.5%;
+	/*margin-left: 25.5%; lo puse comentado para uqe se vea bien con profe luego se ve que hacer*/
+	margin-left: 15.5%;
 	margin-right: auto;
 	margin-top: 2%;
 	margin-bottom: 2%;

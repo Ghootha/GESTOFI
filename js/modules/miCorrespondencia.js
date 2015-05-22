@@ -182,7 +182,7 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput', 'ngF
     }
 
     $scope.abrirDoc = function(){
-        var nom=rutaAct.split("docsCorrespondencia/");
+        var nom=rutaAct.split("docsCorrespondencia\\"); //para revision final del app, va a estar corriendo en win
         $window.open('http://gestofi.com/webservice/docsCorrespondencia/'+nom[1]);
     }
 
