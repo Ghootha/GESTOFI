@@ -20,7 +20,7 @@
                                      <div class="modal-body">
                                          <form class="form-horizontal">
 											  <div class="form-group">
-                                                 <label class="col-sm-2 control-label">Actividad:</label> 
+                                                 <label class="col-sm-2 control-label">*Actividad:</label> 
                                                  <div class="col-sm-3">
                                                      <input type="text"  data-ng-disabled="incomplete" class="form-control" data-ng-model="title" >
 												 </div>
@@ -44,7 +44,7 @@
                                                  </div>
                                              </div>
 											 <div class="form-group">
-                                                 <label for="dtp_input2" class="col-sm-2 control-label">Inicia:</label>
+                                                 <label for="dtp_input2" class="col-sm-2 control-label">*Inicia:</label>
                                                  <div class="input-group date form_date col-md-3" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
 												                                             
                                                      <input type="text" data-ng-disabled="incomplete" class="form-control" data-ng-model="start">
@@ -52,7 +52,7 @@
                                                  </div>
 												 <input type="hidden" id="dtp_input2" value="" />
                                              
-												   <label for="dtp_input2" data-ng-disabled="incomplete" class="col-md-2 control-label">Hora:</label>
+												   <label for="dtp_input2" data-ng-disabled="incomplete" class="col-md-2 control-label">*Hora:</label>
 												   <div class="input-group date form_time col-md-3" data-date="" data-date-format="hh:ii" data-link-field="dtp_input2" data-link-format="hh:ii">
 													   <input id="horaS" data-ng-disabled="incomplete" data-ng-model="horaS" class="form-control" size="10" type="text" value="" >
 													   
@@ -62,14 +62,14 @@
 											</div>
 											 											 										 
 											 <div class="form-group">
-                                                 <label for="dtp_input2" class="col-sm-2 control-label">Finaliza:</label>
+                                                 <label for="dtp_input2" class="col-sm-2 control-label">*Finaliza:</label>
                                                  <div class="input-group date form_date col-md-3" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                                                      <input type="text" data-ng-disabled="incomplete" class="form-control" data-ng-model="end" >
 													 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                                  </div>
 												 <input type="hidden" id="dtp_input2" value="" />
                                              
-												   <label for="dtp_input2" class="col-md-2 control-label">Hora:</label>
+												   <label for="dtp_input2" class="col-md-2 control-label">*Hora:</label>
 												   <div class="input-group date form_time col-md-3" data-date="" data-date-format="hh:ii" data-link-field="dtp_input2" data-link-format="hh:ii">
 													   <input id="horaE" data-ng-model="horaE" data-ng-disabled="incomplete" class="form-control" size="10" type="text" value="" >
 													   
@@ -89,6 +89,7 @@
                                          </form>                                     
                                      </div>
                                      <div class="modal-footer">
+									  <label class="col-md-2 control-label">*Obligatorios</label>
                                        <button type="button" class="btn btn-default"  data-dismiss="modal">Cerrar</button>
                                        <button data-ng-hide="incomplete" class="btn btn-warning" data-ng-click="actualizaAct()">
                                            <span class="glyphicon glyphicon-pencil"></span>Editar
@@ -114,14 +115,15 @@
                                      <div class="modal-body">
                                          <form class="form-horizontal" id="modalform">
 										 <div class="form-group">
-                                                 <label class="col-sm-2 control-label">Actividad:</label>
-                                                 <div class="col-sm-3">
-                                                     <input type="text" class="form-control" data-ng-model="actividadA">
-                                                 </div>
-												 <label class="col-sm-2 control-label">Invitados:</label>
+                                                 <label class="col-sm-2 control-label">*Actividad:</label>
+												<div class="col-sm-3">
+												  <input type="text" class="form-control" data-ng-model="actividadA"> 
+                                                </div>
+												 												  						 
+												 <label class="col-sm-2 control-label"> Invitados:</label>
 												<div class="col-sm-3">
 													<tags-input data-ng-model="invitadoA" display-property="fullname" >
-														<auto-complete source="loadTags($query)" min-length="2" load-on-focus="true" load-on-empty="true" load-on-down-arrow="true" select-first-match="false"></auto-complete>
+														<auto-complete source="loadTags($query)" min-length="1" load-on-focus="true" load-on-empty="true" load-on-down-arrow="true" select-first-match="false"></auto-complete>
 													</tags-input> 
 												</div>
                                              </div>
@@ -132,7 +134,7 @@
                                                  </div>
                                              </div>
 											 <div class="form-group">
-												<label for="dtp_input2" class="col-md-2 control-label">Inicia:</label>
+												<label for="dtp_input2" class="col-md-2 control-label">*Inicia:</label>
 												<div class="input-group date form_date col-md-3" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
 													<input id="startA" data-ng-model="startA" class="form-control" size="10" type="text" value="" >
 													
@@ -141,7 +143,7 @@
 												<input type="hidden" id="dtp_input2" value="" />
 											
 											
-												   <label for="dtp_input2" class="col-md-2 control-label">Hora:</label>
+												   <label for="dtp_input2" class="col-md-2 control-label">*Hora:</label>
 												   <div class="input-group date form_time col-md-3" data-date="" data-date-format="hh:ii" data-link-field="dtp_input2" data-link-format="hh:ii">
 													   <input id="horaSA" data-ng-model="horaSA" class="form-control" size="10" type="text" value="" >
 													   
@@ -152,7 +154,7 @@
 														
 											
 											<div class="form-group">
-												<label for="dtp_input2" class="col-md-2 control-label">Finaliza:</label>
+												<label for="dtp_input2" class="col-md-2 control-label">*Finaliza:</label>
 												<div class="input-group date form_date col-md-3" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
 													<input id="endA" data-ng-model="endA" class="form-control" size="10" type="text" value="" >
 													
@@ -161,7 +163,7 @@
 												<input type="hidden" id="dtp_input2" value="" />
 											
                                              
-											 	   <label for="dtp_input2" class="col-md-2 control-label">Hora:</label>
+											 	   <label for="dtp_input2" class="col-md-2 control-label">*Hora:</label>
 												   <div class="input-group date form_time col-md-3" data-date="" data-date-format="hh:ii" data-link-field="dtp_input2" data-link-format="hh:ii">
 													   <input id="horaEA" data-ng-model="horaEA" class="form-control" size="10" type="text" value="">
 													   
@@ -181,6 +183,7 @@
                                          </form>                                     
                                      </div>
                                      <div class="modal-footer">
+									 <label class="col-sm-2 control-label">*Campos obligatorios</label>
                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 									   
                                        <button class="btn btn-success" data-ng-click="agregarActividad()">
