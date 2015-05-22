@@ -114,7 +114,7 @@
                                                             <em>Tiene {{ cant2 }} mensajes sin leer</em>
                                                         </li>
                                                         <li class="inbox-item unread clearfix" ng-repeat="item in entradas" ng-if="!item.leido">
-                                                            <a href="#">
+                                                            <a href="template.html#/correspondencia">
                                                                 <div class="media">
                                                                     <div class="pull-left" href="#">
                                                                         <img class="media-object" src="images/imgLogin/user1.png" alt="Antonio">
@@ -150,7 +150,7 @@
                                                         </li>
 
                                                         <li ng-repeat="item in notificaciones" ng-if="!item.leido">
-                                                            <a href="">
+                                                            <a href="template.html#/agenda">
                                                                 <i class="fa fa-user green-font"></i>
                                                                 <span class="text"> {{ item.titulo }}</span>
                                                                 <span class="timestamp">{{ item.fecha }}</span>
