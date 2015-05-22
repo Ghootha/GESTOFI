@@ -18,6 +18,12 @@ var app = angular.module("app", [
     'routes'
     ]);
 
+  app.factory("MyService", function() {
+    return {
+      data: {}
+    };
+  });
+
 app.controller("appController", function($scope) {
 
 });

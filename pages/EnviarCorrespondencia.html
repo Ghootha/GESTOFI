@@ -8,20 +8,20 @@
 						<h3>
 							Enviar correspondencia
 						</h3>
-						
-                        <div class="col-md-8 column">
+
+            <div class="col-md-12 column">
 							<li>Destinatario:</li>
 <!--							<input type="text" class="form-control" autofocus data-ng-model="destinatario" />-->
-                            <tags-input ng-model="tags" display-property="username" placeholder="Destinatario" >
-                                <auto-complete source="loadTags($query)" min-length="2" load-on-focus="true" load-on-empty="true" load-on-down-arrow="true" select-first-match="false"></auto-complete>
-                            </tags-input> 
+                  <tags-input ng-model="tags" display-property="username" placeholder="Destinatario" >
+                      <auto-complete source="loadTags($query)" min-length="2" load-on-focus="true" load-on-empty="true" load-on-down-arrow="true" select-first-match="false"></auto-complete>
+                  </tags-input>
 						</div>
-                        
-                        <div class="col-md-4 column">
-                            <li>Enviar a Rol:</li>
+
+                    <!--    <div class="col-md-4 column">
+                            <li>Enviar a Rol:</li>-->
 <!--                            <label class="col-sm-2 control-label">Rol:</label>-->
 <!--                            <div class="col-sm-4">-->
-                                <select class="form-control" data-ng-model="role">
+                              <!--  <select class="form-control" data-ng-model="role">
                                     <option>Ninguno</option>
                                     <option>Director</option>
                                     <option>Subdirector</option>
@@ -33,33 +33,22 @@
                                     <option>Concerje</option>
                                     <option>Estudiante</option>
                                     <option>Todos</option>
-                                </select>
+                                </select>-->
 <!--                            </div>-->
-                        </div>
-                        
+                      <!--  </div>-->
+
 						<div class="col-md-12 column">
 							<br><li>Asunto:</li>
 							<input type="text" name="asunto" class="form-control" data-ng-model="asunto"></textarea>
 						</div>
-						<!--<div class="col-md-12 column">
-							<br><li>Numero de Folio:</li>
-							<input type="text" size="129" data-ng-model="folio"/>
-						</div>-->
-                        <br>
+						<br>
 						<div class="col-md-12 column">
-                            <br>
+              <br>
 							<div class="up-buttons">
-                              <button ng-file-select ng-model="files" ng-multiple="false" class="btn btn-success">Adjuntar Archivo</button>
-                            </div>
-                            <label class="col-sm-8 control-label" data-ng-model="docu">{{ docu }}</label>
+                    <button ngf-select ng-model="files" ngf-multiple="false" class="btn btn-success">Adjuntar Archivo</button>
+              </div>
+              <label class="col-sm-8 control-label" data-ng-model="docu">{{ docu }}</label>
 						</div>
-						<!--<div class="col-md-6 column">
-							<button type="button" class="btn btn-default" data-backdrop="false" data-target="#Modal2" data-toggle="modal"><span class="glyphicon glyphicon-save"></span>  Subir Doc </button>
-						</div>
-						<div class="col-md-6 column">
-                            <br>
-							<button class="btn btn-default" data-ng-click="adjDoc()" data-backdrop="false" data-target="#Modal3" data-toggle="modal">  Subir Doc </button>
-						</div>-->
 						<div class="col-md-12 column">
 							<BR><li>Mensaje:</li>
 							<textarea cols="130" rows="18" class="form-control" name="Mensaje" data-ng-model="mensaje"></textarea>
@@ -73,89 +62,8 @@
 						<h4 ng-show="mensajeExito">Mensaje Enviado</h4>
 					<h4 ng-show="mensajeFallo">Mensaje No Enviado</h4>
 					</div>
-					
+
 				</div>
-				
-				
-				<!-- MODAL SUBIR DOC CORRESPONDENCIA-->
-                                        <div id="Modal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                         <div class="modal-dialog">
-                                           <div class="modal-content-update">
-
-                                                 <div class="modal-header">
-                                                    
-                                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                   <h4 class="modal-title" id="myModalLabel"> Adjuntar documento</h4>
-                                                 </div>
-                                                 
-                                                 <!-- Empieza seccion de subida de archivo--> 
-                                                        <div class="wrapper">                                      
-                                                            <div class="upload-div">
-                                                                
-                                                                <div class="upload-buttons">
-                                                                        <fieldset class="fielset-uploader"><legend>Subir Archivo</legend>
-                                                                            <div class="up-buttons">
-                                                                                <div ng-file-select ng-model="filesUpdate" class="upload-button" 
-                                                                                       ng-multiple="false" ng-accept="'*.pdf,*.jpg,*.png'" ng-model-rejected="rejFiles" 
-                                                                                       tabindex="0" class="ng-hide">Adjuntar una Imagen o PDF</div><br/>
-                                                                                <button ng-file-select ng-model="filesUpdate" 
-                                                                                        ng-multiple="false" class="btn btn-success" >Adjuntar cualquier archivo</button>
-                                                                            </div>
-                                                                            <div ng-file-drop ng-file-select ng-model="filesUpdate" ng-model-rejected="rejFiles"
-                                                                                drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
-                                                                                ng-multiple="false" allow-dir="true" ng-accept="'image/*,application/pdf'">
-                                                                                    Soltar imágenes o archivos PDF<div>O click para Seleccionar</div>
-                                                                            </div>
-                                                                            <div ng-no-file-drop class="drop-box">File Farg&Drop not supported on your browser</div>
-                                                                        </fieldset>
-                                                                        <br/>
-                                                                </div>
-                                                                <ul ng-show="rejFiles.length > 0" class="response">
-                                                                    <li class="sel-file" ng-repeat="f in rejFiles">
-                                                                        Rejected file: {{f.name}} - size: {{f.size}}B - type: {{f.type}}
-                                                                    </li>
-                                                                </ul>
-                                                                <ul ng-show="filesUpdate.length > 0" class="response">
-                                                                    <li class="sel-file" ng-repeat="f in filesUpdate">
-                                                                        <img ng-show="f.dataUrl" ng-src="{{f.dataUrl}}" class="thumb">
-                                                                        <span class="progress" ng-show="f.progress >= 0">                       
-                                                                            <div style="width:{{f.progress}}%">{{f.progress}}%</div>
-                                                                        </span>             
-                                                                        <button class="button" ng-click="f.upload.abort();f.upload.aborted=true" 
-                                                                                ng-show="f.upload != null && f.progress < 100 && !f.upload.aborted">Abort</button>
-                                                                        {{f.name}} - size: {{f.size}}B - type: {{f.type}}
-                                                                        <a ng-show="f.result" href="javascript:void(0)" ng-click="f.showDetail = !f.showDetail">details</a>
-                                                                        <div ng-show="f.showDetail">
-                                                                            <br/>
-                                                                            <div data-ng-show="f.result.result == null">{{f.result}}</div>
-                                                                            <ul>
-                                                                                <li ng-repeat="item in f.result.result">
-                                                                                    <div data-ng-show="item.name">file name: {{item.name}}</div>
-                                                                                    <div data-ng-show="item.fieldName">name: {{item.fieldName}}</div>
-                                                                                    <div data-ng-show="item.size">size on the serve: {{item.size}}</div>
-                                                                                    <div data-ng-show="item.value">value: {{item.value}}</div>
-                                                                                </li>
-                                                                            </ul>
-                                                                            <div data-ng-show="f.result.requestHeaders" class="reqh">request headers: {{f.result.requestHeaders}}</div>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                                <br/>
-                                                                <div class="err" ng-show="errorMsg != null">{{errorMsg}}</div>
-                                                            </div>
-                                                        </div>
-                                            <!-- TERMINA seccion de subida de archivo--> 
-                                                  <br>
-                                                  <h4 ng-show="mensajeExitoSubidaDoc">Documento Subido con exito</h4>
-                                                  <h4 ng-show="mensajeFallidoSubidaDoc">Subida Fallida del Documento</h4>
-
-                                            </div>
-
-                                           </div>
-                                         </div>                                                        
-                                    <!-- FINALIZA MODAL SUBIR DOC CORRESPONDENCIA-->
-				
-				
 			</div>
 		</div>
 	</div>

@@ -18,12 +18,10 @@ module.exports = {
 		  //on: 'id'
 	  },
 	  emisor: {
-		  type: 'string',
-		  required: true
+		  type: 'string'
 	  },
 	  receptor: {
-		  type: 'string',
-		  required: true
+		  type: 'string'
 	  },
 	  asunto: {
 		  type: 'string',
@@ -39,7 +37,13 @@ module.exports = {
       leido:{
         type:'boolean',
           defaultsTo: false
-      }
+      },
+      destinatario: {
+		  type:'text'
+	  },
+	  emisor2: {
+		  type: 'text'
+	  }
 	
   }
 };

@@ -43,7 +43,7 @@ module.exports = {
     
     var uploadPath = '../../assets/docsCorrespondencia';  
     
-    req.file('documento').upload({ dirname: uploadPath},function (err, files) {
+    req.file('file').upload({ dirname: uploadPath},function (err, files) {
       if (err)
         return res.send(500, err);
 
