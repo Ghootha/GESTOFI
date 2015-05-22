@@ -57,6 +57,10 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput', 'ngF
 			$scope.tags=[];
 		}
 		$scope.mensaje = MyService.data.mens;
+		$scope.asunto = MyService.data.asun;
+		MyService.data.nombre=null;
+		MyService.data.mens="";
+		MyService.data.asun="";
         //autocompletar
     $scope.loadTags = function(query) {
         return $http.get("webservice/User");
@@ -191,6 +195,8 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput', 'ngF
         var resp=$scope.emisor2;
 				var men="\n \n------------- MENSAJE ANTERIOR---------------- \n";
 				men=men+$scope.mensaje;
+				var asu="RE: ";
+				asu=asu+$scope.asunto;
         /*$scope.asunto=resp;
         $location.path("/EnviarCorrespondencia");
         $scope.$apply(function(){
@@ -198,6 +204,7 @@ var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput', 'ngF
 					});*/
 					MyService.data.nombre=resp;
 					MyService.data.mens=men;
+					MyService.data.asun=asu;
 					$location.url("/EnviarCorrespondencia");
 
     }
