@@ -82,9 +82,8 @@ $scope.consultarEquipo= function(){
     horaI.setMinutes(h1.getMinutes());
     horaF.setHours(h2.getHours());
     horaF.setMinutes(h2.getMinutes());
-    
     if(fech > new Date()){
-   
+      fech.setHours(fech.getHours()-6);
       $http.get("webservice/get_user").success(function(response){$scope.user= response.user;
         
         objetoReserva={
