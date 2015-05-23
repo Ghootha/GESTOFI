@@ -53,7 +53,7 @@ var app = angular.module("myAppNotificaciones", ['ngRoute']);
 		        });
 
 
-			},60000); //fin del interval
+			},2000); //fin del interval
 
 
 

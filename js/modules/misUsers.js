@@ -110,7 +110,9 @@ app.controller("userController", function($scope, $http, $timeout) {
                             };
                         
                             $http.put("webservice/User/update/"+id, objetoJSON).success(function(){
+                                        $http.get("webservice/User").success(function(response) {$scope.users = response; });
                                         $scope.mensajeExitoEdicion=true;
+
                             }).error(function(){
                                         $scope.mensajeFalloEdicion=true;
                             });
@@ -180,6 +182,8 @@ app.controller("userController", function($scope, $http, $timeout) {
                     $http.post("webservice/Passport/Update/"+Passport, objetoJSON).success(function(response){                   
                 
                         $scope.$apply($scope.mensajeExitoCambiaPass=true);
+                        $scope.passw1="";
+                        $scope.passw2="";
 
                     }).error(function(response, status, header, config){  
                        
