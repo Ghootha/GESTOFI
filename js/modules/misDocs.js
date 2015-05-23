@@ -105,7 +105,7 @@ app.controller("docController", function($scope, Upload, $http, $timeout, $locat
                     $http.put("webservice/Documento/update/"+id, objetoJSON).success(
                      
                             function(){
-                                $http.get("webservice/Documento")
+                                $http.get("webservice/Documento/findDocByRole")
                                     .success(function(response) {$scope.docs = response;});
                      });                    
                 }
@@ -132,31 +132,27 @@ app.controller("docController", function($scope, Upload, $http, $timeout, $locat
 
      $scope.SubirDoc = function(dir, filename){              
             
-                //$scope.getClasificacionDoc();
-                //$scope.getSeguridadDoc();
                 
                 $http.get("webservice/get_user").success(function(response){
-                    $scope.user= response.user;  
-
-                $scope.clasificacion=$scope.tipo.clasificacion;
-
+                    $scope.user= response.user; 
+                                
                 var objetoJSON;    
                        
                 objetoJSON = {
                     "nombre": filename,            
                     "Role": $scope.user.role,
-                    "tipo": $scope.tipo.nombre,
-                    "clasificacion": $scope.clasificacion,
-                    "seguridad": $scope.tipo.seguridad,  
+                    "tipo": $scope.auxTipo.nombre,
+                    "clasificacion": $scope.auxTipo.clasificacion,
+                    "seguridad": $scope.auxTipo.seguridad,  
                     "duenno" : $scope.user.username,
                     "ruta" : dir, 
-                    "codigo": $scope.codigo
+                    "codigo": $scope.auxCodigo
                 };
                 
                 $http.put("webservice/Documento/create", objetoJSON).success(function(response){
                         $timeout(function(){
                             $scope.codigo="";
-                            $scope.tipo="";
+                            $scope.tipo=null;
                             $scope.mensajeExitoSubidaDoc=true;
                         });                        
                  }).error(function(response, status, header, config){  
@@ -177,6 +173,8 @@ app.controller("docController", function($scope, Upload, $http, $timeout, $locat
     
     $scope.$watch('files', function(files) {        
         if (files != null) {
+            $scope.auxCodigo=$scope.codigo;
+            $scope.auxTipo=$scope.tipo;
             for (var i = 0; i < files.length; i++) {
                 $scope.errorMsg = null;
                 (function(file) {
