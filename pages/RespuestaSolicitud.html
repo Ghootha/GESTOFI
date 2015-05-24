@@ -151,7 +151,7 @@
 																			</td>
 																			<td >{{ solicitud .nombre }}</td>
 																			<td >{{ solicitud .solicitante}}</td>
-																			<td >{{ solicitud .fecha}}</td>
+																			<td >{{ solicitud .fecha  | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
 																			
 																			<td >
 																				<button   ng-class="setClassButton(solicitud.estado)"> 
