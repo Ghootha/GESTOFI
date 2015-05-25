@@ -4,9 +4,9 @@ var app = angular.module('routes', ['ngRoute']);
 app.config(function($routeProvider) {
 
 	$routeProvider
-		.when('/subirDocumento', {
-			templateUrl	: 'pages/subirDocumento.html',
-			controller 	: 'docController'
+		.when('/subirDocumento', { //nombre de la vista a mostrar
+			templateUrl	: 'pages/subirDocumento.html', //direccion del html a mostrar
+			controller 	: 'docController'			//controller ligado a dicha vista
 		})
 		.when('/consultarDocumento', {
 			templateUrl	: 'pages/consultarDocumento.html',
@@ -62,8 +62,9 @@ app.config(function($routeProvider) {
 		})
 		.when('/ConfigTipos', {
 			templateUrl	: 'pages/ConfigTipos.html',
-			controller 	: 'configTiposController'
-		}).when('/notificaciones', {
+			controller 	: 'configController'
+		})
+		.when('/notificaciones', {
 			templateUrl	: 'pages/notificaciones.html',
 			controller 	: 'NotificacionesController'
 		})

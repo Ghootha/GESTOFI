@@ -2,7 +2,7 @@
 var app = angular.module("app", [
     'validador',
     'AppDocumentos',
-    'myAppAutentificacion',
+    'AppAutentificador',
     'myAppPerfil',
     'myAppAulas',
     'myAppCorrespondencia',

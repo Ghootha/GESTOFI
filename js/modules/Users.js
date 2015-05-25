@@ -6,12 +6,12 @@ app.controller("userController", function($scope, $http, $timeout) {
     $scope.$on('$viewContentLoaded', function() { //aca va todo auqello que se quiera cargar al inicio de cada pagina
         
         $http.get("webservice/get_user").success(function(response){
-                if(response.user == null){
+                if(response.user == null){ //valida que exista un usuario conectado, si no es asi lo devuelve a la pagian de login
                    window.location.replace("index.html"); 
                 }else{                
                     var roleLogged = response.user.role;
                 
-                    $http.get("webservice/Role").success(function(response){
+                    $http.get("webservice/Role").success(function(response){ // obtiene el role del usuario conectado, luego busca cual es la seguridad de dicho role
                             $scope.roles = response;
                             var roles = response;
 
@@ -20,7 +20,7 @@ app.controller("userController", function($scope, $http, $timeout) {
                                     
                                     var seguridad=roles[i].seguridad;
 
-                                    if( seguridad != 'Alta'){  
+                                    if( seguridad != 'Alta'){  //seguridad de las vistas que usen este controlador
                                          window.location.replace("paginaPrincipal.html"); 
                                     }
                                     
@@ -33,14 +33,14 @@ app.controller("userController", function($scope, $http, $timeout) {
         });
 
         $http.get("webservice/User")
-        .success(function(response) {$scope.users = response; });
+        .success(function(response) {$scope.users = response; }); //carga tabla de usuarios del sistema
 
         $http.get("webservice/Role") //SE usa para cargar el combobox de tipso de documentos, dependiendo del role no muestra tipos que no puede crear
             .success(function(response) {$scope.roles = response;});
 
     });    
     
-  
+       //-------------------------------VARIABLES DE MSJS O DE VALIDACIONES----------------------------------------------/
     $scope.error = false;
     $scope.incomplete = false;
     $scope.incomplete2 = false;
@@ -56,8 +56,10 @@ app.controller("userController", function($scope, $http, $timeout) {
     $scope.mensajeExitoCambiaPass=false;
     $scope.mensajeFalloCambiaPass=false;
 
+    //----------------------------------------------------------------------------------------------------------------/
+
     $scope.editUser = function(id) { 
-            for(var i = 0; i<$scope.users.length; i++) {           
+            for(var i = 0; i<$scope.users.length; i++) {   //busca user por id, obtiene su informacion para mostrar en modal y luego llama al metodo $scope.actualizarUser(id); que se encarga de actualizar el user        
                 if($scope.users[i].id === id) {
                     $scope.edit = false;
                     $scope.username = $scope.users[i].username;
@@ -70,7 +72,7 @@ app.controller("userController", function($scope, $http, $timeout) {
             } 
     };
 
-    $scope.getObjetoRole = function(nombreRole) { 
+    $scope.getObjetoRole = function(nombreRole) { //obtiene el objeto Role al cual esta ligado el user
          
          for(var i = 0; i<$scope.roles.length; i++) {
                 if($scope.roles[i].nombre === nombreRole) {                    
@@ -81,13 +83,13 @@ app.controller("userController", function($scope, $http, $timeout) {
 
     $scope.deleteUser = function(id) {
         $('#Modal3').modal({ backdrop: false})
-        .one('click', '#confirm', function () {
+        .one('click', '#confirm', function () { //este modal es el de confirmacion, una vez confirmado se ejecuta este metodo
 
-            $http.get("webservice/User/destroy/"+id).success(function(){
+            $http.get("webservice/User/destroy/"+id).success(function(){ //llamado REST para eliminar un ojeto de un modelo
 
                 for(var i = 0; i<$scope.users.length; i++) {           
                     if($scope.users[i].id === id) {
-                        $scope.$apply($scope.users.splice(i, 1));
+                        $scope.$apply($scope.users.splice(i, 1));   //elimina el role de la memoria ($scope.users)    
                     }
                 }
             });  
@@ -96,9 +98,9 @@ app.controller("userController", function($scope, $http, $timeout) {
     };
  
 
-    $scope.actualizarUser = function(id) {
+    $scope.actualizarUser = function(id) { //metodo que actualiza la nueva informacion del objeto
        $('#Modal').modal({ backdrop: false})
-        .one('click', '#confirm', function () { 
+        .one('click', '#confirm', function () { //despliega modal donde se muestra/cambia la info del user
              var objetoJSON;
                 for(var i = 0; i<$scope.users.length; i++) {           
                     if($scope.users[i].id === id) {
@@ -109,9 +111,9 @@ app.controller("userController", function($scope, $http, $timeout) {
                                 "role": $scope.role.nombre
                             };
                         
-                            $http.put("webservice/User/update/"+id, objetoJSON).success(function(){
-                                        $http.get("webservice/User").success(function(response) {$scope.users = response; });
-                                        $scope.mensajeExitoEdicion=true;
+                            $http.put("webservice/User/update/"+id, objetoJSON).success(function(){ //llamado rest para actualizar un objeto del modelo, recibe el id, y un json con la nueva informacion
+                                        $http.get("webservice/User").success(function(response) {$scope.users = response; }); //vuelve a cargar el scope con la nueva informacion
+                                        $scope.mensajeExitoEdicion=true; //msj de exito
 
                             }).error(function(){
                                         $scope.mensajeFalloEdicion=true;
@@ -122,7 +124,7 @@ app.controller("userController", function($scope, $http, $timeout) {
         
     };
 
-    $scope.registrar = function(){
+    $scope.registrar = function(){ //crea un nuevo usuario en el sistema
         $scope.username = '';
         $scope.fullname = '';
         $scope.email = '';
@@ -131,7 +133,7 @@ app.controller("userController", function($scope, $http, $timeout) {
         $scope.passw2='';
         
          $('#Modal2').modal({ backdrop: false})
-        .one('click', '#confirmUser', function () {
+        .one('click', '#confirmUser', function () { //levanat modal donde se ingresa la info del nuevo usuario
 
             var objetoJSON;    
                                     
@@ -143,7 +145,7 @@ app.controller("userController", function($scope, $http, $timeout) {
                 "password"  : $scope.passw1
             };    
 
-            $http.post("webservice/auth/local/register", objetoJSON).success(function(response){                    
+            $http.post("webservice/auth/local/register", objetoJSON).success(function(response){     //metodo que registra un nuevo usuario               
                 
                 if(response.status == 200){ //comprobacion de estatus, devuelve 200 si se realizo el registro/logueo
                     $http.get("webservice/User").success(function(response) {$scope.users = response; });
@@ -168,20 +170,20 @@ app.controller("userController", function($scope, $http, $timeout) {
     $scope.cambiarContrasena = function(id){
         $scope.passw1='';
          $('#Modal4').modal({ backdrop: false})
-        .one('click', '#confirmContrasena', function () { 
+        .one('click', '#confirmContrasena', function () { //levanta modal donde se ingresa nueva contraseña
 
-                $http.post("webservice/User/"+id).success(function(response){
+                $http.post("webservice/User/"+id).success(function(response){ //se obtiene la info del usuario a cambiar la contraseña
                     
-                    var Passport= response.passports[0].id;
+                    var Passport= response.passports[0].id; //se obtiene el id del passport ligado al usuario, en este se encuentrta la contraseña
                     var objetoJSON;    
                                         
                     objetoJSON = {                   
                         "password"  : $scope.passw1
                     };
 
-                    $http.post("webservice/Passport/Update/"+Passport, objetoJSON).success(function(response){                   
+                    $http.post("webservice/Passport/Update/"+Passport, objetoJSON).success(function(response){    //se actualiza la contraseña del passport ligado al usuario               
                 
-                        $scope.$apply($scope.mensajeExitoCambiaPass=true);
+                        $scope.$apply($scope.mensajeExitoCambiaPass=true); //mejs de exito y se limpian las variables del socpe
                         $scope.passw1="";
                         $scope.passw2="";
 
@@ -199,6 +201,8 @@ app.controller("userController", function($scope, $http, $timeout) {
             
     };
 
+
+    //------------------------------------------------------VALIDACIONES EN MODAL----------------------------------------//
     $scope.$watch('passw1',function() {$scope.test();});
     $scope.$watch('passw2',function() {$scope.test();});
     $scope.$watch('username', function() {$scope.test();});    
@@ -224,5 +228,6 @@ app.controller("userController", function($scope, $http, $timeout) {
             $scope.incomplete = true;
         }
     };
+
 
 });

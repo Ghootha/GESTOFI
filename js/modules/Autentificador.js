@@ -1,12 +1,14 @@
 
-var app = angular.module("myAppAutentificacion", []);
+var app = angular.module("AppAutentificador", []);
 
-app.controller("autentificacionController", function($scope, $http, $window, $location) {
+app.controller("autentificadorController", function($scope, $http, $window, $location) {
 
+//-----------------------------VARIABLES DE MSJ O DE VALIDACIONES--------------------------------------------//
 $scope.mensajeError=false;
 $scope.mensajeErrorRegistro=false;
+//-----------------------------------------------------------------------------------------------------------//
 
-    $scope.loguear = function(){
+    $scope.loguear = function(){ //se encgara de la autentificacion del usuario
             var objetoJSON;    
             
             objetoJSON = {
@@ -19,7 +21,7 @@ $scope.mensajeErrorRegistro=false;
                 if(response.status == 200){ //exito en logueo
                     $scope = $scope || angular.element(document).scope();
                     if(forceReload || $scope.$$phase) {
-                        window.location = "paginaPrincipal.html";
+                        window.location = "paginaPrincipal.html"; //una vez el usuario se loguea exitosamente, se redirige a la pagina principal
                     }
                 }
 
