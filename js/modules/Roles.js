@@ -1,4 +1,4 @@
-var app = angular.module("myAppRoles", []);
+var app = angular.module("AppRoles", []);
 
 app.controller("rolController", function($scope, $http, $timeout) {
 

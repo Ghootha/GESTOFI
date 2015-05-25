@@ -1,18 +1,18 @@
 
 var app = angular.module("app", [
     'validador',
-    'myAppDocs',
+    'AppDocumentos',
     'myAppAutentificacion',
     'myAppPerfil',
     'myAppAulas',
     'myAppCorrespondencia',
     'myAppEquipos',
-    'myAppRoles',
+    'AppRoles',
     'myAppReserva',
     'myAppSolicitudes',
-    'myAppUsers',
+    'AppUsers',
     'myAppAgenda',
-    'myAppConfigTipos',
+    'AppConfiguracion',
     'myAppNotificaciones',
     'myAppSolicitudesUser',
     'routes'

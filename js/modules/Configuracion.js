@@ -1,6 +1,6 @@
-var app = angular.module("myAppConfigTipos", ['duScroll','ngFileUpload']);
+var app = angular.module("AppConfiguracion", ['duScroll','ngFileUpload']);
 
-app.controller("configTiposController", function($scope, $http, Upload, $timeout, $document) {
+app.controller("configController", function($scope, $http, Upload, $timeout, $document) {
 
 
 

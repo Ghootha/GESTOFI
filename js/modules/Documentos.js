@@ -1,5 +1,5 @@
 
-var app = angular.module("myAppDocs", ['ngRoute', 'ngFileUpload']);
+var app = angular.module("AppDocumentos", ['ngRoute', 'ngFileUpload']);
 
 app.controller("docController", function($scope, Upload, $http, $timeout, $location, $window) {
 

@@ -1,5 +1,5 @@
 
-var app = angular.module("myAppUsers", []);
+var app = angular.module("AppUsers", []);
 
 app.controller("userController", function($scope, $http, $timeout) {
    
