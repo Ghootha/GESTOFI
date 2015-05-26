@@ -1,4 +1,4 @@
-var app = angular.module("myAppPerfil", ['ngFileUpload']);
+var app = angular.module("AppPerfil", ['ngFileUpload']);
 
 app.controller("perfilController", function($scope, $http, Upload, $timeout,$interval) {
 
@@ -14,7 +14,7 @@ $scope.$on('$viewContentLoaded', function () {
                 if(response.user == null){
                    window.location.replace("index.html"); 
                 }else{
-                 	
+                 	//carga de los datos del usuario
                     $scope.user= response.user;
                     $scope.modalNombre=$scope.user.fullname;
                     $scope.modalFecha=$scope.user.birthdate;
@@ -22,7 +22,7 @@ $scope.$on('$viewContentLoaded', function () {
                     $scope.modalEmail=$scope.user.email;
                     $scope.modalPhone=$scope.user.phone;
                     	
-                    	if($scope.user.photo !== null){
+                    	if($scope.user.photo !== null){// si el usuario ya tiene una foto registrada se muestra sino se muestra a imagen por defecto
                     		$scope.userPhoto= "http://gestofi.com/webservice/fotoPerfil/"+$scope.user.photo;
                     	}
                     	else
@@ -34,11 +34,7 @@ $scope.$on('$viewContentLoaded', function () {
     });
 });
 
-//$http.get("webservice/User").success(function(response) {$scope.users = response; }); comenté (Michael) xq al parecer no se usa
-
-
-
-$scope.modificarPerfil =function(){
+$scope.modificarPerfil =function(){// metodo encargado de la modificacion del usuario con los datos registrados en el modal de actulizacion 
    
 	var objeto={
 		"fullname": $scope.modalNombre,
@@ -55,7 +51,6 @@ $scope.modificarPerfil =function(){
 		$scope.user.address= objeto.address;
 		$scope.user.email= objeto.email;
 		$scope.user.phone= objeto.phone;
-        //$http.get("webservice/get_user").success(function(response){$scope.user= response.user;});
         $scope.modalNombre=$scope.user.fullname;
         $scope.modalFecha=$scope.user.birthdate;
         $scope.modalDomicilio=$scope.user.address;
@@ -68,7 +63,7 @@ $scope.modificarPerfil =function(){
 
 };
 
-$scope.switchDate=function(fecha){
+$scope.switchDate=function(fecha){//metodo que cambio la fecha en el select 
     if(typeof fecha === "undefined"){
         return "";
     }
@@ -78,7 +73,7 @@ $scope.switchDate=function(fecha){
     return i;}
 };
 
-$scope.editarModal=function(){
+$scope.editarModal=function(){// metodo actuliza  los datos del modal
        $('#modalFecha').combodate({value:$scope.modalFecha});  
         $('#Modal2').modal({backdrop:false}).one('click', '#confirm', function(){
             $scope.modalFecha=$scope.user.birthdate;
@@ -91,7 +86,7 @@ $scope.editarModal=function(){
 };
 
 
-$scope.setContrasena=function(){
+$scope.setContrasena=function(){// metodo encargado de modificacion de contraseña en la base 
 	
     if($scope.passNew === $scope.passNewConf && $scope.passNew!= "" && $scope.passNew.length >= 8){
             $http.post("webservice/User/"+$scope.user.id).success(function(response){
@@ -109,7 +104,7 @@ $scope.setContrasena=function(){
 	}
 }; 
 
-$scope.cargarFoto= function(filename){
+$scope.cargarFoto= function(filename){//metod que carga la foto para ser vista en el html, actuliza a nivel de base
     $scope.userPhoto="http://gestofi.com/webservice/fotoPerfil/default-user-image.png";
     var objetoFoto;    
     objetoFoto={
@@ -125,13 +120,14 @@ $scope.cargarFoto= function(filename){
     });
 };
 
+//codigo encargado de la subida de fotos 
 
 //EMPIEZA CODIGO NECESARIO PARA QUE FUNCIONE EL UPLOADER
     //-------------------------------------------------------------------------------------------------------------------------------------//
 
     $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
     
-    $scope.$watch('files', function(files) {        
+    $scope.$watch('files', function(files) {  // metodo atento cambios en el html sobre la carga de archivos     
         if (files != null) {
             for (var i = 0; i < files.length; i++) {
                 $scope.errorMsg = null;
@@ -143,13 +139,12 @@ $scope.cargarFoto= function(filename){
     });
     
 
-    function uploadUsingUpload(file) {
+    function uploadUsingUpload(file) {// metodo que carga la foto en el servidor 
         $scope.errorMsg = null;
         file.upload = Upload.upload({
                     url: 'webservice/User/upload',
                     method: 'POST',
                     file:file
-                    //data: {title: 'prueba', documento: file, nomDoc:"UserPhoto"+$scope.user.id+".png"}
                 });
 
         file.upload.then(function(response) {
@@ -181,7 +176,7 @@ $scope.cargarFoto= function(filename){
         e.preventDefault();
     });
       
-    $scope.onSuccessLoadFile = function(response){
+    $scope.onSuccessLoadFile = function(response){//metodo encargado de llamar a la insercion de datos en base sobre la foto con la foto ya cargada en el servidor 
             
             var nombreSliced = "UserPhoto"+$scope.user.id+".png";
             $scope.cargarFoto(nombreSliced);

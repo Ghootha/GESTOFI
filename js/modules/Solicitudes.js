@@ -1,4 +1,4 @@
- var app = angular.module("myAppSolicitudes", ['ngFileUpload']);
+ var app = angular.module("AppSolicitudes", ['ngFileUpload']);
 
 app.controller("solicitudController", function($scope, $http , $window, Upload, $timeout,$route) {
 
@@ -33,10 +33,13 @@ $scope.$on('$viewContentLoaded', function() {
     $http.get("webservice/Solicitudes/findSolicitudes").success(function(response){$scope.solicitudes=response;});
 });
 
-$scope.tabs = [  
+$scope.tabs = [  // tabs en las que se divide el panel
       { link : '#home', label : 'Solicitudes Pendientes' },
       { link : '#revisadas', label : 'Solicitudes revisadas anteriormente'}
      ]; 
+
+/////variables de validacion y variables globales
+
 $scope.nombre='';
 $scope.solicitante = '';
 
@@ -45,13 +48,9 @@ $scope.edit = true;
 $scope.error = false;
 $scope.incomplete = false; 
 var estado="";
+////
 
-
-//$http.get("webservice/get_user").success(function(response){$scope.user= response.user;});
-
-
-
-$scope.abrirSolicitud = function(id) {
+$scope.abrirSolicitud = function(id) {// metodo para descargar la solicitud
           if(id==1){
             $window.open('http://gestofi.com/webservice/solicitudes/plantillas/PLANTILLA_GIRAS.docx'); 
           }
@@ -61,7 +60,7 @@ $scope.abrirSolicitud = function(id) {
  
     };
 
-$scope.setClassButton = function(estado) {
+$scope.setClassButton = function(estado) {// metodo que modifica el color del estado de la solicitud
     
     if(estado=="Aprobar"){
       return "btn btn-success";
@@ -75,7 +74,7 @@ $scope.setClassButton = function(estado) {
 };
 
 
-$scope.setClassSpan = function(estado) {
+$scope.setClassSpan = function(estado) {// metodo que modifica el icono del estado de la solicitud
     
     if(estado=="Rechazar"){
       return "glyphicon glyphicon-remove";
@@ -89,7 +88,7 @@ $scope.setClassSpan = function(estado) {
 	}	
 	};
 
-$scope.cambioEstado = function(id,estado) {
+$scope.cambioEstado = function(id,estado) {///NATA ES SUYO
    
      if(estado=="Rechazar"){
     $http.put("webservice/Solicitudes/update/"+id+"?estado=Rechazar").success(function(response){
@@ -173,20 +172,20 @@ $scope.cargarSolicitud= function(dir, filename){
 
 };
 
-$scope.descargarSolicitud= function(id){
+$scope.descargarSolicitud= function(id){ // metodo para la descarga del documento a revisar
   $http.get("webservice/Solicitudes/"+id).success(function(response){
    $window.open('http://gestofi.com/webservice/solicitudes/solicitudesRecibidas/'+response.ruta); 
   })
     
 };
 
-
+//Seccion para subir el documento
 //EMPIEZA CODIGO NECESARIO PARA QUE FUNCIONE EL UPLOADER
     //-------------------------------------------------------------------------------------------------------------------------------------//
 
     $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
     
-    $scope.$watch('files', function(files) {        
+    $scope.$watch('files', function(files) { //metodo que esta atento a un cambio en la seccion de files en el html       
         if (files != null) {
             for (var i = 0; i < files.length; i++) {
                 $scope.errorMsg = null;
@@ -198,7 +197,7 @@ $scope.descargarSolicitud= function(id){
     });
     
 
-    function uploadUsingUpload(file) {
+    function uploadUsingUpload(file) {// metodo encargado de subir el documento al servidor
         $scope.errorMsg = null;
         
         file.upload = Upload.upload({
@@ -235,7 +234,7 @@ $scope.descargarSolicitud= function(id){
         e.preventDefault();
     });
       
-    $scope.onSuccessLoadFile = function(response){
+    $scope.onSuccessLoadFile = function(response){// metodo llama el metodo de crear el objeto solicitud en la base una vez el archivo este en el servidor
            
             var ruta = response.files[0].fd;
             var nombre = response.files[0].filename;
@@ -250,7 +249,7 @@ $scope.descargarSolicitud= function(id){
 
 ///////////
 
-
+//validaciones 
 $scope.$watch('nombre', function() {$scope.test();});
 $scope.$watch('solicitante', function() {$scope.test();});
 

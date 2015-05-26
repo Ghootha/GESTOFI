@@ -1,4 +1,4 @@
-var app = angular.module("myAppReserva", []);
+var app = angular.module("AppReserva", []);
 
 app.controller("reservaController", function($scope, $http) {
 var objetoFecha;
@@ -50,7 +50,7 @@ $scope.nombresSelect=[];
 
 
 
-$scope.buscarPorFecha = function (){
+$scope.buscarPorFecha = function (){// metodo que realiza el filtro por fecha de las reservas
 	if(typeof $scope.fecha === "undefined"){
         return "";
     }
@@ -72,7 +72,7 @@ $scope.buscarPorFecha = function (){
 };
 
 
-$scope.mostrarEstado= function(estado, ID){
+$scope.mostrarEstado= function(estado, ID){//metodo que modifica la vista del select del estado de la reserva
 	if(estado==="Pendiente"){
 		
 		$scope.nombresSelect[ID]= $scope.opcs[0].id;
@@ -90,7 +90,7 @@ $scope.mostrarEstado= function(estado, ID){
 };
 
 
-$scope.setEstado = function(id, idReserva){
+$scope.setEstado = function(id, idReserva){// metodo que modifica el estado de la reserva a nivel de la base
 	
 	var objeto={
 		"estado": id.nombre
