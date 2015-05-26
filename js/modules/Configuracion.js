@@ -32,7 +32,7 @@ $scope.$on('$viewContentLoaded', function () {
 	}).error(function(response, status, header, config){  
 	        console.log("error en obtencion de usuario conectado");  
 	});
-
+	//carga de listas con respecto a la base
 	$http.get("webservice/Reservable").success(function(response){$scope.equipos=response;});
 	$http.get("webservice/TipoReservable").success(function(response){$scope.selectTipos=response;});
 	$http.get("webservice/TipoDocumento").success(function(response){$scope.tipoDocumentos=response;});
@@ -52,7 +52,7 @@ $scope.toTheTop = function() {
 
 
 $scope.btnFile=false;
-    $scope.tabs = [  
+    $scope.tabs = [  //tabs para la seccion de reservables
       { link : '#agregarReservable', label : 'Agregar' },
       { link : '#editarReservable', label : 'Editar'},
       { link : '#editarTipo', label : 'Editar Tipo'},
@@ -65,17 +65,12 @@ $scope.btnFile=false;
       
     ]; 
 
-    $scope.plantillas = [
+    $scope.plantillas = [ //nombres de las etiquetas para carga de plantillas
         {nombre:'Giras'},
         {nombre:'Vacaciones'}
     ];
 
-// $http.get("webservice/Reservable").success(function(response){$scope.equipos=response;});
-// $http.get("webservice/TipoReservable").success(function(response){$scope.selectTipos=response;});
-// $http.get("webservice/TipoDocumento").success(function(response){$scope.tipoDocumentos=response;});
-//$http.get("webservice/get_user").success(function(response){$scope.user= response.user;});
-
-$scope.agregarTipo=function(){
+$scope.agregarTipo=function(){//metodo para agregar el tipo de reservable
 	if(typeof $scope.nomNuevoTipo !== "undefined"){
 	var objeto={
 		"nombre":$scope.nomNuevoTipo,
@@ -88,17 +83,14 @@ $scope.agregarTipo=function(){
 		$scope.nomNuevoTipo="";
 		$scope.selectTipoReservable="";
 		bootbox.alert("Tipo creado");
-
-		//alert("Tipo creado");
 	});}
 	else{
 		bootbox.alert("Espacio de nombre esta vacio");
-		//alert("Espacio de nombre esta vacio");
 	}
 
 };
 
-$scope.agregarReservable=function(){
+$scope.agregarReservable=function(){//metodo que agrega el reservable a la base
 	
 	if(typeof $scope.inputNombre!=="undefined" && typeof $scope.inputEstado !=="undefined" && typeof $scope.inputDescripcion!=="undefined" && typeof $scope.inputCodigo!=="undefined"){
 	var objeto={
@@ -117,17 +109,17 @@ $scope.agregarReservable=function(){
 		$scope.inputCodigo="";		
 		$scope.equipos.push(response);
 		bootbox.alert("Reservable creado");
-		//alert("Reservable creado");
+		
 	});}
 	else{
 		bootbox.alert("Existen espacios con datos incorrectos");
-		//alert("Existen espacios con datos incorrectos");
+		
 	}
 };
 
-$scope.editarModal=function(idReservable, index){
+$scope.editarModal=function(idReservable, index){//metodo que edita la informacion del modal puede variar de tipo de reservable o reservable
 	if(index===1){
-	$http.get("webservice/Reservable/"+idReservable).success(function(response){
+	$http.get("webservice/Reservable/"+idReservable).success(function(response){// aqui para modificar el modal si es reservable 
 		$scope.nombreModal=response.nombre;
 		for(var i=0;i<$scope.selectTipos.length;i++){
 			if($scope.selectTipos[i].id===response.id){
@@ -140,7 +132,7 @@ $scope.editarModal=function(idReservable, index){
 		$scope.descripcionModal=response.descripcion;
 		$scope.editarReservable(idReservable);
 	});}
-	else if(index===2){
+	else if(index===2){//aqui para modificar si es tipo de reservable
 		$http.get("webservice/TipoReservable/"+idReservable).success(function(response){
 		$scope.nombreModal=response.nombre;
 		$scope.editarTipoReservable(idReservable);
@@ -148,7 +140,7 @@ $scope.editarModal=function(idReservable, index){
 	}
 };
 
-$scope.editarReservable=function(idReservable){
+$scope.editarReservable=function(idReservable){//modifica el reservable en la base 
 	$('#Modal').modal({backdrop:false}).one('click', '#confirm', function(){
 
 		var objeto={
@@ -172,7 +164,7 @@ $scope.editarReservable=function(idReservable){
 	
 };
 
-$scope.editarTipoReservable=function(idReservable){
+$scope.editarTipoReservable=function(idReservable){//edita el tipo de reservable en la base
 	$('#Modal4').modal({backdrop:false}).one('click', '#confirm', function(){
 		
 		var objeto={
@@ -255,7 +247,7 @@ $scope.actualizaTipoDoc=function(idTipoDoc){
 
 //----------------------------------------------------TERMINA CONFIG TIPO DOC -----------------------------------------------------//
 
-$scope.checkOption=function(){
+$scope.checkOption=function(){//indica el nombre de la plantilla a subir y habilita el boton
 	if($scope.selectPlantilla==="Giras"){
 		$scope.nombreArchivo=1;//"PLANTILLA_GIRAS.docx";
 		$scope.btnFile=true;
@@ -266,7 +258,7 @@ $scope.checkOption=function(){
 	}
 };
 
- $scope.cargarArchivo=function(nombre){
+ $scope.cargarArchivo=function(nombre){//confirma la carga del archivo
  	$scope.btnFile=false;
  	$scope.selectPlantilla=false;
  	if(nombre===1){nombre="PLANTILLA_GIRAS.docx";}else nombre="PLANTILLA_VACACIONES.docx";
@@ -280,7 +272,7 @@ $scope.checkOption=function(){
 
     $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
     
-    $scope.$watch('files', function(files) {        
+    $scope.$watch('files', function(files) {   //metodo atento a la carga de archivos para la modificacion de plantillas     
         if (files != null) {
             for (var i = 0; i < files.length; i++) {
                 $scope.errorMsg = null;
@@ -292,7 +284,7 @@ $scope.checkOption=function(){
     });
     
 
-    function uploadUsingUpload(file) {
+    function uploadUsingUpload(file) {//carga de plantilla al servidor
         $scope.errorMsg = null;
        	var miUrl;
        	if($scope.nombreArchivo===1){
@@ -336,7 +328,7 @@ $scope.checkOption=function(){
         e.preventDefault();
     });
       
-    $scope.onSuccessLoadFile = function(response){
+    $scope.onSuccessLoadFile = function(response){// llama al metodo cargaArchivo(para la base) una vez que la plantilla este en el servidor
            
             //var ruta = response.files[0].fd;
             //var nombre = response.files[0].filename;

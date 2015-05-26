@@ -9,8 +9,10 @@ $scope.$on('$viewContentLoaded', function() {
             }else{     
               $scope.user= response.user;  
               var roleLogged = response.user.role;
+              var fechaHoy=new Date();
+              fechaHoy.setHours(fechaHoy.getHours()-6);
               objetoFecha={
-					"fecha" : new Date().toISOString()
+					"fecha" : fechaHoy
 				};
 				$http.post("webservice/ReservaEquipo/findReservas", objetoFecha).success(function(response){$scope.reservas=response;
 					$scope.nombresSelect=[];
