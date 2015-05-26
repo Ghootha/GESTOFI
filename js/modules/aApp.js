@@ -1,6 +1,6 @@
 
 var app = angular.module("app", [
-    'validador',
+    'AppValidador',
     'AppDocumentos',
     'AppAutentificador',
     'AppPerfil',
@@ -15,7 +15,7 @@ var app = angular.module("app", [
     'AppConfiguracion',
     'myAppNotificaciones',
     'AppSolicitudesUser',
-    'routes'
+    'Routes'
     ]);
 
   app.factory("MyService", function() {

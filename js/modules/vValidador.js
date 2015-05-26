@@ -1,5 +1,5 @@
 
-var app = angular.module("validador", []);
+var app = angular.module("AppValidador", []);
 
 app.controller("validadorController", function($scope, $http, $window, $location) {
 
