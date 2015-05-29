@@ -37,7 +37,6 @@ $scope.mensajeErrorRegistro=false;
     $scope.registrar = function(){
 
             var objetoJSON;    
-            debugger;
             objetoJSON = {
                 "username"  : $scope.username,                
                 "fullname"  : $scope.fullname,    

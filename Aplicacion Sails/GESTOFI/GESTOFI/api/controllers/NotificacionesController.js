@@ -9,7 +9,7 @@ module.exports = {
 	
     notificacionesUsuario:function(req, res){
 		
-		var usuarioLogged = req.user.fullname;
+		var usuarioLogged = req.user.username;
 		Notificaciones.find( {duenno : usuarioLogged} )
 			.exec(function(err,user){
 
