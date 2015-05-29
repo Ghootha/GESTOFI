@@ -12,20 +12,18 @@ module.exports = {
   attributes: {
 	  documento: {
 		  columnName: 'documento',
-		  type: 'string',
-		  //foreignKey: true,
-		  //references: 'Usuario',
-		  //on: 'id'
+		  type: 'string'
 	  },
 	  emisor: {
-		  type: 'string'
-	  },
-	  receptor: {
-		  type: 'string'
-	  },
-	  asunto: {
 		  type: 'string',
 		  required: true
+	  },
+	  receptor: {
+		  type: 'string',
+		  required: true
+	  },
+	  asunto: {
+		  type: 'string'
 	  },
 	fecha:{
 		  type:'date',
@@ -39,10 +37,12 @@ module.exports = {
           defaultsTo: false
       },
       destinatario: {
-		  type:'text'
+		  type:'text',
+		  required = true;
 	  },
 	  emisor2: {
-		  type: 'text'
+		  type: 'text',
+		  required = true;
 	  }
 	
   }

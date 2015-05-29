@@ -194,7 +194,7 @@ $scope.agregarTipoDoc=function(){
 		$scope.seguridadTipoDoc="";
 		$scope.clasificacionTipoDoc="";		
 		$scope.tipoDocumentos.push(response);		
-		bootbox.alert("Tipo Creado Creado");
+		bootbox.alert("Tipo Creado");
 	});
 };
 

@@ -164,7 +164,7 @@ $scope.cargarSolicitud= function(dir, filename){
         $http.put("webservice/notificaciones/create", objetoJSON).success(function(response){});
       }
     });
-    bootbox.alert("Solicitud enviada, la respuesta será notificada por correspondencia");
+    bootbox.alert("Solicitud enviada");
     //alert("Solicitud enviada, la respuesta será notificada por correspondencia");
   });});
 
