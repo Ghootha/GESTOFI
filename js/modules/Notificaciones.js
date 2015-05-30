@@ -1,4 +1,4 @@
-var app = angular.module("myAppNotificaciones", ['ngRoute']);
+var app = angular.module("AppNotificaciones", ['ngRoute']);
 
 app.controller("NotificacionesController", function($scope, $http, $timeout, $location, $window, $route, $interval) {
 

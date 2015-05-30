@@ -13,6 +13,7 @@ app.controller("validadorController", function($scope, $http, $window, $location
     $scope.hideCorrespondencia = false;
     $scope.hideAlmacenar = false;
     $scope.hideConfiguracion = false;
+    $scope.hideOpcionesDoc = false;
     //-----------------------------------------------------------------------------------------------------------------------------------------//
     
     $http.get("webservice/get_user").success(function(response){
@@ -65,6 +66,7 @@ $scope.$watch('user',function() {$scope.test();}); //cuando el usuario se conect
                             $scope.hideCorrespondencia = true; 
                             $scope.hideControlReserva=true;
                             $scope.hideRespuestaSolicitudes=true;
+                            $scope.hideOpcionesDoc =true;
                             }
                         }
                     }  

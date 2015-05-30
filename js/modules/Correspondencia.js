@@ -1,5 +1,5 @@
 
-var app = angular.module("myAppCorrespondencia", ['ngRoute', 'ngTagsInput', 'ngFileUpload']); //tags aqui
+var app = angular.module("AppCorrespondencia", ['ngRoute', 'ngTagsInput', 'ngFileUpload']); //tags aqui
 
 app.controller("CorrespondenciaController", function($scope, $http, $timeout, $location, $window, Upload, $document, $route, MyService) {
 

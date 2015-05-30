@@ -1,4 +1,4 @@
-var app = angular.module("myAppAgenda", []);
+var app = angular.module("AppAgenda", []);
 
 app.controller("agendaController", function($scope, $http, $window, $location, $timeout, $route) {
 

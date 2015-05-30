@@ -125,15 +125,17 @@ app.controller("userController", function($scope, $http, $timeout) {
     };
 
     $scope.registrar = function(){ //crea un nuevo usuario en el sistema
-        $scope.username = '';
-        $scope.fullname = '';
-        $scope.email = '';
-        $scope.role = '';
-        $scope.passw1='';
-        $scope.passw2='';
+            $scope.username = '';
+            $scope.fullname = '';
+            $scope.email = '';
+            $scope.role = '';
+            $scope.passw1='';
+            $scope.passw2='';
         
          $('#Modal2').modal({ backdrop: false})
         .one('click', '#confirmUser', function () { //levanat modal donde se ingresa la info del nuevo usuario
+
+            
 
             var objetoJSON;    
                                     
@@ -219,11 +221,11 @@ app.controller("userController", function($scope, $http, $timeout) {
         $scope.incomplete = false;
         $scope.incomplete2 = false;
         if (!$scope.username.length || !$scope.fullname.length ||
-            !$scope.email.length || $scope.role.nombre == null) {
+            !$scope.email.length || $scope.role == null) {
             $scope.incomplete2 = true;
         }
         if (!$scope.username.length || !$scope.fullname.length ||
-            !$scope.email.length || !$scope.role.nombre == null ||
+            !$scope.email.length || $scope.role == '' ||
             !$scope.passw1.length || !$scope.passw2.length) {
             $scope.incomplete = true;
         }

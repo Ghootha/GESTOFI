@@ -5,15 +5,15 @@ var app = angular.module("app", [
     'AppAutentificador',
     'AppPerfil',
     'AppAulas',
-    'myAppCorrespondencia',
+    'AppCorrespondencia',
     'AppEquipos',
     'AppRoles',
     'AppReserva',
     'AppSolicitudes',
     'AppUsers',
-    'myAppAgenda',
+    'AppAgenda',
     'AppConfiguracion',
-    'myAppNotificaciones',
+    'AppNotificaciones',
     'AppSolicitudesUser',
     'Routes'
     ]);
