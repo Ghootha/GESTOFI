@@ -171,6 +171,7 @@ app.controller("userController", function($scope, $http, $timeout) {
 
     $scope.cambiarContrasena = function(id){
         $scope.passw1='';
+        $scope.passw2='';
          $('#Modal4').modal({ backdrop: false})
         .one('click', '#confirmContrasena', function () { //levanta modal donde se ingresa nueva contraseña
 
