@@ -252,8 +252,12 @@ $scope.checkOption=function(){//indica el nombre de la plantilla a subir y habil
 		$scope.nombreArchivo=1;//"PLANTILLA_GIRAS.docx";
 		$scope.btnFile=true;
 	}
-	else{
+	else if($scope.selectPlantilla==="Vacaciones"){
 		$scope.nombreArchivo=2;//"PLANTILLA_VACACIONES.docx";
+		$scope.btnFile=true;
+	}
+	else if($scope.selectPlantilla==="Permisos"){
+		$scope.nombreArchivo=3;//"PLANTILLA_VACACIONES.docx";
 		$scope.btnFile=true;
 	}
 };
@@ -261,7 +265,15 @@ $scope.checkOption=function(){//indica el nombre de la plantilla a subir y habil
  $scope.cargarArchivo=function(nombre){//confirma la carga del archivo
  	$scope.btnFile=false;
  	$scope.selectPlantilla=false;
- 	if(nombre===1){nombre="PLANTILLA_GIRAS.docx";}else nombre="PLANTILLA_VACACIONES.docx";
+ 	if(nombre===1){
+ 		nombre="PLANTILLA_GIRAS.docx";
+ 	}
+ 	else if(nombre===2){
+ 		nombre="PLANTILLA_VACACIONES.docx";
+ 	} 
+ 	else if(nombre===3){
+ 		nombre="PLANTILLA_PERMISOS.docx";
+ 	}
  	bootbox.alert("subida del archivo"+" "+nombre+" "+"exitoso");
  	//alert("subida del archivo"+" "+nombre+" "+"exitoso");
 
@@ -292,6 +304,9 @@ $scope.checkOption=function(){//indica el nombre de la plantilla a subir y habil
        	}
        	else if($scope.nombreArchivo===2){
        		miUrl='webservice/Solicitudes/uploadPlantillaVacaciones';
+       	}
+       	else if($scope.nombreArchivo===3){
+       		miUrl='webservice/Solicitudes/uploadPlantillaPermisos';
        	}
         file.upload = Upload.upload({
                     url: miUrl,

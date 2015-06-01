@@ -54,7 +54,20 @@ module.exports = {
       });
     });
   },
+  uploadPlantillaPermisos: function  (req, res) {
+    
+    var uploadPath = '../../assets/solicitudes/plantillas';  
+    req.file('file').upload({ dirname: uploadPath, saveAs:"PLANTILLA_PERMISOS.docx"},function (err, files) {
+      
+      if (err)
+        return res.send(500, err);
 
+      return res.json({
+        message: files.length + ' file(s) uploaded successfully!',
+        files: files
+      });
+    });
+  },
   findSolicitudes : function(req, res){
       User.find().exec(function(err, miUsuario){listaUsuarios=miUsuario;});
       Solicitudes.find().exec(function(err, sol){

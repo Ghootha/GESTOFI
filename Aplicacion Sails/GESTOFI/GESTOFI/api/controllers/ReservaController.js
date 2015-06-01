@@ -144,7 +144,7 @@ module.exports = {
 			 	}
 			 	else{
 			 			
-			 		    Reserva.find({fecha:fech}).exec(function(err, idReservas){
+			 		    /*Reserva.find({fecha:fech}).exec(function(err, idReservas){
 			 		    //Reserva.find({ fecha : req.param('fecha'), horaInicio: { $lg :req.param('horaInicio')}, horaEntrega: {$gl:req.param('horaEntrega')}}).exec(function(err, idReservas){listaIDReservas=idReservas;
 	
 			 		    	if(err)
@@ -158,7 +158,8 @@ module.exports = {
 					            	
 					        }
 			 		    	
-			 		    });
+			 		    });*/
+		 				Reserva.find({fecha:fech}).exec(function(err, idReservas){listaIDReservas=idReservas;});
 			 		   	ReservaEquipo.find().exec(function(err, idReservables){listaIDReservables=idReservables;});
 			 			
 			 			Reservable.find({ tipo: misTiposEquipos}).exec(function(err, listaFinal){

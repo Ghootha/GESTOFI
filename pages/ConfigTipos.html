@@ -81,7 +81,16 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Estado fisico</td>
-                                                    <td><div class="col-sm-8"><input class="form-control" type="text" ng-model="inputEstado"/></div></td>
+                                                    <td>
+                                                      <div class="col-sm-8">
+                                                          <select class="form-control" data-ng-model="inputEstado">    
+                                                            <option>Excelente</option>
+                                                            <option>Bueno</option>
+                                                            <option>Malo</option>
+                                                            <option>Roto</option>
+                                                          </select>                                                
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Descripcion</td>
@@ -173,9 +182,12 @@
               <div><form name="btns">
                   <label for="girasRadio">Giras:</label>
                   <input id="girasRadio" type="radio" ng-model="selectPlantilla" value="Giras" ng-click="checkOption()"/>
-
+                  <br>
                   <label for="vacasRadio">Vacaciones:</label>
                   <input id="vacasRadio" type="radio" ng-model="selectPlantilla" value="Vacaciones" ng-click="checkOption()" />
+                  <br>
+                  <label for="vacasRadio">Permisos:</label>
+                  <input id="vacasRadio" type="radio" ng-model="selectPlantilla" value="Permisos" ng-click="checkOption()" />
               </form></div>
               <br>
               <div class="up-buttons">

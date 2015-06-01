@@ -54,8 +54,11 @@ $scope.abrirSolicitud = function(id) {// metodo para descargar la solicitud
           if(id==1){
             $window.open('http://gestofi.com/webservice/solicitudes/plantillas/PLANTILLA_GIRAS.docx'); 
           }
-          else{
+          else if(id==2){
             $window.open('http://gestofi.com/webservice/solicitudes/plantillas/PLANTILLA_VACACIONES.docx'); 
+          }
+          else if(id==3){
+            $window.open('http://gestofi.com/webservice/solicitudes/plantillas/PLANTILLA_PERMISOS.docx'); 
           }
  
     };
@@ -158,7 +161,7 @@ $scope.cargarSolicitud= function(dir, filename){
           "emisor":$scope.user.fullname,
           "titulo":"Solicitud Pendiente",
           "tipo":"Solicitud de Gira/Vacaciones",
-          "mensaje":"Ha recibido una nueva solicitud de giras o vacaciones, la puede acceder en Configuraciones > Solicitudes > Pendientes"
+          "mensaje":"Ha recibido una nueva solicitud de giras,vacaciones o permisos, la puede acceder en Configuraciones > Solicitudes > Pendientes"
         };
       
         $http.put("webservice/notificaciones/create", objetoJSON).success(function(response){});
