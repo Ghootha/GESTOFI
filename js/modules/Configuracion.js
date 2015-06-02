@@ -122,7 +122,7 @@ $scope.editarModal=function(idReservable, index){//metodo que edita la informaci
 	$http.get("webservice/Reservable/"+idReservable).success(function(response){// aqui para modificar el modal si es reservable 
 		$scope.nombreModal=response.nombre;
 		for(var i=0;i<$scope.selectTipos.length;i++){
-			if($scope.selectTipos[i].id===response.id){
+			if($scope.selectTipos[i].nombre===response.tipo){
 				$scope.tipoModal=$scope.selectTipos[i].nombre;
 			}
 		}
