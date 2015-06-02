@@ -15,18 +15,16 @@ module.exports = {
 		  type: 'string'
 	  },
 	  emisor: {
-		  type: 'string',
-		  required: true
+		  type: 'string'
 	  },
 	  receptor: {
-		  type: 'string',
-		  required: true
+		  type: 'string'
 	  },
 	  asunto: {
 		  type: 'string'
 	  },
 	fecha:{
-		  type:'date',
+		  type:'datetime',
 		defaultsTo: function (){ return new Date(); }
 	  },
 	mensaje:{
@@ -37,12 +35,10 @@ module.exports = {
           defaultsTo: false
       },
       destinatario: {
-		  type:'text',
-		  required = true;
+		  type:'text'
 	  },
 	  emisor2: {
-		  type: 'text',
-		  required = true;
+		  type: 'text'
 	  }
 	
   }

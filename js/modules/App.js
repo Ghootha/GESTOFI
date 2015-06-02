@@ -15,6 +15,7 @@ var app = angular.module("app", [
     'AppConfiguracion',
     'AppNotificaciones',
     'AppSolicitudesUser',
+    'AppAyuda',
     'Routes'
     ]);
 

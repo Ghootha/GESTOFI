@@ -67,7 +67,10 @@ app.config(function($routeProvider) {
 		.when('/notificaciones', {
 			templateUrl	: 'pages/notificaciones.html',
 			controller 	: 'NotificacionesController'
-		})
+		}).when('/ayuda', {
+            templateUrl	: 'pages/ayuda.html',
+            controller 	: 'AyudaController'
+        })
 		.otherwise({
 			redirectTo: '/'
 		});

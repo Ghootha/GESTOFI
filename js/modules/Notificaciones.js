@@ -52,7 +52,7 @@ app.controller("NotificacionesController", function($scope, $http, $timeout, $lo
             });
 
 
-    },2000); //fin del interval
+    },60000); //fin del interval
 
 
 
