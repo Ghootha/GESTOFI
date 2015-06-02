@@ -511,16 +511,51 @@ dl span {float:left; width:88px}
 .buttons2 a {margin-left:35px}
 		
 /****************************footer************************/
-footer {
+/*footer {
 	width:100%; 
-	height:395px;
+	height:720px;
 	color:#999;
 	background:url(../images/footer-tail.gif) center top repeat;
 	position:relative;
-	/*z-index:9;*/
+	z-index:9;
+	overflow:hidden;
+	margin-top: 100px;
+}*/
+
+#footerPrincipalPage{
+	width:100%; 
+	height:320px;
+	color:#999;
+	background:url(../images/footer-tail.gif) center top repeat;
+	position:relative;
+	overflow:hidden;
+	z-index:1;
+	margin-top: 100px;
+}
+
+#footerTemplatePage{
+	width:100%; 
+	height:720px;
+	color:#999;
+	background:url(../images/footer-tail.gif) center top repeat;
+	position:relative;
 	overflow:hidden;
 	margin-top: 100px;
 }
+
+@-moz-document url-prefix() {
+	  footer {
+		width:100%; 
+		height:320px !important;
+		color:#999;
+		background:url(../images/footer-tail.gif) center top repeat;
+		position:relative;
+		z-index:0;
+		overflow:hidden;
+		margin-top: 100px;
+	}
+}
+
 footer .padding {padding:35px 0 0}
 footer h4 {color:#fff; margin-bottom:18px}
 
