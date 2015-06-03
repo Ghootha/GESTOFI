@@ -25,14 +25,10 @@ module.exports = {
         unique: true
       },
       Role: {
-        type:'string',
-          /*columnName: 'role_id',
-          type: 'integer',
+        type:'string',         
           foreignKey: true,
           references: 'Role',
-          on 'id'*/
-          
-          defaultsTo: 'Director'
+          on: 'nombre'
       }, 
       tipo:{
         type:'string',
