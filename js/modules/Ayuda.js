@@ -4,9 +4,9 @@ app.controller("AyudaController", function($scope, $http, $timeout, $location, $
 
     $scope.ayuda= [
         {nombre: "Agenda", video:"agenda.mp4"},
-        {nombre: "Configuracion De Rol", video:"configRol.mp4"},
-        {nombre: "Configuracion de Sistema", video:"configSis.mp4"},
-        {nombre: "Configuracion de Usuarios", video:"configUsuarios.mp4"},
+        {nombre: "Configuración De Rol", video:"configRol.mp4"},
+        {nombre: "Configuración de Sistema", video:"configSis.mp4"},
+        {nombre: "Configuración de Usuarios", video:"configUsuarios.mp4"},
         {nombre: "Control de Reservas", video:"controlReservas.mp4"},
         {nombre: "Correspondencia", video:"correspondencia.mp4"},
         {nombre: "Login", video:"login.mp4"},
