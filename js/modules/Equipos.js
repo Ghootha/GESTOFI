@@ -109,7 +109,7 @@ $scope.$watch('horaEntrega',function() {$scope.validacion();});
 
 
 $scope.validacion =function(){
-  $scope.equipos=[];
+  $scope.equipos=[];$scope.btnConsultar=true;
   if(typeof $scope.horaInicio !== "undefined" &&typeof $scope.horaEntrega !=="undefined" && typeof $scope.fecha !=="undefined"){
     var h1=new Date("January 01, 2015 "+$scope.horaInicio+":00");
     var h2=new Date("January 01, 2015 "+$scope.horaEntrega+":00");
